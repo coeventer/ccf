@@ -1,0 +1,12 @@
+class CreateProjects < ActiveRecord::Migration
+  def change
+    create_table :projects do |t|
+      t.integer :event_id
+      t.integer :project_owner_id
+      t.string :title
+      t.text :description
+
+      t.timestamps
+    end
+  end
+end

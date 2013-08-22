@@ -35,8 +35,6 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (2.3.2.1)
-      sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.10)
     capybara (2.1.0)
@@ -53,6 +51,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    commonjs (0.2.6)
     cucumber (1.3.6)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.3)
@@ -82,6 +81,8 @@ GEM
       rails (>= 3, < 5)
     formtastic (2.2.1)
       actionpack (>= 3.0)
+    formtastic-bootstrap (2.1.3)
+      formtastic (~> 2.2)
     gherkin (2.12.1)
       multi_json (~> 1.3)
     hike (1.2.3)
@@ -93,6 +94,12 @@ GEM
     json (1.8.0)
     launchy (2.3.0)
       addressable (~> 2.3)
+    less (2.3.2)
+      commonjs (~> 0.2.6)
+    less-rails (2.3.3)
+      actionpack (>= 3.1)
+      less (~> 2.3.1)
+    libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -131,6 +138,7 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    ref (1.0.5)
     rolify (3.2.0)
     rspec-core (2.14.5)
     rspec-expectations (2.14.2)
@@ -143,21 +151,24 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    sass (3.2.10)
-    sass-rails (3.2.6)
-      railties (~> 3.2.0)
-      sass (>= 3.1.10)
-      tilt (~> 1.3)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    therubyracer (0.12.0)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.18.1)
     tilt (1.4.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    twitter-bootstrap-rails (2.2.8)
+      actionpack (>= 3.1)
+      execjs
+      rails (>= 3.1)
+      railties (>= 3.1)
     tzinfo (0.3.37)
     uglifier (2.1.2)
       execjs (>= 0.3.0)
@@ -171,7 +182,6 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  bootstrap-sass
   cancan
   capybara
   coffee-rails (~> 3.2.1)
@@ -181,12 +191,15 @@ DEPENDENCIES
   factory_girl_rails
   figaro
   formtastic
+  formtastic-bootstrap
   jquery-rails
   launchy
+  less-rails
   mysql2
   quiet_assets
   rails (= 3.2.14)
   rolify
   rspec-rails
-  sass-rails (~> 3.2.3)
+  therubyracer
+  twitter-bootstrap-rails
   uglifier (>= 1.0.3)

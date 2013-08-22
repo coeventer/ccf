@@ -4,18 +4,24 @@ gem 'rails', '3.2.14'
 gem 'mysql2'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  
+  gem "therubyracer"
+  gem "less-rails"
+  gem "twitter-bootstrap-rails"
 end
 
+
+
 gem 'jquery-rails'
-gem 'bootstrap-sass'
 gem 'cancan'
 
 gem 'figaro'
 gem 'rolify'
+
 gem 'formtastic'
+gem 'formtastic-bootstrap'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
