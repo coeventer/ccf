@@ -1,4 +1,4 @@
-Campus Codefest
+Description
 ===============
 
 Application used to support a Campus Codefest. Events which are not quite hackathons, not quite educational but fall 
@@ -14,6 +14,45 @@ The purpose of making this application is to make planning a Campus Codefest eas
 built application if enough functionality can be found in a practical application. If custom code is required, the goal
 is to provide this code to other organizations, likely in Higher Education, wishing to perform similiar events.
 
+Contributing
+===============
+**Requirements**
+- Ruby 1.9.3
+- rubygems (or RVM, rbenv)
+- Git
+
+Clone the repository to your local dev environment.
+```
+git clone git@github.com:pete2786/campus_codefest.git
+```
+
+Bundling will take a LONG time as I require therubyracer to compile less. If you are using RVM, I recommend isolating
+the gems by creating a gemset (%rvm gemset create ccf)
+```
+cd campus_codefest
+bundle
+```
+
+Set-up your development data base, I am using mysql locally but included an example SQLite DB config for lowest overhead
+```
+mv config/database.yml.example config/database.yml
+bundle exec rake db:create
+bundle exec rake db:migrate
+```
+
+This is a Test-Driven Development project. Your code should be speced and covered with rspec and capybara. Create a
+failing test then implement the code to make it pass for models. Feature tests should be created with capybara.
+```
+bundle exec rspec
+```
+
+Firing up the server, then browse to http://localhost:3000
+```
+rails s
+```
+
+Estimated Development Cycles
+===============
 **Phase One**
 - Improve Project idea submission, rating and voting process.
 - Shibboleth Authentication
@@ -33,7 +72,8 @@ is to provide this code to other organizations, likely in Higher Education, wish
 **Phase Three**
 - Profit
 
-**Project Entities**
+Project Entities
+===============
 - Project Idea
  - :event_id
  - :title
