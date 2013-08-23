@@ -1,0 +1,2 @@
+module ProjectRatingsHelper
+end

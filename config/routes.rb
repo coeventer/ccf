@@ -8,4 +8,14 @@ CampusCodefest::Application.routes.draw do
   end
   
   resources :users
+  resource :session
+  
+  match "/auth/:provider/callback" => "sessions#create"
+  match "/signout" => "sessions#signout", :as => :signout  
+  
+  namespace :admin do
+    root :to => 'home#index'
+    resources :users
+    resources :events
+  end  
 end

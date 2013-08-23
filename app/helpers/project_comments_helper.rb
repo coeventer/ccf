@@ -1,0 +1,2 @@
+module ProjectCommentsHelper
+end

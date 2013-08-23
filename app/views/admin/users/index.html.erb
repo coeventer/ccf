@@ -1,0 +1,27 @@
+<h2>Manage Users</h2>
+<p><%=link_to "Back to Admin", admin_root_path%></p>
+<table class="table table-striped table-hover table-condensed table-bordered">
+  <thead>
+    <th>User</th>
+    <th>Email</th>
+    <th>Projects</th>
+    <th>Votes</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <%@users.each do |u|%>
+    <td><%=u.x500id%></td>
+    <td></td>
+    <td>TBD</td>
+    <td>TBD</td>
+    <td>
+      <div class="btn-group">
+        <%=link_to "Edit", "#", :class => "btn btn-small"%>
+        <%=link_to "Admin", "#", :class => "btn btn-small"%>
+        <%=link_to "Delete", "#", :class => "btn btn-small"%>
+      </div>
+    </td>                
+    <%end%>
+  </tbody>
+</table>
+<%=will_paginate @users%>

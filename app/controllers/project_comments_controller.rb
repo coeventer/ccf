@@ -1,0 +1,2 @@
+class ProjectCommentsController < ApplicationController
+end

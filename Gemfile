@@ -22,6 +22,7 @@ gem 'rolify'
 
 gem 'formtastic'
 gem 'formtastic-bootstrap'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
@@ -38,3 +39,9 @@ group :test do
   gem 'email_spec'
   gem 'launchy'
 end
+
+# Temporarily using FB for auth, will use Shibboleth on UMN infra
+gem 'omniauth-facebook'
+gem 'omniauth-shibboleth'
+
+gem 'will_paginate'

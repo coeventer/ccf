@@ -1,0 +1,21 @@
+<h1>Welcome, you are an administrator... Cool.</h1>
+<p>This interface allows you to manage Campus Codefest events, manage other admins and moderate the voting process.</p>
+<hr />
+<h2>Events</h2>
+<%if @events.blank? then%>
+<p>You have not created any events yet.</p>
+<%else%>
+<%@events.each do |e|%>
+<h3><%=link_to e.title, admin_event_path(e)%></h3>
+<p>Event description</p>
+<p>
+  <%=link_to "Edit", edit_admin_event_path(e), :class => "btn btn-small" %>
+  <%=link_to "Delete", admin_event_path(e), :method => :delete, :class => "btn btn-small btn-danger", :confirm => "Are you sure? This cannot be undone and will delete all related event projects, voting, etc." %></p>
+<hr />
+<%end%>
+<%end%>
+<p><%=link_to "Create an event", new_admin_event_path, :class => "btn"%></p>
+<hr />
+<h2>Users</h2>
+<p><%=link_to "Manage Users", admin_users_path%>
+<hr />
