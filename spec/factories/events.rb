@@ -6,5 +6,8 @@ FactoryGirl.define do
     start_date "2013-08-21"
     end_date "2013-08-21"
     voting_end_date "2013-08-21"
+    volunteer_end_date "2013-08-21"
+    voting_enabled true
+    volunteering_enabled true
   end
 end

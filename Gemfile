@@ -38,6 +38,7 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'launchy'
+  gem "shoulda-matchers"
 end
 
 # Temporarily using FB for auth, will use Shibboleth on UMN infra

@@ -174,6 +174,8 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    shoulda-matchers (2.3.0)
+      activesupport (>= 3.0.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -226,6 +228,7 @@ DEPENDENCIES
   rails (= 3.2.14)
   rolify
   rspec-rails
+  shoulda-matchers
   therubyracer
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)

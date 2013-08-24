@@ -11,15 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130822033047) do
+ActiveRecord::Schema.define(:version => 20130824181349) do
+
+  create_table "event_moderators", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "event_registrations", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "events", :force => true do |t|
     t.string   "title"
     t.date     "start_date"
     t.date     "end_date"
     t.date     "voting_end_date"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.boolean  "voting_enabled",       :default => true
+    t.boolean  "volunteering_enabled", :default => true
+    t.date     "volunteer_end_date"
+    t.text     "description"
   end
 
   create_table "project_comments", :force => true do |t|
