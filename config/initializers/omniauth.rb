@@ -4,7 +4,7 @@ if Rails.env.development? then
     provider :facebook, '486855081405003', 'c4362974cfe5686de514492b487e725e', {:client_options => {:ssl => {:ca_path => "/usr/lib/ssl/certs"}}, :setup => true}
   end  
 else
-  raise "Auth not yet implemented for non-local apps  "
+  
 end
 
 module OmniAuth
