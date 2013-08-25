@@ -1,22 +1,97 @@
 require 'spec_helper'
 
 describe Project do
-  it "should accept votes"
-  it "should not accept votes if event voting end date has passed"
-  it "should not accept votes if project start date has passed"
-  it "should require a title"
-  it "should require a description"
-  it "should require a project owner"
-  it "should associate a github account"
-  it "should require a classification"
-  it "should accept other classification"
-  it "should accept tagging"
+  it "should require a title" do
+    should validate_presence_of(:title)
+  end
   
-  it "should be assignable to an event"
-  it "should be assignable to a project 'parking lot' if there is no associated event
-  "
+  it "should require a description" do
+    should validate_presence_of(:description)
+  end
+  
+  it "should allow a project owner or accept none" do
+    should allow_value(nil).for(:project_owner)
+    should allow_value(1).for(:project_owner_id)
+  end
+  
+  it "should require a classification" do
+    should validate_presence_of(:classification)    
+  end
 
- it "should have volunteers"
- it "should have comments"
- it "should have ratings"
+  it "should have volunteers" do
+    should have_many(:volunteers)
+  end
+  
+  it "should have comments" do
+    should have_many(:volunteers)
+  end
+  
+  it "should have ratings" do
+    should have_many(:ratings)
+  end
+  
+  it "should belong to an event" do
+    should belong_to(:event)
+  end
+  
+  it "should have tags" do
+    should have_many(:tags)
+  end
+      
+  describe "that belongs to an event" do
+    it "should allow votes if event accepts votes" do
+      @event = create(:event, start_date: Date.today.advance(:days => 5),
+                            voting_enabled: true,
+                            voting_end_date: Date.tomorrow)
+                            
+      @project = create(:project, event: @event)
+      
+      @project.voting_allowed?.should be_true
+    end
+    
+    it "should not allow votes if event does not accept votes" do
+      @event = create(:event, start_date: Date.today.advance(:days => 5),
+                            voting_enabled: true,
+                            voting_end_date: Date.today.advance(:days => -2))
+                            
+      @project = create(:project, event: @event)
+      
+      @project.voting_allowed?.should be_false
+    end
+    
+    it "should allow volunteers if event accepts volunteers" do
+      @event = create(:event, end_date: Date.today.advance(:days => 5),
+                            volunteering_enabled: true,
+                            volunteer_end_date: Date.tomorrow)
+                            
+      @project = create(:project, event: @event)
+      
+      @project.volunteering_allowed?.should be_true
+    end
+    
+    it "should not allow volunteers if event accepts volunteers" do
+      @event = create(:event, end_date: Date.today.advance(:days => 5),
+                            volunteering_enabled: true,
+                            volunteer_end_date: Date.today.advance(:days => -2))
+                            
+      @project = create(:project, event: @event)
+      
+      @project.volunteering_allowed?.should be_false
+    end    
+  end
+  
+  describe "that does not belong to an event" do
+    it "should not accept votes" do
+      @project = create(:project)
+      @project.voting_allowed?.should be_false      
+    end
+    
+    it "should not accept volunteers" do
+      @project = create(:project)
+      @project.volunteering_allowed?.should be_false      
+    end
+  end
+  
+  # Need to get knowledge of GitHub API here. Contact Debbie G at UMN CSE
+  it "should associate a github account"
 end

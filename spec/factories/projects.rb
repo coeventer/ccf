@@ -5,5 +5,6 @@ FactoryGirl.define do
     event_id 1
     title "MyString"
     description "MyText"
+    classification "Classified"
   end
 end

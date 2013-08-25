@@ -38,36 +38,46 @@ describe Event do
   end
   
   describe "when dealing with voting for projects" do
-    it "should be able enable voting for projects" do
-      @event = Event.create(voting_end_date: Date.tomorrow, voting_enabled: true)
+    it "should be able to enable voting for projects" do
+      @event = create(:event, voting_end_date: Date.tomorrow, voting_enabled: true, start_date: Date.tomorrow)
       @event.voting_enabled?.should be_true
     end
   
     it "should be able to disable voting for projects" do
-      @event = Event.create(voting_end_date: Date.tomorrow, voting_enabled: false)
+      @event = create(:event, voting_end_date: Date.tomorrow, voting_enabled: 0)
       @event.voting_enabled?.should be_false
     end
   
     it "should not allow voting after voting end date" do
-      @event = Event.create(voting_end_date: Date.today, voting_enabled: true)
+      @event = create(:event, voting_end_date: Date.today, voting_enabled: true)
       @event.voting_enabled?.should be_false
     end
+    
+    it "should not accept votes if event start date has passed" do
+      @event = create(:event, start_date: Date.today, voting_enabled: true, voting_end_date: nil)
+      @event.voting_enabled?.should be_false      
+    end 
   end
   
   describe "when dealing with volunteering for projects" do
     it "should be able to enable volunteers for projects" do
-      @event = Event.create(volunteer_end_date: Date.tomorrow, volunteering_enabled: true)
+      @event = create(:event, volunteer_end_date: Date.tomorrow, volunteering_enabled: true, end_date: Date.tomorrow)
       @event.volunteering_enabled?.should be_true
     end
     
     it "should be able to disable volunteers for projects" do
-      @event = Event.create(volunteer_end_date: Date.tomorrow, volunteering_enabled: false)
+      @event = create(:event, volunteer_end_date: Date.tomorrow, volunteering_enabled: false, end_date: Date.tomorrow)
       @event.volunteering_enabled?.should be_false
     end
     
     it "should not allow volunteering after volunteer end date" do
-      @event = Event.create(volunteer_end_date: Date.today, volunteering_enabled: true)
+      @event = create(:event, volunteer_end_date: Date.today, volunteering_enabled: true, end_date: Date.tomorrow)
       @event.volunteering_enabled?.should be_false
     end
+    
+    it "should not accept votes if event end date has passed" do
+      @event = create(:event, volunteer_end_date: nil, volunteering_enabled: true, end_date: Date.today.advance(:days => -1))
+      @event.volunteering_enabled?.should be_false
+    end    
   end
 end

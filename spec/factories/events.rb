@@ -9,5 +9,6 @@ FactoryGirl.define do
     volunteer_end_date "2013-08-21"
     voting_enabled true
     volunteering_enabled true
+    description "This is an event"
   end
 end
