@@ -1,12 +1,17 @@
 CampusCodefest::Application.routes.draw do
   root :to => "home#index"
-  resources :events 
+
+  resources :events do
+    resources :event_registrations
+  end
+
   resources :projects do
     member do
       post :rate
       post :volunteer
       post :unvolunteer
     end
+
     resources :project_comments
   end
   
@@ -19,6 +24,8 @@ CampusCodefest::Application.routes.draw do
   namespace :admin do
     root :to => 'home#index'
     resources :users
-    resources :events
+    resources :events do
+      resources :event_moderators
+    end
   end  
 end

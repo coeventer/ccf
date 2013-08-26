@@ -1,10 +1,13 @@
 class Event < ActiveRecord::Base
   attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date, 
-    :volunteering_enabled, :description
+    :volunteering_enabled, :description, :registration_end_dt, :registration_maximum
   
   has_many :projects
-  has_many :moderators, :class_name => "EventModerators"
-  has_many :registrations, :class_name => "EventRegistrations"
+  has_many :registrations, :class_name => "EventRegistration"
+  has_many :moderators, :class_name => "EventModerator"
+  has_many :ratings, :through => :projects
+  has_many :volunteers, :through => :projects
+  has_many :comments, :through => :projects  
   
   validates :start_date, :presence => true
   validates :end_date, :presence => true
@@ -25,6 +28,22 @@ class Event < ActiveRecord::Base
   # and before the volunteering end date, if it is set  
   def volunteering_enabled?
     return self.volunteering_enabled && (self.volunteer_end_date.nil? ? true : Date.today < self.volunteer_end_date) && Date.today <= self.end_date
+  end
+
+  def registered?(user)
+    return !self.registrations.find_by_user_id(user.id).nil?
+  end
+
+  def registrations_remaining
+    return self.registration_maximum - self.registrations.count
+  end
+
+  def volunteer_count
+    self.volunteers.count
+  end
+
+  def vote_count
+    self.ratings.count
   end
 
   def to_param

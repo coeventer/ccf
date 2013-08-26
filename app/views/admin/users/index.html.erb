@@ -10,17 +10,19 @@
   </thead>
   <tbody>
     <%@users.each do |u|%>
-    <td><%=u.x500id%></td>
-    <td></td>
-    <td>TBD</td>
-    <td>TBD</td>
-    <td>
-      <div class="btn-group">
-        <%=link_to "Edit", "#", :class => "btn btn-small"%>
-        <%=link_to "Admin", "#", :class => "btn btn-small"%>
-        <%=link_to "Delete", "#", :class => "btn btn-small"%>
-      </div>
-    </td>                
+    <tr>
+      <td><%=u.name%></td>
+      <td></td>
+      <td><%=u.projects.count%></td>
+      <td><%=u.project_ratings.count%></td>
+      <td>
+        <div class="btn-group">
+          <%=link_to "Edit", "#", :class => "btn btn-small"%>
+          <%=link_to "Admin", "#", :class => "btn btn-small"%>
+          <%=link_to "Delete", "#", :class => "btn btn-small"%>
+        </div>
+      </td>   
+    </tr>             
     <%end%>
   </tbody>
 </table>

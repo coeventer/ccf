@@ -1,5 +1,16 @@
 <p id="notice"><%= notice %></p>
 <h1><%=@event.title%></h1>
+<p class="well well-small">
+  <% if @event.registered?(current_user)%>
+    You have registered! 
+  <%else%>
+    <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success" do%>
+    <i class="icon-play-circle"></i> Register Now
+    <%end%>
+    Register by <%=l @event.registration_end_dt%>. 
+  <%end%>
+  <%=@event.registrations_remaining%> of <%=@event.registration_maximum%> spots remain. 
+</p>
 <p><%=@event.description%></p>
 <hr />
 <% if @event.voting_enabled?%>
