@@ -26,4 +26,8 @@ class Event < ActiveRecord::Base
   def volunteering_enabled?
     return self.volunteering_enabled && (self.volunteer_end_date.nil? ? true : Date.today < self.volunteer_end_date) && Date.today <= self.end_date
   end
+
+  def to_param
+    [id, title.parameterize].join("-")
+  end  
 end

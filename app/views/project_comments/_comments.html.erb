@@ -4,6 +4,17 @@
   <%=f.submit "Add Comment", :class => "btn"%>
 <%end%>
 
-<%project.comments.each do |c|%>
-<p><%=c.description%></p>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#project_comment_description').wysihtml5();
+  })
+</script>
+
+<%project.comments.reject{|c| c.new_record?}.each do |c|%>
+<div class="row-fluid">
+  <div class="span12">
+    <p><strong><%=c.user.name%></strong> commented on <%=l c.created_at%></p>
+    <%=c.description.html_safe%>
+  </div>
+</div>
 <%end%>

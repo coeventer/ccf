@@ -1,1 +1,8 @@
-  <%=render :partial => "projects/project", :locals => {:project => @project, :truncate => false, :show_comments => true}%>
+<p id="notice"><%= notice %></p>
+<%if !@project.event.nil?%>
+<%=link_to "Back to #{@project.event.title}", event_path(@project.event) %>
+<%else%>
+<%=link_to 'Back', root_path %>
+<%end%>
+
+<%=render :partial => "projects/project", :locals => {:project => @project, :truncate => false, :show_comments => true}%>

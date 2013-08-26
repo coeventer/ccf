@@ -1,2 +1,2 @@
 <% comment = (@comment.valid? ? @project.comments.new : @comment)%>
-$("#comment_container").html("<%=j render(:partial => 'comments', :locals => {:project => @project, :comment => comment})%>")
+$("#comment_container_<%=@project.id%>").html("<%=j render(:partial => 'comments', :locals => {:project => @project, :comment => comment})%>")

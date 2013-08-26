@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Back', root_path %>
 <h1><%=@event.title%></h1>
 <p><%=@event.description%></p>
 <hr />
@@ -12,6 +11,12 @@
   <%=f.input :event_id, :as => :hidden, :value => @event.id%>
   <br />
   <%=f.submit "Submit idea", :class => "btn" %> or <%=link_to "Cancel", "#"%>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#project_description').wysihtml5();
+  })
+</script>  
   </div>  
 <%end%>
 <%end%>

@@ -87,4 +87,8 @@ class Project < ActiveRecord::Base
   def volunteer_count
     self.volunteers.count
   end
+
+  def to_param
+    [id, title.parameterize].join("-")
+  end
 end

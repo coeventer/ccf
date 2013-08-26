@@ -1,10 +1,10 @@
 <div class="row-fluid">
   <div class="span2">
     <br />
-    <div id="vote_container">
+    <div id="vote_container_<%=project.id%>">
     <%=render :partial => "projects/vote", :locals => {project: project}%>
     </div>    
-    <div id="volunteer_container">
+    <div id="volunteer_container_<%=project.id%>">
     <%=render :partial => "projects/volunteer", :locals => {project: project}%>
     </div>
      <%if !show_comments%>
@@ -14,13 +14,13 @@
   <div class="span10">
     <h4><%=link_to project.title, project_path(project)%></h4>
     <%if truncate%>
-    <p><%=truncate project.description, :length => 200%></p>
+    <p><%=truncate project.description.html_safe, :length => 200%></p>
     <%else%>
-    <p><%=project.description%></p>
+    <%=project.description.html_safe%>
     <%end%>
     <%if show_comments%>
       <hr />
-      <div id="comment_container">
+      <div id="comment_container_<%=project.id%>">
       <%=render :partial => "project_comments/comments", :locals => {project: project, comment: project.comments.new}%>
       </div>
     <%end%>
