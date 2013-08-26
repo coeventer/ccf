@@ -2,7 +2,17 @@
   <div class="span12">
     <h1>Campus Codefest</h1>
     <p>Homepage for Campus codefest... MOAR COPY.</p>
-    <h2>Event</h2>
-    <%=link_to @event.title, event_path(@event)%>
+    <h2>Future Event</h2>
+    <% @future_events.each do |e|%>
+      <h3><%=link_to e.title, event_path(e)%></h3>
+      <p><%=truncate e.description, :length => 100%></p>
+      <hr />
+    <%end%>
+    <h2>Past Events</h2>
+    <% @past_events.each do |e|%>
+      <h3><%=link_to e.title, event_path(e)%></h3>
+      <p><%=truncate e.description, :length => 100%></p>
+      <hr />
+    <%end%>    
   </div>
 </div>

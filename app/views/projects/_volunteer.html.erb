@@ -1,0 +1,20 @@
+<p><span class="badge badge-success"><%=project.volunteer_count%> volunteers</span></p>
+<%if project.volunteering_allowed?%>
+  <%if current_user %>
+    <%if project.volunteered_for?(current_user)%>
+    <p>
+      <%=link_to unvolunteer_project_path(project), :class => "btn btn-small btn-danger", :method => :post, :remote => true do%>
+      Unvolunteer
+    <%end%>
+    </p>    
+    <%else%>
+    <p>
+      <%=link_to volunteer_project_path(project), :class => "btn btn-small btn-success", :method => :post, :remote => true do%>
+      Volunteer
+    <%end%>
+    </p>    
+    <%end%>
+  <%else%>
+  <p class="info">Sign-in to vote</p>
+  <%end%>
+<%end%>

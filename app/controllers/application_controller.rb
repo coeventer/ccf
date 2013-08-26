@@ -30,4 +30,6 @@ class ApplicationController < ActionController::Base
     session[:token] = nil
     session[:created_at] = nil
   end
+  
+  helper_method :current_user
 end

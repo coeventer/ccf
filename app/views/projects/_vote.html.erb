@@ -1,0 +1,20 @@
+<p><span class="badge badge-info"><%=project.vote_count%> ratings</span></p>
+<%if project.voting_allowed? %>
+  <%if current_user %>
+    <%if project.voted_on?(current_user)%>
+    <p>
+      <%=link_to rate_project_path(project), :class => "btn btn-small btn-danger", :method => :post, :remote => true do%>
+        Remove vote
+      <%end%>
+    </p>    
+    <%else%>
+      <p>
+      <%=link_to rate_project_path(project), :class => "btn btn-small btn-info", :method => :post, :remote => true do%>
+        Vote
+      <%end%>
+      </p>   
+    <%end%>
+  <%else%>
+  <p class="info">Sign-in to vote</p>
+  <%end%>
+<%end%>

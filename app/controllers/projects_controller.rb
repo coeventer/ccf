@@ -80,4 +80,34 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # Only responds to js
+  def rate
+    @project = Project.find(params[:id])
+    @project.toggle_vote(current_user)
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  # Only responds to js  
+  def volunteer
+    @project = Project.find(params[:id])
+    @project.volunteer(current_user)
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  # Only responds to js  
+  def unvolunteer
+    @project = Project.find(params[:id])
+    @project.unvolunteer(current_user)
+    
+    respond_to do |format|
+      format.js {render :volunteer}
+    end       
+  end
 end

@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
-  attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date, :volunteering_enabled
+  attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date, 
+    :volunteering_enabled, :description
   
   has_many :projects
   has_many :moderators, :class_name => "EventModerators"

@@ -1,0 +1,29 @@
+<div class="row-fluid">
+  <div class="span2">
+    <br />
+    <div id="vote_container">
+    <%=render :partial => "projects/vote", :locals => {project: project}%>
+    </div>    
+    <div id="volunteer_container">
+    <%=render :partial => "projects/volunteer", :locals => {project: project}%>
+    </div>
+     <%if !show_comments%>
+    <p><%=link_to project_path(project), :style => "color: white;" do%><span class="badge"><%=project.comment_count%> comments</span><%end%></p>
+    <%end%>
+  </div>
+  <div class="span10">
+    <h4><%=link_to project.title, project_path(project)%></h4>
+    <%if truncate%>
+    <p><%=truncate project.description, :length => 200%></p>
+    <%else%>
+    <p><%=project.description%></p>
+    <%end%>
+    <%if show_comments%>
+      <hr />
+      <div id="comment_container">
+      <%=render :partial => "project_comments/comments", :locals => {project: project, comment: project.comments.new}%>
+      </div>
+    <%end%>
+  </div>
+</div>
+<hr />

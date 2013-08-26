@@ -1,0 +1,9 @@
+<p><strong><%=project.comment_count%> comments</strong></p>
+<%=semantic_form_for comment, :url => project_project_comments_path(project), :remote => true do |f| %>
+  <%=f.input :description, :input_html => {:style => "height: 80px; width: 100%;"}, :label => false%>
+  <%=f.submit "Add Comment", :class => "btn"%>
+<%end%>
+
+<%project.comments.each do |c|%>
+<p><%=c.description%></p>
+<%end%>

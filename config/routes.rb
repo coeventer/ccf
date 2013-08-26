@@ -2,9 +2,12 @@ CampusCodefest::Application.routes.draw do
   root :to => "home#index"
   resources :events 
   resources :projects do
+    member do
+      post :rate
+      post :volunteer
+      post :unvolunteer
+    end
     resources :project_comments
-    resources :project_volunteers
-    resources :project_ratings
   end
   
   resources :users
