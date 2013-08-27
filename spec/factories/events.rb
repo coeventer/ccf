@@ -10,5 +10,7 @@ FactoryGirl.define do
     voting_enabled true
     volunteering_enabled true
     description "This is an event"
+    registration_end_dt "2013-08-20"
+    registration_maximum 126
   end
 end
