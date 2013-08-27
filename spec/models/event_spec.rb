@@ -16,6 +16,14 @@ describe Event do
   it "should require a description" do
     should validate_presence_of(:description)
   end
+
+  it "should require a registration end date" do
+    should validate_presence_of(:registration_end_dt)
+  end
+
+  it "should require a registration max" do
+    should validate_presence_of(:registration_maximum)
+  end
   
   it "should accept a voting end date" do
     should allow_value(Time.now).for(:voting_end_date)
@@ -78,6 +86,36 @@ describe Event do
     it "should not accept votes if event end date has passed" do
       @event = create(:event, volunteer_end_date: nil, volunteering_enabled: true, end_date: Date.today.advance(:days => -1))
       @event.volunteering_enabled?.should be_false
-    end    
+    end
+
+    describe "When dealing with a created event and project" do
+      before(:each) do
+        @event = create(:event)
+        @user = create(:user)
+        @project = create(:project, :event => @event)
+      end
+
+      it "should calculate the number of votes on associated projects" do
+        @event.vote_count.should be(0)
+        @project_rating = create(:project_rating, project: @project, user: @user)
+        @event.vote_count.should be(1)
+      end
+
+      it "should calculate the number of volunteers on associated projects" do
+        @event.volunteer_count.should be(0)
+        @project_volunteer = create(:project_volunteer, project: @project, user: @user)
+        @event.volunteer_count.should be(1)
+      end    
+
+      it "should properly determine if a user is registered" do
+        @event_registration = create(:event_registration, user: @user, event: @event)
+        @event.registered?(@user).should be_true  
+      end
+
+      it "should properly determine the number of registrations remaining" do
+        @event_registration = create(:event_registration, user: @user, event: @event)
+        @event.registrations_remaining.should be(125)
+      end      
+    end
   end
 end

@@ -17,8 +17,6 @@ class Event < ActiveRecord::Base
   validates :volunteering_enabled, :inclusion => [true, false]
   validates :registration_end_dt, :presence => true
   validates :registration_maximum, :presence => true
-  #validates :voting_end_date, :format => {:date => true}
-  #validates :volunteer_end_date, :format => {:date => true}
   
   # Voting is enabled if the voting enabled boolean is turned on, it is before the event start date
   # and before the voting end date, if it is set

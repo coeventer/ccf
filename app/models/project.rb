@@ -53,7 +53,7 @@ class Project < ActiveRecord::Base
   def unvolunteer(user)
     if self.volunteering_allowed? && self.volunteered_for?(user) then
       v = self.volunteers.find_by_user_id(user.id)
-      v.destroy
+      v.destroy unless v.nil?
     end
   end  
   

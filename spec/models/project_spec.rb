@@ -91,6 +91,57 @@ describe Project do
       @project.volunteering_allowed?.should be_false      
     end
   end
+
+  describe "When dealing with a created event and project" do
+    before(:each) do
+      @event = create(:event, voting_end_date: Date.today.advance(:days => 5),
+                              volunteer_end_date: Date.today.advance(:days => 5),
+                              registration_end_dt: Date.today.advance(:days => 5),
+                              start_date: Date.today.advance(:days => 7),
+                              end_date: Date.today.advance(:days => 10))
+      @user = create(:user)
+      @project = create(:project, :event => @event)
+    end
+
+    it "should determine if a user has voted on a project" do 
+      @project.voted_on?(@user).should be_false
+      @project_rating = create(:project_rating, user: @user, project: @project)
+      @project.voted_on?(@user).should be_true
+    end
+
+    it "should allow voting to be toggled" do
+      lambda{@project.toggle_vote(@user)}.should change(ProjectRating, :count).by(1)
+      lambda{@project.toggle_vote(@user)}.should change(ProjectRating, :count).by(-1)
+    end
+
+    it "should not allow voting to be toggled if voting ended" do
+      lambda{@project.toggle_vote(@user)}.should change(ProjectRating, :count).by(1)
+      @event.voting_enabled=false
+      lambda{@project.toggle_vote(@user)}.should_not change(ProjectRating, :count).by(-1)
+    end
+
+    it "should determine of a user has volunteered for a project" do
+      @project.volunteered_for?(@user).should be_false
+      @project_volunteer = create(:project_volunteer, user: @user, project: @project)
+      @project.volunteered_for?(@user).should be_true
+    end
+
+    it "should allow someone to volunteer or unvolunteer" do
+      lambda{@project.volunteer(@user)}.should change(ProjectVolunteer, :count).by(1)
+      lambda{@project.unvolunteer(@user)}.should change(ProjectVolunteer, :count).by(-1)
+    end
+
+    it "should not allow volunteering or unvolunteering after volunteering has been disabled" do
+      @event.volunteering_enabled=false
+      lambda{@project.volunteer(@user)}.should_not change(ProjectVolunteer, :count).by(1)
+
+      @event.volunteering_enabled=true
+      lambda{@project.volunteer(@user)}.should change(ProjectVolunteer, :count).by(1)
+
+      @event.volunteering_enabled=false
+      lambda{@project.unvolunteer(@user)}.should_not change(ProjectVolunteer, :count).by(-1)      
+    end
+  end
   
   # Need to get knowledge of GitHub API here. Contact Debbie G at UMN CSE
   it "should associate a github account"
