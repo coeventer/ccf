@@ -4,6 +4,11 @@ class Admin::EventRegistrationsController < ApplicationController
   def index
     @event = Event.find(params[:event_id])
     @registrations = @event.registrations
+    
+    respond_to do |format|
+      format.html
+      format.csv { render text: @event.registrations.order("created_at").to_csv }
+    end
   end
   
   def destroy

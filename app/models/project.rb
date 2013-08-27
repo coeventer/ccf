@@ -91,4 +91,13 @@ class Project < ActiveRecord::Base
   def to_param
     [id, title.parameterize].join("-")
   end
+  
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << ["Title", "Classification", "Votes", "Volunteers", "Comments", "Created On"]
+      all.each do |project|
+        csv << [project.title, project.classification, project.vote_count, project.volunteer_count, project.comment_count, project.created_at]
+      end
+    end
+  end  
 end
