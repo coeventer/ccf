@@ -17,6 +17,7 @@ User.create(x500id: '100006575016740', name: "Karen Amfegejafgdj Zamorestein", a
 User.create(x500id: '100006604146016', name: "Carol Amffjdadfjaf Carrierosen", admin: 0)
 User.create(x500id: '100006463343694', name: "Helen Amfdfccdcfid Narayanansen", admin: 0)
 User.create(x500id: '100006606395761', name: "Mike Amffjfciegfa Goldmanman", admin: 0)
+User.create(x500id: '13966290', name: "Chad Fennell", admin: 1)
 
 puts "Adding Event"
 e = Event.create(title: "Campus Codefest - Winter 2014", start_date: "2014-01-14", end_date: "2014-01-17", 
