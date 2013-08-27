@@ -18,6 +18,9 @@
     <%else%>
     <%=project.description.html_safe%>
     <%end%>
+    <br />
+    <br />    
+    <p>Volunteers: <%=project.volunteers.collect{|v| v.user.name}.join(", ")%>
     <%if show_comments%>
       <hr />
       <div id="comment_container_<%=project.id%>">
