@@ -1,18 +1,41 @@
 <div class="row-fluid">
   <div class="span12">
-    <h1>Campus Codefest</h1>
-    <p>Homepage for Campus codefest... MOAR COPY.</p>
-    <h2>Future Event</h2>
-    <% @future_events.each do |e|%>
-      <h3><%=link_to e.title, event_path(e)%></h3>
-      <p><%=truncate e.description, :length => 100%></p>
-      <hr />
+    <div class="hero-unit">
+      <h1>Campus Codefest</h1>
+        <p>Campus Codefest U is an unconference for U of M designers, developers, sysadmins and other interested parties in the University of Minnesota community who want to come together to code for a couple of days.</p>
+        <p>
+          <%=link_to "Learn More", about_path, :class=>"btn btn-primary btn-large"%>
+        </p>
+    </div>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span4">
+    <h3>Upcoming Event</h3>
+    <%if @future_events.first.nil?%>
+      <p>
+        Check back soon, the planning for the next Campus Codefest has not started yet.
+      </p> 
+    <%else%>
+    <%event = @future_events.first%>
+    <p><%=link_to event.title, event_path(event)%> on <%=l event.start_date%></p>
+    <p>Add a short description to events for use on the front page and other spots
+      where we do not want a long, HTML based description.</p>
     <%end%>
-    <h2>Past Events</h2>
-    <% @past_events.each do |e|%>
-      <h3><%=link_to e.title, event_path(e)%></h3>
-      <p><%=truncate e.description, :length => 100%></p>
-      <hr />
-    <%end%>    
+  </div>
+  <div class="span4">
+    <h3>What have we accomplished?</h3>
+      <p>
+        Developing networks and relationships is the main goal of the Campus Codefest. That said, we have still managed to do some awesome projects thus far. Check out our recap and
+        highlights for past Codefests.
+      </p>     
+  </div>  
+  <div class="span4">
+    <h3>We're on GitHub Enterprise</h3>
+      <p>
+        GitHub is a pillar of the Campus Codefest. Check out our organization,
+        <%=link_to 'https://github.umn.edu/organizations/ccf', "https://github.umn.edu/organizations/ccf"%>, install Git (Mac|Linux|Windows) on your Workstation and learn as much about
+        git as possible before attending a Codefest.
+      </p>     
   </div>
 </div>
