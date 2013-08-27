@@ -12,10 +12,22 @@ class Admin::UsersController < Admin::AdminController
   end
   
   def update
-    @user = User.find(params[:id])    
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(params[:user]) then
+      redirect_to admin_users_path, :message => "Updated #{@user.name}"
+    else
+      render :edit
+    end
   end
   
   def destroy
     @user = User.find(params[:id])    
+
+    if @user.destroy then
+      redirect_to admin_users_path, :message => "Deleted #{@user.name}"
+    else
+      redirect_to admin_users_path, :message => "Unabled to delete #{@user.name}"
+    end
   end
 end

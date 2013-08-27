@@ -1,0 +1,11 @@
+<%=semantic_form_for @user, :url => admin_user_path(@user) do |f|%>
+  <label>Name</label>
+  <%=@user.name%>
+  <label>uid</label>
+  <%=@user.x500id%>
+  <label>Department</label>
+  <%=@user.department.blank? ? "N/A" : @user.department%>
+  <%=f.input :admin%>
+  <%=f.submit%> or <%=link_to "Cancel", admin_users_path%>
+<%end%>
+<hr />
