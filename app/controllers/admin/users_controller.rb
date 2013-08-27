@@ -30,4 +30,15 @@ class Admin::UsersController < Admin::AdminController
       redirect_to admin_users_path, :message => "Unabled to delete #{@user.name}"
     end
   end
+
+  def search
+    query = "#{'%'}#{params[:query]}#{'%'}"
+    @users = User.where(["name like ? or department like ? or email like ?", query, query, query]).
+    paginate(:page => params[:page], :per_page => 30)
+    
+    respond_to do |format|
+      puts @users.inspect
+      format.js
+    end
+  end
 end

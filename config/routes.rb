@@ -25,7 +25,11 @@ CampusCodefest::Application.routes.draw do
   
   namespace :admin do
     root :to => 'home#index'
-    resources :users
+    resources :users do
+      collection do
+        get :search
+      end
+    end
     resources :events do
       resources :event_moderators
       resources :event_registrations

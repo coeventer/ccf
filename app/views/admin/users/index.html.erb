@@ -1,30 +1,14 @@
 <h2>Manage Users</h2>
 <p><%=link_to "Back to Admin", admin_root_path%></p>
-<table class="table table-striped table-hover table-condensed table-bordered">
-  <thead>
-    <th>User</th>
-    <th>Email</th>
-    <th>Projects</th>
-    <th>Votes</th>
-    <th>Admin</th>
-    <th>Actions</th>
-  </thead>
-  <tbody>
-    <%@users.each do |u|%>
-    <tr>
-      <td><%=u.name%></td>
-      <td></td>
-      <td><%=u.projects.count%></td>
-      <td><%=u.project_ratings.count%></td>
-      <td><%=u.admin%>
-      <td>
-        <div class="btn-group">
-          <%=link_to "Edit", edit_admin_user_path(u), :class => "btn btn-small"%>
-          <%=link_to "Delete", "#", :class => "btn btn-small btn-danger"%>
-        </div>
-      </td>   
-    </tr>             
-    <%end%>
-  </tbody>
-</table>
-<%=will_paginate @users%>
+<%=form_tag "search", :remote => true do%>
+  <%=text_field :query, 'field', :placeholder => 'Search'%>
+<%end%>
+<div id="users_container">
+  <%=render :partial => "users"%>
+</div>
+<script type="text/javascript">
+  $("#query_field").keyup(function(){
+    $.get('<%=search_admin_users_path(:format => :js)%>',
+    {query: $("#query_field").val()}); 
+  });
+</script>
