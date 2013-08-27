@@ -15,6 +15,8 @@ class Event < ActiveRecord::Base
   validates :description, :presence => true
   validates :voting_enabled, :inclusion => [true, false]
   validates :volunteering_enabled, :inclusion => [true, false]
+  validates :registration_end_dt, :presence => true
+  validates :registration_maximum, :presence => true
   #validates :voting_end_date, :format => {:date => true}
   #validates :volunteer_end_date, :format => {:date => true}
   

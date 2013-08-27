@@ -26,6 +26,14 @@ CampusCodefest::Application.routes.draw do
     resources :users
     resources :events do
       resources :event_moderators
+      resources :event_registrations
+      
+      resources :projects do
+        resources :project_volunteers
+        resources :project_comments
+        resources :project_votes
+      end
+      
     end
   end  
 end

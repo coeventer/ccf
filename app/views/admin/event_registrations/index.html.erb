@@ -1,0 +1,29 @@
+<h1>Registrations for <%=@event.title%></h1>
+<p><%=link_to "Back to #{@event.title} admin", admin_event_path(@event)%></p>
+<p>
+  <%=link_to "Add a Registration", new_admin_event_event_registration_path(@event), :class => "btn"%>
+  <%=link_to "Email all registrants", "#", :class => "btn"%>
+</p>
+<table class="table table-striped table-hover table-condensed table-bordered">
+  <thead>
+    <th>User</th>
+    <th>Created on</th>
+    <th>Notes</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <%@registrations.each do |r|%>
+    <tr>
+      <td><%=r.user.name%></td>
+      <td><%=l r.created_at%></td>
+      <td><%=r.note%></td>
+      <td>
+        <div class="btn-group">
+          <%=link_to "Unregister", admin_event_event_registration_path(@event, r), :class => "btn btn-small btn-danger",
+                      :confirm => "Are you certain you want to do this?", :method => :delete%>
+        </div>
+      </td>   
+    </tr>             
+    <%end%>
+  </tbody>
+</table>

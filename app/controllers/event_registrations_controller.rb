@@ -32,7 +32,7 @@ class EventRegistrationsController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
     @event_registration = @event.registrations.new(params[:event_registration])
-    @event_registration.user_id = current_user.id
+    @event_registration.user = current_user
 
     respond_to do |format|
       if @event_registration.save

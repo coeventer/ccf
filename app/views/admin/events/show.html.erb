@@ -3,7 +3,9 @@
 <p><%=@event.description%></p>
 <div class="row-fluid">
   <div class="span6">
-    <h1><%=link_to @event.registrations.count, "#"%></h1> registrants
+    <%=link_to admin_event_event_registrations_path(@event) do%>
+      <h1><%=@event.registrations.count%></h1> registrants
+    <%end%>
     <p><%=@event.registrations.count(:group => 'date(created_at)')%></p>
   </div>
   <div class="span6">
