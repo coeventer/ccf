@@ -1,4 +1,4 @@
-<p><span class="badge badge-info"><%=project.vote_count%> ratings</span></p>
+<p><span class="badge badge-info"><%=project.vote_count%></span> ratings</p>
 <%if project.voting_allowed? %>
   <%if current_user %>
     <%if project.voted_on?(current_user)%>

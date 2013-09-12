@@ -2,6 +2,8 @@
   <%=f.text_field :title, :style => "width: 80%;", :placeholder => "Submit your idea for #{@event.title}"%>
   <%=f.input :classification, :as => :radio, :collection => Project::CLASSIFICATIONS, :include_blank => false%>
   <%=f.text_area :description, :style => "width: 80%; height: 100px;", :placeholder => "Describe your idea"%>
+  <%=f.input :repository%>
+  <%=f.input :approved%>
   <%=f.input :event_id, :as => :hidden, :value => @event.id%>
   <br />
   <%=f.submit "Update project", :class => "btn" %> or <%=link_to "Cancel", cancel_link%>

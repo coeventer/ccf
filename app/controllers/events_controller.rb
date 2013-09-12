@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.live
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
+    @event = Event.live.find(params[:id])
+    @registration = @event.registrations.find_by_user_id(current_user.id)
     @new_project = Project.new
   
     respond_to do |format|

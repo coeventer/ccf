@@ -1,4 +1,4 @@
-<p><span class="badge badge-success"><%=project.volunteer_count%> volunteers</span></p>
+<p><span class="badge badge-success"><%=project.volunteer_count%></span> volunteers</p>
 <%if project.volunteering_allowed?%>
   <%if current_user %>
     <%if project.volunteered_for?(current_user)%>

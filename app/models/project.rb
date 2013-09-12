@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :title, :classification, :project_owner, :event_id
+  attr_accessible :description, :title, :classification, :project_owner, :event_id,
+  :approved, :repository
   
   has_many :comments, :class_name => "ProjectComment"
   has_many :ratings, :class_name => "ProjectRating"

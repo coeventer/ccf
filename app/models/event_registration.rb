@@ -1,5 +1,5 @@
 class EventRegistration < ActiveRecord::Base
-  attr_accessible :event_id, :user, :not
+  attr_accessible :event_id, :user, :note
   
   belongs_to :event
   belongs_to :user

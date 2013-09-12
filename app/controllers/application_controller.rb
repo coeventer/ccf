@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def find_events
-    @future_events = Event.where(["end_date >= ?", Date.today]) 
-    @past_events = Event.where(["end_date < ?", Date.today]) 
+    @future_events = Event.live.where(["end_date >= ?", Date.today]) 
+    @past_events = Event.live.where(["end_date < ?", Date.today]) 
   end
 end

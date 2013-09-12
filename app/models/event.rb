@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date, 
-    :volunteering_enabled, :description, :registration_end_dt, :registration_maximum
+    :volunteering_enabled, :description, :registration_end_dt, :registration_maximum,
+    :live
   
   has_many :projects
   has_many :registrations, :class_name => "EventRegistration"
@@ -49,4 +50,8 @@ class Event < ActiveRecord::Base
   def to_param
     [id, title.parameterize].join("-")
   end  
+
+  def self.live
+    return self.where(live: true)
+  end
 end

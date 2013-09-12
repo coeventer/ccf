@@ -5,6 +5,7 @@
   <thead>
     <th>Project</th>
     <th>Classification</th>
+    <th>Approved</th>    
     <th>Votes</th>
     <th>Volunteers</th>
     <th>Comments</th>
@@ -16,6 +17,7 @@
     <tr>
       <td><%=link_to p.title, admin_event_project_path(@event, p)%></td>
       <td><%=p.classification%></td>
+      <td><%=p.approved%></td>
       <td><%=p.ratings.count%></td>
       <td><%=p.volunteers.count%></td>      
       <td><%=p.comments.count%></td>

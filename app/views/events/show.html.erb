@@ -3,6 +3,9 @@
 <p class="well well-small">
   <% if @event.registered?(current_user)%>
     You have registered! 
+    <%=link_to event_event_registration_path(@event, @registration), :class => "btn btn-danger",  :method => :delete do%>
+    <i class="icon-play-circle"></i> Unregister
+    <%end%>    
   <%else%>
     <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success" do%>
     <i class="icon-play-circle"></i> Register Now
@@ -20,6 +23,7 @@
   <%=f.input :classification, :as => :radio, :collection => Project::CLASSIFICATIONS, :include_blank => false%>
   <%=f.text_area :description, :style => "width: 80%; height: 100px;", :placeholder => "Describe your idea"%>
   <%=f.input :event_id, :as => :hidden, :value => @event.id%>
+  <%=f.input :repository%>  
   <br />
   <%=f.submit "Submit idea", :class => "btn" %> or <%=link_to "Cancel", "#"%>
 

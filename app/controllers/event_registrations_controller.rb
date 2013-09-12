@@ -63,10 +63,10 @@ class EventRegistrationsController < ApplicationController
   def destroy
     @event = Event.find(params[:event_id])
     event_registration = @event.registrations.find(params[:id])
-    @event_registration.destroy
+    event_registration.destroy
 
     respond_to do |format|
-      format.html { redirect_to event_registrations_url }
+      format.html { redirect_to event_url(@event) }
     end
   end
 end

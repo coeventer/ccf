@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :project_comments
   has_many :project_ratings
   has_many :project_volunteers
+  has_many :event_registrations
   
   def self.create_with_omniauth(auth)
     create! do |user|
