@@ -1,5 +1,6 @@
 <%= semantic_form_for @event_registration, :url => event_event_registrations_path(@event) do |f| %>
 <p>Creating registration for <%=current_user.name%> 
+  <%= f.input :participation_level, :as => :radio, :collection => EventRegistration::PARTICIPATION_OPTIONS%>
   <%= f.input :note, :input_html => {:style => "width: 80%; height: 40px;"}%>
   <%= f.action :submit, :as => :input %> or <%=link_to "Cancel", event_path(@event)%>
 <% end %>

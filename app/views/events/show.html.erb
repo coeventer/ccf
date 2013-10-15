@@ -45,8 +45,8 @@
   <ul class="dropdown-menu">
     <!-- dropdown menu links -->
     <li><%=link_to "Date submitted", event_path(@event, :sort => "created_at")%></li>
-    <li><%=link_to "Most votes", event_path(@event, :sort => "votes")%></li>
-    <li><%=link_to "Most volunteers", event_path(@event, :sort => "volunteers")%></li>
+    <li><%=link_to "Likes", event_path(@event, :sort => "votes")%></li>
+    <li><%=link_to "Help", event_path(@event, :sort => "volunteers")%></li>
     <li><%=link_to "Selected for event", event_path(@event, :sort => "approved desc")%></li>
   </ul>
 </div>

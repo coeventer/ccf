@@ -5,6 +5,9 @@ class EventRegistration < ActiveRecord::Base
   belongs_to :user
   
   validates :user_id, :uniqueness => {:scope => :event_id}
+  validates :participation_level, :presence => true
+
+  PARTICIPATION_OPTIONS = ["Work on a project", "Help facilitate event", "Just visiting"]
   
   def self.to_csv
     CSV.generate do |csv|

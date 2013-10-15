@@ -20,7 +20,10 @@
     <%end%>
     <br />
     <br />    
-    <p>Volunteers: <%=project.volunteers.collect{|v| v.user.name}.join(", ")%>
+    <p>Volunteers: <%=project.volunteers.collect{|v| v.user.name}.join(", ")%></p>
+    <%if !project.repository.nil? %>
+    <p>Repository: <%=link_to project.repository, project.repository%></p>
+    <%end%>
     <%if show_comments%>
       <hr />
       <div id="comment_container_<%=project.id%>">
