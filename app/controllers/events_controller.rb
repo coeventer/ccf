@@ -24,10 +24,10 @@ class EventsController < ApplicationController
     if !sort.nil? && ["created_at", "approved desc"].include?(sort) then
       @projects = @projects.order(sort)
     elsif !sort.nil? && ["volunteers"].include?(sort)    
-      @projects = @projects.select("projects.*, COUNT(project_volunteers.id) as project_count").joins("left outer join project_volunteers on projects.id=project_volunteers.project_id").group(:id).order("project_count desc")  
+      @projects = @projects.select("projects.*, COUNT(project_volunteers.id) as project_count").joins("left outer join project_volunteers on projects.id=project_volunteers.project_id").group("projects.id").order("project_count desc")  
     # Default sort, use votes
     else
-      @projects = @projects.select("projects.*, COUNT(project_ratings.id) as project_count").joins("left outer join project_ratings on projects.id=project_ratings.project_id").group(:id).order("project_count desc")
+      @projects = @projects.select("projects.*, COUNT(project_ratings.id) as project_count").joins("left outer join project_ratings on projects.id=project_ratings.project_id").group("projects.id").order("project_count desc")
     end
 
     respond_to do |format|
