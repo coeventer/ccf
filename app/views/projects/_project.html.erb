@@ -20,7 +20,18 @@
     <%end%>
     <br />
     <br />    
-    <p>Volunteers: <%=project.volunteers.collect{|v| v.user.name}.join(", ")%></p>
+    <p>Volunteers:  
+    <%if project.volunteers.blank?%>
+      <span>None</span>
+    <%else%>
+      <%project.volunteers.each do |v|%>
+        <span class='volunteer_badge'>
+        <%=link_to '#' do%>
+          <%=image_tag v.user.image, alt: v.user.name, width: 20, height: 20, title: v.user.name%>
+        <%end%>
+      <%end%>
+    <%end%>
+    </p>
     <%if !project.repository.nil? %>
     <p>Repository: <%=link_to project.repository, project.repository%></p>
     <%end%>

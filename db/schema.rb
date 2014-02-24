@@ -91,10 +91,11 @@ ActiveRecord::Schema.define(:version => 20131015155154) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "x500id"
+    t.string   "uid"
     t.string   "deptid"
     t.string   "department"
     t.string   "email"
+    t.string   "image"
     t.boolean  "admin"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

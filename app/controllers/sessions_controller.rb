@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
   skip_before_filter :auth_required
+  
   def create
     auth = request.env["omniauth.auth"]
-    user = User.find_by_x500id(auth["uid"]) || User.create_with_omniauth(auth)
+    user = User.find_by_uid(auth["uid"]) || User.create_with_omniauth(auth)
+    
     session[:user_id] = user.id
     session[:token] = auth["credentials"]["token"]
     session[:created_at] = Time.now

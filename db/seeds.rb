@@ -7,17 +7,17 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 puts "Adding users"
-u = User.create(x500id: '13900152', name: "David E. H. Peterson", admin: 1)
-u1 = User.create(x500id: '100006639183187', name: "Mark Amffciahcahg McDonaldsen", admin: 0)
-u2 = User.create(x500id: '100006654841300', name: "Richard Amffedhdack Changman", admin: 0)
-User.create(x500id: '100006562599731', name: "Lisa Amfefbeiigca Chengwitz", admin: 0)
-User.create(x500id: '100006529963539', name: "Rick Amfebiifceci Putnamsky", admin: 0)
-User.create(x500id: '100006629763297', name: "Betty Amffbigfcbig Occhinoson", admin: 0)
-User.create(x500id: '100006575016740', name: "Karen Amfegejafgdj Zamorestein", admin: 0)
-User.create(x500id: '100006604146016', name: "Carol Amffjdadfjaf Carrierosen", admin: 0)
-User.create(x500id: '100006463343694', name: "Helen Amfdfccdcfid Narayanansen", admin: 0)
-User.create(x500id: '100006606395761', name: "Mike Amffjfciegfa Goldmanman", admin: 0)
-User.create(x500id: '13966290', name: "Chad Fennell", admin: 1)
+u = User.create(uid: '13900152', name: "David E. H. Peterson", admin: 1)
+u1 = User.create(uid: '100006639183187', name: "Mark Amffciahcahg McDonaldsen", admin: 0)
+u2 = User.create(uid: '100006654841300', name: "Richard Amffedhdack Changman", admin: 0)
+User.create(uid: '100006562599731', name: "Lisa Amfefbeiigca Chengwitz", admin: 0)
+User.create(uid: '100006529963539', name: "Rick Amfebiifceci Putnamsky", admin: 0)
+User.create(uid: '100006629763297', name: "Betty Amffbigfcbig Occhinoson", admin: 0)
+User.create(uid: '100006575016740', name: "Karen Amfegejafgdj Zamorestein", admin: 0)
+User.create(uid: '100006604146016', name: "Carol Amffjdadfjaf Carrierosen", admin: 0)
+User.create(uid: '100006463343694', name: "Helen Amfdfccdcfid Narayanansen", admin: 0)
+User.create(uid: '100006606395761', name: "Mike Amffjfciegfa Goldmanman", admin: 0)
+User.create(uid: '13966290', name: "Chad Fennell", admin: 1)
 
 puts "Adding Event"
 e = Event.create(title: "Campus Codefest - Winter 2014", start_date: "2014-01-14", end_date: "2014-01-17", 

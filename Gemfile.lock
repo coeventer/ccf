@@ -130,11 +130,12 @@ GEM
       rack
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
+    omniauth-google-oauth2 (0.2.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    omniauth-shibboleth (1.0.8)
-      omniauth (>= 1.0.0)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -226,7 +227,7 @@ DEPENDENCIES
   less-rails
   mysql2
   omniauth-facebook
-  omniauth-shibboleth
+  omniauth-google-oauth2
   quiet_assets
   rails (= 3.2.14)
   rolify

@@ -44,6 +44,6 @@ end
 
 # Temporarily using FB for auth, will use Shibboleth on UMN infra
 gem 'omniauth-facebook'
-gem 'omniauth-shibboleth'
+gem 'omniauth-google-oauth2'
 
 gem 'will_paginate'
