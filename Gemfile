@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.14'
-gem 'mysql2'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
@@ -11,8 +10,6 @@ group :assets do
   gem "less-rails"
   gem "twitter-bootstrap-rails"
 end
-
-
 
 gem 'jquery-rails'
 gem 'cancan'
@@ -32,6 +29,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'mysql2'
 end
 group :test do
   gem 'capybara'
@@ -41,9 +39,15 @@ group :test do
   gem 'launchy'
   gem "shoulda-matchers"
 end
+group :production do
+  # Oracle gems
+  gem 'ruby-oci8'
+  gem 'activerecord-oracle_enhanced-adapter'
+end
 
 # Temporarily using FB for auth, will use Shibboleth on UMN infra
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
 gem 'will_paginate'
+gem 'capistrano', '<3'
