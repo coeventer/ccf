@@ -225,7 +225,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-oracle_enhanced-adapter
+  activerecord-oracle_enhanced-adapter (< 2)
   better_errors
   binding_of_caller
   bootstrap-wysihtml5-rails
