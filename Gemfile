@@ -42,7 +42,7 @@ end
 group :production do
   # Oracle gems
   gem 'ruby-oci8'
-  gem 'activerecord-oracle_enhanced-adapter', '<2'
+  gem 'activerecord-oracle_enhanced-adapter', '1.4.2'
 end
 
 # Temporarily using FB for auth, will use Shibboleth on UMN infra
