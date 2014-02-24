@@ -17,7 +17,7 @@
       <%=link_to '#' do%>
         <%=image_tag c.user.image, alt: c.user.name, width: 20, height: 20, title: c.user.name%> 
         <%=c.user.name%>
-      <%end%> commented on <%=l c.created_at%>
+      <%end%> commented on <%=l c.created_at, format: :long%>
     </p>
     <%=c.description.html_safe%>
     <br clear="all"/>

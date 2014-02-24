@@ -10,33 +10,33 @@
     <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success" do%>
     <i class="icon-play-circle"></i> Register Now
     <%end%>
-    Register by <%=l @event.registration_end_dt%>. 
+    Register by <%=l @event.registration_end_dt, format: :long%>. 
   <%end%>
   <%=@event.registrations_remaining%> of <%=@event.registration_maximum%> spots remain. 
 </p>
 <p><%=@event.description%></p>
 <hr />
 <% if @event.voting_enabled?%>
-<%=semantic_form_for @new_project do |f| -%>
-  <%=f.text_field :title, :style => "width: 80%;", :placeholder => "Submit your idea for #{@event.title}"%>
-  <div id="project_details" style="display: none;">
-  <%=f.input :classification, :as => :radio, :collection => Project::CLASSIFICATIONS, :include_blank => false%>
-  <%=f.text_area :description, :style => "width: 80%; height: 100px;", :placeholder => "Describe your idea"%>
-  <%=f.input :event_id, :as => :hidden, :value => @event.id%>
-  <%=f.input :repository%>  
-  <br />
-  <%=f.submit "Submit idea", :class => "btn" %> or <%=link_to "Cancel", "#"%>
+   <%=semantic_form_for @new_project do |f| -%>
+    <%=f.text_field :title, :style => "width: 80%;", :placeholder => "Submit your idea for #{@event.title}"%>
+    <div id="project_details" style="display: none;">
+    <%=f.input :classification, :as => :radio, :collection => Project::CLASSIFICATIONS, :include_blank => false%>
+    <%=f.input :description, :as => :text, :input_html => {:style => "width: 80%; height: 100px;"}, :placeholder => "Describe your idea"%>
+    <%=f.input :event_id, :as => :hidden, :value => @event.id%>
+    <%=f.input :repository%>  
+    <br />
+    <%=f.submit "Submit idea", :class => "btn" %> or <%=link_to "Cancel", event_path(@event)%>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#project_description').wysihtml5();
-  })
-</script>  
-</div>  
-<%end%>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#project_description').wysihtml5();
+      })
+    </script>  
+    </div>  
+  <%end%>
 <%end%>
 <hr />
-<h3>Proposed project ideas</h4>
+<h3>Proposed project ideas</h3>
 <div class="btn-group">
   <button class="btn">Sort by</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown">

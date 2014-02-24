@@ -18,7 +18,7 @@
       </p> 
     <%else%>
     <%event = @future_events.first%>
-    <p><%=link_to event.title, event_path(event)%> on <%=l event.start_date%></p>
+    <p><%=link_to event.title, event_path(event)%> on <%=l event.start_date, format: :long%></p>
     <p>Add a short description to events for use on the front page and other spots
       where we do not want a long, HTML based description.</p>
     <%end%>
