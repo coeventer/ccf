@@ -26,7 +26,7 @@
     <%else%>
       <%project.volunteers.each do |v|%>
         <span class='volunteer_badge'>
-        <%=link_to '#' do%>
+        <%=link_to user_path(v.user) do%>
           <%=image_tag v.user.image, alt: v.user.name, width: 20, height: 20, title: v.user.name%>
         <%end%>
       <%end%>

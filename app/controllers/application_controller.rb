@@ -11,12 +11,12 @@ class ApplicationController < ActionController::Base
   def auth_required
     # If there is a current user, check session
     if current_user
-      if Time.now - session[:created_at] < 60.minutes
+      if Time.now - session[:created_at] < 1.minutes
         return true
       # Session is no longer valid, re-authentication needed.
       else
         destroy_session
-        redirect_to root_url, :notice => "Your session has timed out. Please re-authenticate with Facebook."
+        redirect_to new_session_path, :notice => "Your session has timed out. Please re-authenticate."
         return false
       end
     else

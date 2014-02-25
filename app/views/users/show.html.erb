@@ -1,0 +1,27 @@
+<div class="row-fluid">
+  <div class="span8">
+    <h1><%=@user.name%></h1>
+    <p class="info">
+      has registered for <%=@user.event_registrations.count%> past codefest(s).
+    </p>
+    <h3>Projects Helped</h3>
+    <% if @user.project_volunteers.blank? %>
+      <p>None so far.</p>
+    <%else%>
+      <%@user.project_volunteers.each do |v|%>
+        <p><%=link_to v.project.title, project_path(v.project)%></p>
+      <%end%>
+    <%end%>
+    <h3>Projects Liked</h3>
+    <% if @user.project_ratings.blank? %>
+      <p>None so far.</p>
+    <%else%>
+      <%@user.project_ratings.each do |r|%>
+        <p><%=link_to r.project.title, project_path(r.project)%></p>
+      <%end%>
+    <%end%>
+  </div>
+  <div class="span4">
+    <%=image_tag @user.image, alt: @user.name, height: 150, width: 150%>
+  </div>
+
