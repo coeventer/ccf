@@ -6,10 +6,6 @@ somewhere in between. The concept of a Campus Codefest originated at the Univers
 Some of the environmental challenges at the University included decentralized IT function, lack of paid time developing
 practical applications and ideas with cross cutting concerns. 
 
-A Campus Codefest requires bottom up actions to succeed. Projects forced with a top down management method will be
-destined to fail. Instead, community members are charged to organically propose projects, vote on the usefullness and
-willingness to contribute to the projects which ultimately drive the Codefest itself.
-
 The purpose of making this application is to make planning a Campus Codefest easier. This does not have to be a custom
 built application if enough functionality can be found in a practical application. If custom code is required, the goal
 is to provide this code to other organizations, likely in Higher Education, wishing to perform similiar events.
@@ -23,7 +19,7 @@ Contributing
 
 Clone the repository to your local dev environment.
 ```
-git clone git@github.com:pete2786/campus_codefest.git
+git clone git@github.umn.edu:ccf/campus_codefest.git
 ```
 
 Bundling will take a LONG time as I require therubyracer to compile less. If you are using RVM, I recommend isolating
@@ -35,9 +31,14 @@ bundle
 
 Set-up your development data base, I am using mysql locally but included an example SQLite DB config for lowest overhead
 ```
-mv config/database.yml.example config/database.yml
+cp config/database.yml.example config/database.yml
 bundle exec rake db:create
 bundle exec rake db:migrate
+```
+
+We use Omniauth to support Google account login. You must generate an OAuth 2.0 API key via Google Developer Console (https://cloud.google.com/console/project), more instructions can be found here: https://developers.google.com/ad-exchange/rtb/open-bidder/google-app-guide#step-5 . Once this is done, copy the example providers.yml file and enter your api key and secret.
+```
+cp config/providers.yml.example config/providers.yml
 ```
 
 This is a Test-Driven Development project. Your code should be speced and covered with rspec and capybara. Create a
@@ -51,54 +52,19 @@ Firing up the server, then browse to http://localhost:3000
 rails s
 ```
 
-Estimated Development Cycles
+Development Plan
 ===============
-**Phase One**
-- Improve Project idea submission, rating and voting process.
-- Shibboleth Authentication
-- User (University identity)
-- Administration/Moderation
-- Project idea Submission
-- Project comments
-- Project rating
-- Project volunteer
+**Phase One (completed)**
+- Google Account OAuth2 (UMN has Google Apps for Education) via OmniAuth
+- Event, Project, User Administration/Moderation
+- Project idea Submission, voting, rating, commenting
+- Event registration
+- General CCF marketing/information
 
-**Phase Two**
-- Automate project selection process
+**Phase Two (Not planned)**
 - Support project merging
 - Automate creation of project repositories in University GitHub Instance
 - ???
 
 **Phase Three**
 - Profit
-
-Project Entities
-===============
-- Project Idea
- - :event_id
- - :title
- - :description
-- Volunteer
- - :project_id
- - :user_id
-- Rating
- - :user_id
- - :project_id
- - :rating
-- Comment
- - :user_id
- - :project_id
- - :title
- - :comment
-- User
- - :x500_id
- - :name
- - :department
- - :role
- - :admin
-- Event
- - :title
- - :voting_end_date
- - :start_date
- - :end_date
- - :logo
