@@ -1,0 +1,51 @@
+<ul class="nav">
+  <li class="dropdown">
+    <a class="dropdown-toggle"
+       data-toggle="dropdown"
+       href="#">
+        Events
+        <b class="caret"></b>
+      </a>
+    <ul class="dropdown-menu">
+      <!-- links -->
+      <li style="font-style: italic;">Upcoming</li>
+      <%@future_events.each do |e|%>
+      <li><%=link_to e.title, event_path(e)%>
+      <%end%>
+      <li style="font-style: italic;">Completed</li>
+      <%@past_events.each do |e|%>
+      <li><%=link_to e.title, event_path(e)%>
+      <%end%>                  
+    </ul>
+  </li>
+  <li><%= link_to "About", about_path  %></li>
+  <li><%= link_to "Contact", contact_path  %></li>
+  <% if current_user %>
+  <li class="dropdown">
+    <a class="dropdown-toggle"
+       data-toggle="dropdown"
+       href="#">
+        <%=current_user.name%>
+        <%=image_tag current_user.image, height: 25, width: 25%>
+        <b class="caret"></b>
+      </a>
+    <ul class="dropdown-menu">
+      <!-- links -->
+      <li>
+        <%= link_to user_path(current_user) do%>
+        <i class="icon-user"></i> Profile
+        <%end%>
+      </li>
+      <li>
+        <%= link_to signout_path do %>
+        <i class="icon-off"></i> Sign out
+        <%end%>
+      </li>
+      <%if current_user.admin?%>
+      <li class="divider"></li>
+      <li><%= link_to "Admin", admin_root_path%></li>
+      <%end%>
+    </ul>
+  </li>                
+  <%end%>
+</ul>

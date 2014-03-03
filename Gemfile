@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.14'
 
 group :assets do
+  gem 'sass-rails',   '~> 3.2.5'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   
@@ -51,3 +52,5 @@ gem 'omniauth-google-oauth2'
 
 gem 'will_paginate'
 gem 'capistrano', '<3'
+
+gem "umn_bootstrap_rails", :git => "git@github.umn.edu:pete2786/umn_bootstrap_rails.git"
