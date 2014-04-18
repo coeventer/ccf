@@ -1,4 +1,5 @@
 class ProjectCommentsController < ApplicationController
+  before_filter :verification_required
   def create
     @project = Project.find(params[:project_id])
     @user = current_user

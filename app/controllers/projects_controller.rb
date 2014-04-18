@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_filter :verification_required
   # GET /projects/1
   # GET /projects/1.json
   def show

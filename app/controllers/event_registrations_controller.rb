@@ -1,4 +1,5 @@
 class EventRegistrationsController < ApplicationController
+  before_filter :verification_required
   # GET /event_registrations/1
   # GET /event_registrations/1.json
   def show

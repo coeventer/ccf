@@ -2,6 +2,7 @@ CampusCodefest::Application.routes.draw do
   root :to => "home#index"
   match "about" => "home#about"
   match "contact" => "home#contact"  
+  match "unverified" => "home#unverified"
 
   resources :events do
     resources :event_registrations

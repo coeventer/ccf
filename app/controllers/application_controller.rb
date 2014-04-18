@@ -39,4 +39,9 @@ class ApplicationController < ActionController::Base
     @future_events = Event.live.where(["end_date >= ?", Date.today]) 
     @past_events = Event.live.where(["end_date < ?", Date.today]) 
   end
+
+  def verification_required
+    return true if current_user.verified?
+    redirect_to unverified_path and return false
+  end
 end

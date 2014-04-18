@@ -1,6 +1,9 @@
 <div class="row-fluid">
   <div class="span8">
+    <p class="alert alert-info">Not verified.</p>
     <h1><%=@user.name%></h1>
+    <% if !@user.verified?%>
+    <%end%>
     <p class="info">
       has registered for <%=@user.event_registrations.count%> past codefest(s).
     </p>

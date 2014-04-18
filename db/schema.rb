@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131015155154) do
+ActiveRecord::Schema.define(:version => 20140418162754) do
 
   create_table "event_moderators", :force => true do |t|
     t.integer  "event_id"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20131015155154) do
     t.boolean  "admin"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "verified"
   end
 
 end

@@ -6,6 +6,7 @@
   <label>Department</label>
   <%=@user.department.blank? ? "N/A" : @user.department%>
   <%=f.input :admin%>
+  <%=f.input :verified%>
   <%=f.submit%> or <%=link_to "Cancel", admin_users_path%>
 <%end%>
 <hr />
