@@ -54,3 +54,5 @@ gem 'will_paginate'
 gem 'capistrano', '<3'
 
 gem "umn_bootstrap_rails", :git => "git@github.umn.edu:pete2786/umn_bootstrap_rails.git"
+
+gem 'sanitize'

@@ -14,12 +14,13 @@
   <div class="span10">
     <h4><%=link_to project.title, project_path(project)%></h4>
     <%if truncate%>
-    <p><%=truncate project.description.html_safe, :length => 200%></p>
+    <p><%=truncate Sanitize.clean(project.description, Sanitize::Config::RELAXED).html_safe, :length => 200%></p>
     <%else%>
-    <%=project.description.html_safe%>
+    <%=Sanitize.clean(project.description, Sanitize::Config::RELAXED).html_safe%>
     <%end%>
     <br />
-    <br />    
+    <br />
+        
     <p>Volunteers:  
     <%if project.volunteers.blank?%>
       <span>None</span>
@@ -32,10 +33,12 @@
       <%end%>
     <%end%>
     </p>
+
     <%if !project.repository.nil? %>
     <p>Repository: <%=link_to project.repository, project.repository%></p>
     <%end%>
-    <%if show_comments%>
+
+    <%if show_comments && can?(:create, project.comments.new) then %>
       <hr />
       <div id="comment_container_<%=project.id%>">
       <%=render :partial => "project_comments/comments", :locals => {project: project, comment: project.comments.new}%>

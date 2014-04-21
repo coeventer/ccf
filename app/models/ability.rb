@@ -2,14 +2,50 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Define abilities for the passed in user here. For example:
-    #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
+    user ||= User.new # guest user (not logged in)
+
+    if user.admin?
+      can :manage, :all
+    elsif user.verified?
+      can :read, :all
+      can :create, Project
+      can :update, Project do |project|
+        project.try(:project_owner) == user
+      end
+      can :create, ProjectComment
+
+      # Event and project specific models
+      can :create, ProjectRating do |rating|
+        rating.project.voting_allowed? && !rating.project.voted_on?(user)
+      end
+
+      can :create, ProjectVolunteer do |volunteer|
+        volunteer.project.volunteering_allowed? && !rating.project.volunteered_for?(user)
+      end
+
+      can :create, EventRegistration do |registration|
+        registration.event.registration_enabled? && !registration.event.registered?(user)
+      end
+
+      can :destroy, ProjectRating do |rating|
+        rating.project.voting_allowed? && rating.try(:user) == user
+      end
+
+      can :destroy, ProjectVolunteer do |volunteer|
+        volunteer.project.volunteering_allowed? && volunteer.try(:user) == user
+      end
+
+      can :destroy, EventRegistration do |registration|
+        registration.event.registration_enabled? && registration.try(:user) == user
+      end
+
+      can :destroy, ProjectComment do |comment|
+        comment.try(:user) == user
+      end
+
+    else
+      can :read, :all
+    end
     #
     # The first argument to `can` is the action you are giving the user 
     # permission to do.

@@ -30,7 +30,7 @@ class Project < ActiveRecord::Base
   def voted_on?(user)
     return !self.ratings.find_by_user_id(user.id).nil?
   end
-  
+
   # Vote (rate) a project for a given user
   def toggle_vote(user)
     if self.voting_allowed? then

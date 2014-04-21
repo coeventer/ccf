@@ -1,6 +1,6 @@
 <p><span class="badge badge-info"><%=project.vote_count%></span> likes</p>
 <%if project.voting_allowed? %>
-  <%if current_user %>
+  <%if current_user && current_user.verified?%>
     <%if project.voted_on?(current_user)%>
     <p>
       <%=link_to rate_project_path(project), :class => "btn btn-small btn-danger", :method => :post, :remote => true do%>

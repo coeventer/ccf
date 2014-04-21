@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :verification_required
+  skip_before_filter :auth_required
   # GET /events
   # GET /events.json
   def index
@@ -15,7 +15,8 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.live.find(params[:id])
-    @registration = @event.registrations.find_by_user_id(current_user.id)
+    @user = current_user || User.new
+    @registration = @event.registrations.find_by_user_id(@user.id)
     @new_project = Project.new
 
     @projects = @event.projects

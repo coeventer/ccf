@@ -5,9 +5,9 @@
 <%end%>
 
 <script type="text/javascript">
-  $(document).ready(function(){
+  //$(document).ready(function(){
     $('#project_comment_description').wysihtml5();
-  })
+  //})
 </script>
 
 <%project.comments.reject{|c| c.new_record?}.each do |c|%>
@@ -19,7 +19,7 @@
         <%=c.user.name%>
       <%end%> commented on <%=l c.created_at, format: :long%>
     </p>
-    <%=c.description.html_safe%>
+    <%=Sanitize.clean(c.description, Sanitize::Config::RELAXED).html_safe%>
     <br clear="all"/>
   </div>
 </div>
