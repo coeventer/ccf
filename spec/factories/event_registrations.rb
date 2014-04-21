@@ -5,5 +5,6 @@ FactoryGirl.define do
     event_id 1
     user_id 1
     note "This is my note regarding the registration"
+    participation_level "Just visitings"
   end
 end

@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :user do
     name "MyString"
-    x500id "MyString"
+    uid "MyString"
     deptid "MyString"
     department "MyString"
     email "MyString"

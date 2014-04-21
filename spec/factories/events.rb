@@ -12,5 +12,6 @@ FactoryGirl.define do
     description "This is an event"
     registration_end_dt "2013-08-20"
     registration_maximum 126
+    live true
   end
 end

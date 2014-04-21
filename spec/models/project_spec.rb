@@ -14,8 +14,8 @@ describe Project do
     should allow_value(1).for(:project_owner_id)
   end
   
-  it "should require a classification" do
-    should validate_presence_of(:classification)    
+  it "should not require a classification" do
+    should_not validate_presence_of(:classification)    
   end
 
   it "should have volunteers" do
