@@ -1,26 +1,39 @@
 <div class="row-fluid">
   <div class="span12">
     <div class="hero-unit">
+    <%if @future_events.first.nil?%>
       <h1>Campus Codefest</h1>
-        <p>Campus Codefest U is an unconference for U of M designers, developers, sysadmins and other interested parties in the University of Minnesota community who want to come together to code for a couple of days.</p>
-        <p>
-          <%=link_to "Learn More", about_path, :class=>"btn btn-primary btn-large"%>
-        </p>
+      <p>Campus Codefest U is an unconference for U of M designers, developers, sysadmins and other interested parties in the University of Minnesota community who want to come together to code for a couple of days.</p>
+      <p>
+        <%=link_to "Learn More", about_path, :class=>"btn btn-primary btn-large"%>
+      </p>
+    <%else%>
+    <%event = @future_events.first%>
+    <h1><%=link_to event.title, event_path(event)%></h1>
+    <p><%=event.description%></p>
+    <p>
+        This codefest starts on <%=l event.start_date, format: :long%>
+    </p>
+    <p>
+      <%=link_to "Get involved!", event_path(event), :class=>"btn btn-success btn-large"%>
+    </p>
+    <%end%>
     </div>
   </div>
 </div>
 <div class="row-fluid">
   <div class="span4">
-    <h3>Upcoming Event</h3>
     <%if @future_events.first.nil?%>
+      <h3>Upcoming Codefest</h3>
       <p>
         Check back soon, the planning for the next Campus Codefest has not started yet.
       </p> 
     <%else%>
-    <%event = @future_events.first%>
-    <p><%=link_to event.title, event_path(event)%> on <%=l event.start_date, format: :long%></p>
-    <p>Add a short description to events for use on the front page and other spots
-      where we do not want a long, HTML based description.</p>
+      <h3>Campus Codefest</h3>
+      <p>Campus Codefest U is an unconference for U of M designers, developers, sysadmins and other interested parties in the University of Minnesota community who want to come together to code for a couple of days.</p>
+      <p>
+        <%=link_to "Learn More", about_path, :class=>"btn btn-primary"%>
+      </p>
     <%end%>
   </div>
   <div class="span4">
