@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
   
   has_many :projects
   has_many :registrations, :class_name => "EventRegistration"
+  has_many :event_registrations
   has_many :moderators, :class_name => "EventModerator"
   has_many :ratings, :through => :projects
   has_many :volunteers, :through => :projects
@@ -49,6 +50,10 @@ class Event < ActiveRecord::Base
 
   def vote_count
     self.ratings.count
+  end
+
+  def completed?
+    Date.today > self.end_date.to_date
   end
 
   def to_param
