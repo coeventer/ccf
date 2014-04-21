@@ -20,7 +20,6 @@
    <%=semantic_form_for @new_project do |f| -%>
     <%=f.text_field :title, :style => "width: 80%;", :placeholder => "Submit your idea for #{@event.title}"%>
     <div id="project_details" style="display: none;">
-    <%=f.input :classification, :as => :radio, :collection => Project::CLASSIFICATIONS, :include_blank => false%>
     <%=f.input :description, :as => :text, :input_html => {:style => "width: 80%; height: 100px;"}, :placeholder => "Describe your idea"%>
     <%=f.input :event_id, :as => :hidden, :value => @event.id%>
     <%=f.input :repository%>  

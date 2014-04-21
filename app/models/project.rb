@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
   
   validates :title, presence: true
   validates :description, presence: true
-  validates :classification, presence: true
+  #validates :classification, presence: true
   
   CLASSIFICATIONS = ["Develop an App", "Learn and Explore", "Specify and Design", "Other"]
   
