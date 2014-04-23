@@ -13,6 +13,7 @@
   </div>
   <div class="span10">
     <h4><%=link_to project.title, project_path(project)%></h4>
+    <%=render :partial => "projects/project_owner", :locals => {owner: project.project_owner}%>
     <%if truncate%>
     <p><%=truncate Sanitize.clean(project.description, Sanitize::Config::RELAXED).html_safe, :length => 200%></p>
     <%else%>
