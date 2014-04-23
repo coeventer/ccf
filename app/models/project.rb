@@ -6,7 +6,8 @@ class Project < ActiveRecord::Base
   has_many :ratings, :class_name => "ProjectRating"
   has_many :volunteers, :class_name => "ProjectVolunteer"
   has_many :tags, :class_name => "ProjectTag"
-  has_one :project_owner, :class_name => "User"
+  belongs_to :project_owner, :class_name => "User"
+
   
   belongs_to :event
   

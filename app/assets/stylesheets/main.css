@@ -8,3 +8,11 @@ h1 > a {
     max-height: 150px;
     max-width: 150px;
 }
+
+.project-owner label {
+  display: inline;
+}
+
+.project-owner {
+  margin-bottom: 15px;
+}
