@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :verification_required
   before_filter :load_user
-  # before_filter :authorize_edits, :except => [:show]
+
   def show
   end
 
