@@ -17,3 +17,4 @@ pickle-email-*.html
 
 config/database.yml
 config/providers.yml
+config/initializers/setup_mail.rb

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :department, :deptid, :email, :name, :uid, :image, :verified
+  attr_accessible :admin, :department, :deptid, :email, :name, :uid, :image, :verified, :alert_when_owner, :alert_when_commenter
   
   has_many :projects, :foreign_key => :project_owner_id
   has_many :project_comments
@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
       user.name = auth["info"]["name"]
       user.email = auth["info"]["email"]
       user.image = auth["info"]["image"]
+      user.alert_when_owner = true
+      # Disabling by default commenter emails for now. We can easily enable it 
+      # if we get requests for this feature
+      user.alert_when_commenter = false
       user.verified = false
       
       # First user to sign up becomes an admin... so... sign up fast.

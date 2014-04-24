@@ -24,13 +24,15 @@ gem 'bootstrap-wysihtml5-rails'
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
+  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_21, :rbx]
   gem 'quiet_assets'
 end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'mysql2'
+  gem 'pry-rails'
+  gem 'sqlite3'
 end
 group :test do
   gem 'capybara'
@@ -39,6 +41,8 @@ group :test do
   gem 'email_spec'
   gem 'launchy'
   gem "shoulda-matchers"
+  # Enhanced mail testing
+  gem 'action_mailer_cache_delivery'
 end
 group :production do
   # Oracle gems
