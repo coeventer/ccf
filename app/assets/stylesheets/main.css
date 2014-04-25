@@ -3,16 +3,33 @@ h1 > a {
   text-decoration: none;
 }
 
+/* Profiles */
 .feature-thumbnail {
     margin: 0 20px 10px 0;
     max-height: 150px;
     max-width: 150px;
 }
 
+/* Projects */
 .project-owner label {
   display: inline;
 }
 
 .project-owner {
   margin-bottom: 15px;
+}
+
+/* Comments */
+
+.comment ul {
+  list-style: none;
+  margin: 0;
+}
+
+.comment li{
+  padding: 15px 0 15px;
+}
+
+.comment-time {
+  color: #ccc;
 }
