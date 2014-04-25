@@ -43,6 +43,10 @@ class Ability
         comment.try(:user) == user
       end
 
+      # Editing Users
+      can :edit, User, :id => user.id
+      can :update, User, :id => user.id
+
     else
       can :read, :all
     end

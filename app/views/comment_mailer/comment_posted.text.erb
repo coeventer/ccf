@@ -1,0 +1,7 @@
+<%= @user.name %>,
+
+A new comment has been posted for <%= @project.title %>:
+
+<%= strip_tags @comment.description %>
+
+Visit this project: <%= project_url(@project) %>

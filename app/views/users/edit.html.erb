@@ -1,0 +1,6 @@
+<%=semantic_form_for @user do |f|%>
+  <%= f.input :name%>
+  <%= f.input :alert_when_owner, :label => "Email Me When People Comment on My Projects"%>
+  <%=f.submit%> or <%=link_to "Cancel", user_path(@user)%>
+<%end%>
+<hr />
