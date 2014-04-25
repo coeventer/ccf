@@ -11,18 +11,21 @@
 </script>
 
 
-  <div class="row-fluid comment">
+  <div class="row-fluid comment comment">
     <div class="span12 ">
       <ul class="list-group">
         <%project.comments.reject{|c| c.new_record?}.each do |c|%>
-        <li>
+        <li class="comment-<%= c.id %>">
             <p>
-              <%=link_to '#' do%>
+              <a name="comment-<%= c.id %>"></a>
+              <%=link_to "#" do%>
                 <%=image_tag c.user.image, alt: c.user.name, width: 20, height: 20, title: c.user.name%> 
                 <%=c.user.name%>
               <%end%><span class="comment-time"> &#8226; <%= time_ago_in_words(c.created_at)%> ago</span>
             </p>
-            <%=Sanitize.clean(c.description, Sanitize::Config::RELAXED).html_safe%>
+            <div class="comment-discussion">
+              <%=Sanitize.clean(c.description, Sanitize::Config::RELAXED).html_safe%>
+            </div>
             <br clear="all"/>
         </li>
         <%end%>
