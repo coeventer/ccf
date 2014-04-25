@@ -60,3 +60,8 @@ h1 > a {
     50% { background-color:#fbf8b2;}
     100% {background-color:none;}
 }
+
+ol.breadcrumb {
+  background: none;
+  padding: 0;
+}
