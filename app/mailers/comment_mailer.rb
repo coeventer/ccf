@@ -1,4 +1,3 @@
-# require 'mail'
 class CommentMailer < ActionMailer::Base
   default :from => "ccf@umn.edu"
   def comment_posted(project, comment)

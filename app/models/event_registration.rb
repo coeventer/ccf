@@ -7,6 +7,8 @@ class EventRegistration < ActiveRecord::Base
   validates :user_id, :uniqueness => {:scope => :event_id}
   validates :participation_level, :presence => true
 
+  after_create :send_notification
+
   PARTICIPATION_OPTIONS = ["Work on a project", "Help facilitate event", "Just visiting"]
   
   def self.to_csv
@@ -16,5 +18,9 @@ class EventRegistration < ActiveRecord::Base
         csv << [registration.user.name, registration.user.email, registration.created_at]
       end
     end
-  end  
+  end
+
+  def send_notification
+    RegistrationMailer.registration_created(self)
+  end
 end
