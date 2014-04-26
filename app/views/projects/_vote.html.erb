@@ -15,6 +15,10 @@
       </p>   
     <%end%>
   <%else%>
-  <p class="info">Sign-in to like</p>
+  <p class="info">
+    <%=link_to new_session_path, :class => "btn btn-small btn-info" do%>
+      <i class="icon-thumbs-up"></i> Sign in to like
+    <%end%>
+  </p>
   <%end%>
 <%end%>

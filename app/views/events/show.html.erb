@@ -6,9 +6,9 @@
 <p id="notice"><%= notice %></p>
 <h1><%=@event.title%></h1>
 
-<% if @event.registration_enabled? && !current_user.nil? && current_user.verified?%>
+<% if @event.registration_enabled?%>
   <p class="well well-small">
-    <% if @event.registered?(current_user)%>
+    <% if !current_user.nil? && current_user.verified? && @event.registered?(current_user)%>
       You have registered! 
       <%=link_to event_event_registration_path(@event, @registration), :class => "btn btn-danger",  :method => :delete do%>
       <i class="icon-play-circle"></i> Unregister
@@ -42,8 +42,10 @@
     </script>  
     </div>  
   <%end%>
-<hr />
+<%else%>
+<p><%=link_to "Sign in to submit a project idea", new_session_path, :class => "btn btn-success btn-large"%></p>
 <%end%>
+<hr />
 <h3>Proposed project ideas</h3>
 <div class="btn-group">
   <button class="btn">Sort by</button>

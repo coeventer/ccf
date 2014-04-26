@@ -39,7 +39,7 @@
     <p>Repository: <%=link_to project.repository, project.repository%></p>
     <%end%>
 
-    <%if show_comments && can?(:create, project.comments.new) then %>
+    <%if show_comments then %>
       <hr />
       <div id="comment_container_<%=project.id%>">
       <%=render :partial => "project_comments/comments", :locals => {project: project, comment: project.comments.new}%>

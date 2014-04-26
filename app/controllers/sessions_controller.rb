@@ -9,7 +9,9 @@ class SessionsController < ApplicationController
     session[:token] = auth["credentials"]["token"]
     session[:created_at] = Time.now
     
-    redirect_to root_path
+    # re-direct to active event or root path if there is no active event
+    event = Event.live.first
+    redirect_to (event.nil? ? root_path : event_path(event))
   end
 
   def signout

@@ -15,6 +15,10 @@
     </p>    
     <%end%>
   <%else%>
-  <p class="info">Sign-in to help</p>
+  <p class="info">
+    <%=link_to new_session_path, :class => "btn btn-small btn-success" do%>
+    <i class="icon-hand-up"></i> Sign in to help
+    <%end%>
+  </p>
   <%end%>
 <%end%>

@@ -1,4 +1,5 @@
 <p><strong><%=project.comment_count%> comments</strong></p>
+<% if can?(:create, project.comments.new) %>
 <%=semantic_form_for comment, :url => project_project_comments_path(project), :remote => true do |f| %>
   <%=f.input :description, :input_html => {:style => "height: 80px; width: 100%;"}, :label => false%>
   <%=f.submit "Add Comment", :class => "btn"%>
@@ -9,7 +10,9 @@
     $('#project_comment_description').wysihtml5();
   //})
 </script>
-
+<%else%>
+<%=link_to "Sign in to comment", new_session_path, :class => "btn"%>
+<%end%>
 
   <div class="row-fluid comment comment">
     <div class="span12 ">
