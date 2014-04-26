@@ -3,16 +3,65 @@ h1 > a {
   text-decoration: none;
 }
 
+/* Profiles */
 .feature-thumbnail {
     margin: 0 20px 10px 0;
     max-height: 150px;
     max-width: 150px;
 }
 
+/* Projects */
 .project-owner label {
   display: inline;
 }
 
 .project-owner {
   margin-bottom: 15px;
+}
+
+/* Comments */
+
+.comment ul {
+  list-style: none;
+  margin: 0;
+}
+
+.comment li {
+  padding: 15px 0 15px;
+}
+
+.comment-time {
+  color: #ccc;
+}
+
+.flash {
+  -moz-animation: flash 1s ease-out;
+  -moz-animation-iteration-count: 2;
+  -webkit-animation: flash 1s ease-out;
+  -webkit-animation-iteration-count: 2;
+  -ms-animation: flash 1s ease-out;
+  -ms-animation-iteration-count: 2;
+}
+
+@-webkit-keyframes flash {
+    0% { background-color:none;}
+    50% { background-color:#fbf8b2;}
+    100% {background-color:none;}
+}
+
+@-moz-keyframes flash {
+    0% { background-color:none;}
+    50% { background-color:#fbf8b2;}
+    100% {background-color:none;}
+}
+
+@-ms-keyframes flash {
+    0% { background-color:none;}
+    50% { background-color:#fbf8b2;}
+    100% {background-color:none;}
+}
+
+ol.breadcrumb {
+  background: none;
+  padding: 0;
 }

@@ -10,17 +10,25 @@
   //})
 </script>
 
-<%project.comments.reject{|c| c.new_record?}.each do |c|%>
-<div class="row-fluid">
-  <div class="span12">
-    <p>
-      <%=link_to '#' do%>
-        <%=image_tag c.user.image, alt: c.user.name, width: 20, height: 20, title: c.user.name%> 
-        <%=c.user.name%>
-      <%end%> commented on <%=l c.created_at, format: :long%>
-    </p>
-    <%=Sanitize.clean(c.description, Sanitize::Config::RELAXED).html_safe%>
-    <br clear="all"/>
+
+  <div class="row-fluid comment comment">
+    <div class="span12 ">
+      <ul class="list-group">
+        <%project.comments.reject{|c| c.new_record?}.each do |c|%>
+        <li class="comment-<%= c.id %>">
+            <p>
+              <a name="comment-<%= c.id %>"></a>
+              <%=link_to "#" do%>
+                <%=image_tag c.user.image, alt: c.user.name, width: 20, height: 20, title: c.user.name%> 
+                <%=c.user.name%>
+              <%end%><span class="comment-time"> &#8226; <%= time_ago_in_words(c.created_at)%> ago</span>
+            </p>
+            <div class="comment-discussion">
+              <%=Sanitize.clean(c.description, Sanitize::Config::RELAXED).html_safe%>
+            </div>
+            <br clear="all"/>
+        </li>
+        <%end%>
+      </ul>
+    </div>
   </div>
-</div>
-<%end%>
