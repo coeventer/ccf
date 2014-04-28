@@ -7,7 +7,7 @@
     <p>Hi <%= @user.name %>,</p>
 
     <p>
-      You have successfully registered for <%= link_to @event.title, event_url(@event) %>. The event will run from [MAKE function here]. In the mean time, you can submit, vote or volunteer for project ideas on the <%= link_to "#{@event.title} event page", event_url(@event) %>.
+      You have successfully registered for <%= link_to @event.title, event_url(@event) %>. The event will run <%=@event.pretty_dates%>. In the mean time, you can submit, vote or volunteer for project ideas on the <%= link_to "#{@event.title} event page", event_url(@event) %>.
     </p>
 
     <p>We highly recommend basic <%=link_to "Git and GitHub", "http://apps.oir.umn.edu/campus_codefest/github"%> experience before the event begins. Please take a few hours to introduce yourself to these tools if you don't have previous experience with them.

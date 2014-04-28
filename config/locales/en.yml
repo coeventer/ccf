@@ -5,6 +5,6 @@ en:
   hello: "Hello world"
   date:
     formats:
-        default: "%d/%m/%Y"
-        short: "%b %d"
-        long: "%B %d, %Y"
+        default: "%B%e at %l:%M%p"
+        short: "%B%e"
+        long: "%B%e, %Y at %l:%M%p"

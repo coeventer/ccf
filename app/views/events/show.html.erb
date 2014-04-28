@@ -5,7 +5,7 @@
 
 <p id="notice"><%= notice %></p>
 <h1><%=@event.title%></h1>
-
+<p><%=@event.pretty_dates%></p>
 <% if @event.registration_enabled?%>
   <p class="well well-small">
     <% if !current_user.nil? && current_user.verified? && @event.registered?(current_user)%>

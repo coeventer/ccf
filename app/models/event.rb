@@ -56,6 +56,10 @@ class Event < ActiveRecord::Base
     Date.today > self.end_date.to_date
   end
 
+  def pretty_dates
+    return "from #{self.start_date.strftime('%B%e at %l:%M%P')} to #{self.end_date.strftime('%B%e at %l:%M%P')}"
+  end
+
   def to_param
     [id, title.parameterize].join("-")
   end  
