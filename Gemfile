@@ -24,7 +24,7 @@ gem 'bootstrap-wysihtml5-rails'
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_21, :rbx]
+  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
   gem 'quiet_assets'
 end
 group :development, :test do
