@@ -1,0 +1,4 @@
+# config/email.yml.example, loading by config/initializers/setup_mail.rb
+user: "user"
+domain: "umn.edu"
+password: "pass"
