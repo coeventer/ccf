@@ -12,7 +12,7 @@
     <h1><%=link_to event.title, event_path(event)%></h1>
     <p><%=event.description%></p>
     <p>
-        This codefest starts on <%=l event.start_date, format: :long%>
+        This codefest runs <%=event.pretty_dates%>
     </p>
     <p>
       <%=link_to "Get involved!", event_path(event), :class=>"btn btn-success btn-large"%>
