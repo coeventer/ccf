@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   skip_before_filter :auth_required, :only => [:show]
   before_filter :verification_required, :except => [:show]
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:rate, :volunteer, :unvolunteer]
   # GET /projects/1
   # GET /projects/1.json
   def show
