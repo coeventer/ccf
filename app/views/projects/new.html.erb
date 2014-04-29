@@ -1,17 +1,1 @@
-<%=semantic_form_for @project do |f| -%>
-  <%=f.text_field :title, :style => "width: 80%;"%>
-  <div id="project_details">
-  <%=f.input :classification, :as => :radio, :collection => Project::CLASSIFICATIONS, :include_blank => false%>
-  <%=f.input :description, :as => :text, :input_html => {:style => "width: 80%; height: 100px;"}, :placeholder => "Describe your idea"%>
-  <%=f.input :event_id, :as => :hidden, :value => @project.event_id%>
-  <%=f.input :repository%>  
-  <br />
-  <%=f.submit "Submit idea", :class => "btn" %> or <%=link_to "Cancel", event_path(@project.event)%>
-
-  <script type="text/javascript">
-    //$(document).ready(function(){
-      $('#project_description').wysihtml5();
-    //s})
-  </script>  
-  </div> 
-<%end%>
+<%= render 'form' %>
