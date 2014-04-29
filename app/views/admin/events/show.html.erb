@@ -1,3 +1,5 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 <h2>Event <%=@event.title%></h2>
 <p><%=link_to "Back to Admin", admin_root_path%></p>
 <p><%=@event.description%></p>
@@ -6,31 +8,71 @@
     <%=link_to admin_event_event_registrations_path(@event) do%>
       <h1><%=@event.registrations.count%></h1> registrants
     <%end%>
-    <p><%=@event.registrations.count(:group => 'created_at')%></p>
+    <div id="registrations_chart"></div>
   </div>
   <div class="span6">
-    <%=link_to admin_event_projects_path(@event, @project) do%>
+    <%=link_to admin_event_projects_path(@event) do%>
       <h1><%=@event.projects.count%></h1> projects
     <%end%>
-    <p><%=@event.projects.count(:group => 'created_at')%></p>
+    <div id="projects_chart"></div>
   </div>
 </div>
 <div class="row-fluid">
   <div class="span6">
     <h1><%=@event.vote_count%></h1> votes
-    <p><%=@event.ratings.count(:group => 'project_ratings.created_at')%></p>
+    <div id="ratings_chart"></div>
   </div>
   <div class="span6">
     <h1><%=@event.volunteer_count%></h1> volunteers
-    <p><%=@event.volunteers.count(:group => 'project_volunteers.created_at')%></p>
+    <div id="volunteers_chart"></div>
   </div>
 </div>
 <div class="row-fluid">
   <div class="span6">
     <h1><%=@event.comments.count%></h1> comments
-    <p><%=@event.comments.count(:group => 'project_comments.created_at')%></p>
+    <div id="comments_chart"></div>
   </div>
   <div class="span6">
   </div>
 </div>
 <hr />
+
+<script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawCharts);
+      function drawCharts() {
+        var data = google.visualization.arrayToDataTable([<%=to_json_table(@event.registrations,'created_at')%>]);
+
+        var options = {
+          
+        };
+
+        var registrations_chart = new google.visualization.LineChart(document.getElementById('registrations_chart'));
+
+        registrations_chart.draw(data, options);
+
+        data = google.visualization.arrayToDataTable([<%=to_json_table(@event.projects,'created_at')%>]);
+
+        var projects_chart = new google.visualization.LineChart(document.getElementById('projects_chart'));
+
+        projects_chart.draw(data, options);
+
+        data = google.visualization.arrayToDataTable([<%=to_json_table(@event.ratings,'project_ratings.created_at')%>]);
+
+        var ratings_chart = new google.visualization.LineChart(document.getElementById('ratings_chart'));
+
+        ratings_chart.draw(data, options);
+
+        data = google.visualization.arrayToDataTable([<%=to_json_table(@event.volunteers,'project_volunteers.created_at')%>]);
+
+        var volunteers_chart = new google.visualization.LineChart(document.getElementById('volunteers_chart'));
+
+        volunteers_chart.draw(data, options);
+
+        data = google.visualization.arrayToDataTable([<%=to_json_table(@event.comments,'project_comments.created_at')%>]);
+
+        var comments_chart = new google.visualization.LineChart(document.getElementById('comments_chart'));
+
+        comments_chart.draw(data, options);
+  }
+</script>

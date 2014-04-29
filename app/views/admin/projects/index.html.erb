@@ -20,7 +20,7 @@
       <td><%=p.approved%></td>
       <td><%=p.ratings.count%></td>
       <td><%=p.volunteers.count%></td>      
-      <td><%=p.comments.count%></td>
+      <td><%=link_to p.comments.count, admin_event_project_project_comments_path(@event, p)%></td>
       <td><%=l p.created_at%></td>      
       <td>
         <div class="btn-group">

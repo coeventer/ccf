@@ -33,8 +33,9 @@ class Admin::UsersController < Admin::AdminController
 
   def search
     query = "#{'%'}#{params[:query]}#{'%'}"
-    @users = User.where(["name like ? or department like ? or email like ?", query, query, query]).
-    paginate(:page => params[:page], :per_page => 30)
+    @users = User.where(["name like ? or department like ? or email like ?", query, query, query])
+    @users = @users.where(verified: 0) if params[:unverified].eql?("1")
+    @users = @users.paginate(:page => params[:page], :per_page => 30)
     
     respond_to do |format|
       puts @users.inspect
