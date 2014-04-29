@@ -17,12 +17,16 @@ class ApplicationController < ActionController::Base
       # Session is no longer valid, re-authentication needed.
       else
         destroy_session
-        redirect_to new_session_path, :notice => "Your session has timed out. Please re-authenticate."
-        return false
+        respond_to do |format|
+          format.html {redirect_to new_session_path, :notice => "Your session has timed out. Please re-authenticate." and return false}
+          format.js {render 'sessions/new', layout: false}
+        end
       end
     else
-      redirect_to new_session_path
-      return false
+      respond_to do |format|
+        format.html {redirect_to new_session_path, :notice => "Your session has timed out. Please re-authenticate." and return false}
+        format.js {render 'sessions/new', layout: false}
+      end
     end
   end
   
