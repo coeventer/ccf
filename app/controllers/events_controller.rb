@@ -25,11 +25,13 @@ class EventsController < ApplicationController
     sort = params[:sort].to_s
     if !sort.nil? && ["created_at", "approved desc"].include?(sort) then
       @projects = @projects.order(sort)
-    elsif !sort.nil? && ["volunteers"].include?(sort)    
-      #@projects = @projects.select("projects.*, COUNT(project_volunteers.id) as project_count").joins("left outer join project_volunteers on projects.id=project_volunteers.project_id").group("projects.id").order("project_count desc")  
+    elsif !sort.nil? && ["helpers"].include?(sort)    
+      @projects = @projects.most_help
     # Default sort, use votes
+    elsif !sort.nil? && ["comments"].include?(sort)  
+      @projects = @projects.most_commented
     else
-      #@projects = @projects.select("projects.*, COUNT(project_ratings.id) as project_count").joins("left outer join project_ratings on projects.id=project_ratings.project_id").group("projects.id").order("project_count desc")
+      @projects = @projects.most_liked
     end
 
     respond_to do |format|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140430194043) do
+ActiveRecord::Schema.define(:version => 20140430200856) do
 
   create_table "event_moderators", :force => true do |t|
     t.integer  "event_id"
@@ -84,11 +84,14 @@ ActiveRecord::Schema.define(:version => 20140430194043) do
     t.integer  "project_owner_id"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",                                                         :null => false
-    t.datetime "updated_at",                                                         :null => false
+    t.datetime "created_at",                                                                 :null => false
+    t.datetime "updated_at",                                                                 :null => false
     t.string   "classification"
-    t.boolean  "approved",         :default => false
-    t.string   "repository",       :default => "http://github.umn.edu/exam/ple.git"
+    t.boolean  "approved",                 :default => false
+    t.string   "repository",               :default => "http://github.umn.edu/exam/ple.git"
+    t.integer  "project_comments_count",   :default => 0
+    t.integer  "project_ratings_count",    :default => 0
+    t.integer  "project_volunteers_count", :default => 0
   end
 
   create_table "users", :force => true do |t|

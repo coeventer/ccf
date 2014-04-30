@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   attr_accessible :description, :title, :classification, :project_owner, :event_id,
-  :approved, :repository
+  :approved, :repository, :project_comments_count, :project_ratings_count, :project_volunteers_count
   
   has_many :comments, :class_name => "ProjectComment"
   has_many :ratings, :class_name => "ProjectRating"
@@ -17,6 +17,11 @@ class Project < ActiveRecord::Base
   
   CLASSIFICATIONS = ["Develop an App", "Learn and Explore", "Specify and Design", "Other"]
   
+  #scopes for sorting projects
+  scope :most_commented, order('project_comments_count DESC')
+  scope :most_liked, order('project_ratings_count DESC')
+  scope :most_help, order('project_volunteers_count DESC')
+
   # Checks to see if event can be voted on
   def voting_allowed?
     # As of today, cannot vote if project is in 'parking lot'

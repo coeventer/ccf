@@ -3,7 +3,7 @@ class ProjectComment < ActiveRecord::Base
   validates :description, presence: true
 
   belongs_to :user
-  belongs_to :project
+  belongs_to :project, counter_cache: true
 
   default_scope { order(:created_at)}
 end
