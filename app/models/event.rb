@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date, 
     :volunteering_enabled, :description, :registration_end_dt, :registration_maximum,
-    :live
+    :live, :schedule, :other_info
   
   has_many :projects
   has_many :registrations, :class_name => "EventRegistration"
@@ -14,6 +14,7 @@ class Event < ActiveRecord::Base
   validates :start_date, :presence => true
   validates :end_date, :presence => true
   validates :title, :presence => true
+  validates :schedule, :presence => true
   validates :description, :presence => true
   validates :voting_enabled, :inclusion => [true, false]
   validates :volunteering_enabled, :inclusion => [true, false]

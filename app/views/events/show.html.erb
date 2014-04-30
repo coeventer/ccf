@@ -6,26 +6,14 @@
 <p id="notice"><%= notice %></p>
 <h1><%=@event.title%></h1>
 <p><%=@event.pretty_dates%></p>
-<% if @event.registration_enabled?%>
-  <p class="well well-small">
-    <% if !current_user.nil? && current_user.verified? && @event.registered?(current_user)%>
-      You have registered! 
-      <%=link_to event_event_registration_path(@event, @registration), :class => "btn btn-danger",  :method => :delete do%>
-      <i class="icon-play-circle"></i> Unregister
-      <%end%>    
-    <%else%>
-      <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success" do%>
-      <i class="icon-play-circle"></i> Register Now
-      <%end%>
-      Register by <%=l @event.registration_end_dt, format: :long%>. 
-    <%end%>
-    <%=@event.registrations_remaining%> of <%=@event.registration_maximum%> spots remain. 
-  </p>
-<%end%>
-
 <p><%=@event.description%></p>
+<div class="hidden-desktop">
+<%= render :partial => "registration"%>
+</div>
 <hr />
+
 <% if can? :create, Project then %>
+    <h3>Submit an idea</h3>
    <%=semantic_form_for @new_project do |f| -%>
     <%=f.text_field :title, :style => "width: 80%;", :placeholder => "Submit your idea for #{@event.title}"%>
     <div id="project_details" style="display: none;">
@@ -46,23 +34,40 @@
 <p><%=link_to "Sign in to submit a project idea", new_session_path, :class => "btn btn-success btn-large"%></p>
 <%end%>
 <hr />
-<h3>Proposed project ideas</h3>
-<div class="btn-group">
-  <button class="btn">Sort by</button>
-  <button class="btn dropdown-toggle" data-toggle="dropdown">
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu">
-    <!-- dropdown menu links -->
-    <li><%=link_to "Date submitted", event_path(@event, :sort => "created_at")%></li>
-    <li><%=link_to "Likes", event_path(@event, :sort => "votes")%></li>
-    <li><%=link_to "Help", event_path(@event, :sort => "volunteers")%></li>
-    <li><%=link_to "Selected for event", event_path(@event, :sort => "approved desc")%></li>
-  </ul>
+<div class="row-fluid">
+  <div class="span9">
+    <h3>Proposed project ideas</h3>
+    <div class="btn-group">
+      <button class="btn">Sort by</button>
+      <button class="btn dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <!-- dropdown menu links -->
+        <li><%=link_to "Date submitted", event_path(@event, :sort => "created_at")%></li>
+        <li><%=link_to "Likes", event_path(@event, :sort => "votes")%></li>
+        <li><%=link_to "Help", event_path(@event, :sort => "volunteers")%></li>
+        <li><%=link_to "Selected for event", event_path(@event, :sort => "approved desc")%></li>
+      </ul>
+    </div>
+    <%@projects.each do |project|%>
+      <%=render :partial => "projects/project", :locals => {:project=> project, :truncate => true, :show_comments => false}%>
+    <%end%>
+  </div>
+
+  <div class="span3">
+    <%= render :partial => "registration"%>
+    <div class="well well-small">
+      <h4>Schedule</h4>
+      <p><%=@event.schedule%></p>
+    </div>
+
+    <div class="well well-small">
+      <h4>Other event info</h4>
+      <p><%=@event.try(:other_info)%></p>
+    </div>
+  </div>
 </div>
-<%@projects.each do |project|%>
-  <%=render :partial => "projects/project", :locals => {:project=> project, :truncate => true, :show_comments => false}%>
-<%end%>
 <script type="text/javascript">
   $("#project_title").keyup(function(e){
     if($("#project_title").val().length > 0)

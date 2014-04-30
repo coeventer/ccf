@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140423201033) do
+ActiveRecord::Schema.define(:version => 20140430194043) do
 
   create_table "event_moderators", :force => true do |t|
     t.integer  "event_id"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20140423201033) do
     t.date     "registration_end_dt"
     t.integer  "registration_maximum"
     t.boolean  "live",                 :default => false
+    t.text     "schedule"
+    t.text     "other_info"
   end
 
   create_table "project_comments", :force => true do |t|

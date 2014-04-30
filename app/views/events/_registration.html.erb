@@ -1,0 +1,24 @@
+<% if @event.registration_enabled?%>
+<div class="well well-small">
+  <h4>Registration</h4>
+    <% if !current_user.nil? && current_user.verified? && @event.registered?(current_user)%>
+      <p>
+        <%=link_to event_event_registration_path(@event, @registration), :class => "btn btn-danger",  :method => :delete do%>
+        <i class="icon-play-circle"></i> Unregister
+        <%end%>    
+      </p>
+    <%else%>
+      <p>
+        <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success" do%>
+          <i class="icon-play-circle"></i> Register Now
+        <%end%>
+      </p>
+      <p>
+      Register by <%=l @event.registration_end_dt, format: :long%>. 
+      </p>
+    <%end%>
+    <p>
+    <em><%=@event.registrations_remaining%> of <%=@event.registration_maximum%> spots remain. </em>
+    </p>
+</div>
+<%end%>

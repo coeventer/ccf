@@ -4,7 +4,7 @@
     <%if project.volunteered_for?(current_user)%>
     <p>
       <%=link_to unvolunteer_project_path(project), :class => "btn btn-small btn-danger", :method => :post, :remote => true do%>
-      <i class="icon-remove-sign"></i> Don't help with idea
+      <i class="icon-remove-sign"></i> Don't help
     <%end%>
     </p>    
     <%else%>
