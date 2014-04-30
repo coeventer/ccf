@@ -18,7 +18,7 @@
     <p><%=link_to "Edit this project", edit_project_path(project), :class=>"btn btn-small"%></p>
     <%end%>
     <%if truncate%>
-    <p><%=truncate Sanitize.clean(project.description, Sanitize::Config::RELAXED).html_safe, :length => 200%></p>
+    <p><%=truncate strip_tags(project.description).html_safe, :length => 200%></p>
     <%else%>
     <%=Sanitize.clean(project.description, Sanitize::Config::RELAXED).html_safe%>
     <%end%>
@@ -32,7 +32,7 @@
       <%project.volunteers.each do |v|%>
         <span class='volunteer_badge'>
         <%=link_to user_path(v.user) do%>
-          <%=image_tag v.user.image, alt: v.user.name, width: 20, height: 20, title: v.user.name%>
+          <%=image_tag v.user.image, alt: v.user.name, width: 40, height: 40, title: v.user.name%>
         <%end%>
       <%end%>
     <%end%>
