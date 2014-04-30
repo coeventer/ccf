@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :event_registrations
 
   AUTO_VERIFY_DOMAINS = ['umn.edu']
+
+  default_scope { order(:created_at)}
   
 
   # See: https://github.com/zquestz/omniauth-google-oauth2 

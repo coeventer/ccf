@@ -10,6 +10,8 @@ class EventRegistration < ActiveRecord::Base
   after_create :send_notification
 
   PARTICIPATION_OPTIONS = ["Work on a project", "Help facilitate event", "Just visiting"]
+
+  default_scope { order(:created_at)}
   
   def self.to_csv
     CSV.generate do |csv|
