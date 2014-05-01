@@ -67,6 +67,33 @@
       <h4>Other event info</h4>
       <p><%=@event.try(:other_info)%></p>
     </div>
+
+    <div class="well well-small">
+      <h4>Who's attending</h4>
+      <p>
+        <div class="btn-group">
+          <a href="#" class="btn btn-small" onclick="$('#attending_names').hide(); $('#attending_avatars').show(); return false;">Avatars</a>
+          <a href="#" class="btn btn-small"  onclick="$('#attending_names').show(); $('#attending_avatars').hide(); return false;">Names</a>
+        </div>
+      </p>
+
+      <div id="attending_avatars">
+        <%@event.registrations.each do |r|%>
+          <span class='user_badge'>
+          <%=link_to user_path(r.user) do%>
+            <%=image_tag r.user.image, alt: r.user.name, width: 40, height: 40, title: r.user.name%>
+          <%end%>
+          </span>
+        <%end%>
+      </div>
+      <div id="attending_names" style="display:none;">
+        <ul>
+          <% @event.registrations.each do |registration|%>
+          <li><%=registration.user.name%></li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 <script type="text/javascript">
