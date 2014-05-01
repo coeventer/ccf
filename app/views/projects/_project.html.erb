@@ -28,13 +28,12 @@
     <%else%>
     <%=Sanitize.clean(project.description, Sanitize::Config::RELAXED).html_safe%>
     <%end%>
-    <br />
-    <br />
         
-    <p>Volunteers:  
+    <p>Volunteers:</p>
     <%if project.volunteers.blank?%>
       <span>None</span>
     <%else%>
+    <div class="volunteers_container">
       <%project.volunteers.each do |v|%>
         <div class='user_badge'>
         <%=link_to user_path(v.user) do%>
@@ -42,9 +41,9 @@
         <%end%>
         </div>
       <%end%>
+      <div class="clearfix"></div>
+    </div>
     <%end%>
-    </p>
-
     <%if !project.repository.nil? %>
     <p>Repository: <%=link_to project.repository, project.repository%></p>
     <%end%>
