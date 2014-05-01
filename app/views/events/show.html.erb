@@ -88,8 +88,8 @@
       </div>
       <div id="attending_names" style="display:none;">
         <ul>
-          <% @event.registrations.each do |registration|%>
-          <li><%=registration.user.name%></li>
+          <% @event.registrations.each do |r|%>
+          <li><%=link_to r.user.name, user_path(r.user)%></li>
           <%end%>
         </ul>
       </div>
