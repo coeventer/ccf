@@ -15,14 +15,16 @@
   </div>
 
   <div class="span10">
-    <p class="pull-right"><%=link_to edit_project_path(project), :class=>"btn btn-small" do%>
+    <%if can? :edit, project then%>
+    <p class="pull-right">
+      <%=link_to edit_project_path(project), :class=>"btn btn-small" do%>
         <i class="icon-edit"></i> Edit project
       <%end%>
     </p>
+    <%end%>
     <h4><%=link_to project.title, project_path(project)%></h4>
     <%=render :partial => "projects/project_owner", :locals => {owner: project.project_owner, project: project}%>
-    <%if can? :edit, project then%>
-    <%end%>
+    
     <%if truncate%>
     <p><%=truncate strip_tags(project.description).html_safe, :length => 200%></p>
     <%else%>
