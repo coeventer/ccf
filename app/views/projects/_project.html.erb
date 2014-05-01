@@ -36,11 +36,11 @@
       <span>None</span>
     <%else%>
       <%project.volunteers.each do |v|%>
-        <span class='user_badge'>
+        <div class='user_badge'>
         <%=link_to user_path(v.user) do%>
           <%=image_tag v.user.image, alt: v.user.name, width: 40, height: 40, title: v.user.name%>
         <%end%>
-        </span>
+        </div>
       <%end%>
     <%end%>
     </p>
