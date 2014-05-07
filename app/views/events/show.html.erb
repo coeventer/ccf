@@ -6,7 +6,7 @@
 <p id="notice"><%= notice %></p>
 <h1><%=@event.title%></h1>
 <p><%=@event.pretty_dates%></p>
-<p><%=@event.description%></p>
+<p><%=sanitize @event.description%></p>
 <div class="hidden-desktop">
 <%= render :partial => "registration"%>
 </div>
@@ -60,13 +60,13 @@
     <%= render :partial => "registration"%>
     <div class="well well-small">
       <h4>Schedule</h4>
-      <p><%=@event.schedule%></p>
+      <p><%=sanitize @event.schedule%></p>
     </div>
 
     <%if !@event.other_info.blank?%>
       <div class="well well-small">
         <h4>Other event info</h4>
-        <p><%=@event.try(:other_info)%></p>
+        <p><%=sanitize @event.try(:other_info)%></p>
       </div>
     <%end%>
 
