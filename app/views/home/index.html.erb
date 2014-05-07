@@ -10,7 +10,7 @@
     <%else%>
     <%event = @future_events.first%>
     <h1><%=link_to event.title, event_path(event)%></h1>
-    <p><%=event.description%></p>
+    <p><%=sanitize event.description%></p>
     <p>
         This codefest runs <%=event.pretty_dates%>
     </p>

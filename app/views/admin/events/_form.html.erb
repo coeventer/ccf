@@ -1,4 +1,10 @@
 <%=semantic_form_for @event, :url => path do |f|%>
   <%=f.inputs%>
   <%=f.submit :class => "btn"%> or <%=link_to "Cancel", admin_root_path%>
+
+  <script type="text/javascript">
+    $('textarea').each(function( index ) {
+      $(this).wysihtml5();
+    });
+  </script>
 <%end%>
