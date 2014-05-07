@@ -63,10 +63,12 @@
       <p><%=@event.schedule%></p>
     </div>
 
-    <div class="well well-small">
-      <h4>Other event info</h4>
-      <p><%=@event.try(:other_info)%></p>
-    </div>
+    <%if !@event.other_info.blank?%>
+      <div class="well well-small">
+        <h4>Other event info</h4>
+        <p><%=@event.try(:other_info)%></p>
+      </div>
+    <%end%>
 
     <div class="well well-small">
       <h4>Who's attending</h4>
