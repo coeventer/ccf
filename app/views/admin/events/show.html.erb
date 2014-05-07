@@ -41,38 +41,38 @@
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawCharts);
       function drawCharts() {
-        // var data = google.visualization.arrayToDataTable([<%=to_json_table(@event.registrations,'created_at')%>]);
+        var data = google.visualization.arrayToDataTable([<%=to_json_table(@event.registrations,'created_at')%>]);
 
-        // var options = {
+        var options = {
           
-        // };
+        };
 
-        // var registrations_chart = new google.visualization.LineChart(document.getElementById('registrations_chart'));
+        var registrations_chart = new google.visualization.LineChart(document.getElementById('registrations_chart'));
 
-        // registrations_chart.draw(data, options);
+        registrations_chart.draw(data, options);
 
-        // data = google.visualization.arrayToDataTable([<%=to_json_table(@event.projects,'created_at')%>]);
+        data = google.visualization.arrayToDataTable([<%=to_json_table(@event.projects,'created_at')%>]);
 
-        // var projects_chart = new google.visualization.LineChart(document.getElementById('projects_chart'));
+        var projects_chart = new google.visualization.LineChart(document.getElementById('projects_chart'));
 
-        // projects_chart.draw(data, options);
+        projects_chart.draw(data, options);
 
-        // data = google.visualization.arrayToDataTable([<%=to_json_table(@event.ratings,'project_ratings.created_at')%>]);
+        data = google.visualization.arrayToDataTable([<%=to_json_table(@event.ratings,'project_ratings.created_at')%>]);
 
-        // var ratings_chart = new google.visualization.LineChart(document.getElementById('ratings_chart'));
+        var ratings_chart = new google.visualization.LineChart(document.getElementById('ratings_chart'));
 
-        // ratings_chart.draw(data, options);
+        ratings_chart.draw(data, options);
 
-        // data = google.visualization.arrayToDataTable([<%=to_json_table(@event.volunteers,'project_volunteers.created_at')%>]);
+        data = google.visualization.arrayToDataTable([<%=to_json_table(@event.volunteers,'project_volunteers.created_at')%>]);
 
-        // var volunteers_chart = new google.visualization.LineChart(document.getElementById('volunteers_chart'));
+        var volunteers_chart = new google.visualization.LineChart(document.getElementById('volunteers_chart'));
 
-        // volunteers_chart.draw(data, options);
+        volunteers_chart.draw(data, options);
 
-        // data = google.visualization.arrayToDataTable([<%=to_json_table(@event.comments,'project_comments.created_at')%>]);
+        data = google.visualization.arrayToDataTable([<%=to_json_table(@event.comments,'project_comments.created_at')%>]);
 
-        // var comments_chart = new google.visualization.LineChart(document.getElementById('comments_chart'));
+        var comments_chart = new google.visualization.LineChart(document.getElementById('comments_chart'));
 
-        // comments_chart.draw(data, options);
+        comments_chart.draw(data, options);
   }
 </script>
