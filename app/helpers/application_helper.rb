@@ -15,4 +15,10 @@ module ApplicationHelper
 
     return data_table.collect{|v| v}.join(",").html_safe
   end
+
+  # Oauth can (obviously) handle multiple providers, but for the sake of
+  # usability, we are simply using Google
+  def signin_path
+    "../auth/google_oauth2"
+  end
 end
