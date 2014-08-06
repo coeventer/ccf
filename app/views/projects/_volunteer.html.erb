@@ -6,13 +6,13 @@
       <%=link_to unvolunteer_project_path(project), :class => "btn btn-small btn-danger", :method => :post, :remote => true do%>
       <i class="icon-remove-sign"></i> Don't help
     <%end%>
-    </p>    
+    </p>
     <%else%>
     <p>
       <%=link_to volunteer_project_path(project), :class => "btn btn-small btn-success", :method => :post, :remote => true do%>
       <i class="icon-hand-up"></i> Help with idea
     <%end%>
-    </p>    
+    </p>
     <%end%>
   <%else%>
   <p class="info">

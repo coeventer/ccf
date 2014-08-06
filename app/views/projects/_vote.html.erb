@@ -6,13 +6,13 @@
       <%=link_to rate_project_path(project), :class => "btn btn-small btn-danger", :method => :post, :remote => true do%>
         <i class="icon-remove-sign"></i> Unlike this idea
       <%end%>
-    </p>    
+    </p>
     <%else%>
       <p>
       <%=link_to rate_project_path(project), :class => "btn btn-small btn-info", :method => :post, :remote => true do%>
-        <i class="icon-thumbs-up"></i> Like this idea 
+        <i class="icon-thumbs-up"></i> Like this idea
       <%end%>
-      </p>   
+      </p>
     <%end%>
   <%else%>
   <p class="info">

@@ -3,7 +3,7 @@
   <div id="project_details">
   <%=f.input :description, :as => :text, :input_html => {:style => "width: 80%; height: 100px;"}, :placeholder => "Describe your idea"%>
   <%=f.input :event_id, :as => :hidden, :value => @project.event_id%>
-  <%=f.input :repository%>  
+  <%=f.input :repository%>
   <br />
   <%=f.submit "Submit idea", :class => "btn" %> or <%=link_to "Cancel", event_path(@project.event)%>
 
@@ -11,6 +11,6 @@
     //$(document).ready(function(){
       $('#project_description').wysihtml5();
     //s})
-  </script>  
-  </div> 
+  </script>
+  </div>
 <%end%>

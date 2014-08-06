@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date, 
     :volunteering_enabled, :description, :registration_end_dt, :registration_maximum,
     :live, :schedule, :other_info
-  
+
   has_many :projects
   has_many :registrations, :class_name => "EventRegistration"
   has_many :event_registrations
@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
   has_many :ratings, :through => :projects
   has_many :volunteers, :through => :projects
   has_many :comments, :through => :projects  
-  
+
   validates :start_date, :presence => true
   validates :end_date, :presence => true
   validates :title, :presence => true
@@ -20,13 +20,13 @@ class Event < ActiveRecord::Base
   validates :volunteering_enabled, :inclusion => [true, false]
   validates :registration_end_dt, :presence => true
   validates :registration_maximum, :presence => true
-  
+
   # Voting is enabled if the voting enabled boolean is turned on, it is before the event start date
   # and before the voting end date, if it is set
   def voting_enabled?
     return self.live? && self.voting_enabled && (self.voting_end_date.nil? ? true : Date.today < self.voting_end_date.to_date) && Date.today < self.start_date.to_date
   end
-  
+
   # Volunteering is enabled if the volunteering enabled boolean is turned on, it is before the event ends
   # and before the volunteering end date, if it is set  
   def volunteering_enabled?
@@ -63,7 +63,7 @@ class Event < ActiveRecord::Base
 
   def to_param
     [id, title.parameterize].join("-")
-  end  
+  end
 
   def self.live
     return self.where(live: true)

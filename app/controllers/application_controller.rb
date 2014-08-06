@@ -3,12 +3,12 @@ class ApplicationController < ActionController::Base
   before_filter :auth_required
   before_filter :find_events
   protect_from_forgery
-  
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     @current_user
   end
-  
+
   def auth_required
     # If there is a current user, check session
     if current_user
@@ -29,14 +29,14 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
   # Remove all traces of user session from application session cookie
   def destroy_session
     session[:user_id] = nil
     session[:token] = nil
     session[:created_at] = nil
   end
-  
+
   helper_method :current_user
 
   def find_events

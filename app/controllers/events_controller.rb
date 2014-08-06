@@ -25,10 +25,10 @@ class EventsController < ApplicationController
     sort = params[:sort].to_s
     if !sort.nil? && ["created_at", "approved desc"].include?(sort) then
       @projects = @projects.order(sort)
-    elsif !sort.nil? && ["helpers"].include?(sort)    
+    elsif !sort.nil? && ["helpers"].include?(sort)
       @projects = @projects.most_help
     # Default sort, use votes
-    elsif !sort.nil? && ["comments"].include?(sort)  
+    elsif !sort.nil? && ["comments"].include?(sort)
       @projects = @projects.most_commented
     else
       @projects = @projects.most_liked

@@ -15,7 +15,7 @@
       <li style="font-style: italic;">Completed</li>
       <%@past_events.each do |e|%>
       <li><%=link_to e.title, event_path(e)%>
-      <%end%>                  
+      <%end%>
     </ul>
   </li>
   <li class="dropdown">
@@ -27,8 +27,8 @@
       </a>
     <ul class="dropdown-menu">
       <!-- links -->
-      <li><%=link_to "Git/Github", github_path%></li>     
-      <li><%=link_to "CCF 2013 wiki", "https://github.umn.edu/ccf/ccf13/wiki"%></li>         
+      <li><%=link_to "Git/Github", github_path%></li>
+      <li><%=link_to "CCF 2013 wiki", "https://github.umn.edu/ccf/ccf13/wiki"%></li>
     </ul>
   </li>
   <li><%= link_to "About", about_path  %></li>

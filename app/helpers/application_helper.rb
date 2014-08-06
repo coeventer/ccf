@@ -10,13 +10,13 @@ module ApplicationHelper
   # Returns a json object which can be loaded into a Google data table
   def to_json_table(event, collection, date)
     dates_hash = Hash.new
-    (event.created_at.to_date..Date.today).map{ |date| date.strftime("%m/%d/%Y") }.each do |d| 
-      dates_hash[d]=0 
+    (event.created_at.to_date..Date.today).map{ |date| date.strftime("%m/%d/%Y") }.each do |d|
+      dates_hash[d]=0
     end
-    
+
     collection.select("count(*) as n, #{variable_date_truncate(date)} as day").
     group(variable_date_truncate(date)).reorder("day").each{|c| dates_hash[c.day]=c.n}
-    
+
     data_table = [['Date', 'N'].to_s]
     data_table << dates_hash.to_a.collect{|c| c.to_s}
 

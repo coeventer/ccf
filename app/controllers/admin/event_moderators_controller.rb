@@ -10,7 +10,7 @@ class Admin::EventModeratorsController < Admin::AdminController
 
   def destroy
     @event = Event.find(params[:event_id])
-    
+
     @moderator = @event.moderators.find_by_user_id(params[:user_id])
     @moderator.destroy
 

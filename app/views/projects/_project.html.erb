@@ -4,7 +4,7 @@
 
     <div id="vote_container_<%=project.id%>">
     <%=render :partial => "projects/vote", :locals => {project: project}%>
-    </div>    
+    </div>
     <div id="volunteer_container_<%=project.id%>">
     <%=render :partial => "projects/volunteer", :locals => {project: project}%>
     </div>
@@ -24,13 +24,13 @@
     <%end%>
     <h4><%=link_to project.title, project_path(project)%></h4>
     <%=render :partial => "projects/project_owner", :locals => {owner: project.project_owner, project: project}%>
-    
+
     <%if truncate%>
     <p><%=truncate strip_tags(project.description).html_safe, :length => 200%></p>
     <%else%>
     <%=Sanitize.clean(project.description, Sanitize::Config::RELAXED).html_safe%>
     <%end%>
-        
+
     <p>Volunteers:</p>
     <%if project.volunteers.blank?%>
       <span>None</span>

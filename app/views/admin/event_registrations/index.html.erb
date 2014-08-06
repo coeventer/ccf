@@ -3,7 +3,7 @@
 <p>
   <div class="btn-group">
     <%=link_to "Add a Registration", new_admin_event_event_registration_path(@event), :class => "btn"%>
-    <%=link_to "Email all registrants", "#", :class => "btn"%> 
+    <%=link_to "Email all registrants", "#", :class => "btn"%>
     <%=link_to "Download to CSV", admin_event_event_registrations_path(@event, :format => :csv), :class => "btn"%>
   </div>
 </p>
@@ -25,8 +25,8 @@
           <%=link_to "Unregister", admin_event_event_registration_path(@event, r), :class => "btn btn-small btn-danger",
                       :confirm => "Are you certain you want to do this?", :method => :delete%>
         </div>
-      </td>   
-    </tr>             
+      </td>
+    </tr>
     <%end%>
   </tbody>
 </table>

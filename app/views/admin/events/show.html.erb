@@ -44,7 +44,7 @@
         var data = google.visualization.arrayToDataTable([<%=to_json_table(@event, @event.registrations,'created_at')%>]);
 
         var options = {
-          
+
         };
 
         var registrations_chart = new google.visualization.LineChart(document.getElementById('registrations_chart'));

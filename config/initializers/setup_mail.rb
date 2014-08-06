@@ -1,5 +1,5 @@
-config = YAML::load(File.open(Rails.root.join "config", "email.yml"))  
-if config && !config.empty?   
+config = YAML::load(File.open(Rails.root.join "config", "email.yml"))
+if config && !config.empty?
   ActionMailer::Base.smtp_settings = {
     :address              => "smtp.umn.edu",
     :port                 => 587,
@@ -11,5 +11,5 @@ if config && !config.empty?
   }
 else
   raise "You must provide an config/email.yml file to run this application. See config/email.yml.example for an example."
-end 
+end
 

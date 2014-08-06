@@ -4,7 +4,7 @@ class Admin::ProjectCommentsController < Admin::AdminController
     @project = Project.find(params[:project_id])
     @comments = @project.comments
   end
-  
+
   def destroy
     @event = Event.find(params[:event_id])
     @project = Project.find(params[:project_id])

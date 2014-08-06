@@ -32,7 +32,7 @@ namespace :deploy do
   desc "Copy database.yml file to the project directory"
   task :copy_database_yml, :roles => :app do
     run "cp -pf #{shared_path}/db/database.yml #{release_path}/config"
-  end  
+  end
 
   before 'deploy:assets:precompile', 'deploy:copy_database_yml'
 end

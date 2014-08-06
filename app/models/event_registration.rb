@@ -1,9 +1,9 @@
 class EventRegistration < ActiveRecord::Base
   attr_accessible :event_id, :user, :note, :participation_level
-  
+
   belongs_to :event
   belongs_to :user
-  
+
   validates :user_id, :uniqueness => {:scope => :event_id}
   validates :participation_level, :presence => true
 
@@ -12,7 +12,7 @@ class EventRegistration < ActiveRecord::Base
   PARTICIPATION_OPTIONS = ["Work on a project", "Help facilitate event", "Just visiting"]
 
   default_scope { order(:created_at)}
-  
+
   def self.to_csv
     CSV.generate do |csv|
       csv << ["Name", "Email", "Registered On"]

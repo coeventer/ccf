@@ -1,10 +1,10 @@
 Description
 ===============
 
-Application used to support a Campus Codefest. Events which are not quite hackathons, not quite educational but fall 
+Application used to support a Campus Codefest. Events which are not quite hackathons, not quite educational but fall
 somewhere in between. The concept of a Campus Codefest originated at the University of Minnesota, Twin Cities in 2013.
 Some of the environmental challenges at the University included decentralized IT function, lack of paid time developing
-practical applications and ideas with cross cutting concerns. 
+practical applications and ideas with cross cutting concerns.
 
 The purpose of making this application is to make planning a Campus Codefest easier. This does not have to be a custom
 built application if enough functionality can be found in a practical application. If custom code is required, the goal

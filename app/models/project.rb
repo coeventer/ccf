@@ -1,22 +1,22 @@
 class Project < ActiveRecord::Base
   attr_accessible :description, :title, :classification, :project_owner, :event_id,
   :approved, :repository, :project_comments_count, :project_ratings_count, :project_volunteers_count
-  
+
   has_many :comments, :class_name => "ProjectComment"
   has_many :ratings, :class_name => "ProjectRating"
   has_many :volunteers, :class_name => "ProjectVolunteer"
   has_many :tags, :class_name => "ProjectTag"
   belongs_to :project_owner, :class_name => "User"
 
-  
+
   belongs_to :event
-  
+
   validates :title, presence: true
   validates :description, presence: true
   #validates :classification, presence: true
-  
+
   CLASSIFICATIONS = ["Develop an App", "Learn and Explore", "Specify and Design", "Other"]
-  
+
   #scopes for sorting projects
   scope :most_commented, order('project_comments_count DESC')
   scope :most_liked, order('project_ratings_count DESC')
@@ -31,7 +31,7 @@ class Project < ActiveRecord::Base
       return self.event.voting_enabled?
     end
   end
-  
+
   # Check to see if user has voted on project
   def voted_on?(user)
     return !self.ratings.find_by_user_id(user.id).nil?
@@ -48,27 +48,27 @@ class Project < ActiveRecord::Base
       end
     end
   end
-  
+
   # Add a project volunteer
   def volunteer(user)
     if self.volunteering_allowed? && !self.volunteered_for?(user) then
       self.volunteers.create(:user_id => user.id)
     end
   end
-  
+
   # remove a project volunteer
   def unvolunteer(user)
     if self.volunteering_allowed? && self.volunteered_for?(user) then
       v = self.volunteers.find_by_user_id(user.id)
       v.destroy unless v.nil?
     end
-  end  
-  
+  end
+
   # Check to see if user has volunteered for project
   def volunteered_for?(user)
     return !self.volunteers.find_by_user_id(user.id).nil?
   end
-  
+
   # Checks to see if event can be volunteered for
   def volunteering_allowed?
     # As of today, cannot volunteer if project is in 'parking lot'
@@ -76,21 +76,21 @@ class Project < ActiveRecord::Base
       return false
     else
       return self.event.volunteering_enabled?
-    end    
+    end
   end
-  
+
   def other?
     return self.classification.eql?("Other")
   end
-  
+
   def vote_count
     self.ratings.count
   end
-  
+
   def comment_count
     self.comments.count
   end
-  
+
   def volunteer_count
     self.volunteers.count
   end
@@ -98,7 +98,7 @@ class Project < ActiveRecord::Base
   def to_param
     [id, title.parameterize].join("-")
   end
-  
+
   def self.to_csv
     CSV.generate do |csv|
       csv << ["Title", "Classification", "Votes", "Volunteers", "Comments", "Created On"]
@@ -106,5 +106,5 @@ class Project < ActiveRecord::Base
         csv << [project.title, project.classification, project.vote_count, project.volunteer_count, project.comment_count, project.created_at]
       end
     end
-  end  
+  end
 end

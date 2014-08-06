@@ -2,15 +2,15 @@ class Admin::UsersController < Admin::AdminController
   def index
     @users = User.paginate(:page => params[:page], :per_page => 30)
   end
-  
+
   def show
     @user = User.find(params[:id])
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def update
     @user = User.find(params[:id])
 
@@ -20,7 +20,7 @@ class Admin::UsersController < Admin::AdminController
       render :edit
     end
   end
-  
+
   def destroy
     @user = User.find(params[:id])    
 
@@ -36,7 +36,7 @@ class Admin::UsersController < Admin::AdminController
     @users = User.where(["name like ? or department like ? or email like ?", query, query, query])
     @users = @users.where(verified: 0) if params[:unverified].eql?("1")
     @users = @users.paginate(:page => params[:page], :per_page => 30)
-    
+
     respond_to do |format|
       puts @users.inspect
       format.js

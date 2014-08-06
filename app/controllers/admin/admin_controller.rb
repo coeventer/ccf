@@ -1,6 +1,6 @@
 class Admin::AdminController < ApplicationController
   before_filter :require_admin
-  
+
   private
   def require_admin
     auth_required
