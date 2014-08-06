@@ -1,8 +1,8 @@
 GIT
-  remote: git@github.umn.edu:pete2786/umn_bootstrap_rails.git
-  revision: e1b24d097f5fc387bc9c2482140b33306be393b1
+  remote: git@github.com:chadfennell/umn_bootstrap.git
+  revision: 3c4e495a2c75ad030722c536c3a95b0fce5cd5a4
   specs:
-    umn_bootstrap_rails (2.8.0)
+    umn_bootstrap_rails (2.8.1)
       less-rails
       twitter-bootstrap-rails (= 2.2.8)
 

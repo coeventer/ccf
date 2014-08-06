@@ -57,6 +57,6 @@ gem 'omniauth-google-oauth2'
 gem 'will_paginate'
 gem 'capistrano', '<3'
 
-gem "umn_bootstrap_rails", :git => "git@github.umn.edu:pete2786/umn_bootstrap_rails.git"
+gem "umn_bootstrap_rails", :git => "git@github.com:chadfennell/umn_bootstrap.git"
 
 gem 'sanitize'
