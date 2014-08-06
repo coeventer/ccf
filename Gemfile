@@ -30,7 +30,6 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'mysql2'
   gem 'pry-rails'
   gem 'sqlite3'
 end
@@ -44,10 +43,8 @@ group :test do
   # Enhanced mail testing
   gem 'action_mailer_cache_delivery'
 end
-group :production do
-  # Oracle gems
-  gem 'ruby-oci8'
-  gem 'activerecord-oracle_enhanced-adapter', '1.4.2'
+group :production, :development do
+  gem 'mysql2'
 end
 
 # Temporarily using FB for auth, will use Shibboleth on UMN infra

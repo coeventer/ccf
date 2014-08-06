@@ -32,7 +32,6 @@ GEM
       activesupport (= 3.2.14)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-oracle_enhanced-adapter (1.4.2)
     activeresource (3.2.14)
       activemodel (= 3.2.14)
       activesupport (= 3.2.14)
@@ -209,7 +208,6 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    ruby-oci8 (2.1.7)
     sanitize (2.1.0)
       nokogiri (>= 1.4.4)
     sass (3.2.14)
@@ -252,7 +250,6 @@ PLATFORMS
 
 DEPENDENCIES
   action_mailer_cache_delivery
-  activerecord-oracle_enhanced-adapter (= 1.4.2)
   better_errors
   binding_of_caller
   bootstrap-wysihtml5-rails
@@ -278,7 +275,6 @@ DEPENDENCIES
   rails (= 3.2.14)
   rolify
   rspec-rails
-  ruby-oci8
   sanitize
   sass-rails (~> 3.2.5)
   shoulda-matchers
