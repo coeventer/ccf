@@ -18,3 +18,4 @@ pickle-email-*.html
 config/database.yml
 config/providers.yml
 config/email.yml
+config/config.yml

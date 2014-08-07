@@ -1,5 +1,5 @@
-config = YAML::load(File.open(Rails.root.join "config", "email.yml"))
-if config && !config.empty?
+config = config = APP_CONFIG.fetch("email", [])
+if !config.empty?
   ActionMailer::Base.smtp_settings = {
     :address              => "smtp.umn.edu",
     :port                 => 587,
