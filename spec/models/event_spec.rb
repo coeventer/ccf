@@ -17,6 +17,10 @@ describe Event do
     should validate_presence_of(:description)
   end
 
+  it "should require a schedule" do
+    should validate_presence_of(:schedule)
+  end
+
   it "should require a registration end date" do
     should validate_presence_of(:registration_end_dt)
   end
