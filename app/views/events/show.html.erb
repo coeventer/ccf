@@ -19,7 +19,7 @@
     <div id="project_details" style="display: none;">
     <%=f.input :description, :as => :text, :input_html => {:style => "width: 80%; height: 100px;"}, :placeholder => "Describe your idea"%>
     <%=f.input :event_id, :as => :hidden, :value => @event.id%>
-    <%=f.input :repository%>  
+    <%=f.input :repository%>
     <br />
     <%=f.submit "Submit idea", :class => "btn" %> or <%=link_to "Cancel", event_path(@event)%>
 
@@ -83,7 +83,7 @@
         <%@event.registrations.each do |r|%>
           <div class='user_badge'>
           <%=link_to user_path(r.user) do%>
-            <%=image_tag r.user.image, alt: r.user.name, width: 40, height: 40, title: r.user.name%>
+            <%=image_tag r.user.image, alt: r.user.label, width: 40, height: 40, title: r.user.label, class: 'has-tooltip' %>
           <%end%>
           </div>
         <%end%>
@@ -92,7 +92,7 @@
       <div id="attending_names" style="display:none;">
         <ul>
           <% @event.registrations.each do |r|%>
-          <li><%=link_to r.user.name, user_path(r.user)%></li>
+          <li><%=link_to r.user.label, user_path(r.user)%></li>
           <%end%>
         </ul>
       </div>
