@@ -29,8 +29,7 @@ namespace :deploy do
   desc "Copy yml files to the project directory"
   task :copy_yml_files, :roles => :app do
     run "cp -pf #{shared_path}/db/database.yml #{release_path}/config"
-    run "cp -pf #{shared_path}/config/providers.yml #{release_path}/config"
-    run "cp -pf #{shared_path}/config/email.yml #{release_path}/config"
+    run "cp -pf #{shared_path}/config/config.yml #{release_path}/config"
   end
 
   before 'deploy:assets:precompile', 'deploy:copy_yml_files'
