@@ -46,11 +46,11 @@
       <% if current_user %>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a class="dropdown-toggle text-right"
+          <a class="dropdown-toggle user-menu-toggle"
              data-toggle="dropdown"
              href="#">
               <%=current_user.name%>
-              <%=image_tag current_user.image, height: 25, width: 25%>
+              <%=image_tag current_user.image, height: 32, width: 32 %>
               <span class="caret"></span>
             </a>
           <ul class="dropdown-menu">
