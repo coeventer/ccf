@@ -3,10 +3,10 @@
   <%=@user.name%>
   <label>uid</label>
   <%=@user.uid%>
-  <label>Department</label>
-  <%=@user.department.blank? ? "N/A" : @user.department%>
+  <%=f.input :department%>
   <%=f.input :admin%>
   <%=f.input :verified%>
-  <%=f.submit%> or <%=link_to "Cancel", admin_users_path%>
+  <%=f.action :submit, :button_html => { :value => 'Save Changes', :class => "btn btn-primary" }%>
+  or <%=link_to "Cancel", admin_users_path, :class => "btn"%>
 <%end%>
 <hr />
