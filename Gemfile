@@ -8,8 +8,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 
   gem "therubyracer"
-  gem "less-rails"
-  gem "twitter-bootstrap-rails"
+  gem "less-rails", '~> 2.5'
+  gem 'less-rails-bootstrap', '~> 3.2.0'
+  gem "font-awesome-rails", '>= 4.1.0'
 end
 
 gem 'jquery-rails'
@@ -19,8 +20,8 @@ gem 'figaro'
 gem 'rolify'
 
 gem 'formtastic'
-gem 'formtastic-bootstrap'
-gem 'bootstrap-wysihtml5-rails'
+gem 'formtastic-bootstrap', '>= 3.0.0'
+gem 'bootstrap-wysihtml5-rails', '>= 0.3.2.100'
 
 group :development do
   gem 'better_errors'
@@ -53,7 +54,5 @@ gem 'omniauth-google-oauth2'
 
 gem 'will_paginate'
 gem 'capistrano', '<3'
-
-gem "umn_bootstrap_rails", :git => "git@github.com:chadfennell/umn_bootstrap.git"
 
 gem 'sanitize'

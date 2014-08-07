@@ -12,4 +12,5 @@
  *= require_tree .
  *= require formtastic-bootstrap
  *= require bootstrap-wysihtml5
+ *= require font-awesome
  */

@@ -32,4 +32,12 @@ class User < ActiveRecord::Base
       user.verified = true if AUTO_VERIFY_DOMAINS.include? user.email.split("@").last
     end
   end
+
+  def label
+    if !self.department.nil? and !self.department.empty? then
+      self.name + ' - ' + self.department
+    else
+      self.name
+    end
+  end
 end

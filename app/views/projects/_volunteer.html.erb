@@ -3,21 +3,21 @@
   <%if current_user && current_user.verified?%>
     <%if project.volunteered_for?(current_user)%>
     <p>
-      <%=link_to unvolunteer_project_path(project), :class => "btn btn-small btn-danger", :method => :post, :remote => true do%>
-      <i class="icon-remove-sign"></i> Don't help
+      <%=link_to unvolunteer_project_path(project), :class => "btn btn-sm btn-danger", :method => :post, :remote => true do%>
+      <span class="fa fa-times-circle"></span> Don't help
     <%end%>
     </p>
     <%else%>
     <p>
-      <%=link_to volunteer_project_path(project), :class => "btn btn-small btn-success", :method => :post, :remote => true do%>
-      <i class="icon-hand-up"></i> Help with idea
+      <%=link_to volunteer_project_path(project), :class => "btn btn-sm btn-success", :method => :post, :remote => true do%>
+      <span class="fa fa-hand-o-up"></span> Help with idea
     <%end%>
     </p>
     <%end%>
   <%else%>
-  <p class="info">
-    <%=link_to signin_path, :class => "btn btn-small btn-success" do%>
-      <i class="icon-hand-up"></i> Sign in to help
+  <p class="text-info">
+    <%=link_to signin_path, :class => "btn btn-sm btn-success" do%>
+      <span class="fa fa-hand-o-up"></span> Sign in to help
     <%end%>
   </p>
   <%end%>

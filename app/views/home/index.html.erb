@@ -1,11 +1,11 @@
-<div class="row-fluid">
-  <div class="span12">
-    <div class="hero-unit">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="jumbotron">
     <%if @future_events.first.nil?%>
       <h1>Campus Codefest</h1>
       <p>Campus Codefest U is an unconference for U of M designers, developers, sysadmins and other interested parties in the University of Minnesota community who want to come together to code for a couple of days.</p>
       <p>
-        <%=link_to "Learn More", about_path, :class=>"btn btn-primary btn-large"%>
+        <%=link_to "Learn More", about_path, :class=>"btn btn-primary btn-lg"%>
       </p>
     <%else%>
     <%event = @future_events.first%>
@@ -15,14 +15,14 @@
         This codefest runs <%=event.pretty_dates%>
     </p>
     <p>
-      <%=link_to "Get involved!", event_path(event), :class=>"btn btn-success btn-large"%>
+      <%=link_to "Get involved!", event_path(event), :class=>"btn btn-success btn-lg"%>
     </p>
     <%end%>
     </div>
   </div>
 </div>
-<div class="row-fluid">
-  <div class="span4">
+<div class="row">
+  <div class="col-xs-4">
     <%if @future_events.first.nil?%>
       <h3>Upcoming Codefest</h3>
       <p>
@@ -36,13 +36,13 @@
       </p>
     <%end%>
   </div>
-  <div class="span4">
+  <div class="col-xs-4">
     <h3>What is this all about?</h3>
       <p>
         <iframe width="360" height="200" src="//www.youtube.com/embed/MDLF2_oVTus?rel=0" frameborder="0" allowfullscreen></iframe>
       </p>
   </div>
-  <div class="span4">
+  <div class="col-xs-4">
     <h3>We're on GitHub Enterprise</h3>
       <p>
         GitHub is a pillar of the Campus Codefest. Check out our organization,

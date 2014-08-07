@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  layout 'umn_bootstrap-fluid-responsive-nav'
   before_filter :auth_required
   before_filter :find_events
   protect_from_forgery

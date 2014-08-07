@@ -3,21 +3,21 @@
   <%if current_user && current_user.verified?%>
     <%if project.voted_on?(current_user)%>
     <p>
-      <%=link_to rate_project_path(project), :class => "btn btn-small btn-danger", :method => :post, :remote => true do%>
-        <i class="icon-remove-sign"></i> Unlike this idea
+      <%=link_to rate_project_path(project), :class => "btn btn-sm btn-danger", :method => :post, :remote => true do%>
+        <span class="fa fa-times-circle"></span> Unlike this idea
       <%end%>
     </p>
     <%else%>
       <p>
-      <%=link_to rate_project_path(project), :class => "btn btn-small btn-info", :method => :post, :remote => true do%>
-        <i class="icon-thumbs-up"></i> Like this idea
+      <%=link_to rate_project_path(project), :class => "btn btn-sm btn-info", :method => :post, :remote => true do%>
+        <span class="fa fa-thumbs-up"></span> Like this idea
       <%end%>
       </p>
     <%end%>
   <%else%>
-  <p class="info">
-    <%=link_to signin_path, :class => "btn btn-small btn-info" do%>
-      <i class="icon-thumbs-up"></i> Sign in to like
+  <p class="text-info">
+    <%=link_to signin_path, :class => "btn btn-sm btn-info" do%>
+      <span class="fa fa-thumbs-up"></span> Sign in to like
     <%end%>
   </p>
   <%end%>
