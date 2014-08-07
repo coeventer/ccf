@@ -19,7 +19,7 @@ Contributing
 
 Clone the repository to your local dev environment.
 ```
-git clone git@github.umn.edu:ccf/campus_codefest.git
+git@github.com:chadfennell/ccf.git
 ```
 
 Bundling will take a LONG time as I require therubyracer to compile less. If you are using RVM, I recommend isolating
