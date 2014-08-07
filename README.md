@@ -23,7 +23,7 @@ git@github.com:chadfennell/ccf.git
 ```
 
 Bundling will take a LONG time as I require therubyracer to compile less. If you are using RVM, I recommend isolating
-the gems by creating a gemset (%rvm gemset create ccf)
+the gems by creating a gemset (%rvm gemset create ccf) then focus on it (%rvm gemset use ccf)
 ```
 cd campus_codefest
 bundle
