@@ -1,7 +1,5 @@
-<div class="row-fluid">
-  <div class="span2">
-    <br />
-
+<div class="row">
+  <div class="col-xs-2">
     <div id="vote_container_<%=project.id%>">
     <%=render :partial => "projects/vote", :locals => {project: project}%>
     </div>
@@ -11,14 +9,13 @@
      <%if !show_comments%>
     <p><%=link_to project_path(project), :style => "color: white;" do%><span class="badge"><%=project.comment_count%></span><%end%> comments</p>
     <%end%>
-
   </div>
 
-  <div class="span10">
+  <div class="col-xs-10">
     <%if can? :edit, project then%>
       <p <%=sanitize 'class="pull-right"' if truncate %>>
-        <%=link_to edit_project_path(project), :class=>"btn btn-small" do%>
-          <i class="icon-edit"></i> Edit project
+        <%=link_to edit_project_path(project), :class=>"btn btn-sm btn-default" do%>
+          <span class="fa fa-edit"></span> Edit project
         <%end%>
       </p>
     <%end%>
@@ -31,11 +28,9 @@
     <%=Sanitize.clean(project.description, Sanitize::Config::RELAXED).html_safe%>
     <%end%>
 
-    <p>Volunteers:</p>
-    <%if project.volunteers.blank?%>
-      <span>None</span>
-    <%else%>
+    <%if !project.volunteers.blank?%>
     <div class="volunteers_container">
+      <p>Volunteers:</p>
       <%project.volunteers.each do |v|%>
         <div class='user_badge'>
         <%=link_to user_path(v.user) do%>
@@ -47,7 +42,7 @@
     </div>
     <%end%>
     <%if !project.repository.nil? %>
-    <p>Repository: <%=link_to project.repository, project.repository%></p>
+      <p><span class="fa fa-github"></span> <%=link_to project.repository, project.repository%></p>
     <%end%>
 
     <%if show_comments then %>
@@ -58,4 +53,3 @@
     <%end%>
   </div>
 </div>
-<hr style="border-top: 2px solid #CCC; margin: 10px 0px;"/>

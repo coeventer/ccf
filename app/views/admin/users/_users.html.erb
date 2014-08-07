@@ -17,12 +17,25 @@
       <td><%=u.department%></td>
       <td><%=u.projects.count%></td>
       <td><%=u.project_ratings.count%></td>
-      <td><%=u.verified%></td>
-      <td><%=u.admin%></td>
+      <td>
+        <% if u.verified then %>
+          <span class="fa fa-check text-success"></span>
+        <% else %>
+          <span class="fa fa-times text-danger"></span>
+        <% end %>
+        <span class="sr-only"><%=u.verified%></span>
+      </td>
+      <td><% if u.admin then %>
+          <span class="fa fa-check text-success"></span>
+        <% else %>
+          <span class="fa fa-times text-danger"></span>
+        <% end %>
+        <span class="sr-only"><%=u.admin%></span>
+      </td>
       <td>
         <div class="btn-group">
-          <%=link_to "Edit", edit_admin_user_path(u), :class => "btn btn-small"%>
-          <%=link_to "Delete", "#", :class => "btn btn-small btn-danger"%>
+          <%=link_to "Edit", edit_admin_user_path(u), :class => "btn btn-sm btn-default"%>
+          <%=link_to "Delete", "#", :class => "btn btn-sm btn-danger"%>
         </div>
       </td>
     </tr>

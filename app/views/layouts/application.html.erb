@@ -4,27 +4,17 @@
     <%= render :partial => 'layouts/common/head' %>
   </head>
   <body>
-    <div class="container-fluid">
-
-      <%= render :partial => 'layouts/common/header' %>
-
-      <div class="jumbotron">
-        <%= render :partial => 'shared/campuscodefest/application_header' %>
-      </div>
-
+    <%= render :partial => 'layouts/common/header' %>
+    <%= render :partial => 'shared/campuscodefest/navigation' %>
+    <div class="container">
       <div class="row">
-        <div class="col-xs-3">
-          <%= render :partial => 'shared/campuscodefest/navigation' %>
-        </div>
-        <div class="col-xs-9">
+        <div class="col-xs-12">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div>
-
-      <%= render :partial => 'layouts/common/footer' %>
-
     </div>
+    <%= render :partial => 'layouts/common/footer' %>
     <%= render_if_exists :partial => 'shared/campuscodefest/analytics' %>
   </body>
 </html>

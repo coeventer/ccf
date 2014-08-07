@@ -2,7 +2,7 @@
 <% if can?(:create, project.comments.new) %>
 <%=semantic_form_for comment, :url => project_project_comments_path(project), :remote => true do |f| %>
   <%=f.input :description, :input_html => {:style => "height: 80px; width: 100%;"}, :label => false%>
-  <%=f.submit "Add Comment", :class => "btn"%>
+  <%=f.submit "Add Comment", :class => "btn btn-sm btn-default"%>
 <%end%>
 
 <script type="text/javascript">
@@ -11,27 +11,28 @@
   //})
 </script>
 <%else%>
-<%=link_to "Sign in to comment", new_session_path, :class => "btn"%>
+<%=link_to "Sign in to comment", new_session_path, :class => "btn btn-default"%>
 <%end%>
 
-  <div class="row-fluid comment comment">
-    <div class="span12 ">
-      <ul class="list-group">
-        <%project.comments.reject{|c| c.new_record?}.each do |c|%>
-        <li class="comment-<%= c.id %>">
-            <p>
-              <a name="comment-<%= c.id %>"></a>
-              <%=link_to "#" do%>
-                <%=image_tag c.user.image, alt: c.user.name, width: 40, height: 40, title: c.user.name%> 
-                <%=c.user.name%>
-              <%end%><span class="comment-time"> &#8226; <%= time_ago_in_words(c.created_at)%> ago</span>
-            </p>
-            <div class="comment-discussion">
-              <%=Sanitize.clean(c.description, Sanitize::Config::RELAXED).html_safe%>
-            </div>
-            <br clear="all"/>
-        </li>
-        <%end%>
-      </ul>
+<hr />
+
+<ul class="list-group">
+  <%project.comments.reject{|c| c.new_record?}.each do |c|%>
+  <li class="list-group-item comment-<%= c.id %>">
+    <div class="row">
+      <div class="col-xs-12">
+        <p>
+          <a name="comment-<%= c.id %>"></a>
+          <%=link_to "#" do%>
+            <%=image_tag c.user.image, alt: c.user.name, width: 40, height: 40, title: c.user.name%>
+            <%=c.user.name%>
+          <%end%><span class="comment-time"> &#8226; <%= time_ago_in_words(c.created_at)%> ago</span>
+        </p>
+        <div class="comment-discussion">
+          <%=Sanitize.clean(c.description, Sanitize::Config::RELAXED).html_safe%>
+        </div>
+      </div>
     </div>
-  </div>
+  </li>
+  <%end%>
+</ul>

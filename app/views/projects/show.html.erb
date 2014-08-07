@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 <%if !@project.event.nil?%>
 <ol class="breadcrumb">
-  <li><%=link_to 'Home', root_path %> /</li>
-  <li><%=link_to "#{@project.event.title}", event_path(@project.event) %> /</li>
+  <li><%=link_to 'Home', root_path %></li>
+  <li><%=link_to "#{@project.event.title}", event_path(@project.event) %></li>
   <li class="active"><%=@project.title%></li>
 </ol>
 <%else%>
 <%=link_to 'Back', root_path %>
 <ol class="breadcrumb">
-  <li><%=link_to 'Home', root_path %> /</li>
+  <li><%=link_to 'Home', root_path %></li>
   <li class="active"><%=@project.title%></li>
 </ol>
 <%end%>

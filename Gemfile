@@ -20,8 +20,8 @@ gem 'figaro'
 gem 'rolify'
 
 gem 'formtastic'
-gem 'formtastic-bootstrap'
-gem 'bootstrap-wysihtml5-rails'
+gem 'formtastic-bootstrap', '>= 3.0.0'
+gem 'bootstrap-wysihtml5-rails', '>= 0.3.2.100'
 
 group :development do
   gem 'better_errors'

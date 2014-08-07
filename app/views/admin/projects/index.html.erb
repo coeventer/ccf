@@ -1,6 +1,6 @@
 <h1>Projects for <%=@event.title%></h1>
 <p><%=link_to "Back to #{@event.title} admin", admin_event_path(@event)%></p>
-<p><%=link_to "Download to CSV", admin_event_projects_path(@event, :format => :csv), :class => "btn"%>
+<p><%=link_to "Download to CSV", admin_event_projects_path(@event, :format => :csv), :class => "btn btn-default"%>
 <table class="table table-striped table-hover table-condensed table-bordered">
   <thead>
     <th>Project</th>
@@ -24,8 +24,8 @@
       <td><%=l p.created_at%></td>
       <td>
         <div class="btn-group">
-          <%=link_to "Edit", edit_admin_event_project_path(@event, p), :class => "btn btn-small"%>
-          <%=link_to "Delete", admin_event_project_path(@event, p), :class => "btn btn-small btn-danger",
+          <%=link_to "Edit", edit_admin_event_project_path(@event, p), :class => "btn btn-sm btn-default"%>
+          <%=link_to "Delete", admin_event_project_path(@event, p), :class => "btn btn-sm btn-danger",
                       :confirm => "Are you certain you want to do this?", :method => :delete%>
         </div>
       </td>

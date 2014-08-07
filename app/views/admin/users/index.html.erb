@@ -1,10 +1,18 @@
 <h2>Manage Users</h2>
 <p><%=link_to "Back to Admin", admin_root_path%></p>
-<%=form_tag "search", :remote => true do%>
-  <%=text_field :query, 'field', :placeholder => 'Search'%> <br />
-  <%=hidden_field :query, 'unverified', :value => '0'%>
-  <%=link_to "Only unverified", '#', :class => "btn btn-danger", :id => "unverified"%>
-<%end%>
+<div class="row">
+  <div class="col-sm-8">
+    <%=form_tag "search", :remote => true do%>
+      <div class="form-group">
+        <%=text_field :query, 'field', :placeholder => 'Search', :class => "form-control" %>
+      </div>
+      <%=hidden_field :query, 'unverified', :value => '0'%>
+      <div class="form-group">
+        <%=link_to "Only unverified", '#', :class => "btn btn-danger", :id => "unverified"%>
+      </div>
+    <%end%>
+  </div>
+</div>
 <div id="users_container">
   <%=render :partial => "users"%>
 </div>
