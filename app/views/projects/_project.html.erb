@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-xs-2">
-    <div id="vote_container_<%=project.id%>">
+    <div id="vote_container_<%=project.id%>" class="vote_container">
     <%=render :partial => "projects/vote", :locals => {project: project}%>
     </div>
-    <div id="volunteer_container_<%=project.id%>">
+    <div id="volunteer_container_<%=project.id%>" class="volunteer_container">
     <%=render :partial => "projects/volunteer", :locals => {project: project}%>
     </div>
      <%if !show_comments%>
