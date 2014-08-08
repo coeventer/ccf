@@ -1,6 +1,7 @@
 <%=semantic_form_for @event, :url => path do |f|%>
   <%=f.inputs%>
-  <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", admin_root_path%>
+  <%=f.submit :class => "btn btn-primary"%>
+  <%=link_to "Cancel", admin_root_path, :class => "btn btn-link" %>
 
   <script type="text/javascript">
     $('textarea').each(function( index ) {

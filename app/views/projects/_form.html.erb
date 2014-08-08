@@ -5,7 +5,8 @@
   <%=f.input :event_id, :as => :hidden, :value => @project.event_id%>
   <%=f.input :repository, :class => "form-control" %>
   <br />
-  <%=f.submit "Submit idea", :class => "btn btn-primary" %> or <%=link_to "Cancel", event_path(@project.event)%>
+  <%=f.submit "Submit idea", :class => "btn btn-primary" %>
+  <%=link_to "Cancel", event_path(@project.event), :class => "btn btn-link" %>
 
   <script type="text/javascript">
     //$(document).ready(function(){

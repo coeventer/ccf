@@ -3,6 +3,6 @@
   <%= f.input :department%>
   <%= f.input :alert_when_owner, :label => "Email Me When People Comment on My Projects"%>
   <%=f.action :submit, :button_html => { :value => "Save Changes", :class => "btn btn-primary" }%>
-  <%=link_to "Cancel", user_path(@user), :class => "btn btn-default" %>
+  <%=link_to "Cancel", user_path(@user), :class => "btn btn-link" %>
 <%end%>
 <hr />
