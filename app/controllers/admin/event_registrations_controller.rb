@@ -1,4 +1,4 @@
-class Admin::EventRegistrationsController < ApplicationController
+class Admin::EventRegistrationsController < Admin::AdminController
   # GET /event_registrations/1
   # GET /event_registrations/1.json
   def index

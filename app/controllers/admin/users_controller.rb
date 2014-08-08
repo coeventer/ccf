@@ -1,19 +1,18 @@
 class Admin::UsersController < Admin::AdminController
   def index
-    @users = User.paginate(:page => params[:page], :per_page => 30)
+    @users = current_organization.users.includes(:user).paginate(:page => params[:page], :per_page => 30)
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_organization.users.where(user_id: params[:id]).first.user
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_organization.users.where(user_id: params[:id]).first.user
   end
 
   def update
-    @user = User.find(params[:id])
-
+    @user = current_organization.users.where(user_id: params[:id]).first.user
     if @user.update_attributes(params[:user]) then
       redirect_to admin_users_path, :message => "Updated #{@user.name}"
     else
@@ -22,7 +21,7 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def destroy
-    @user = User.find(params[:id])    
+    current_organization.users.find(user_id: params[:id]).first.user
 
     if @user.destroy then
       redirect_to admin_users_path, :message => "Deleted #{@user.name}"
@@ -33,7 +32,7 @@ class Admin::UsersController < Admin::AdminController
 
   def search
     query = "#{'%'}#{params[:query]}#{'%'}"
-    @users = User.where(["name like ? or department like ? or email like ?", query, query, query])
+    @users = current_organization.users.joins(:user).where(["name like ? or department like ? or email like ?", query, query, query])
     @users = @users.where(verified: 0) if params[:unverified].eql?("1")
     @users = @users.paginate(:page => params[:page], :per_page => 30)
 

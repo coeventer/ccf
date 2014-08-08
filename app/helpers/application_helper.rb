@@ -26,6 +26,6 @@ module ApplicationHelper
   # Oauth can (obviously) handle multiple providers, but for the sake of
   # usability, we are simply using Google
   def signin_path
-    "#{root_url}auth/google_oauth2"
+    "#{root_url(subdomain: false)}auth/google_oauth2"
   end
 end

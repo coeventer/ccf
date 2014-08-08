@@ -1,4 +1,4 @@
-class EventRegistrationsController < ApplicationController
+class EventRegistrationsController < OrganizationController
   before_filter :verification_required
   load_and_authorize_resource :event
   load_and_authorize_resource :through => :event

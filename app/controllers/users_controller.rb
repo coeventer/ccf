@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < OrganizationController
   before_filter :verification_required
   before_filter :load_user
 

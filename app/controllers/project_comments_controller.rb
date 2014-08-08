@@ -1,4 +1,4 @@
-class ProjectCommentsController < ApplicationController
+class ProjectCommentsController < OrganizationController
   before_filter :verification_required
   def create
     @project = Project.find(params[:project_id])

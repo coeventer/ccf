@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class EventsController < OrganizationController
   skip_before_filter :auth_required
   # GET /events
   # GET /events.json
