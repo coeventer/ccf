@@ -36,9 +36,9 @@ bundle exec rake db:create
 bundle exec rake db:migrate
 ```
 
-We use Omniauth to support Google account login. You must generate an OAuth 2.0 API key via Google Developer Console (https://cloud.google.com/console/project), more instructions can be found here: https://developers.google.com/ad-exchange/rtb/open-bidder/google-app-guide#step-5 . Once this is done, copy the example providers.yml file and enter your api key and secret.
+We use Omniauth to support Google account login. You must generate an OAuth 2.0 API key via Google Developer Console (https://cloud.google.com/console/project), more instructions can be found here: https://developers.google.com/ad-exchange/rtb/open-bidder/google-app-guide#step-5 . Once this is done, copy the example config.yml file and enter your api key and secret to the provider section.
 ```
-cp config/providers.yml.example config/providers.yml
+cp config/config.yml.example config/config.yml
 ```
 
 This is a Test-Driven Development project. Your code should be speced and covered with rspec and capybara. Create a
