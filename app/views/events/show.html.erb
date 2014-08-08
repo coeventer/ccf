@@ -4,11 +4,15 @@
 </ol>
 
 <p id="notice"><%= notice %></p>
-<h1><%=@event.title%></h1>
-<p class="text-muted"><%=@event.pretty_dates%></p>
-<p><%=sanitize @event.description%></p>
-<div class="hidden-lg hidden-md hidden-sm">
-<%= render :partial => "registration"%>
+<div class="row">
+  <div class="col-sm-9">
+    <h1 class="event-title"><%=@event.title%></h1>
+    <p class="text-muted"><%=@event.pretty_dates%></p>
+    <p><%=sanitize @event.description%></p>
+  </div>
+  <div class="col-sm-3">
+    <%= render :partial => "registration"%>
+  </div>
 </div>
 <hr />
 
@@ -63,7 +67,6 @@
   </div>
 
   <div class="col-xs-3">
-    <%= render :partial => "registration"%>
     <div class="well well-sm">
       <h4>Schedule</h4>
       <p><%=sanitize @event.schedule%></p>
