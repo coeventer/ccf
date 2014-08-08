@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/tienle/bootstrap-tour-rails.git
+  revision: 60b79d6993830a1b680512e9964896b730574f53
+  specs:
+    bootstrap-tour-rails (0.9.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -243,6 +249,7 @@ DEPENDENCIES
   action_mailer_cache_delivery
   better_errors
   binding_of_caller
+  bootstrap-tour-rails!
   bootstrap-wysihtml5-rails (>= 0.3.2.100)
   cancan
   capistrano (< 3)

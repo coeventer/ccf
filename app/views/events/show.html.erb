@@ -19,7 +19,7 @@
 <% if can? :create, Project then %>
     <h3>Submit an Idea</h3>
    <%=semantic_form_for @new_project do |f| -%>
-    <%=f.text_field :title, :placeholder => "Submit your idea for #{@event.title}", :class => "form-control"%>
+    <%=f.text_field :title, :placeholder => "Submit your idea for #{@event.title}", :class => "tour-first-step form-control"%>
     <div id="project_details" style="display: none;">
     <%=f.input :description, :as => :text, :input_html => {:style => "width: 80%; height: 100px;"}, :placeholder => "Describe your idea"%>
     <%=f.input :event_id, :as => :hidden, :value => @event.id%>
