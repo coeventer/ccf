@@ -56,6 +56,7 @@
         </ul>
       </div>
     </div>
+    <% if @projects.length > 0 %>
     <div class="list-group">
     <%@projects.each do |project|%>
       <div class="list-group-item">
@@ -63,6 +64,16 @@
       </div>
     <%end%>
     </div>
+    <% else %>
+    <div class="well text-center">
+      <h3>
+        There are no projects for this event!
+      </h3>
+      <p>
+        Perhaps you would like to <a href="#" onclick="$('.tour-first-step').focus(); return false;">propose one</a>?
+      </p>
+    </div>
+    <% end %>
   </div>
 
   <div class="col-xs-3">
