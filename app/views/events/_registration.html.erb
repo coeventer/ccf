@@ -6,7 +6,7 @@
       <%end%>
     </p>
   <%else%>
-    <% if @user.id != nil %>
+    <% if current_user != nil %>
       <p>
         <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success btn-lg" do%>
           <span class="fa fa-play-circle"></span> Register Now
