@@ -1,3 +1,6 @@
+brand:
+  site_name: "Campus Codefest"
+
 oauth:
   providers:
     google_oauth2:
