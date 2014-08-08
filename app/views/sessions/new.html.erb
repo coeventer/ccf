@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="jumbotron">
-      <h1>Campus Codefest Sign in</h1>
-        <p>Campus Codefest U is an unconference for U of M designers, developers, sysadmins and other interested parties in the University of Minnesota community who want to come together to code for a couple of days.</p>
+      <h1><%= APP_CONFIG["brand"]["site_name"] %> Sign in</h1>
+        <p><%= APP_CONFIG["brand"]["site_name"] %> is an unconference for designers, developers, sysadmins, analysts, and other interested parties who want to come together to build cool things for a couple of days.</p>
         <p>
           <%=link_to signin_path, :class=>"btn btn-primary btn-large" do%>
-            <i class="fa fa-sign-out"></i> Log in with Google
+            <i class="fa fa-sign-in"></i> Log in with Google
           <%end%>
         </p>
     </div>
