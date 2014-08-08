@@ -9,9 +9,7 @@ class SessionsController < ApplicationController
     session[:token] = auth["credentials"]["token"]
     session[:created_at] = Time.now
 
-    # re-direct to active event or root path if there is no active event
-    event = Event.live.first
-    redirect_to (event.nil? ? root_path : event_path(event))
+    login_redirect(request.env["omniauth.params"]["register_for_event_id"])
   end
 
   def signout
@@ -22,4 +20,18 @@ class SessionsController < ApplicationController
   def new
 
   end
+
+  private
+    # Redirect users to the root path, the active event path or to event registration
+    def login_redirect(register_event_id)
+      if register_event_id
+		    # Support a single sign in and register button
+        event = Event.find(register_event_id)
+        redirect_to new_event_event_registration_path(event)
+      else
+        # re-direct to active event or root path if there is no active event
+        event = Event.live.first
+        redirect_to (event.nil? ? root_path : event_path(event))
+      end
+    end
 end

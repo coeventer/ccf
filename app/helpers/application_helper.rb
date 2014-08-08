@@ -25,7 +25,8 @@ module ApplicationHelper
 
   # Oauth can (obviously) handle multiple providers, but for the sake of
   # usability, we are simply using Google
-  def signin_path
-    "#{root_url}auth/google_oauth2"
+  def signin_path(event_id = nil)
+    register_param = (event_id) ? "?register_for_event_id=#{event_id}" : nil
+    "#{root_url}auth/google_oauth2#{register_param}"
   end
 end

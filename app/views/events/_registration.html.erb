@@ -6,11 +6,19 @@
       <%end%>
     </p>
   <%else%>
-    <p>
-      <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success btn-lg" do%>
-        <span class="fa fa-play-circle"></span> Register Now
-      <%end%>
-    </p>
+    <% if @user.id != nil %>
+      <p>
+        <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success btn-lg" do%>
+          <span class="fa fa-play-circle"></span> Register Now
+        <%end%>
+      </p>
+    <%else%>
+      <p>
+        <%=link_to signin_path(@event.id), :class => "btn btn-success btn-lg" do%>
+          <span class="fa fa-play-circle"></span> Sign In And Register Now
+        <%end%>
+      </p>
+    <%end%>
     <p>
     Register by <%=l @event.registration_end_dt, format: :long%>.
     </p>
