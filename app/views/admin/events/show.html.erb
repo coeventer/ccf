@@ -4,13 +4,13 @@
 <p><%=link_to "Back to Admin", admin_root_path%></p>
 <p><%=sanitize @event.description%></p>
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-sm-6">
     <%=link_to admin_event_event_registrations_path(@event) do%>
       <h1><%=@event.registrations.count%></h1> registrants
     <%end%>
     <div id="registrations_chart"></div>
   </div>
-  <div class="col-xs-6">
+  <div class="col-sm-6">
     <%=link_to admin_event_projects_path(@event) do%>
       <h1><%=@event.projects.count%></h1> projects
     <%end%>
@@ -18,21 +18,21 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-sm-6">
     <h1><%=@event.vote_count%></h1> votes
     <div id="ratings_chart"></div>
   </div>
-  <div class="col-xs-6">
+  <div class="col-sm-6">
     <h1><%=@event.volunteer_count%></h1> volunteers
     <div id="volunteers_chart"></div>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-sm-6">
     <h1><%=@event.comments.count%></h1> comments
     <div id="comments_chart"></div>
   </div>
-  <div class="col-xs-6">
+  <div class="col-sm-6">
   </div>
 </div>
 <hr />

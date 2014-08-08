@@ -26,4 +26,8 @@
   <p>
     <em><%=@event.registrations_remaining%> of <%=@event.registration_maximum%> spots remain. </em>
   </p>
+<% else %>
+<p class="text-danger">
+  Registration for this event is closed.
+</p>
 <%end%>
