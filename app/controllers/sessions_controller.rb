@@ -27,11 +27,22 @@ class SessionsController < ApplicationController
       if register_event_id
 		    # Support a single sign in and register button
         event = Event.find(register_event_id)
-        redirect_to new_event_event_registration_path(event)
+
+        # Only register this user if the user is not already registered
+        already_registered = is_registered?(current_user.id, event.id)
+        if (!already_registered)
+          redirect_to new_event_event_registration_path(event)
+        else
+          redirect_to event_path(event)
+        end
       else
         # re-direct to active event or root path if there is no active event
         event = Event.live.first
         redirect_to (event.nil? ? root_path : event_path(event))
       end
+    end
+
+    def is_registered?(user_id, event_id)
+      !EventRegistration.where(["user_id = ? AND event_id = ?", user_id, event_id]).first.nil?
     end
 end
