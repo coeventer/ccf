@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
     :volunteering_enabled, :description, :registration_end_dt, :registration_maximum,
     :live, :schedule, :other_info
 
+  belongs_to :organization
   has_many :projects
   has_many :registrations, :class_name => "EventRegistration"
   has_many :event_registrations
@@ -20,6 +21,8 @@ class Event < ActiveRecord::Base
   validates :volunteering_enabled, :inclusion => [true, false]
   validates :registration_end_dt, :presence => true
   validates :registration_maximum, :presence => true
+
+  default_scope { where(organization_id: Organization.current_id) }
 
   # Voting is enabled if the voting enabled boolean is turned on, it is before the event start date
   # and before the voting end date, if it is set

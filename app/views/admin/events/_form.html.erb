@@ -1,7 +1,20 @@
 <%=semantic_form_for @event, :url => path do |f|%>
-  <%=f.inputs%>
-  <%=f.submit :class => "btn btn-primary"%>
-  <%=link_to "Cancel", admin_root_path, :class => "btn btn-link" %>
+  <%= f.inputs do %>
+    <%=f.input :title%>
+    <%=f.input :start_date%>
+    <%=f.input :end_date%>
+    <%=f.input :voting_enabled%>
+    <%=f.input :voting_end_date%>
+    <%=f.input :volunteering_enabled%>
+    <%=f.input :volunteer_end_date%>
+    <%=f.input :description%>
+    <%=f.input :registration_end_dt%>
+    <%=f.input :registration_maximum%>
+    <%=f.input :schedule%>
+    <%=f.input :other_info%>
+    <%=f.input :live%>
+  <% end %>
+  <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", admin_root_path, :class => "btn btn-link"%>
 
   <script type="text/javascript">
     $('textarea').each(function( index ) {

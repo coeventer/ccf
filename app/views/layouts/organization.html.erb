@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <%= render :partial => 'layouts/common/head' %>
+  </head>
+  <body>
+    <%= render :partial => 'layouts/common/header' %>
+    <%= render :partial => 'shared/campuscodefest/org_navigation' %>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= render :partial => 'layouts/common/footer' %>
+    <%= render_if_exists :partial => 'shared/campuscodefest/analytics' %>
+  </body>
+</html>

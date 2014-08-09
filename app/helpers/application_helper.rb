@@ -27,6 +27,6 @@ module ApplicationHelper
   # usability, we are simply using Google
   def signin_path(event_id = nil)
     register_param = (event_id) ? "?register_for_event_id=#{event_id}" : nil
-    "#{root_url}auth/google_oauth2#{register_param}"
+    "#{root_url(subdomain: false)}auth/google_oauth2#{register_param}"
   end
 end

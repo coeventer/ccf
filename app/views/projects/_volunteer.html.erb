@@ -1,6 +1,6 @@
 <p><span class="badge badge-success"><%=project.volunteer_count%></span> helpers</p>
 <%if project.volunteering_allowed?%>
-  <%if current_user && current_user.verified?%>
+  <%if current_user && current_organization.verified?(current_user)%>
     <%if project.volunteered_for?(current_user)%>
     <p>
       <%=link_to unvolunteer_project_path(project), :class => "btn btn-sm btn-danger", :method => :post, :remote => true do%>

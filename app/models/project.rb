@@ -6,9 +6,9 @@ class Project < ActiveRecord::Base
   has_many :ratings, :class_name => "ProjectRating"
   has_many :volunteers, :class_name => "ProjectVolunteer"
   has_many :tags, :class_name => "ProjectTag"
+
   belongs_to :project_owner, :class_name => "User"
-
-
+  belongs_to :organiztion
   belongs_to :event
 
   validates :title, presence: true
@@ -18,6 +18,7 @@ class Project < ActiveRecord::Base
   CLASSIFICATIONS = ["Develop an App", "Learn and Explore", "Specify and Design", "Other"]
 
   #scopes for sorting projects
+  default_scope { where(organization_id: Organization.current_id) }
   scope :most_commented, order('project_comments_count DESC')
   scope :most_liked, order('project_ratings_count DESC')
   scope :most_help, order('project_volunteers_count DESC')
