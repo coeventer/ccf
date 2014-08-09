@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-8">
     <h1><%=@user.name%></h1>
-    <% if !@user.verified?%>
+    <% if !@user.current_organization.verified?(current_user)%>
     <p class="alert alert-info">Not verified.</p>
     <%end%>
     <p class="text-info">

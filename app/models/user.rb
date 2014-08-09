@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :project_ratings
   has_many :project_volunteers
   has_many :event_registrations
+  has_many :organization_users
 
   AUTO_VERIFY_DOMAINS = ['umn.edu']
 

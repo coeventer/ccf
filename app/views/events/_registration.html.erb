@@ -1,7 +1,7 @@
 <% if @event.registration_enabled?%>
 <div class="well well-sm">
   <h4>Registration</h4>
-    <% if !current_user.nil? && current_user.verified? && @event.registered?(current_user)%>
+    <% if !current_user.nil? && current_organization.verified?(current_user) && @event.registered?(current_user)%>
       <p>
         <%=link_to event_event_registration_path(@event, @registration), :class => "btn btn-danger",  :method => :delete do%>
         <span class="fa fa-play-circle"></span> Unregister

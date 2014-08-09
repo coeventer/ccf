@@ -26,4 +26,10 @@ private
   ensure
     Organization.current_id = nil
   end
+
+  private
+
+  def current_ability
+    @current_ability ||= Ability.new(current_user, current_organization)
+  end
 end
