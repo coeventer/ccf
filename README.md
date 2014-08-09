@@ -47,7 +47,7 @@ failing test then implement the code to make it pass for models. Feature tests s
 bundle exec rspec
 ```
 
-Firing up the server, then browse to http://localhost:3000
+Firing up the server, then browse to http://lvh.me::3000
 ```
 rails s
 ```
