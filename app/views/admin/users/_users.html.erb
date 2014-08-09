@@ -12,11 +12,11 @@
   <tbody>
     <%@users.each do |u|%>
     <tr>
-      <td><%=u.name%></td>
-      <td><%=u.email%></td>
-      <td><%=u.department%></td>
-      <td><%=u.projects.count%></td>
-      <td><%=u.project_ratings.count%></td>
+      <td><%=u.user.name%></td>
+      <td><%=u.user.email%></td>
+      <td><%=u.user.department%></td>
+      <td><%=u.user.projects.count%></td>
+      <td><%=u.user.project_ratings.count%></td>
       <td>
         <% if u.verified then %>
           <span class="fa fa-check text-success"></span>

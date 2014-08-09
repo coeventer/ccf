@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :project_ratings
   has_many :project_volunteers
   has_many :event_registrations
+  has_many :organization_users
 
   AUTO_VERIFY_DOMAINS = ['umn.edu']
 
@@ -13,7 +14,7 @@ class User < ActiveRecord::Base
 
 
   # See: https://github.com/zquestz/omniauth-google-oauth2 
-  def self.create_with_omniauth(auth)
+  def self.create_with_omniauth(auth, organization=nil)
     create! do |user|
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
@@ -29,7 +30,15 @@ class User < ActiveRecord::Base
       user.admin = 1 if User.count < 1
 
       # If user belongs to a auto-verify domain... verify
-      user.verified = true if AUTO_VERIFY_DOMAINS.include? user.email.split("@").last
+      if organization
+        org_user = organization.users.create(user: user)
+        org_user.verified = false
+
+        if organization.auto_verify? then
+          org_user.verified = true if organization.auto_verify_domains.include? user.email.split("@").last
+        end
+        
+      end
     end
   end
 

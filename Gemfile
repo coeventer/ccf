@@ -26,7 +26,7 @@ gem 'bootstrap-wysihtml5-rails', '>= 0.3.2.100'
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx, :mri_21]
+  gem 'binding_of_caller'
   gem 'quiet_assets'
 end
 group :development, :test do
@@ -57,3 +57,4 @@ gem 'will_paginate'
 gem 'capistrano', '<3'
 
 gem 'sanitize'
+gem 'domainatrix'

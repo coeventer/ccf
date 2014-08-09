@@ -1,12 +1,12 @@
 <% if @event.registration_enabled?%>
-  <% if !current_user.nil? && current_user.verified? && @event.registered?(current_user)%>
+  <% if !current_user.nil? && current_organization.verified?(current_user) && @event.registered?(current_user)%>
     <p>
       <%=link_to event_event_registration_path(@event, @registration), :class => "btn btn-danger btn-lg",  :method => :delete do%>
       <span class="fa fa-play-circle"></span> Unregister
       <%end%>
     </p>
   <%else%>
-    <% if current_user != nil %>
+    <% if !current_user.nil? %>
       <p>
         <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success btn-lg" do%>
           <span class="fa fa-play-circle"></span> Register Now

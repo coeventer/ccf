@@ -1,12 +1,13 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   before_filter :auth_required
-  before_filter :find_events
   protect_from_forgery
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     @current_user
   end
+  helper_method :current_user
 
   def auth_required
     # If there is a current user, check session
@@ -17,13 +18,13 @@ class ApplicationController < ActionController::Base
       else
         destroy_session
         respond_to do |format|
-          format.html {redirect_to new_session_path, :notice => "Your session has timed out. Please re-authenticate." and return false}
+          format.html {redirect_to signin_path, :notice => "Your session has timed out. Please re-authenticate." and return false}
           format.js {render 'sessions/new', layout: false}
         end
       end
     else
       respond_to do |format|
-        format.html {redirect_to new_session_path, :notice => "Your session has timed out. Please re-authenticate." and return false}
+        format.html {redirect_to signin_path, :notice => "Your session has timed out. Please re-authenticate." and return false}
         format.js {render 'sessions/new', layout: false}
       end
     end
@@ -34,17 +35,5 @@ class ApplicationController < ActionController::Base
     session[:user_id] = nil
     session[:token] = nil
     session[:created_at] = nil
-  end
-
-  helper_method :current_user
-
-  def find_events
-    @future_events = Event.live.where(["end_date >= ?", Date.today]) 
-    @past_events = Event.live.where(["end_date < ?", Date.today]) 
-  end
-
-  def verification_required
-    return true if current_user.verified?
-    redirect_to unverified_path and return false
   end
 end

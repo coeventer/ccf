@@ -1,9 +1,10 @@
 class SessionsController < ApplicationController
   skip_before_filter :auth_required
+  before_filter :check_organization
 
-  def create
+  def create 
     auth = request.env["omniauth.auth"]
-    user = User.find_by_uid(auth["uid"]) || User.create_with_omniauth(auth)
+    user = User.find_by_uid(auth["uid"]) || User.create_with_omniauth(auth, @organization)
 
     session[:user_id] = user.id
     session[:token] = auth["credentials"]["token"]
@@ -26,23 +27,25 @@ class SessionsController < ApplicationController
     def login_redirect(register_event_id)
       if register_event_id
 		    # Support a single sign in and register button
-        event = Event.find(register_event_id)
+        event = @organization.events.find(register_event_id)
 
         # Only register this user if the user is not already registered
         already_registered = is_registered?(current_user.id, event.id)
         if (!already_registered)
-          redirect_to new_event_event_registration_path(event)
+          redirect_to new_event_event_registration_url(event, subdomain: @organization.subdomain)
         else
           redirect_to event_path(event)
         end
       else
-        # re-direct to active event or root path if there is no active event
-        event = Event.live.first
-        redirect_to (event.nil? ? root_path : event_path(event))
+        redirect_to (request.env['omniauth.origin'].nil? ? root_path : request.env['omniauth.origin'])
       end
     end
 
     def is_registered?(user_id, event_id)
       !EventRegistration.where(["user_id = ? AND event_id = ?", user_id, event_id]).first.nil?
     end
+  def check_organization
+    url = Domainatrix.parse(request.env['omniauth.origin'])
+    @organization = Organization.find_by_subdomain(url.subdomain) || nil
+  end
 end

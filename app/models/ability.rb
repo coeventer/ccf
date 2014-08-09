@@ -1,10 +1,14 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, organization = nil)
+    # super admin
     if !user.nil? && user.admin?
       can :manage, :all
-    elsif !user.nil? && user.verified?
+    #organization admin (not yet implemented)
+
+    #organization verified
+    elsif !user.nil? && !organization.nil? && organization.verified?(user)
       can :read, :all
       can :create, Project
       can :update, Project do |project|
