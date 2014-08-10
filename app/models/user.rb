@@ -8,8 +8,6 @@ class User < ActiveRecord::Base
   has_many :event_registrations
   has_many :organization_users
 
-  AUTO_VERIFY_DOMAINS = ['umn.edu']
-
   default_scope { order(:created_at)}
 
 
@@ -37,7 +35,7 @@ class User < ActiveRecord::Base
         if organization.auto_verify? then
           org_user.verified = true if organization.auto_verify_domains.include? user.email.split("@").last
         end
-        
+
       end
     end
   end
