@@ -49,6 +49,9 @@ class Ability
       can :edit, User, :id => user.id
       can :update, User, :id => user.id
 
+    elsif !user.nil?
+      can :edit, User, :id => user.id
+      can :update, User, :id => user.id
     else
       can :read, :all
     end

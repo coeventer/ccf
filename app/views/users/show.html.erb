@@ -1,30 +1,17 @@
 <div class="row">
   <div class="col-xs-8">
     <h1><%=@user.name%></h1>
-    <% if !@user.current_organization.verified?(current_user)%>
-    <p class="alert alert-info">Not verified.</p>
-    <%end%>
     <p class="text-info">
       has registered for <%=@user.event_registrations.count%> past codefest(s).
     </p>
-    <h3>Projects Helped</h3>
-    <% if @user.project_volunteers.blank? %>
-      <p>None so far.</p>
-    <%else%>
-      <%@user.project_volunteers.each do |v|%>
-        <p><%=link_to v.project.title, project_path(v.project)%></p>
-      <%end%>
-    <%end%>
-    <h3>Projects Liked</h3>
-    <% if @user.project_ratings.blank? %>
-      <p>None so far.</p>
-    <%else%>
-      <%@user.project_ratings.each do |r|%>
-        <p><%=link_to r.project.title, project_path(r.project)%></p>
-      <%end%>
+    <h2>Organizations</h2>
+    <%@user.organization_users.each do |user_organization|%>
+    <ul>
+      <li><%=link_to user_organization.organization.name, root_path(subdomain: user_organization.organization.subdomain)%></li>
+    </ul>
     <%end%>
   </div>
   <div class="col-xs-4">
     <%=image_tag @user.image, alt: @user.name, height: 150, width: 150%>
   </div>
-
+</div>

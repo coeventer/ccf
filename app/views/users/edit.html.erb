@@ -6,3 +6,7 @@
   <%=link_to "Cancel", user_path(@user), :class => "btn btn-link" %>
 <%end%>
 <hr />
+<p>
+  <%=link_to "Deactivate my account", deactivate_user_path(@user), :class => "btn btn-danger", :confirm => "This cannot be undone. Any association to your projects, comments, etc will be lost permanently.", :method => "POST"%>
+</p>
+<hr />

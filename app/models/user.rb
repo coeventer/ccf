@@ -47,4 +47,13 @@ class User < ActiveRecord::Base
       self.name
     end
   end
+
+  def deactivate
+    if self.update_attributes(uid: nil, name: "Deactivated Account", email: "None", image: nil, admin: false, verified: false)
+      organization_users.update_all(admin: false, verified: false)
+      return true
+    else
+      return false
+    end
+  end
 end

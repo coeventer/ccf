@@ -1,5 +1,4 @@
-class UsersController < OrganizationController
-  before_filter :verification_required
+class UsersController < ApplicationController
   before_filter :load_user
 
   def show
@@ -16,6 +15,16 @@ class UsersController < OrganizationController
       redirect_to  edit_user_path(current_user), :notice => "Updated Account For #{@user.name}"
     else
       render :edit
+    end
+  end
+
+  def deactivate
+    authorize! :update, @user
+    if @user.deactivate
+      destroy_session
+      redirect_to root_path, message: "Your account has been deactivated. If you wish to participate in the future, a new account will be create."
+    else
+      redirect_to root_path, notice: "Unable to deactive your user account. Please contact us."
     end
   end
 

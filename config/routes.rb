@@ -25,7 +25,11 @@ CampusCodefest::Application.routes.draw do
     resources :project_comments
   end
 
-  resources :users, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  resources :users do#, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do
+    member do
+      post :deactivate
+    end
+  end
   resource :session
 
   match "/auth/:provider/callback" => "sessions#create"
