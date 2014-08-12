@@ -15,7 +15,7 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(params[:organization])
 
     if @organization.save then
-      @organization.users.create(user: current_user, admin: true)
+      @organization.users.create(user: current_user, admin: true, verified: true)
       redirect_to root_path
     else
       render :new
