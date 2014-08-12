@@ -1,0 +1,18 @@
+<ol class="breadcrumb">
+  <li><%=link_to 'Home', root_path %></li>
+  <li class="active">Project Backlog</li>
+</ol>
+<p>No Codefest in progress? Want to get a thought out but work on it in the future? Throw it on the backlog.</p>
+<% if can? :create, Project then %>
+    <h3>Submit an Idea</h3>
+    <%= render partial: "projects/pretty_form" %>
+<%elsif !@event.completed?%>
+<p><%=link_to "Sign in to submit a project idea", new_session_path, :class => "btn btn-success btn-lg"%></p>
+<%end%>
+<hr />
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Project Backlog</h3>
+    <%= render partial: "projects/project_list" %>
+  </div>
+</div>

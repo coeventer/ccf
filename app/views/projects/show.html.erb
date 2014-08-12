@@ -1,16 +1,13 @@
 <p id="notice"><%= notice %></p>
-<%if !@project.event.nil?%>
 <ol class="breadcrumb">
   <li><%=link_to 'Home', root_path %></li>
+  <%if !@project.event.nil?%>
   <li><%=link_to "#{@project.event.title}", event_path(@project.event) %></li>
+  <%else %>
+  <li><%=link_to "Project Backlog", projects_path%></li>
+  <% end %>
   <li class="active"><%=@project.title%></li>
 </ol>
 <%else%>
-<%=link_to 'Back', root_path %>
-<ol class="breadcrumb">
-  <li><%=link_to 'Home', root_path %></li>
-  <li class="active"><%=@project.title%></li>
-</ol>
-<%end%>
 
 <%=render :partial => "projects/project", :locals => {:project => @project, :truncate => false, :show_comments => true}%>

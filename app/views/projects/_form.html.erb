@@ -2,11 +2,15 @@
   <%=f.text_field :title, :class => "form-control", :style => "width: 80%;"%>
   <div id="project_details">
   <%=f.input :description, :as => :text, :input_html => {:style => "width: 80%; height: 100px;"}, :placeholder => "Describe your idea"%>
+  <% if @project.event_id %>
   <%=f.input :event_id, :as => :hidden, :value => @project.event_id%>
+  <%elsif @events.try(:any?) %>
+  <%=f.input :event_id, :as => :select, :collection => @events, :label => "Assign to an event" %>
+  <%end%>
   <%=f.input :repository, :class => "form-control" %>
   <br />
   <%=f.submit "Submit idea", :class => "btn btn-primary" %>
-  <%=link_to "Cancel", event_path(@project.event), :class => "btn btn-link" %>
+  <%=link_to "Cancel", (@event.nil? ? projects_path : event_path(@event)), :class => "btn btn-link" %>
 
   <script type="text/javascript">
     //$(document).ready(function(){

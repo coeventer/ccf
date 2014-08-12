@@ -14,6 +14,7 @@ class Admin::ProjectsController < Admin::AdminController
   def edit
     @event = Event.find(params[:event_id])
     @project = @event.projects.find(params[:id])
+    @events = Event.live
   end
 
   def update

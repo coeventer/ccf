@@ -1,0 +1,40 @@
+<div class="btn-toolbar">
+  <div class="btn-group">
+    <button class="btn btn-default">Sort by</button>
+    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <!-- dropdown menu links -->
+      <li><%=link_to "Date submitted", sort_path("created_at")%></li>
+      <li><%=link_to "Likes", sort_path("likes")%></li>
+      <li><%=link_to "Helpers", sort_path("helpers")%></li>
+      <li><%=link_to "Comments", sort_path("comments")%></li>
+      <li><%=link_to "Selected for event", sort_path("approved desc")%></li>
+    </ul>
+  </div>
+</div>
+<% unless @projects.blank? %>
+<div class="list-group">
+<%@projects.each do |project|%>
+  <div class="list-group-item">
+    <%=render :partial => "projects/project", :locals => {:project=> project, :truncate => true, :show_comments => false}%>
+  </div>
+<%end%>
+</div>
+<% else %>
+<div class="well text-center">
+  <%if @event.nil?%>
+      <h3>
+      There are no projects in the backlog!
+    </h3>
+  <% else %>
+    <h3>
+      There are no projects for this event!
+    </h3>
+    <p>
+      Perhaps you would like to <a href="#" onclick="$('.tour-first-step').focus(); return false;">propose one</a>?
+    </p>
+  <% end %>
+</div>
+<% end %>

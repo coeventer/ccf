@@ -2,6 +2,13 @@ class ProjectsController < OrganizationController
   skip_before_filter :auth_required, :only => [:show]
   before_filter :verification_required, :except => [:show]
   load_and_authorize_resource :except => [:rate, :volunteer, :unvolunteer]
+
+  def index
+    @projects = Project.backlog
+    sort_projects
+    @new_project = Project.new
+  end
+
   # GET /projects/1
   # GET /projects/1.json
   def show
@@ -13,6 +20,7 @@ class ProjectsController < OrganizationController
 
   # GET /projects/1/edit
   def edit
+    @events = Event.live
   end
 
   def new

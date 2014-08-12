@@ -3,9 +3,11 @@
     <div id="vote_container_<%=project.id%>" class="vote_container">
     <%=render :partial => "projects/vote", :locals => {project: project}%>
     </div>
+    <% unless @event.nil? %>
     <div id="volunteer_container_<%=project.id%>" class="volunteer_container">
     <%=render :partial => "projects/volunteer", :locals => {project: project}%>
     </div>
+    <%end%>
      <%if !show_comments%>
     <p><%=link_to project_path(project), :style => "color: white;" do%><span class="badge"><%=project.comment_count%></span><%end%> comments</p>
     <%end%>
