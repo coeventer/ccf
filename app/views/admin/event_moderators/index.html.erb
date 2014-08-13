@@ -1,0 +1,52 @@
+<h1>Moderators for <%=@event.title%></h1>
+<p><%=link_to "Back to #{@event.title} admin", admin_event_path(@event)%></p>
+<p>Event moderators can edit projects and delete comments for an event. Only a registered user can be selected as a moderator.</p>
+<p>
+  <div class="btn-group">
+    <%=link_to "Email all moderators", "#", :class => "btn btn-default"%>
+  </div>
+</p>
+<table class="table table-striped table-hover table-condensed table-bordered">
+  <thead>
+    <th>User</th>
+    <th>Email</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <%@moderators.each do |m|%>
+    <tr>
+      <td><%=m.user.name%></td>
+      <td><%=m.user.email%></td>
+      <td>
+        <div class="btn-group">
+          <%=link_to "Remove moderator", admin_event_event_moderator_path(@event, m), :class => "btn btn-sm btn-danger",
+                      :confirm => "Are you certain you want to do this?", :method => :delete%>
+        </div>
+      </td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<h2>Registered Users</h2>
+<table class="table table-striped table-hover table-condensed table-bordered">
+  <thead>
+    <th>User</th>
+    <th>Email</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <%@registrants.each do |r|%>
+    <tr>
+      <td><%=r.user.name%></td>
+      <td><%=r.user.email%></td>
+      <td>
+        <div class="btn-group">
+          <%=link_to "Make Moderator", admin_event_event_moderators_path(@event, user_id: r.user.id), :class => "btn btn-sm btn-success",
+                      :method => :post%>
+        </div>
+      </td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>

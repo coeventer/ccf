@@ -6,10 +6,10 @@ class Event < ActiveRecord::Base
   belongs_to :organization
   has_many :projects
   has_many :registrations, :class_name => "EventRegistration"
-  has_many :event_registrations
+  has_many :event_registrations, dependent: :delete_all
   has_many :moderators, :class_name => "EventModerator"
   has_many :ratings, :through => :projects
-  has_many :volunteers, :through => :projects
+  has_many :volunteers, :through => :projects, dependent: :delete_all
   has_many :comments, :through => :projects  
 
   validates :start_date, :presence => true
@@ -23,6 +23,7 @@ class Event < ActiveRecord::Base
   validates :registration_maximum, :presence => true
 
   default_scope { where(organization_id: Organization.current_id) }
+  before_destroy :unassign_projects
 
   # Voting is enabled if the voting enabled boolean is turned on, it is before the event start date
   # and before the voting end date, if it is set
@@ -60,8 +61,18 @@ class Event < ActiveRecord::Base
     Date.today > self.end_date.to_date
   end
 
+  def moderator?(user)
+    return !self.moderators.find_by_user_id(user.id).nil?
+  end
+
   def pretty_dates
     return "from #{self.start_date.strftime('%B %e at %l:%M%P')} to #{self.end_date.strftime('%B %e at %l:%M%P')}"
+  end
+
+  def unassign_projects
+    self.projects.each do |p|
+      p.update_attributes(event_id: nil)
+    end
   end
 
   def to_param

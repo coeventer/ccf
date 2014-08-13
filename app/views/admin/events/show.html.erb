@@ -29,10 +29,13 @@
 </div>
 <div class="row">
   <div class="col-sm-6">
-    <h1><%=@event.comments.count%></h1> comments
-    <div id="comments_chart"></div>
+    <%=link_to admin_event_event_moderators_path(@event) do%>
+      <h1><%=@event.moderators.count%></h1> moderators
+    <%end%>
   </div>
   <div class="col-sm-6">
+    <h1><%=@event.comments.count%></h1> comments
+    <div id="comments_chart"></div>
   </div>
 </div>
 <hr />
