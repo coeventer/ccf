@@ -2,8 +2,8 @@
   <div class="col-xs-12">
     <div class="jumbotron">
     <%if @future_events.first.nil?%>
-      <h1>Campus Codefest</h1>
-      <p>Campus Codefest U is an unconference for U of M designers, developers, sysadmins and other interested parties in the University of Minnesota community who want to come together to code for a couple of days.</p>
+      <h1><%=brand_name%></h1>
+      <p><%=brand_name%> is an unconference for designers, developers, sysadmins and other interested parties in the <%=current_organization.name%> community who want to come together to hack on cool projects for a couple of days.</p>
       <p>
         <%=link_to "Learn More", about_path, :class=>"btn btn-primary btn-lg"%>
       </p>
@@ -12,7 +12,7 @@
     <h1><%=link_to event.title, event_path(event)%></h1>
     <p><%=sanitize event.description%></p>
     <p>
-        This codefest runs <%=event.pretty_dates%>
+        This event runs <%=event.pretty_dates%>
     </p>
     <p>
       <%=link_to "Get involved!", event_path(event), :class=>"btn btn-success btn-lg"%>
@@ -24,13 +24,13 @@
 <div class="row">
   <div class="col-xs-4">
     <%if @future_events.first.nil?%>
-      <h3>Upcoming Codefest</h3>
+      <h3>Upcoming Event</h3>
       <p>
-        Check back soon, the planning for the next Campus Codefest has not started yet.
+        Check back soon, the planning for the next <%=brand_name%> has not started yet.
       </p>
     <%else%>
-      <h3>Campus Codefest</h3>
-      <p>Campus Codefest U is an unconference for U of M designers, developers, sysadmins and other interested parties at the University of Minnesota  who want to have fun and work together for a couple of days.</p>
+      <h3><%=brand_name%></h3>
+      <p><%=brand_name%> is an unconference for designers, developers, sysadmins and other interested parties in the <%=current_organization.name%> community who want to come together to code for a couple of days.</p>
       <p>
         <%=link_to "Learn More", about_path, :class=>"btn btn-primary"%>
       </p>
@@ -43,11 +43,10 @@
       </p>
   </div>
   <div class="col-xs-4">
-    <h3>We're on GitHub Enterprise</h3>
+    <h3>We're on GitHub</h3>
       <p>
-        GitHub is a pillar of the Campus Codefest. Check out our organization,
-        <%=link_to 'https://github.umn.edu/organizations/ccf', "https://github.umn.edu/organizations/ccf"%>, install Git (Mac|Linux|Windows) on your Workstation and learn as much about
-        git as possible before attending a Codefest.
+        GitHub is a pillar of the <%=brand_name%>. Check out Github,
+        <%=link_to 'http://github.com', 'http://github.com'%>, install Git (Mac|Linux|Windows) on your Workstation and learn as much about git as possible before attending an event.
       </p>
   </div>
 </div>

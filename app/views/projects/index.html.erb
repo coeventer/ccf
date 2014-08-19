@@ -2,7 +2,7 @@
   <li><%=link_to 'Home', root_path %></li>
   <li class="active">Project Backlog</li>
 </ol>
-<p>No Codefest in progress? Want to get a thought out but work on it in the future? Throw it on the backlog.</p>
+<p>No event in progress? Want to get a thought out but work on it in the future? Throw it on the backlog.</p>
 <% if can? :create, Project then %>
     <h3>Submit an Idea</h3>
     <%= render partial: "projects/pretty_form" %>

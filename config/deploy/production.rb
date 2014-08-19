@@ -1,4 +1,4 @@
-set :repository,  "git@github.com:chadfennell/ccf.git"
+set :repository,  "git@github.com:campuscodefest/ccf.git"
 set :application, "ccf"
 
 set :deploy_to, "/var/www/ccf"

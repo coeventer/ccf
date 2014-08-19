@@ -29,4 +29,8 @@ module ApplicationHelper
     register_param = (event_id) ? "?register_for_event_id=#{event_id}" : nil
     "#{root_url(subdomain: false)}auth/google_oauth2#{register_param}"
   end
+
+  def brand_name
+    APP_CONFIG['brand']['site_name'] || 'Campus Codefest'
+  end
 end
