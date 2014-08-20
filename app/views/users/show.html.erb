@@ -7,7 +7,7 @@
     <h2>Organizations</h2>
     <%@user.organization_users.each do |user_organization|%>
     <ul>
-      <li><%=link_to user_organization.organization.name, root_path(subdomain: user_organization.organization.subdomain)%></li>
+      <li><%=link_to user_organization.organization.name, root_url(subdomain: user_organization.organization.subdomain)%></li>
     </ul>
     <%end%>
   </div>

@@ -14,7 +14,7 @@
     <%@users.each do |u|%>
     <tr>
       <td><%=u.name%></td>
-      <td><%=u.organization_users.first.organization.name%></td>
+      <td><%=u.organization_users.count%></td>
       <td><%=u.email%></td>
       <td><%=u.department%></td>
       <td><%=u.projects.unscoped.count%></td>
