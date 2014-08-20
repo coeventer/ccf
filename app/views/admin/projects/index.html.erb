@@ -1,33 +1,51 @@
+<% if @event %>
 <h1>Projects for <%=@event.title%></h1>
 <p><%=link_to "Back to #{@event.title} admin", admin_event_path(@event)%></p>
 <p><%=link_to "Download to CSV", admin_event_projects_path(@event, :format => :csv), :class => "btn btn-default"%>
+<%else%>
+<h1>Projects backlog</h1>
+<p><%=link_to "Back to admin", admin_root_path%></p>
+<p><%=link_to "Download to CSV", admin_projects_path(:format => :csv), :class => "btn btn-default"%>
+<%end%>
 <table class="table table-striped table-hover table-condensed table-bordered">
   <thead>
     <th>Project</th>
     <th>Classification</th>
-    <th>Approved</th>
     <th>Votes</th>
+    <% if @event %>
+    <th>Approved</th>
     <th>Volunteers</th>
     <th>Comments</th>
+    <%end%>
     <th>Created on</th>
     <th>Actions</th>
   </thead>
   <tbody>
     <%@projects.each do |p|%>
     <tr>
-      <td><%=link_to p.title, admin_event_project_path(@event, p)%></td>
+      <td><%=p.title%></td>
       <td><%=p.classification%></td>
-      <td><%=p.approved%></td>
       <td><%=p.ratings.count%></td>
+      <% if @event %>
+      <td><%=p.approved%></td>
       <td><%=p.volunteers.count%></td>
       <td><%=link_to p.comments.count, admin_event_project_project_comments_path(@event, p)%></td>
+      <%end%>
       <td><%=l p.created_at%></td>
       <td>
+        <% if @event %>
         <div class="btn-group">
           <%=link_to "Edit", edit_admin_event_project_path(@event, p), :class => "btn btn-sm btn-default"%>
           <%=link_to "Delete", admin_event_project_path(@event, p), :class => "btn btn-sm btn-danger",
                       :confirm => "Are you certain you want to do this?", :method => :delete%>
         </div>
+        <%else%>
+        <div class="btn-group">
+          <%=link_to "Edit", edit_admin_project_path(p), :class => "btn btn-sm btn-default"%>
+          <%=link_to "Delete", admin_project_path(p), :class => "btn btn-sm btn-danger",
+                      :confirm => "Are you certain you want to do this?", :method => :delete%>
+        </div>
+        <%end%>
       </td>
     </tr>
     <%end%>

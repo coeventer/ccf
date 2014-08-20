@@ -54,6 +54,8 @@ CampusCodefest::Application.routes.draw do
         resources :project_votes
       end
     end
+
+    resources :projects
   end
 
   namespace :super_admin do
