@@ -1,0 +1,1 @@
+$("#organizations_container").html('<%=j render :partial => "organizations"%>');

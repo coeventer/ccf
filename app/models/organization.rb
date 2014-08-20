@@ -12,7 +12,7 @@ class Organization < ActiveRecord::Base
   def admin?(user)
     user = users.where(user_id: user).first
     return false if user.nil?
-    return user.admin?
+    return user.admin? || user.user.admin?
   end
 
   def verified?(user)

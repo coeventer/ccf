@@ -1,0 +1,1 @@
+$("#users_container").html('<%=j render :partial => "users"%>');
