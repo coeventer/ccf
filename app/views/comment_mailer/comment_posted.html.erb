@@ -10,7 +10,7 @@
 
     <p><%= sanitize @comment.description %></p>
 
-    <p><%= link_to "Visit this project", project_url(@project) %></p>
-    <p><%= link_to "Disable these emails", edit_user_url(@user) %> if you hate them</p>
+    <p><%= link_to "Visit this project", project_url(@project, subdomain: @subdomain) %></p>
+    <p><%= link_to "Disable these emails", edit_user_url(@user, subdomain: @subdomain) %> if you hate them</p>
 </body>
 </html>

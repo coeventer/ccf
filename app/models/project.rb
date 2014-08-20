@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   has_many :tags, :class_name => "ProjectTag"
 
   belongs_to :project_owner, :class_name => "User"
-  belongs_to :organiztion
+  belongs_to :organization
   belongs_to :event
 
   validates :title, presence: true

@@ -1,10 +1,11 @@
 class CommentMailer < ActionMailer::Base
-  default :from => "ccf@umn.edu"
+  default :from => "no-reply@#{APP_CONFIG["domain"]}"
   def comment_posted(project, comment)
     get_project_users(project).each do |user|
       @user = user
       @comment = comment
       @project = project
+      @subdomain = @project.organization.subdomain if @project.event.organization
       mail = mail(:to => user.email, :subject => "New Comment For \"#{project.title}\"") do |format|
         format.text
         format.html
@@ -17,9 +18,7 @@ class CommentMailer < ActionMailer::Base
     users = []
     users << project.project_owner unless project.project_owner.alert_when_owner == false
     project.comments.each do |comment|
-      if comment.user.alert_when_commenter == true
-        users << comment.user
-      end
+      users << comment.user if comment.user.alert_when_commenter?
     end
     users.uniq
   end
