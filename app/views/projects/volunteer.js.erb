@@ -1,1 +1,4 @@
 $("#volunteer_container_<%=@project.id%>").html("<%=j render(:partial => 'volunteer', :locals => {:project => @project})%>")
+<% if !@volunteer.nil? && !@volunteer.valid?%>
+alert('<%= @volunteer.errors.full_messages.join(", ") %>');
+<% end %>

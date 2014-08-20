@@ -54,7 +54,7 @@ class Project < ActiveRecord::Base
   # Add a project volunteer
   def volunteer(user)
     if self.volunteering_allowed? && !self.volunteered_for?(user) then
-      self.volunteers.create(:user_id => user.id)
+      return self.volunteers.create(:user_id => user.id)
     end
   end
 

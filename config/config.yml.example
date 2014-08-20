@@ -1,5 +1,6 @@
 devevelopment:
   domain: "lvh.me"
+  google-analytics: "abc-123"
   brand:
     site_name: "Campus Codefest"
   oauth:

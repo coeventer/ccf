@@ -70,7 +70,7 @@ class ProjectsController < OrganizationController
   # Only responds to js
   def volunteer
     @project = Project.find(params[:id])
-    @project.volunteer(current_user)
+    @volunteer = @project.volunteer(current_user)
 
     respond_to do |format|
       format.js
