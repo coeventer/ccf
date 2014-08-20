@@ -40,6 +40,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.find_and_update_uid(auth)
+    user = User.find_by_uid(auth["uid"])
+    user.image = auth["info"]["image"]
+    user.save if user.changed?
+    
+    return user
+  end
+
   def label
     if !self.department.nil? and !self.department.empty? then
       self.name + ' - ' + self.department

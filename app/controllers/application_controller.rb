@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def auth_required
     # If there is a current user, check session
     if current_user
-      if Time.now - session[:created_at] < 120.minutes
+      if Time.now - session[:created_at] < 1440.minutes
         return true
       # Session is no longer valid, re-authentication needed.
       else
