@@ -47,7 +47,7 @@
         <% if current_organization.member?(current_user) %>
         <li><%=link_to "Member", "#" %></li>
         <% else %>
-        <li><%= link_to "Join Organization", organization_user_url, method: :post%></li>
+        <li><%= link_to "Join Organization", organization_users_path, method: :post%></li>
         <% end %>
         <li class="dropdown">
           <a class="dropdown-toggle text-right"

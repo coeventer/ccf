@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
 
   def self.find_and_update_uid(auth)
     user = User.find_by_uid(auth["uid"])
+    return nil unless user
     user.image = auth["info"]["image"]
     user.save if user.changed?
     
