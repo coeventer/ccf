@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
     <h1>Account not yet verified</h1>
-      <p>You are trying to view or do something which requires your account to be verified. You can try <%=link_to "contacting", contact_path%> the committee to see if there is a specific reason you have not yet been verified or will not be verified. We attempt to keep an open door policy but we do have some limits as this is a University event first and foremost for University staff, faculty and students.</p>
+      <p>You are trying to view or do something which requires your account to be a verified member of this organization. <%-unless current_organization.auto_verify?-%>If you have a google account with the <%=current_organization.auto_verify_domains%> domain, switch to that account and you can be automatically verified. Otherwise, an <%-else-%> an<%-end-%> organization admin will need to verify you before you can proceed. Once you are verified, you will be notified via email.</p>
   </div>
 </div>

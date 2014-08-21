@@ -1,5 +1,5 @@
 class OrganizationHomeController < OrganizationController
-  skip_before_filter :auth_required
+  skip_before_filter :auth_required, only: [:index]
   def index
   end
 

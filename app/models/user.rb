@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   default_scope { order(:created_at)}
 
+  after_create :welcome_email
+
 
   # See: https://github.com/zquestz/omniauth-google-oauth2 
   def self.create_with_omniauth(auth, organization=nil)
@@ -33,7 +35,7 @@ class User < ActiveRecord::Base
         org_user.verified = false
 
         if organization.auto_verify? then
-          org_user.verified = true if organization.auto_verify_domains.include? user.email.split("@").last
+          org_user.verified = true if organization.auto_verify_domains.split(',').include? user.email.split("@").last
         end
 
       end
@@ -54,6 +56,10 @@ class User < ActiveRecord::Base
     else
       self.name
     end
+  end
+
+  def welcome_email
+
   end
 
   def deactivate

@@ -7,13 +7,22 @@ CampusCodefest::Application.routes.draw do
   root :to => "organization_home#index", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   match "unverified" => "organization_home#unverified", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
 
-  resources :organizations do
-    resources :organization_users
+  resources :organizations
+  resources :users do
+    member do
+      post :deactivate
+    end
   end
+  resource :session
+
+  match "/auth/:provider/callback" => "sessions#create"
+  match "/signout" => "sessions#signout", :as => :signout
 
   resources :events, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do
     resources :event_registrations
   end
+
+  resource :organization_users, only: [:create]#, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
 
   resources :projects, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do
     member do
@@ -24,16 +33,6 @@ CampusCodefest::Application.routes.draw do
 
     resources :project_comments
   end
-
-  resources :users do#, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do
-    member do
-      post :deactivate
-    end
-  end
-  resource :session
-
-  match "/auth/:provider/callback" => "sessions#create"
-  match "/signout" => "sessions#signout", :as => :signout
 
   namespace :admin, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do
     root :to => 'home#index'

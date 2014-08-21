@@ -10,7 +10,7 @@ class Organization < ActiveRecord::Base
   validates :subdomain, uniqueness: true
 
   def admin?(user)
-    return true is user.admin?
+    return true if user.admin?
     organization_user = users.where(user_id: user).first
     return false if organization_user.nil?
     return organization_user.admin?
@@ -20,5 +20,9 @@ class Organization < ActiveRecord::Base
     organization_user = users.where(user_id: user).first
     return false if organization_user.nil?
     return organization_user.verified?
+  end
+
+  def member?(user)
+    !users.where(user_id: user).first.nil?
   end
 end

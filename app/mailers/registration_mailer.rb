@@ -1,5 +1,5 @@
 class RegistrationMailer < ActionMailer::Base
-  default :from => "ccf@umn.edu"
+  default :from => "no-reply@#{APP_CONFIG["domain"]}"
   def registration_created(registration)
     @registration = registration
     @user = registration.user
