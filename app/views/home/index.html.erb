@@ -3,8 +3,28 @@
     <div class="jumbotron">
       <h1><%= APP_CONFIG["brand"]["site_name"] %></h1>
       <p>
-        It's an application for the internets!
+        is an unconference for designers, developers, sysadmins and other interested parties across an organization or community who want to come together to hack on cool projects for a couple of days.
       </p>
     </div>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-xs-4">
+      <h3>What is this all about?</h3>
+      <p>
+        The Campus Codefest concept originated at the University of Minnesota in 2013. Learn more <%=link_to "about", about_path%> the concept.
+      </p>
+  </div>
+  <div class="col-xs-4">
+    <h3>How can I Codefest?</h3>
+      <p>
+        First, you need to <%=link_to "create an organization", new_organization_path%>. Then, you need to start planning your event and contact your colleagues. Then, it's time to work!
+      </p>
+  </div>
+  <div class="col-xs-4">
+    <h3>Can you help?</h3>
+      <p>
+        Absolutely! <%=link_to "Contact us", contact_path%> for help with all aspects of your Campus Codefest event planning, marketing and execution.
+      </p>
+  </div>
