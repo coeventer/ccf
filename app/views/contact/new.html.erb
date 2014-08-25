@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Contact Us</h1>
+    <p>Have a question or need some help? Let us know here.</p>
+    <div class="hr light extra-margin"><hr></div>
+    <%= semantic_form_for @message, :url => contact_path do |f| %>
+        <%= f.input :name, :input_html => { :class => 'span5'} %>
+        <%= f.input :email, :input_html => { :class => 'span5'} %>
+        <%= f.input :subject, :input_html => { :class => 'span5'} %>
+        <%= f.input :body, :label => "Comment or Question", :as => :text, :input_html => { :class => 'span5'} %>
+        <div class="hr light extra-margin"><hr></div>
+        <%= f.action :submit, :as => :button, :label => "Send Message", :button_html => { :class => 'btn btn-primary'} %>
+    <% end %>
+  </div>
+
+</div><!--/end main container -->
