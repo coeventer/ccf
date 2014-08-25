@@ -1,4 +1,5 @@
 class ContactMailer < ActionMailer::Base
+  default :from => "no-reply@#{APP_CONFIG["domain"]}"
   def contact_admins(message, organization=nil)
     @message = message
     admins = organization.nil? ? User.where(admin: true) : organization.users.where(admin: true)
