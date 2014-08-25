@@ -58,3 +58,4 @@ gem 'capistrano', '<3'
 
 gem 'sanitize'
 gem 'domainatrix'
+gem 'bootstrap-datepicker-rails'

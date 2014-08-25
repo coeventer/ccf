@@ -1,14 +1,14 @@
 <%=semantic_form_for @event, :url => path do |f|%>
   <%= f.inputs do %>
     <%=f.input :title%>
-    <%=f.input :start_date%>
-    <%=f.input :end_date%>
-    <%=f.input :voting_enabled%>
-    <%=f.input :voting_end_date, label: "If voting is enabled, set the voting end date to"%>
-    <%=f.input :volunteering_enabled%>
-    <%=f.input :volunteer_end_date, label: "If volunteering is enabled, set the volunteer end date to"%>
     <%=f.input :description%>
-    <%=f.input :registration_end_dt%>
+    <%=f.input :start_date, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+    <%=f.input :end_date, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+    <%=f.input :voting_enabled%>
+    <%=f.input :voting_end_date, label: "If voting is enabled, set the voting end date to" , as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+    <%=f.input :volunteering_enabled%>
+    <%=f.input :volunteer_end_date, label: "If volunteering is enabled, set the volunteer end date to", as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+    <%=f.input :registration_end_dt, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
     <%=f.input :registration_maximum%>
     <%=f.input :schedule%>
     <%=f.input :other_info%>
@@ -22,3 +22,13 @@
     });
   </script>
 <%end%>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('[data-behaviour~=datepicker]').datepicker({
+      todayBtn: "linked",
+      startDate: "<%=Date.today.to_s%>",
+      format: "yyyy-mm-dd"
+      });
+  })
+</script>
