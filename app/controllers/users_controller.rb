@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < MixedUseController
   before_filter :load_user
 
   def show

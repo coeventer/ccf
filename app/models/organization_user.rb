@@ -19,4 +19,8 @@ class OrganizationUser < ActiveRecord::Base
   def verified_email
     UserMailer.user_verified(user, organization)
   end
+
+  def email
+    user_email
+  end
 end

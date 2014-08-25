@@ -1,7 +1,7 @@
 class OrganizationController < ApplicationController
+  include OrganizationLib
   layout 'organization'
   around_filter :scope_current_organization
-  before_filter :find_events
 
   def current_organization
     Organization.find_by_subdomain! request.subdomain
