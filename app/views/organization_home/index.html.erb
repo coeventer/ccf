@@ -5,7 +5,7 @@
       <h1><%=brand_name%></h1>
       <p><%=brand_name%> is an unconference for designers, developers, sysadmins and other interested parties in the <%=current_organization.name%> community who want to come together to hack on cool projects for a couple of days.</p>
       <p>
-        <%=link_to "Learn More", about_path, :class=>"btn btn-primary btn-lg"%>
+        <%=link_to "Learn More", about_url(subdomain: false), :class=>"btn btn-primary btn-lg", :target => "_blank"%>
       </p>
     <%else%>
     <%event = @future_events.first%>
@@ -26,13 +26,13 @@
     <%if @future_events.first.nil?%>
       <h3>Upcoming Event</h3>
       <p>
-        Check back soon, the planning for the next <%=brand_name%> has not started yet.
+        Check back soon, the planning for the next <%=brand_name%> has not started yet. In the meantime, check the <%=link_to "project backlog", projects_path%>.
       </p>
     <%else%>
       <h3><%=brand_name%></h3>
       <p><%=brand_name%> is an unconference for designers, developers, sysadmins and other interested parties in the <%=current_organization.name%> community who want to come together to code for a couple of days.</p>
       <p>
-        <%=link_to "Learn More", about_path, :class=>"btn btn-primary"%>
+        <%=link_to "Learn More", about_url(subdomain: false), :class=>"btn btn-primary", :target => "_blank"%>
       </p>
     <%end%>
   </div>
