@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   def index
-    redirect_to root_path
+    @organizations = Organization.paginate(:page => params[:page], :per_page => 25)
   end
 
   def show
