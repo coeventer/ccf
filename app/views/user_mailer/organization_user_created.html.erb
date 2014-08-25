@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p><%= @user.name %>,</p>
+
+    <p>Your account has been created for <%=link_to root_url(subdomain: @organization.subdomain), @organization.name%>, a member of <%=@brand%>.</p>
+    <% if @organization.verified?(@user)%>
+    <p>Your account has been verified, which means you can now submit project ideas, comments, vote for projects and register for events. </p>
+      <% if @future_events.nil? %>
+      <p>There are no events scheduled for your organization. You can still submit ideas and vote on ideas through <%=link_to "your project backlog", projects_path(subdomain: @organization.subdomain)%>.</p>
+      <% else %>
+      <p>The following events are available to have projects submitted, voted on, commented and volunteered for you organization:</p>
+      <ul>
+        <% @future_events.each do |e| %>
+        <li><%=link_to e.title, event_url(e, subdomain: @organization.subdomain)%></li>
+        <% end %>
+      </ul>
+      <% end %>
+    <% else %>
+    <p>Your account has <b>not</b> been verified, which means you can not yet now submit project ideas, comments, vote for projects and register for events. You will be notified soon as your account has been verified. This delay is to keep a safe and focused environment for <%=@organization.name%> events.</p>
+    <% end %>
+    <p>Thanks,</p>
+    <p><%=@organization.name%> admins</p>
+</body>
+</html>

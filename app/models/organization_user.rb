@@ -13,10 +13,10 @@ class OrganizationUser < ActiveRecord::Base
   default_scope {includes(:user)}
 
   def welcome_email
-
+    UserMailer.organization_user_created(user, organization)
   end
 
   def verified_email
-
+    UserMailer.user_verified(user, organization)
   end
 end

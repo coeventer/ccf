@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p><%= @user.name %>,</p>
+
+    <p>You have been selected as an event moderator for <%=link_to @event.title, event_url(@event, subdomain: @event.organization.subdomain)%></p>
+    
+    <p>Go to the event page and you should now see options to  edit projects and comments for <%=@event.title%>. Your help is essential to a quality <%=@brand%> event.</p>
+
+    <p>Thanks,</p>
+    <p><%=@organization.name%> admins</p>
+</body>
+</html>
