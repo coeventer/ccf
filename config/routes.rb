@@ -50,6 +50,7 @@ CampusCodefest::Application.routes.draw do
       post :rate
       post :volunteer
       post :unvolunteer
+      get :present
     end
 
     resources :project_comments

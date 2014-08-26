@@ -1,0 +1,34 @@
+<%content_for(:title, "#{@project.event.title} #{@project.title} presentation")%>
+<div id="bored" class="step slide" data-x="-1000" data-y="-1500">
+    <q><%=@project.title%></q>
+</div>
+
+<div class="step slide" data-x="0" data-y="-1500">
+    <q>WHO worked on the project?</q>
+</div>
+
+<div class="step slide" data-x="1000" data-y="-1500">
+    <q>WHY did we do this project?</q>
+</div>
+
+<div class="step slide" data-x="2000" data-y="-1500">
+    <q>WHAT did we do?</q>
+</div>
+
+<div class="step slide" data-x="3000" data-y="-1500">
+    <q>What went RIGHT? What went WRONG?</q>
+</div>
+
+<div class="step slide" data-x="4000" data-y="-1500">
+    <q>What are our NEXT STEPS?</q>
+</div>
+
+<div class="step slide" data-x="5000" data-y="-1500">
+    <q>Thanks!</q>
+</div>
+
+<% if @next_up %>
+<div class="step slide" data-x="6000" data-y="-1500">
+    <q>Next up... <%=link_to @next_up.title, present_project_path(@next_up)%></q>
+</div>
+<% end %>
