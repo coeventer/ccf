@@ -11,11 +11,5 @@
   <br />
   <%=f.submit "Submit idea", :class => "btn btn-primary" %>
   <%=link_to "Cancel", (@event.nil? ? projects_path : event_path(@event)), :class => "btn btn-link" %>
-
-  <script type="text/javascript">
-    //$(document).ready(function(){
-      $('#project_description').wysihtml5();
-    //s})
-  </script>
   </div>
 <%end%>

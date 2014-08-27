@@ -11,6 +11,8 @@ class Project < ActiveRecord::Base
   belongs_to :organization
   belongs_to :event
 
+  before_save :nil_if_blank
+
   validates :title, presence: true
   validates :description, presence: true
   #validates :classification, presence: true
@@ -23,6 +25,12 @@ class Project < ActiveRecord::Base
   scope :most_commented, order('project_comments_count DESC')
   scope :most_liked, order('project_ratings_count DESC')
   scope :most_help, order('project_volunteers_count DESC')
+
+  # Prevent blank repos from being saved and, hence, the view icon appearing for
+  # no good reason
+  def nil_if_blank
+    self[:repository] = nil if self[:repository].strip.blank?
+  end
 
   # Checks to see if event can be voted on
   def voting_allowed?
