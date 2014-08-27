@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.example.min
 //= require twitter/bootstrap
 //= require bootstrap-wysihtml5
 //= require bootstrap-datepicker

@@ -5,7 +5,7 @@
   <% if !@event.nil? %>
   <%=f.input :event_id, :as => :hidden, :value => @event.id%>
   <% end %>
-  <%=f.text_field :repository, :class => 'form-control auto-hint' %>
+  <%=f.input :repository, :class => 'form-control', :placeholder => "https://github.com/example/example" %>
   <br />
   <%=f.submit "Submit idea", :class => "btn btn-primary" %> or 
 
