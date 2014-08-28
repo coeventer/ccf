@@ -3,7 +3,7 @@
   <%=f.text_field :title, :class => "form-control", :style => "width: 80%;", :placeholder => "Submit your idea for #{event_title}"%>
   <%=f.input :classification, :as => :radio, :collection => Project::CLASSIFICATIONS, :include_blank => false%>
   <%=f.text_area :description, :class => "form-control", :style => "width: 80%; height: 100px;", :placeholder => "Describe your idea"%>
-  <%=f.input :repository%>
+  <%=f.input :repository, :placeholder => "https://github.com/example/example"%>
   <%=f.input :approved%>
   <% if @event %>
   <%=f.input :event_id, :as => :hidden, :value => @event.id%>
@@ -11,10 +11,4 @@
   <br />
   <%=f.submit "Update project", :class => "btn btn-primary" %>
   <%=link_to "Cancel", cancel_link, :class => "btn btn-link" %>
-
-<script type="text/javascript">
-  //$(document).ready(function(){
-    $('#project_description').wysihtml5();
-  //})
-</script>
 <%end%>
