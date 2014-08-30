@@ -50,10 +50,10 @@ CampusCodefest::Application.routes.draw do
       post :rate
       post :volunteer
       post :unvolunteer
-      get :present
     end
 
     resources :project_comments
+    resource :presentation
   end
 
   namespace :admin, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do

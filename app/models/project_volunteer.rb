@@ -6,6 +6,8 @@ class ProjectVolunteer < ActiveRecord::Base
 
   validate :limit_projects, if: "new_record?"
 
+  delegate :name, :image, to: :user, prefix: true
+
   default_scope { order(:created_at)}
 
   def limit_projects

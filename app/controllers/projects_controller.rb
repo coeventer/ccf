@@ -1,5 +1,4 @@
 class ProjectsController < OrganizationController
-  layout 'presentation', only: [:present]
   skip_before_filter :auth_required, :only => [:show]
   before_filter :verification_required, :except => [:show]
   load_and_authorize_resource :except => [:rate, :volunteer, :unvolunteer]
@@ -86,11 +85,5 @@ class ProjectsController < OrganizationController
     respond_to do |format|
       format.js {render :volunteer}
     end
-  end
-
-  def present
-    @project = Project.find(params[:id])
-    redirect_to project_path(@project) unless @project.event
-    @next_up = @project.event.projects[@project.event.projects.index(@project)+1]
   end
 end

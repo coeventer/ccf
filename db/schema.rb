@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140827001651) do
+ActiveRecord::Schema.define(:version => 20140830030639) do
 
   create_table "event_moderators", :force => true do |t|
     t.integer  "event_id"
@@ -66,6 +66,17 @@ ActiveRecord::Schema.define(:version => 20140827001651) do
     t.string   "website"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+  end
+
+  create_table "presentations", :force => true do |t|
+    t.text     "why"
+    t.text     "what"
+    t.text     "right"
+    t.text     "wrong"
+    t.text     "next_steps"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "project_comments", :force => true do |t|

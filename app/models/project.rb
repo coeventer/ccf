@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
   has_many :ratings, :class_name => "ProjectRating"
   has_many :volunteers, :class_name => "ProjectVolunteer"
   has_many :tags, :class_name => "ProjectTag"
+  has_one :presentation, dependent: :delete
 
   belongs_to :project_owner, :class_name => "User"
   belongs_to :organization
@@ -107,6 +108,12 @@ class Project < ActiveRecord::Base
 
   def to_param
     [id, title.parameterize].join("-")
+  end
+
+  alias_method :db_presentation, :presentation
+  def presentation
+    self.create_presentation unless db_presentation
+    db_presentation
   end
 
   def self.to_csv

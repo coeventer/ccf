@@ -1,0 +1,7 @@
+<% edit ||= false %>
+<div class="logo">
+  <% if edit %>
+  <p><%= f.submit :class => "btn btn-large" %></p>
+  <% end %>
+  <p><%=@project.event.title%></p>
+</div>
