@@ -6,9 +6,9 @@ devevelopment:
   oauth:
     providers:
       google_oauth2:
-        key: <yuour key here bla blah.com>
-        secret: <supersecret here>
-  email:
-    user: "userhere"
-    domain: "yourdomain.edu"
-    password: "passhere"
+        key: <<<<your key here bla blah.com>>>>
+        secret: <<<<supersecret here>>>>
+  mail:
+    domain: "<<<<e.g. postmaster@campuscodefest.org>>>>"
+    user_name: "<<<<e.g. postmaster@campuscodefest.org>>>>"
+    password: "<<<<mailgun password here>>>>"

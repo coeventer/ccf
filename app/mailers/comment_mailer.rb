@@ -1,5 +1,5 @@
 class CommentMailer < ActionMailer::Base
-  default :from => "no-reply@#{APP_CONFIG["domain"]}"
+  default :from => "no-reply@#{APP_CONFIG['mail']['domain']}"
   def comment_posted(project, comment)
     get_project_users(project).each do |user|
       @user = user
