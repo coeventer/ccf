@@ -16,7 +16,7 @@ class OrganizationsController < ApplicationController
 
     if @organization.save then
       @organization.users.create(user: current_user, admin: true, verified: true)
-      redirect_to root_path
+      redirect_to root_url(subdomain: @organization.subdomain)
     else
       render :new
     end
