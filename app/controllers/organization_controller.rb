@@ -15,7 +15,17 @@ class OrganizationController < ApplicationController
 
   def verification_required
     return true if current_organization.verified?(current_user)
-    redirect_to unverified_path and return false
+    respond_to do |format|
+      format.html do
+        redirect_to unverified_path
+        return false 
+      end
+
+      format.json do
+        render "organization_home/unverified"
+        return false
+      end
+    end
   end
 
 private
