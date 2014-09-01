@@ -49,6 +49,10 @@ class Ability
         comment.try(:user) == user || (!comment.project.event.nil? && comment.project.event.moderator?(user))
       end
 
+      can :edit, Presentation do |presentation|
+        presentation.try(:user) == user || (!presentation.project.event.nil? && presentation.project.event.moderator?(user))
+      end
+
     else
       can :read, :all
       can_edit_user(user)
