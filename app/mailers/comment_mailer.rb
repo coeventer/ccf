@@ -16,9 +16,9 @@ class CommentMailer < ActionMailer::Base
 
   def get_project_users(project)
     users = []
-    users << project.project_owner unless project.project_owner.alert_when_owner == false
+    users << project.project_owner if project.project_owner.send_notifications?
     project.comments.each do |comment|
-      users << comment.user if comment.user.alert_when_commenter?
+      users << comment.user if comment.user.send_notifications?
     end
     users.uniq
   end

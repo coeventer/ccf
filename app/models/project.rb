@@ -30,7 +30,7 @@ class Project < ActiveRecord::Base
   # Prevent blank repos from being saved and, hence, the view icon appearing for
   # no good reason
   def nil_if_blank
-    self[:repository] = nil if self[:repository].strip.blank?
+    self[:repository] = nil if self[:repository].blank?
   end
 
   # Checks to see if event can be voted on

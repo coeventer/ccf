@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140830030639) do
+ActiveRecord::Schema.define(:version => 20140830235327) do
 
   create_table "event_moderators", :force => true do |t|
     t.integer  "event_id"
@@ -135,11 +135,10 @@ ActiveRecord::Schema.define(:version => 20140830030639) do
     t.string   "email"
     t.string   "image"
     t.boolean  "admin"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.boolean  "verified"
-    t.boolean  "alert_when_owner"
-    t.boolean  "alert_when_commenter"
+    t.boolean  "send_notifications", :default => true
   end
 
 end
