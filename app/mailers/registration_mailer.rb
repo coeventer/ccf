@@ -1,5 +1,5 @@
 class RegistrationMailer < ActionMailer::Base
-  default :from => "no-reply@#{APP_CONFIG["domain"]}"
+  default :from => "no-reply@#{APP_CONFIG['mail']['domain']}"
   def registration_created(registration)
     @registration = registration
     @user = registration.user

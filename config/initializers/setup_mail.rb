@@ -1,15 +1,11 @@
-config = config = APP_CONFIG.fetch("email", [])
-if !config.empty?
-  ActionMailer::Base.smtp_settings = {
-    :address              => "smtp.umn.edu",
-    :port                 => 587,
-    :user_name            => config["user"],
-    :domain               => config["domain"],
-    :password             => config["password"],
-    :authentication       => :login,
-    :enable_starttls_auto => true
-  }
-else
-  raise "You must provide an config/email.yml file to run this application. See config/email.yml.example for an example."
-end
-
+raise "You must supply mail credentials. See the config/config.yml.example file." if !APP_CONFIG['mail']
+ActionMailer::Base.smtp_settings  = {
+  :authentication => :plain,
+  :address => "smtp.mailgun.org",
+  :port => 587,
+  :domain => APP_CONFIG['mail']['domain'],
+  :user_name => APP_CONFIG['mail']['user_name'],
+  :password => APP_CONFIG['mail']['password']
+}
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.default_url_options = {:host => APP_CONFIG['domain']}

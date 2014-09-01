@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
   include ApplicationHelper
-  default :from => "no-reply@#{APP_CONFIG["domain"]}"
+  default :from => "no-reply@#{APP_CONFIG['mail']['domain']}"
   def user_created(user)
     @user = user
     @brand = brand_name
