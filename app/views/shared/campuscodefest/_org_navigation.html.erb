@@ -46,7 +46,16 @@
       <% if current_user %>
       <ul class="nav navbar-nav navbar-right">
         <% if current_organization.member?(current_user) %>
-        <li><%=link_to "Member", "#" %></li>
+        <li>
+          <%=link_to "#" do%>
+          <% if current_organization.verified?(current_user) -%>
+          <span class="fa fa-check-circle text-success" title="Verified"></span>
+          <% else -%>
+          <span class="fa fa-question-circle" title="Not yet verified"></span>
+          <% end %>
+          Member
+          <% end %>
+        </li>
         <% else %>
         <li><%= link_to "Join Organization", organization_users_path, method: :post%></li>
         <% end %>
