@@ -9,7 +9,7 @@ class ContactController < MixedUseController
     @message = Message.new(params[:message])
     
     if @message.valid?
-      ContactMailer.contact_admins(@message, current_organization).deliver
+      ContactMailer.contact_admins(@message, current_organization)
       redirect_to(root_path, :notice => "Message was successfully sent.")
     else
       flash.now.alert = "Please fill all fields."
