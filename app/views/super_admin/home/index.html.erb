@@ -1,9 +1,8 @@
 <h1>You are a SUPER administrator... Cool.</h1>
-<p>This interface allows you to manage <%= APP_CONFIG['brand']['site_name'] %> organiztaions and manage other admins</p>
+<p>This interface allows you to manage <%= APP_CONFIG['brand']['site_name'] %> organizations and users</p>
 <hr />
-<h2>Organizations</h2>
-<%=link_to "Manage organizations", super_admin_organizations_path%>
-<hr />
-
-<h2>Users</h2>
-<p><%=link_to "Manage Users", super_admin_users_path%></p>
+<div class="well">
+<ul>
+  <li><%=link_to "Manage organizations", super_admin_organizations_path%></li>
+  <li><p><%=link_to "Manage Users", super_admin_users_path%></p></li>
+</ul>

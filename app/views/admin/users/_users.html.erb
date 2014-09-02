@@ -35,7 +35,7 @@
       <td>
         <div class="btn-group">
           <%=link_to "Edit", edit_admin_user_path(u), :class => "btn btn-sm btn-default"%>
-          <%=link_to "Delete", "#", :class => "btn btn-sm btn-danger"%>
+          <%=link_to "Delete", admin_user_path(u), :method => :delete, :class => "btn btn-sm btn-danger", :confirm => "This will remove the user from your organization."%>
         </div>
       </td>
     </tr>

@@ -24,9 +24,9 @@ class Admin::UsersController < Admin::AdminController
     @user = current_organization.users.find(params[:id])
 
     if @user.destroy then
-      redirect_to admin_users_path, :message => "Deleted #{@user.name}"
+      redirect_to admin_users_path, :message => "Deleted #{@user.user_name} from organization"
     else
-      redirect_to admin_users_path, :message => "Unabled to delete #{@user.name}"
+      redirect_to admin_users_path, :message => "Unabled to delete #{@user.user_name} from organization"
     end
   end
 

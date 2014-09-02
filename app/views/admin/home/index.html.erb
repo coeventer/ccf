@@ -1,25 +1,22 @@
-<h1>You are an administrator... Cool.</h1>
+<h1><%=current_organization.name%> administrator interface</h1>
 <p>This interface allows you to manage <%= APP_CONFIG['brand']['site_name'] %> events, manage other admins, moderate your event and manage your organization.</p>
 <hr />
-<h2><%=current_organization.name%></h2>
-<%=link_to "Manage organization", edit_admin_organization_path%>
-<hr />
-<h2>Events</h2>
-<p><%=link_to "Create an event", new_admin_event_path, :class => "btn btn-primary"%></p>
-<hr />
-<%if @events.blank? then%>
-  <p>You have not created any events yet.</p>
-<%else%>
-  <%@events.each do |e|%>
-  <h3><%=link_to e.title, admin_event_path(e)%></h3>
-  <p><%=truncate strip_tags(e.description), :length => 100%></p>
-  <p>
-    <%=link_to "Edit", edit_admin_event_path(e), :class => "btn btn-sm btn-default" %>
-    <%=link_to "Delete", admin_event_path(e), :method => :delete, :class => "btn btn-sm btn-danger", :confirm => "Are you sure? This cannot be undone and will delete all related event projects, voting, etc." %></p>
-  <hr />
-  <%end%>
-<%end%>
-<h2>Project Backlog</h2>
-<%=link_to "Manage project backlog", admin_projects_path%>
-<h2>Users</h2>
-<p><%=link_to "Manage Users", admin_users_path%></p>
+<p ><%=link_to new_admin_event_path, :class => "btn btn-lg btn-success" do%>
+Create an event
+<% end %></p>
+<div class="well">
+<ul>
+  <li>
+    <%=link_to "Change organization details", edit_admin_organization_path%>
+  </li>
+  <li>
+    <%=link_to "Create/Manage events", admin_events_path %>
+  </li>
+  <li>
+    <%=link_to "Manage project backlog", admin_projects_path%>
+  </li>
+  <li>
+    <%=link_to "Manage organization users", admin_users_path%>
+  </li>
+</ul>
+</div>

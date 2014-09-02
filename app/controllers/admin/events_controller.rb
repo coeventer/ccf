@@ -1,4 +1,8 @@
 class Admin::EventsController < Admin::AdminController
+  def index
+    @events = current_organization.events.all
+  end
+
   def show
     @event = Event.find(params[:id])
   end
