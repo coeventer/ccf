@@ -1,0 +1,2 @@
+$("#comment_container").html("<%=j render(:partial => 'shared/comment_stream', :locals => {:comments => @event.event_comments})%>")
+$("#event_comment_description").val("");

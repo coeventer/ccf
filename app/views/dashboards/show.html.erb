@@ -1,0 +1,35 @@
+<ol class="breadcrumb">
+  <li><%=link_to 'Home', root_path %></li>
+  <li><%=link_to "#{@event.title}", event_path(@event) %></li>
+</ol>
+<h1><%=@event.title%> Dashboard</h1>
+<div class="row">
+  <div class="col-md-9">
+    <p><%=@event.title%> has <%=@event.projects.count%> projects with <%=@event.comments.count%> comments, <%=@event.vote_count%> likes and <%=@event.volunteer_count%> volunteers. <%=@event.event_registrations.count%> people have registered. Make this look more cool, or even use graph like the admin page.</p>
+    <hr />
+    <% if can?(:create, @event.event_comments.new) %>
+      <%=semantic_form_for @event.event_comments.new, :url => event_event_comments_path(@event), :remote => true do |f| %>
+        <%=f.input :description, :label => false, :as => :string, :placeholder => "Add to the comment stream"%>
+        <%=f.submit "Add comment", :class => "btn btn-sm btn-default"%>
+      <% end %>
+    <% end %>
+    <hr />
+    <div id="comment_container">
+      <%=render partial:"shared/comment_stream", locals: {comments: @event.event_comments} %>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <h2 style="margin-top: 0;">Recent Activity</h2>
+    <ul style="padding-left: 15px;">
+      <%@recent_activities.each do |ra| %>
+        <li><%=link_to ra.user_name, user_path(ra.user_id)%> <%=ra.action%> <%=link_to ra.title, project_path(ra.project_id)%></li>
+      <% end %>
+    </ul>
+    <hr />
+    <h2>Github Feed</h2>
+    <p>Not yet implemented</p>
+    <hr />
+    <h2>Twitter feed</h2>
+    <p>Not yet implemented</p>
+  </div>
+</div>
