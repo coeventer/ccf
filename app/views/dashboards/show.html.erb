@@ -2,10 +2,16 @@
   <li><%=link_to 'Home', root_path %></li>
   <li><%=link_to "#{@event.title}", event_path(@event) %></li>
 </ol>
-<h1><%=@event.title%> Dashboard</h1>
+<% if Date.today < @event.start_date %>
+<h1><%=((@event.start_date - Date.today)).to_i%> days until <%=@event.title%></h1>
+<% elsif Date.today <= @event.end_date%>
+<h1><%=((@event.end_date - Date.today) * 24 * 60).to_i%> minutes remain in <%=@event.title%></h1>
+<% else %>
+<h1><%=@event.title%> post-mortum dashboard</h1>
+<% end %>
 <div class="row">
   <div class="col-md-9">
-    <p><%=@event.title%> has <%=@event.projects.count%> projects with <%=@event.comments.count%> comments, <%=@event.vote_count%> likes and <%=@event.volunteer_count%> volunteers. <%=@event.event_registrations.count%> people have registered. Make this look more cool, or even use graph like the admin page.</p>
+    <p class="info"><%=@event.title%> has <%=@event.projects.count%> projects with <%=@event.comments.count%> comments, <%=@event.vote_count%> likes and <%=@event.volunteer_count%> volunteers. <%=@event.event_registrations.count%> people have registered.</p>
     <hr />
     <% if can?(:create, @event.event_comments.new) %>
       <%=semantic_form_for @event.event_comments.new, :url => event_event_comments_path(@event), :remote => true do |f| %>
@@ -20,11 +26,13 @@
   </div>
   <div class="col-md-3">
     <h2 style="margin-top: 0;">Recent Activity</h2>
-    <ul style="padding-left: 15px;">
-      <%@recent_activities.each do |ra| %>
-        <li><%=link_to ra.user_name, user_path(ra.user_id)%> <%=ra.action%> <%=link_to ra.title, project_path(ra.project_id)%></li>
-      <% end %>
-    </ul>
+    <div class="well well-small">
+      <ul style="padding-left: 10px;">
+        <%@recent_activities.each do |ra| %>
+          <li><%=link_to ra.user_name, user_path(ra.user_id)%> <%=ra.action%> <%=link_to ra.title, project_path(ra.project_id)%></li>
+        <% end %>
+      </ul>
+    </div>
     <hr />
     <h2>Github Feed</h2>
     <p>Not yet implemented</p>
