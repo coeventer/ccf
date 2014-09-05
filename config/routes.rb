@@ -41,6 +41,8 @@ CampusCodefest::Application.routes.draw do
 
   resources :events, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do
     resources :event_registrations
+    resource :dashboard
+    resources :event_comments
   end
 
   resource :organization_users, only: [:create]#, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }

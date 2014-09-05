@@ -33,6 +33,8 @@ class Ability
         registration.event.registration_enabled? && !registration.event.registered?(user)
       end
 
+      can :create, EventComment
+
       can :destroy, ProjectRating do |rating|
         rating.project.voting_allowed? && rating.try(:user) == user
       end
@@ -47,6 +49,10 @@ class Ability
 
       can :destroy, ProjectComment do |comment|
         comment.try(:user) == user || (!comment.project.event.nil? && comment.project.event.moderator?(user))
+      end
+
+      can :destroy, EventComment do |comment|
+        comment.try(:user) == user || comment.event.moderator?(user)
       end
 
       can :edit, Presentation do |presentation|

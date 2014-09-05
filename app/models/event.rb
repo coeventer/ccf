@@ -10,7 +10,8 @@ class Event < ActiveRecord::Base
   has_many :moderators, :class_name => "EventModerator"
   has_many :ratings, :through => :projects
   has_many :volunteers, :through => :projects, dependent: :delete_all
-  has_many :comments, :through => :projects  
+  has_many :comments, :through => :projects 
+  has_many :event_comments
 
   validates :start_date, :presence => true
   validates :end_date, :presence => true

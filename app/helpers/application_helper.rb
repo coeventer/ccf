@@ -33,4 +33,12 @@ module ApplicationHelper
   def brand_name
     APP_CONFIG['brand']['site_name'] || 'Campus Codefest'
   end
+
+  def comment_delete_path(comment)
+    if comment.is_a?(ProjectComment)
+      project_project_comment_path(comment.project, comment)
+    else
+      event_event_comment_path(comment.event, comment)
+    end
+  end
 end
