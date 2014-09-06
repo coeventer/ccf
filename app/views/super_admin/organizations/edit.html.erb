@@ -1,4 +1,1 @@
-<%=semantic_form_for @organization, url: super_admin_organization_path(@organization) do |f|%>
-  <%=f.inputs%>
-  <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", super_admin_organizations_path%>
-<%end%>
+<%=render partial: "shared/organization_form", locals: {options: {url: super_admin_organization_path(@organization)}, cancel_link: super_admin_organizations_path} %>

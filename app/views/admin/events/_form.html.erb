@@ -2,6 +2,12 @@
   <%= f.inputs do %>
     <%=f.input :title%>
     <%=f.input :description%>
+    <%if @event.event_logo? %>
+      <%=f.label :remove_current_logo%>
+      <%=f.check_box :remove_event_logo %>
+      <%=image_tag @event.event_logo_url%>
+      <br />
+    <%end%>
     <%=f.label :event_logo%>
     <%=f.file_field :event_logo%>
     <%=f.input :start_date, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>

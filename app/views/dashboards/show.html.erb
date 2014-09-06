@@ -11,6 +11,7 @@
 <% end %>
 <div class="row">
   <div class="col-md-9">
+    <% if @event.event_logo_url %><p><%=image_tag @event.event_logo_url.to_s%></p><%end%>
     <p class="info"><%=@event.title%> has <%=@event.projects.count%> projects with <%=@event.comments.count%> comments, <%=@event.vote_count%> likes and <%=@event.volunteer_count%> volunteers. <%=@event.event_registrations.count%> people have registered.</p>
     <hr />
     <% if can?(:create, @event.event_comments.new) %>
