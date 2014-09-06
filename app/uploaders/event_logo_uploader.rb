@@ -6,7 +6,7 @@ class EventLogoUploader < CarrierWave::Uploader::Base
   # storage :fog
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "system/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   process :resize_to_limit => [150, 150]
