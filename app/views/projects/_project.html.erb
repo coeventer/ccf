@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xs-2">
+  <div class="col-md-2">
     <div id="vote_container_<%=project.id%>" class="vote_container">
     <%=render :partial => "projects/vote", :locals => {project: project}%>
     </div>
@@ -13,7 +13,7 @@
     <%end%>
   </div>
 
-  <div class="col-xs-10">
+  <div class="col-md-10">
     <%if can? :edit, project then%>
       <p <%=sanitize 'class="pull-right"' if truncate %>>
         <%=link_to edit_project_path(project), :class=>"btn btn-sm btn-default" do%>
