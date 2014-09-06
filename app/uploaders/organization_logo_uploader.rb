@@ -12,7 +12,7 @@ class OrganizationLogoUploader < CarrierWave::Uploader::Base
   end
 
 
-  process :resize_to_limit => [75, 100]
+  process :resize_to_limit => [50, 100]
 
   version :thumb do
     process :resize_to_limit => [50,50]
