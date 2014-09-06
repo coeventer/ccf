@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date, 
     :volunteering_enabled, :description, :registration_end_dt, :registration_maximum,
-    :live, :schedule, :other_info
+    :live, :schedule, :other_info, :event_logo, :dashboard_enabled
 
   belongs_to :organization
   has_many :projects
@@ -12,6 +12,8 @@ class Event < ActiveRecord::Base
   has_many :volunteers, :through => :projects, dependent: :delete_all
   has_many :comments, :through => :projects 
   has_many :event_comments
+
+  mount_uploader :event_logo, EventLogoUploader
 
   validates :start_date, :presence => true
   validates :end_date, :presence => true

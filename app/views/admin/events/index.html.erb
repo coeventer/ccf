@@ -6,6 +6,7 @@
 <%else%>
   <%@events.each do |e|%>
   <h3><%=link_to e.title, admin_event_path(e)%></h3>
+  <% if e.event_logo_url %><p><%=image_tag e.event_logo_url.to_s%></p><%end%>
   <p><%=truncate strip_tags(e.description), :length => 100%></p>
   <p>
     <%=link_to "Edit", edit_admin_event_path(e), :class => "btn btn-sm btn-default" %>

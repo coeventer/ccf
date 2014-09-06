@@ -61,6 +61,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -202,6 +207,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    rmagick (2.13.3)
     rolify (3.2.0)
     rspec-core (2.14.5)
     rspec-expectations (2.14.2)
@@ -264,6 +270,7 @@ DEPENDENCIES
   cancan
   capistrano (< 3)
   capybara
+  carrierwave
   coffee-rails (~> 3.2.1)
   cucumber-rails
   database_cleaner
@@ -284,6 +291,7 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (= 3.2.14)
+  rmagick
   rolify
   rspec-rails
   sanitize

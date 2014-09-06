@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140905024505) do
+ActiveRecord::Schema.define(:version => 20140906150450) do
 
   create_table "event_comments", :force => true do |t|
     t.integer  "event_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20140905024505) do
     t.text     "other_info"
     t.integer  "organization_id",      :default => 0
     t.boolean  "dashboard_enabled",    :default => true
+    t.string   "event_logo"
   end
 
   create_table "organization_users", :force => true do |t|
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20140905024505) do
     t.string   "website"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "organization_logo"
   end
 
   create_table "presentations", :force => true do |t|

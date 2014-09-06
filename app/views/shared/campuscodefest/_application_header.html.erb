@@ -1,2 +1,8 @@
-<%= APP_CONFIG["brand"]["site_name"] %>
-<%if current_organization%> &#8226; <%=current_organization.name%><%end%>
+<%if current_organization%>
+  <% if current_organization.organization_logo?%>
+    <%= image_tag current_organization.organization_logo_url.to_s %>
+  <% else %>
+    <%=current_organization.name%> &#8226; 
+  <%end%>
+<% end %>
+<%= APP_CONFIG["brand"]["site_name"] %> 

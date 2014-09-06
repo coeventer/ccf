@@ -2,6 +2,8 @@
   <%= f.inputs do %>
     <%=f.input :title%>
     <%=f.input :description%>
+    <%=f.label :event_logo%>
+    <%=f.file_field :event_logo%>
     <%=f.input :start_date, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
     <%=f.input :end_date, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
     <%=f.input :voting_enabled%>

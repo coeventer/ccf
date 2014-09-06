@@ -1,6 +1,8 @@
 class Organization < ActiveRecord::Base
-  attr_accessible :auto_verify, :auto_verify_domains, :description, :name, :subdomain, :website
+  attr_accessible :auto_verify, :auto_verify_domains, :description, :name, :subdomain, :website, :organization_logo
   cattr_accessor :current_id
+
+  mount_uploader :organization_logo, OrganizationLogoUploader
 
   has_many :events
   has_many :projects

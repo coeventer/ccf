@@ -60,3 +60,7 @@ gem 'sanitize'
 gem 'domainatrix'
 gem 'bootstrap-datepicker-rails'
 gem 'strong_parameters'
+
+# image uploads
+gem 'rmagick', :require => 'RMagick'
+gem "carrierwave"

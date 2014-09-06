@@ -2,6 +2,7 @@
 
 <h2>Event <%=@event.title%></h2>
 <p><%=link_to "Back to Events", admin_events_path%></p>
+<% if @event.event_logo_url %><p><%=image_tag @event.event_logo_url.to_s%></p><%end%>
 <p><%=sanitize @event.description%></p>
 <div class="row">
   <div class="col-sm-6">

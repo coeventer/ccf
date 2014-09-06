@@ -3,5 +3,9 @@
   <% if edit %>
   <p><%= f.submit :class => "btn btn-large" %></p>
   <% end %>
-  <p><%=@project.event.title%></p>
+  <p>
+    <% if @project.event.event_logo? %><%=image_tag @project.event.event_logo_url(:thumb).to_s%><%end%>
+    <%=current_organization.name%>&nbsp;
+    <%=@project.event.title%>
+  </p>
 </div>

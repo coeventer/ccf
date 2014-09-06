@@ -16,6 +16,8 @@
       <%end%>
     </div>
     <% end %>
+
+    <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
 </div>
 <%= form_for @presentation, url: project_presentation_path(@project) do |f| -%>
 <div class="step slide" data-x="1000" data-y="-1500">

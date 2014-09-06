@@ -6,6 +6,7 @@
 <div class="row">
   <div class="col-sm-9">
     <h1 class="event-title"><%=@event.title%></h1>
+    <% if @event.event_logo_url %><p><%=image_tag @event.event_logo_url.to_s%></p><%end%>
     <p class="text-muted"><%=@event.pretty_dates%></p>
     <p><%=sanitize @event.description%></p>
   </div>
