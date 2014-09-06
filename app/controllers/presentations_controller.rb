@@ -1,4 +1,5 @@
 class PresentationsController < OrganizationController
+  skip_before_filter :auth_required, :only => [:show]
   before_filter :load_presentation
   layout 'presentation'
   def show
