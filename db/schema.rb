@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140906150450) do
+ActiveRecord::Schema.define(:version => 20140906181250) do
 
   create_table "event_comments", :force => true do |t|
     t.integer  "event_id"
@@ -39,16 +39,16 @@ ActiveRecord::Schema.define(:version => 20140906150450) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.date     "voting_end_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "voting_end_date"
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
     t.boolean  "voting_enabled",       :default => true
     t.boolean  "volunteering_enabled", :default => true
-    t.date     "volunteer_end_date"
+    t.datetime "volunteer_end_date"
     t.text     "description"
-    t.date     "registration_end_dt"
+    t.datetime "registration_end_dt"
     t.integer  "registration_maximum"
     t.boolean  "live",                 :default => false
     t.text     "schedule"

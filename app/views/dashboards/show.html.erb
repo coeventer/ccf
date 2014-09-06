@@ -2,10 +2,10 @@
   <li><%=link_to 'Home', root_path %></li>
   <li><%=link_to "#{@event.title}", event_path(@event) %></li>
 </ol>
-<% if Date.today < @event.start_date %>
-<h1><%=((@event.start_date - Date.today)).to_i%> days until <%=@event.title%></h1>
-<% elsif Date.today <= @event.end_date%>
-<h1><%=((@event.end_date - Date.today) * 24 * 60).to_i%> minutes remain in <%=@event.title%></h1>
+<% if Time.zone.now < @event.start_date %>
+<h1><%=((@event.start_date - Time.zone.now)).to_i/(60*60*24)%> days until <%=@event.title%></h1>
+<% elsif Time.zone.now <= @event.end_date%>
+<h1><%=((@event.end_date - Time.zone.now)).to_i/(60*60)%> hours remain in <%=@event.title%></h1>
 <% else %>
 <h1><%=@event.title%> post-mortum dashboard</h1>
 <% end %>

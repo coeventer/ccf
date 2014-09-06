@@ -31,13 +31,8 @@
     });
   </script>
 <%end%>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('[data-behaviour~=datepicker]').datepicker({
-      todayBtn: "linked",
-      startDate: "<%=Date.today.to_s%>",
-      format: "yyyy-mm-dd"
-      });
-  })
+<script>
+$('[data-behaviour~=datepicker]').datetimepicker({
+  format:'Y-m-d H:i'
+});
 </script>
