@@ -20,7 +20,7 @@
     <h3>Submit an Idea</h3>
     <%= render partial: "projects/pretty_form" %>
 <%elsif !@event.completed?%>
-<p><%=link_to "Sign in to submit a project idea", new_session_path, :class => "btn btn-success btn-lg"%></p>
+<p><%=link_to "Sign in to submit a project idea", signin_path, :class => "btn btn-success btn-lg"%></p>
 <%end%>
 <hr />
 <div class="row">

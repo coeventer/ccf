@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
 
   private
     # Redirect users to the root path, the active event path or to event registration
-    def login_redirect(register_event_id)
+    def login_redirect(register_event_id=nil)
       if register_event_id
 		    # Support a single sign in and register button
         event = @organization.events.find(register_event_id)
@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
         if (!already_registered)
           redirect_to new_event_event_registration_url(event, subdomain: @organization.subdomain)
         else
-          redirect_to event_path(event)
+          redirect_to event_url(event, subdomain: @organization.subdomain)
         end
       else
         redirect_to (request.env['omniauth.origin'].nil? ? root_path : request.env['omniauth.origin'])
