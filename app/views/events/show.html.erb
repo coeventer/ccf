@@ -16,7 +16,7 @@
 </div>
 <hr />
 
-<% if can? :create, Project then %>
+<% if can?(:create, Project) && !@event.completed? then %>
     <h3>Submit an Idea</h3>
     <%= render partial: "projects/pretty_form" %>
 <%elsif !@event.completed?%>

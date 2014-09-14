@@ -14,7 +14,7 @@ class OrganizationController < ApplicationController
   end
 
   def verification_required
-    return true if current_organization.verified?(current_user)
+    return true if current_user.admin? ||  current_organization.verified?(current_user)
     respond_to do |format|
       format.html do
         redirect_to unverified_path
