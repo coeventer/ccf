@@ -6,11 +6,11 @@
     </button>
     <ul class="dropdown-menu" role="menu">
       <!-- dropdown menu links -->
-      <li><%=link_to "Date submitted", sort_path("created_at")%></li>
-      <li><%=link_to "Likes", sort_path("likes")%></li>
-      <li><%=link_to "Helpers", sort_path("helpers")%></li>
-      <li><%=link_to "Comments", sort_path("comments")%></li>
-      <li><%=link_to "Selected for event", sort_path("approved desc")%></li>
+      <li><%=link_to "Date submitted", sort_path("created_at", @event)%></li>
+      <li><%=link_to "Likes", sort_path("likes", @event)%></li>
+      <li><%=link_to "Helpers", sort_path("helpers", @event)%></li>
+      <li><%=link_to "Comments", sort_path("comments", @event)%></li>
+      <li><%=link_to "Selected for event", sort_path("approved desc", @event)%></li>
     </ul>
   </div>
 </div>
