@@ -2,7 +2,7 @@ module OrganizationLib
   def self.included(base)
     base.before_filter :find_events
     base.helper_method :current_organization
-    base.around_filter :scope_current_organization, if: current_organization
+    base.around_filter :scope_current_organization
   end
 
   def current_organization
@@ -15,7 +15,7 @@ module OrganizationLib
   end
 
   def scope_current_organization
-    Organization.current_id = current_organization.id
+    Organization.current_id = current_organization.id if current_organization
     yield
   ensure
     Organization.current_id = nil
