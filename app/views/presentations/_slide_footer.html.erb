@@ -1,5 +1,5 @@
 <% edit ||= false %>
-<div class="logo">
+<div class="logo <%=(edit ? "" : "logo-present")%>">
   <% if edit %>
   <p><%= f.submit :class => "btn btn-large" %></p>
   <% end %>

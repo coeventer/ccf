@@ -1,81 +1,95 @@
 <% edit ||= false %>
 <% f ||= nil %>
 <%content_for(:title, "#{@project.event.title} #{@project.title} presentation")%>
-<div id="bored" class="step slide" data-x="-1000" data-y="-1500">
-    <q class="prez-title"><%=@project.title%></q>
-    <%= render partial: "slide_footer" %>
+
+<div id="impress">
+<div class="step slide" data-x="-400" data-y="-300" data-rotate="0" data-scale="0.8854999999999998">
+  <q class="prez-title"><%=@project.title%></q>
+  <%= render partial: "slide_footer" %>
 </div>
+<div class="step slide" data-x="612" data-y="-299" data-rotate="0" data-scale="1">
+  <q>WHO worked on the project?</q>
+  <%@project.volunteers.each do |v| %>
+  <div class='user_badge' style= "float: left; width: 50; padding: 5px;">
+    <%=link_to user_path(v.user) do%>
+      <%=image_tag v.user_image, alt: v.user_name, width: 50, height: 50, title: v.user_name%>
+      <p style="font-size: 20px"><%=v.user_name%></p>
+    <%end%>
+  </div>
+  <% end %>
 
-<div class="step slide" data-x="0" data-y="-1500">
-    <q>WHO worked on the project?</q>
-    <%@project.volunteers.each do |v| %>
-    <div class='user_badge' style= "float: left; width: 150px; padding: 5px;">
-      <%=link_to user_path(v.user) do%>
-        <%=image_tag v.user_image, alt: v.user_name, width: 150, height: 150, title: v.user_name%>
-        <p style="font-size: 20px"><%=v.user_name%></p>
-      <%end%>
-    </div>
-    <% end %>
-
-    <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
+  <%= render partial: "slide_footer" %>
 </div>
 <%= form_for @presentation, url: project_presentation_path(@project) do |f| -%>
-<div class="step slide" data-x="1000" data-y="-1500">
-    <q>WHY did we do this project?</q>
-    <% if edit %>
-    <%= f.text_area :why %>
-    <% else %>
-    <%=@presentation.why%>
-    <% end %>
-    
-    <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
-</div>
 
-<div class="step slide" data-x="2000" data-y="-1500">
-    <q>WHAT did we do?</q>
-    <% if edit %>
-    <%= f.text_area :what %>
-    <% else %>
-    <%=@presentation.what%>
-    <% end %>
-    <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
+<div class="step slide" data-x="230" data-y="491" data-rotate="51.42857142857143" data-scale="1">
+  <q>WHY did we do this project?</q>
+  <% if edit %>
+  <%= f.text_area :why %>
+  <% else %>
+  <%=@presentation.why%>
+  <% end %>
+  
+  <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
 </div>
-
-<div class="step slide" data-x="3000" data-y="-1500" style="font-size: 80%'">
-    <div style="width: 50%; float: left;">
-      <q>What went RIGHT?</q>
-        <% if edit %>
-        <%= f.text_area :right %>
-        <% else %>
-        <%=@presentation.right%>
-        <% end %>
-    </div>
-    <div style="width: 50%; float: left;">
-      <q>What went Wrong?</q>
-        <% if edit %>
-        <%= f.text_area :wrong %>
-        <% else %>
-        <%=@presentation.wrong%>
-        <% end %>
-    </div>
-    <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
+<div class="step slide" data-x="-625" data-y="686" data-rotate="102.85714285714286" data-scale="1">
+  <q>WHAT did we do?</q>
+  <% if edit %>
+  <%= f.text_area :what %>
+  <% else %>
+  <%=@presentation.what%>
+  <% end %>
+  <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
 </div>
-
-<div class="step slide" data-x="4000" data-y="-1500">
-    <q>What are our NEXT STEPS?</q>
-    <% if edit %>
-    <%= f.text_area :next_steps %>
-    <% else %>
-    <%=@presentation.next_steps%>
-    <% end %>
-    <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
+<div class="step slide" data-x="-1311" data-y="139" data-rotate="154.28571428571428" data-scale="1">
+  <div style="width: 50%; float: left;">
+    <q>What went RIGHT?</q>
+      <% if edit %>
+      <%= f.text_area :right %>
+      <% else %>
+      <%=@presentation.right%>
+      <% end %>
+  </div>
+  <div style="width: 50%; float: left;">
+    <q>What went Wrong?</q>
+      <% if edit %>
+      <%= f.text_area :wrong %>
+      <% else %>
+      <%=@presentation.wrong%>
+      <% end %>
+  </div>
+  <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
 </div>
-
-<div class="step slide" data-x="5000" data-y="-1500">
-    <q class="prez-title">Thanks! Any questions or comments?</q>
-    <% if @next_up   %>
-    <q>Next up... <%=link_to @next_up.title, project_presentation_path(@next_up)%></q>
-    <% end %>
-    <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
+<div class="step slide" data-x="-1311" data-y="-739" data-rotate="205.71428571428572" data-scale="1">
+  <q>What are our NEXT STEPS?</q>
+  <% if edit %>
+  <%= f.text_area :next_steps %>
+  <% else %>
+  <%=@presentation.next_steps%>
+  <% end %>
+  <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
 </div>
+<div class="step slide" data-x="-625" data-y="-1286" data-rotate="257.14285714285717" data-scale="1">
+  <q class="prez-title">Thanks! Any questions or comments?</q>
+  <% if @next_up   %>
+  <q>Next up... <%=link_to @next_up.title, project_presentation_path(@next_up)%></q>
+  <% end %>
+  <%= render partial: "slide_footer" %>
+</div>
+<div class="step slide credits" data-x="230" data-y="-1091" data-rotate="308.57142857142856" data-scale="1">
+    <h2>Credits</h2>
+    <ul>
+      <li>
+        <a href="http://bartaz.github.io/impress.js" target="_blank">impress.js</a> - Bartek Szopka
+      </li>
+      <li>
+        <a href="http://wmh.github.io/circular-slides-generator" target="_blank">Circular Slides Generator</a> - Hunter Wu
+      </li>
+    </ul>
+  </div>
+<div class="step" data-x="0" data-y="0" data-scale="5"></div>
+<% end %>
+<% unless edit %>
+<script src="//cdnjs.cloudflare.com/ajax/libs/impress.js/0.5.3/impress.js"></script>
+<script>impress().init();</script>
 <% end %>

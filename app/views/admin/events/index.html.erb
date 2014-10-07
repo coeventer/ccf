@@ -10,7 +10,8 @@
   <p><%=truncate strip_tags(e.description), :length => 100%></p>
   <p>
     <%=link_to "Edit", edit_admin_event_path(e), :class => "btn btn-sm btn-default" %>
-    <%=link_to "Delete", admin_event_path(e), :method => :delete, :class => "btn btn-sm btn-danger", :confirm => "Are you sure? This cannot be undone and will delete all related event projects, voting, etc." %></p>
+    <%=link_to "Delete", admin_event_path(e), :method => :delete, :class => "btn btn-sm btn-danger", :confirm => "Are you sure? This cannot be undone and will delete all related event projects, voting, etc." %>
+  </p>
   <hr />
   <%end%>
 <%end%>

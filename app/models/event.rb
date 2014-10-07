@@ -26,6 +26,8 @@ class Event < ActiveRecord::Base
   validates :registration_maximum, :presence => true
 
   default_scope { where(organization_id: Organization.current_id) }
+  scope :future, where("end_date > ?", Date.today)
+
   before_destroy :unassign_projects
 
   # Voting is enabled if the voting enabled boolean is turned on, it is before the event start date
