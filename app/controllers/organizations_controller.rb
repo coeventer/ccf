@@ -1,4 +1,5 @@
 class OrganizationsController < ApplicationController
+  skip_before_filter :auth_required, :only => [:index]
   def index
     @organizations = Organization.paginate(:page => params[:page], :per_page => 25)
   end
