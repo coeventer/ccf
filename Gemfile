@@ -63,4 +63,4 @@ gem 'strong_parameters'
 gem 'rmagick', :require => 'RMagick'
 gem "carrierwave"
 
-gem 'roo'
+gem 'test-unit'
