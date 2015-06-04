@@ -1,7 +1,8 @@
 <% edit ||= false %>
+
 <div class="logo <%=(edit ? "" : "logo-present")%>">
   <% if edit %>
-  <p><%= f.submit :class => "btn btn-large" %></p>
+  <p><%= f.submit %></p>
   <% end %>
   <p>
     <% if @project.event.event_logo? %><%=image_tag @project.event.event_logo_url(:thumb).to_s%><%end%>

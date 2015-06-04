@@ -1,6 +1,7 @@
 <% edit ||= false %>
 <% f ||= nil %>
 <%content_for(:title, "#{@project.event.title} #{@project.title} presentation")%>
+
 <div class="reveal">
   <div class="slides">
     <section>
@@ -19,20 +20,23 @@
         </div>
       <% end %>
       </div>
-
       <%= render partial: "slide_footer" %>
     </section>
+    
     <section>
+      <%= form_for @presentation, url: project_presentation_path(@project) do |f| -%>
       <h1>WHY did we do this project?</h1>
       <% if edit %>
       <%= f.text_area :why %>
       <% else %>
       <%=@presentation.why%>
       <% end %>
-      
       <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
+      <%end%>
     </section>
+    
     <section>
+      <%= form_for @presentation, url: project_presentation_path(@project) do |f| -%>
       <h1>WHAT did we do?</h1>
       <% if edit %>
       <%= f.text_area :what %>
@@ -40,9 +44,11 @@
       <%=@presentation.what%>
       <% end %>
       <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
+      <% end %>
     </section>
     
     <section>
+      <%= form_for @presentation, url: project_presentation_path(@project) do |f| -%>
         <section>
           <h1>What went RIGHT?</h1>
             <% if edit %>
@@ -61,8 +67,11 @@
             <% end %>
             <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
         </section>
+        <% end %>
     </section>
+
     <section>
+      <%= form_for @presentation, url: project_presentation_path(@project) do |f| -%>
       <h1>What are our NEXT STEPS?</h1>
       <% if edit %>
       <%= f.text_area :next_steps %>
@@ -70,7 +79,9 @@
       <%=@presentation.next_steps%>
       <% end %>
       <%= render partial: "slide_footer", locals: {edit: edit, f: f} %>
+      <% end %>
     </section>
+
     <section>
       <h1>Thanks! Any questions or comments?</h1>
       <% if @next_up   %>
@@ -80,7 +91,6 @@
     </section>
   </div>
 </div>
-<% unless edit %>
 <script>
 Reveal.initialize({
     controls: true,
@@ -112,4 +122,3 @@ Reveal.initialize({
 
 });
 </script>
-<% end %>
