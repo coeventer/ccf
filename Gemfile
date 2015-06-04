@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.14'
+gem 'rails', '3.2.21'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.5'
@@ -49,8 +49,6 @@ group :production, :development do
   gem 'mysql2'
 end
 
-# Temporarily using FB for auth, will use Shibboleth on UMN infra
-gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
 gem 'will_paginate'
@@ -64,3 +62,5 @@ gem 'strong_parameters'
 # image uploads
 gem 'rmagick', :require => 'RMagick'
 gem "carrierwave"
+
+gem 'roo'
