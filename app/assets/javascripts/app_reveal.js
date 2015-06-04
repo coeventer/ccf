@@ -10,11 +10,4 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require jquery_ujs
-//= require twitter/bootstrap
-//= require bootstrap-wysihtml5
-//= require bootstrap-datepicker
-//= require forms
-//= require jquery.datetimepicker
-//= require projects
+//= require reveal
