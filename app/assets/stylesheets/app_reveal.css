@@ -1,0 +1,11 @@
+/*
+ *= require font-awesome
+ *= require reveal
+ *= require theme/black
+ */
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}

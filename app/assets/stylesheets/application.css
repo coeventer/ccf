@@ -9,7 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require bootstrap_and_overrides
+ *= require events
+ *= require jquery.datetimepicker
+ *= require main
  *= require formtastic-bootstrap
  *= require bootstrap-wysihtml5
  *= require font-awesome
