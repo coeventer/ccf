@@ -2,7 +2,8 @@
 <% f ||= nil %>
 <%content_for(:title, "#{@project.event.title} #{@project.title} presentation")%>
 
-<div class="reveal">
+<div class="reveal" ng-app='app.presentationApp' ng-controller='PresentationCtrl'>
+
   <%= render partial: "slide_footer" %>
   <div class="slides">
     <section>

@@ -11,3 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require reveal
+//= require angular/angular
+//= require ccf-angular-app/app
+//= require_tree ./ccf-angular-app/presentation

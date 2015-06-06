@@ -37,6 +37,10 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.5)
+    angular-rails-templates (0.2.0)
+      railties (>= 3.1)
+      sprockets (~> 2)
+      tilt
     arel (3.0.3)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
@@ -47,6 +51,7 @@ GEM
       railties (>= 3.0)
     bootstrap-wysihtml5-rails (0.3.2.100)
       railties (>= 3.0)
+    bower-rails (0.9.2)
     builder (3.0.4)
     cancan (1.6.10)
     capistrano (2.15.5)
@@ -495,11 +500,13 @@ PLATFORMS
 
 DEPENDENCIES
   action_mailer_cache_delivery
+  angular-rails-templates
   better_errors
   binding_of_caller
   bootstrap-datepicker-rails
   bootstrap-tour-rails!
   bootstrap-wysihtml5-rails (>= 0.3.2.100)
+  bower-rails
   cancan
   capistrano (< 3)
   capybara

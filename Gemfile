@@ -23,6 +23,8 @@ gem 'rolify'
 gem 'formtastic'
 gem 'formtastic-bootstrap', '>= 3.0.0'
 gem 'bootstrap-wysihtml5-rails', '>= 0.3.2.100'
+gem 'angular-rails-templates'
+gem 'bower-rails'
 
 group :development do
   gem 'better_errors'
