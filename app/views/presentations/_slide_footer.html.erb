@@ -1,12 +1,11 @@
 <% edit ||= false %>
 
-<div class="logo <%=(edit ? "" : "logo-present")%>">
+<div class="footer">
   <% if edit %>
   <p><%= f.submit %></p>
   <% end %>
   <p>
     <% if @project.event.event_logo? %><%=image_tag @project.event.event_logo_url(:thumb).to_s%><%end%>
-    <%=current_organization.name%>&nbsp;
-    <%=@project.event.title%>
+    <%=current_organization.name%>&nbsp;-&nbsp;<%=@project.event.title%>
   </p>
 </div>
