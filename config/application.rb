@@ -11,7 +11,6 @@ end
 
 module CampusCodefest
   class Application < Rails::Application
-    require "/Users/dave/dev/ccf/config/initializers/bower_rails.rb"
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
