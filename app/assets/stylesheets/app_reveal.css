@@ -1,7 +1,9 @@
 /*
  *= require font-awesome
+ *= require bootstrap_and_overrides
  *= require reveal
  *= require theme/black
+
  */
 
 .clearfix:after {

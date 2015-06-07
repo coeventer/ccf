@@ -12,7 +12,11 @@ class PresentationsController < OrganizationController
 
   def update
     @presentation.update_attributes(presentation_params)
-    redirect_to project_presentation_path(@project)
+    
+    respond_to do |format|
+      format.html {redirect_to project_presentation_path(@project)}
+      format.json {render :show}
+    end
   end
 
   def load_presentation

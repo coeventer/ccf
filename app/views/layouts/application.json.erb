@@ -1,0 +1,7 @@
+<%@error ||= error if defined?(error)%>
+
+{
+  "metadata": <%= @metadata.to_json.html_safe %>,
+  "error": <%= @error.to_json.html_safe %>,
+  "result": <%= yield %>
+}

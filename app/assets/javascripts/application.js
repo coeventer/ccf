@@ -13,8 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require angular/angular
+//= require angular-rails-templates
 //= require bootstrap-wysihtml5
 //= require bootstrap-datepicker
 //= require forms
 //= require jquery.datetimepicker
 //= require projects
+//= require ccf-angular-app/app
+//= require_tree ./ccf-angular-app/dashboard
+//= require_tree ./ccf-angular-app/presentation
+//= require_tree ./ccf-angular-app/example

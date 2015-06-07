@@ -10,4 +10,17 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require jquery
+//= require jquery_ujs
 //= require reveal
+//= require twitter/bootstrap
+//= require angular/angular
+//= require angular-rails-templates
+//= require underscore/underscore
+//= require lodash/lodash
+//= require ngDialog/js/ngDialog.min
+//= require restangular/src/restangular
+//= require angular-bootstrap/ui-bootstrap-tpls.min
+
+//= require ccf-angular-app/app
+//= require_tree ./ccf-angular-app/presentation

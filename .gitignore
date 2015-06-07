@@ -21,3 +21,4 @@ config/providers.yml
 config/email.yml
 config/config.yml
 public/uploads
+vendor/assets/*

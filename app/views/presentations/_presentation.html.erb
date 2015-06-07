@@ -1,8 +1,7 @@
 <% edit ||= false %>
 <% f ||= nil %>
 <%content_for(:title, "#{@project.event.title} #{@project.title} presentation")%>
-
-<div class="reveal">
+<div class="reveal" ng-app='app.presentationApp' ng-controller='PresentationCtrl'>
   <%= render partial: "slide_footer" %>
   <div class="slides">
     <section>
@@ -23,59 +22,33 @@
     </section>
     
     <section>
-      <%= form_for @presentation, url: project_presentation_path(@project) do |f| -%>
       <h2>WHY did we do this project?</h2>
-      <% if edit %>
-      <%= f.text_area :why %>
-      <% else %>
-      <%=@presentation.why%>
-      <% end %>
-      <%end%>
+      <div ng-click="editPresentation(presentation, 'why')">{{ presentation.why || defaultText }}</div>
     </section>
     
     <section>
-      <%= form_for @presentation, url: project_presentation_path(@project) do |f| -%>
       <h2>WHAT did we do?</h2>
-      <% if edit %>
-      <%= f.text_area :what %>
-      <% else %>
-      <%=@presentation.what%>
-      <% end %>
-      <% end %>
+      <div ng-click="editPresentation(presentation, 'what')">{{ presentation.what || defaultText }}</div>
     </section>
     
     <section>
       <section>
         <h2>What went RIGHT?</h2>
-          <% if edit %>
-          <%= f.text_area :right %>
-          <% else %>
-          <%=@presentation.right%>
-          <% end %>
+        <div ng-click="editPresentation(presentation, 'right')">{{ presentation.right || defaultText }}</div>
       </section>
       <section>
         <h2>What went Wrong?</h2>
-          <% if edit %>
-          <%= f.text_area :wrong %>
-          <% else %>
-          <%=@presentation.wrong%>
-          <% end %>
+        <div ng-click="editPresentation(presentation, 'wrong')">{{ presentation.wrong || defaultText }}</div>
       </section>
     </section>
 
     <section>
-      <%= form_for @presentation, url: project_presentation_path(@project) do |f| -%>
       <h2>What are our NEXT STEPS?</h2>
-      <% if edit %>
-      <%= f.text_area :next_steps %>
-      <% else %>
-      <%=@presentation.next_steps%>
-      <% end %>
-      <% end %>
+      <div ng-click="editPresentation(presentation, 'next_steps')">{{ presentation.next_steps || defaultText }}</div>
     </section>
 
     <section>
-      <h2>Thanks! Any questions or comments?</h2>
+      <h2>Any questions or comments?</h2>
       <% if @next_up   %>
       <q>Next up... <%=link_to @next_up.title, project_presentation_path(@next_up)%></q>
       <% end %>
