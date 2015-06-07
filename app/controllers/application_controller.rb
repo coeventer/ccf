@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  layout "application"
   include ApplicationHelper
   before_filter :auth_required
   protect_from_forgery

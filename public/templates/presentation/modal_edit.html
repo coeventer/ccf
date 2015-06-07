@@ -1,0 +1,18 @@
+<div class="modal-body">
+  <p>hi</p>
+  <form name="" ng-submit="submitPresentation(presentation)">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-12">
+          <label>Text<span class="required"> required</span></label>
+          <textarea class="form-control" ng-model="presentation[field]">
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </div>
+  </form>
+</div>

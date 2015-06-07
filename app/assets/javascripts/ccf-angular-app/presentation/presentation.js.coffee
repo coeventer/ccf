@@ -1,6 +1,9 @@
 @presentationApp = angular
   .module('app.presentationApp', [
-    # additional dependencies here
+    "ngDialog",
+    "restangular",
+    "ui.bootstrap",
+    "templates"
   ])
   .run(->
     console.log 'presentationApp running'
