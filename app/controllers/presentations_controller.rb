@@ -11,7 +11,6 @@ class PresentationsController < OrganizationController
   end
 
   def update
-    byebug
     @presentation.update_attributes(presentation_params)
     
     respond_to do |format|
