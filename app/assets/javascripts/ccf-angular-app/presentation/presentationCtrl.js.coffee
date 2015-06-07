@@ -7,7 +7,6 @@ angular.module('app.presentationApp').controller("PresentationCtrl", ['$scope', 
     Restangular.one('projects', id).customGET('presentation.json').then(
       (presentation) ->
         $scope.presentation = presentation.presentation
-        $location
     )
 
     $scope.editPresentation = (presentation, field) ->
