@@ -32,5 +32,9 @@ namespace :deploy do
     run "cp -pf #{shared_path}/config/config.yml #{release_path}/config"
   end
 
-  before 'deploy:assets:precompile', 'deploy:copy_yml_files'
+  task :bower_install, :roles => :app do
+    run "cd #{release_path}; bundle exec rake bower:install CI=true"
+  end
+
+  before 'deploy:assets:precompile', 'deploy:copy_yml_files', 'deploy:bower_install'
 end
