@@ -5,7 +5,7 @@ class CommentMailer < ActionMailer::Base
       @user = user
       @comment = comment
       @project = project
-      @subdomain = @project.organization.subdomain if @project.event.organization
+      @subdomain = @project.organization.subdomain if @project.organization
       mail = mail(:to => user.email, :subject => "New Comment For \"#{project.title}\"") do |format|
         format.text
         format.html
