@@ -20,7 +20,3 @@
 //= require forms
 //= require jquery.datetimepicker
 //= require projects
-//= require ccf-angular-app/app
-//= require_tree ./ccf-angular-app/dashboard
-//= require_tree ./ccf-angular-app/presentation
-//= require_tree ./ccf-angular-app/example
