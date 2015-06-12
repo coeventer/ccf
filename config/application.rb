@@ -61,6 +61,7 @@ module CampusCodefest
     config.assets.version = '1.0'
 
     config.assets.precompile = [ Proc.new{ |path| !File.extname(path).in?(['.js', '.css', '.map', '.gzip', ''] ) }, /(?:\/|\\|\A)application\.(css|js)$/ ]
+    config.assets.precompile += %w[app_reveal.css app_reveal.js]
 
     config.enable_organizations = true
 
