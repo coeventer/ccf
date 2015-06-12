@@ -3,7 +3,7 @@ angular.module('app.presentationApp').controller("PresentationCtrl", ['$scope', 
     console.log 'PresentationCtrl running'
 
     $scope.defaultText = "(Click to add content)"
-    id = $location.$$absUrl.match(/projects\/\d/g)[0].replace("projects/", "")
+    id = $location.$$absUrl.match(/projects\/[0-9]+/g)[0].replace("projects/", "")
     Restangular.one('projects', id).customGET('presentation.json').then(
       (presentation) ->
         $scope.presentation = presentation.presentation
