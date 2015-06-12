@@ -1,8 +1,13 @@
 <%if current_organization%>
+<a class="navbar-brand" href="/" style="padding-right: 0; padding-top: 10px;">
   <% if current_organization.organization_logo?%>
-    <%= image_tag current_organization.organization_logo_url.to_s %>
+    <%= image_tag current_organization.organization_logo_url.to_s%>
   <% else %>
     <%=current_organization.name%> &#8226; 
   <%end%>
+</a>
 <% end %>
-<%= APP_CONFIG["brand"]["site_name"] %> 
+<a class="navbar-brand" href="/">
+  <%= APP_CONFIG["brand"]["site_name"] %>
+</a>
+
