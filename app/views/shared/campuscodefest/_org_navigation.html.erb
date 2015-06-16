@@ -57,7 +57,7 @@
           <% end %>
         </li>
         <% else %>
-        <li><%= link_to "Join Organization", organization_users_path, method: :post%></li>
+        <li><span class="fa fa-plus-circle text-success" title="Join"></span> <%= link_to "Join Organization", organization_users_path, method: :post%></li>
         <% end %>
         <li class="dropdown">
           <a class="dropdown-toggle text-right"
