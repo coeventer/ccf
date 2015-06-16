@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
     end
 
     organization.users.create(user: user) if organization
+    user
   end
 
   def self.find_and_update_uid(auth)

@@ -1,3 +1,7 @@
+* Refactor/autoverify
+
+  > Chad M Fennell, David Peterson: : https://github.com/campuscodefest/ccf/pull/56
+
 * Angularize presentation edit
 
   > David Peterson: : https://github.com/campuscodefest/ccf/pull/52
