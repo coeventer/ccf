@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   # See: https://github.com/zquestz/omniauth-google-oauth2 
   def self.create_with_omniauth(auth, organization=nil)
-    create! do |user|
+    user = create! do |user|
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
       user.email = auth["info"]["email"]
@@ -22,14 +22,9 @@ class User < ActiveRecord::Base
 
       # First user to sign up becomes an admin... so... sign up fast.
       user.admin = 1 if User.count < 1
-
-      # If user belongs to a auto-verify domain... verify
-      if organization
-        org_user = organization.users.create(user: user)
-        org_user.verified = org_user.autoverify?
-        org_user.save
-      end
     end
+
+    organization.users.create(user: user) if organization
   end
 
   def self.find_and_update_uid(auth)
