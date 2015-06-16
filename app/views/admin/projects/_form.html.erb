@@ -5,9 +5,11 @@
   <%=f.text_area :description, :class => "form-control", :style => "width: 80%; height: 100px;", :placeholder => "Describe your idea"%>
   <%=f.input :repository, :placeholder => "https://github.com/example/example"%>
   <%=f.input :approved%>
-  <% if @event %>
-  <%=f.input :event_id, :as => :hidden, :value => @event.id%>
-  <% end %>
+  <% if @project.event_id %>
+  <%=f.input :event_id, :as => :hidden, :value => @project.event_id%>
+  <%elsif @events.try(:any?) %>
+  <%=f.input :event_id, :as => :select, :collection => @events, :label => "Assign to an event" %>
+  <%end%>
   <br />
   <%=f.submit "Update project", :class => "btn btn-primary" %>
   <%=link_to "Cancel", cancel_link, :class => "btn btn-link" %>

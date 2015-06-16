@@ -17,6 +17,7 @@ class Admin::ProjectsController < Admin::AdminController
 
   def edit
     load_project
+    @events = Event.live
   end
 
   def update
