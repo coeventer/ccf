@@ -25,9 +25,8 @@ class User < ActiveRecord::Base
 
       # If user belongs to a auto-verify domain... verify
       if organization
-        org_user.verified = false
         org_user = organization.users.create(user: user)
-        org_user.verified = true if org_user.autoverify?
+        org_user.verified = org_user.autoverify?
         org_user.save
       end
     end
