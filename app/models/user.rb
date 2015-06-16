@@ -26,12 +26,7 @@ class User < ActiveRecord::Base
       # If user belongs to a auto-verify domain... verify
       if organization
         org_user = organization.users.create(user: user)
-        org_user.verified = false
-
-        if organization.auto_verify? then
-          org_user.verified = true if organization.auto_verify_domains.split(',').include? user.email.split("@").last
-        end
-
+        user.verified = true if org_user.autoverify?
       end
     end
   end

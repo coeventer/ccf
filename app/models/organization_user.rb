@@ -23,4 +23,8 @@ class OrganizationUser < ActiveRecord::Base
   def email
     user_email
   end
+
+  def autoverify?
+    organization.auto_verify? && organization.auto_verify_domains.split(',').include?(user.email.split("@").last)
+  end
 end
