@@ -5,6 +5,7 @@ class OrganizationUser < ActiveRecord::Base
 
   validates :user_id, uniqueness: {scope: :organization_id}
 
+  before_create :auto_verify
   after_create :welcome_email
   after_update :verified_email, :if => "verified_changed? && verified?"
 
@@ -22,5 +23,14 @@ class OrganizationUser < ActiveRecord::Base
 
   def email
     user_email
+  end
+
+  def auto_verify?
+    organization.auto_verify? && organization.auto_verify_domains.split(',').include?(user_email.split("@").last)
+  end
+
+  def auto_verify
+    self.verified = self.auto_verify?
+    true
   end
 end
