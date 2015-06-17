@@ -1,3 +1,7 @@
+* Event Select on admin
+
+  > David Peterson: : https://github.com/campuscodefest/ccf/pull/55
+
 * Refactor/autoverify
 
   > Chad M Fennell, David Peterson: : https://github.com/campuscodefest/ccf/pull/56
