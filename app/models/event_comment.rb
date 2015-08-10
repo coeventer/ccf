@@ -3,7 +3,6 @@ class EventComment < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :event
-  belongs_to :organization, through: :event
 
   default_scope { order("created_at desc")}
 
