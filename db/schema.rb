@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140906181250) do
+ActiveRecord::Schema.define(:version => 20150809234515) do
 
   create_table "event_comments", :force => true do |t|
     t.integer  "event_id"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20140906181250) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.string   "organization_logo"
+    t.string   "slack_webhook_url"
   end
 
   create_table "presentations", :force => true do |t|

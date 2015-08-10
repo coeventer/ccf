@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  include SlackNotifiable
+
   attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date, 
     :volunteering_enabled, :description, :registration_end_dt, :registration_maximum,
     :live, :schedule, :other_info, :event_logo, :dashboard_enabled, :remove_event_logo
@@ -86,5 +88,9 @@ class Event < ActiveRecord::Base
 
   def self.live
     return self.where(live: true)
+  end
+
+  def slack_message
+    "A new event has been created: #{title}. #{description}"
   end
 end

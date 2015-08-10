@@ -1,5 +1,6 @@
 class Organization < ActiveRecord::Base
-  attr_accessible :auto_verify, :auto_verify_domains, :description, :name, :subdomain, :website, :organization_logo, :remove_organization_logo
+  attr_accessible :auto_verify, :auto_verify_domains, :description, :name, :subdomain, :website, :organization_logo, :remove_organization_logo,
+                  :slack_webhook_url
   cattr_accessor :current_id
 
   mount_uploader :organization_logo, OrganizationLogoUploader

@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  include SlackNotifiable
+
   attr_accessible :description, :title, :classification, :project_owner, :event_id,
   :approved, :repository, :project_comments_count, :project_ratings_count, :project_volunteers_count
 
@@ -114,6 +116,14 @@ class Project < ActiveRecord::Base
   def presentation
     self.create_presentation unless db_presentation
     db_presentation
+  end
+
+  def slack_message
+    if self.event.present?
+      "A new project #{title} has been submitted for #{event.title}. #{description}"
+    else
+      "A new project #{title} has been submitted to the backlog. #{description}"
+    end
   end
 
   def self.to_csv

@@ -26,6 +26,7 @@ gem 'bootstrap-wysihtml5-rails', '>= 0.3.2.100'
 gem 'angular-rails-templates'
 gem 'bower-rails'
 gem 'rabl'
+gem 'slack-notifier'
 
 group :development do
   gem 'better_errors'
