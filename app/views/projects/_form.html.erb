@@ -2,7 +2,7 @@
   <%=f.text_field :title, :class => "form-control", :style => "width: 80%;"%>
   <% if @project.event_id %>
   <p>
-    <%=f.input :project_owner, as: :select, :class => "form-control", :style => "width: 80%;", collection: @project.event.event_registrations.map(&:user)%>
+    <%=f.input :project_owner, as: :select, :class => "form-control", :style => "width: 80%;", collection: @project.transferable_owners %>
   </p>
   <% end %>
   <div id="project_details">

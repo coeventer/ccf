@@ -126,6 +126,10 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def transferable_owners
+    event ? event.event_registrations.includes(:user).reorder("users.name").map(&:user) : []
+  end
+
   def self.to_csv
     CSV.generate do |csv|
       csv << ["Title", "Classification", "Votes", "Volunteers", "Comments", "Created On"]
