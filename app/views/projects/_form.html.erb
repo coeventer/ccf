@@ -1,7 +1,9 @@
 <%=semantic_form_for @project do |f| -%>
   <%=f.text_field :title, :class => "form-control", :style => "width: 80%;"%>
   <% if @project.event_id %>
-  <%=f.input :project_owner, as: :select, :class => "form-control", :style => "width: 80%;", collection: @project.event.event_registrations.map(&:user)%>
+  <p>
+    <%=f.input :project_owner, as: :select, :class => "form-control", :style => "width: 80%;", collection: @project.event.event_registrations.map(&:user).sort(&:name)%>
+  </p>
   <% end %>
   <div id="project_details">
   <%=f.input :description, :as => :text, :input_html => {:style => "width: 80%; height: 100px;"}, :placeholder => "Describe your idea"%>
