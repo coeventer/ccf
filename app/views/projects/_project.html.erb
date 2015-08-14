@@ -14,7 +14,7 @@
   </div>
 
   <div class="col-md-10">
-    <%if can? :edit, project then%>
+    <% if can? :edit, project then %>
       <p <%=sanitize 'class="pull-right"' if truncate %>>
         <%=link_to edit_project_path(project), :class=>"btn btn-sm btn-default" do%>
           <span class="fa fa-edit"></span> Edit project
@@ -24,13 +24,13 @@
     <h4><%=link_to project.title, project_path(project)%></h4>
     <%=render :partial => "projects/project_owner", :locals => {owner: project.project_owner, project: project}%>
 
-    <%if truncate%>
+    <% if truncate %>
     <p><%=truncate strip_tags(project.description).html_safe, :length => 200%></p>
-    <%else%>
+    <% else %>
     <%=Sanitize.clean(project.description, Sanitize::Config::RELAXED).html_safe%>
     <%end%>
 
-    <%if !project.volunteers.blank?%>
+    <% unless project.volunteers.blank? %>
     <div class="volunteers_container">
       <p>Volunteers:</p>
       <%project.volunteers.each do |v|%>
@@ -43,7 +43,7 @@
       <div class="clearfix"></div>
     </div>
     <%end%>
-    <%if !project.repository.nil? %>
+    <% if project.repository %>
       <p><span class="fa fa-lg fa-github"></span> <%=link_to project.repository, project.repository%></p>
     <%end%>
 
