@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
 
   attr_accessible :description, :title, :classification, :project_owner, :event_id,
   :approved, :repository, :project_comments_count, :project_ratings_count, :project_volunteers_count,
-  :submitted_user_id
+  :submitted_user_id, :project_owner_id
 
   has_many :comments, :class_name => "ProjectComment"
   has_many :ratings, :class_name => "ProjectRating"
@@ -129,8 +129,9 @@ class Project < ActiveRecord::Base
   end
 
   def transferable_owners
-    users = event ? event.registrations.includes(:user).reorder("users.name").map(&:user) : []
-    users.push(project_owner) unless users.include?(project_owner)
+    tos = event.registrations.includes(:user).reorder("users.name").map(&:user)
+    tos.push(project_owner) unless tos.include?(project_owner)
+    tos
   end
 
   def self.to_csv
