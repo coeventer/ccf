@@ -55,7 +55,11 @@ CampusCodefest::Application.routes.draw do
     end
 
     resources :project_comments
-    resource :presentation
+    resource :presentation do
+      collection do
+        post :publish
+      end
+    end
   end
 
   namespace :admin, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do

@@ -7,6 +7,8 @@ angular.module('app.presentationApp').controller("PresentationCtrl", ['$scope', 
     Restangular.one('projects', id).customGET('presentation.json').then(
       (presentation) ->
         $scope.presentation = presentation.presentation
+        if ($scope.presentation.published)
+          $scope.defaultText = ""
     )
 
     $scope.editPresentation = (presentation, field) ->

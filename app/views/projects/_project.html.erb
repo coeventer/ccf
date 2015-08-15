@@ -8,9 +8,15 @@
     <%=render :partial => "projects/volunteer", :locals => {project: project}%>
     </div>
     <%end%>
-     <%if !show_comments%>
-    <p><%=link_to project_path(project), :style => "color: white;" do%><span class="badge"><%=project.comment_count%></span><%end%> comments</p>
+    <%if !show_comments%>
+      <p><%=link_to project_path(project), :style => "color: white;" do%><span class="badge"><%=project.comment_count%></span>
+      <%end%> comments</p>
     <%end%>
+    <p>
+      <%=link_to project_presentation_path(project), class: "btn btn-primary" do%>
+        <i class="fa fa-play"></i> Presentation
+      <% end %>
+    </p>
   </div>
 
   <div class="col-md-10">

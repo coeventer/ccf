@@ -1,11 +1,17 @@
-<% edit ||= false %>
-
 <div class="footer">
-  <% if edit %>
-  <p><%= f.submit %></p>
+  <% if @presentation.published %>
+    <p>
+      <% if @project.event.event_logo? %><%=image_tag @project.event.event_logo_url(:thumb).to_s%><%end%>
+      <%=link_to event_path(@project.event) do %>
+      <%=current_organization.name%>&nbsp;-&nbsp;<%=@project.event.title%>
+      <% end %> 
+      <% if can? :edit, @presentation %>
+      (<%=link_to "Unpublish?", publish_project_presentation_path(@project), method: :post%>)
+      <% end %>
+    </p>
+  <% else %>
+    <p>
+      This is not viewable by others until published. <%=link_to "Publish now", publish_project_presentation_path(@project), method: :post%>
+    </p>
   <% end %>
-  <p>
-    <% if @project.event.event_logo? %><%=image_tag @project.event.event_logo_url(:thumb).to_s%><%end%>
-    <%=current_organization.name%>&nbsp;-&nbsp;<%=@project.event.title%>
-  </p>
 </div>

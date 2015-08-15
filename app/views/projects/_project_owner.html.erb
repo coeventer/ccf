@@ -1,3 +1,9 @@
 <div class="project-owner">
-  <label>Submitted by</label> <%=link_to owner.name, user_path(owner)%> &#8226; <span class="comment-time"><%= time_ago_in_words(project.created_at)%> ago</span>
+  <label>Submitted By</label> <%=link_to project.submitted_user.name, user_path(project.submitted_user)%> &#8226; <span class="comment-time"><%= time_ago_in_words(project.created_at)%> ago</span>
 </div>
+
+<% if project.submitted_user != owner %>
+<div class="project-owner">
+  <label>Lead By</label> <%=link_to owner.name, user_path(owner)%>
+</div>
+<% end %>

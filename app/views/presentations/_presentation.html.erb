@@ -1,11 +1,12 @@
-<% edit ||= false %>
-<% f ||= nil %>
 <%content_for(:title, "#{@project.event.title} #{@project.title} presentation")%>
 <div class="reveal" ng-app='app.presentationApp' ng-controller='PresentationCtrl'>
-  <%= render partial: "slide_footer" %>
   <div class="slides">
+    <%= render partial: "slide_footer" %>
     <section>
-      <h2><%=@project.title%></h2>
+      <h2>{{ presentation.title }}</h2>
+      <% unless @presentation.published? %>
+      <div ng-click="editPresentation(presentation, 'title')">(click to edit)</div>
+      <% end %>
     </section>
     <section>
       <h2>WHO worked on the project?</h2>
@@ -32,14 +33,13 @@
     </section>
     
     <section>
-      <section>
-        <h2>What went RIGHT?</h2>
-        <div ng-click="editPresentation(presentation, 'right')">{{ presentation.right || defaultText }}</div>
-      </section>
-      <section>
-        <h2>What went Wrong?</h2>
-        <div ng-click="editPresentation(presentation, 'wrong')">{{ presentation.wrong || defaultText }}</div>
-      </section>
+      <h2>What went RIGHT?</h2>
+      <div ng-click="editPresentation(presentation, 'right')">{{ presentation.right || defaultText }}</div>
+    </section>
+
+    <section>
+      <h2>What went Wrong?</h2>
+      <div ng-click="editPresentation(presentation, 'wrong')">{{ presentation.wrong || defaultText }}</div>
     </section>
 
     <section>
@@ -50,7 +50,7 @@
     <section>
       <h2>Any questions or comments?</h2>
       <% if @next_up   %>
-      <q>Next up... <%=link_to @next_up.title, project_presentation_path(@next_up)%></q>
+      <q><%=link_to "Back to all projects", event_path(@project.event)%></q>
       <% end %>
     </section>
   </div>
@@ -63,7 +63,7 @@ Reveal.initialize({
     history: false,
     keyboard: true,
     overview: true,
-    center: true,
+    center: false,
     touch: true,
     loop: false,
     rtl: false,

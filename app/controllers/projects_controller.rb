@@ -31,6 +31,7 @@ class ProjectsController < OrganizationController
   # POST /projects.json
   def create
     @project.project_owner = current_user
+    @project.submitted_user = current_user
 
     respond_to do |format|
       if @project.save

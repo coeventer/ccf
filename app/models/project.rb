@@ -2,7 +2,8 @@ class Project < ActiveRecord::Base
   include SlackNotifiable
 
   attr_accessible :description, :title, :classification, :project_owner, :event_id,
-  :approved, :repository, :project_comments_count, :project_ratings_count, :project_volunteers_count
+  :approved, :repository, :project_comments_count, :project_ratings_count, :project_volunteers_count,
+  :submitted_user_id
 
   has_many :comments, :class_name => "ProjectComment"
   has_many :ratings, :class_name => "ProjectRating"
@@ -11,6 +12,7 @@ class Project < ActiveRecord::Base
   has_one :presentation, dependent: :delete
 
   belongs_to :project_owner, :class_name => "User"
+  belongs_to :submitted_user, :class_name => "User"
   belongs_to :organization
   belongs_to :event
 
@@ -127,7 +129,8 @@ class Project < ActiveRecord::Base
   end
 
   def transferable_owners
-    event ? event.event_registrations.includes(:user).reorder("users.name").map(&:user) : []
+    users = event ? event.event_registrations.includes(:user).reorder("users.name").map(&:user) : []
+    users.push(project_owner) unless users.include?(project_owner)
   end
 
   def self.to_csv
