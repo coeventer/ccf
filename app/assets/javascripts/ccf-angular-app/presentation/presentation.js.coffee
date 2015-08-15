@@ -3,7 +3,8 @@
     "ngDialog",
     "restangular",
     "ui.bootstrap",
-    "templates"
+    "templates",
+    "yaru22.md"
   ])
   .config((RestangularProvider)->
     console.log("configuring this bitch")

@@ -21,6 +21,8 @@
 //= require ngDialog/js/ngDialog.min
 //= require restangular/src/restangular
 //= require angular-bootstrap/ui-bootstrap-tpls.min
+//= require marked/lib/marked
+//= require angular-md/dist/angular-md.min
 
 //= require ccf-angular-app/app
 //= require_tree ./ccf-angular-app/presentation
