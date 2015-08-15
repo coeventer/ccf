@@ -129,7 +129,7 @@ class Project < ActiveRecord::Base
   end
 
   def transferable_owners
-    users = event ? event.event_registrations.includes(:user).reorder("users.name").map(&:user) : []
+    users = event ? event.registrations.includes(:user).reorder("users.name").map(&:user) : []
     users.push(project_owner) unless users.include?(project_owner)
   end
 
