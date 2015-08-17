@@ -56,7 +56,7 @@ class Ability
       end
 
       can :edit, Presentation do |presentation|
-        presentation.try(:user) == user || (!presentation.project.event.nil? && presentation.project.event.moderator?(user))
+        presentation.project.try(:project_owner) == user || (!presentation.project.event.nil? && presentation.project.event.moderator?(user))
       end
 
     else
