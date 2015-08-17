@@ -4,11 +4,13 @@ class PresentationsController < OrganizationController
   layout 'presentation'
   
   def show
-    authorize! :edit, @presentation unless @project.presentation.published?
-    @next_up = @project.event.projects[@project.event.projects.index(@project)+1]
+    unless can?(:edit, @presentation) || @project.presentation.published?
+      redirect_to project_path(@project), notice: "Only event moderators and project owners can view the presentation until it has been published"
+    end
   end
 
   def update
+    authorize! :edit, @presentation
     @presentation.update_attributes(presentation_params)
     
     respond_to do |format|
@@ -19,7 +21,6 @@ class PresentationsController < OrganizationController
 
   def publish
     authorize! :edit, @presentation
-
     @presentation.update_attributes(published: !@presentation.published)
     redirect_to project_presentation_path(@project)
   end
