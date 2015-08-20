@@ -11,13 +11,16 @@
     <section>
       <h2>WHO worked on the project?</h2>
       <div class="clearfix">
-      <%@project.volunteers.each do |v| %>
+      <%@project.volunteers.each_with_index do |v, i| %>
         <div class='user_badge' style= "float: left; width: 150px; padding: 5px;">
           <%=link_to user_path(v.user) do%>
             <%=image_tag v.user_image, alt: v.user_name, width: 50, height: 50, title: v.user_name%>
             <p style="font-size: 20px"><%=v.user_name%></p>
           <%end%>
         </div>
+        <% if i > 0 && i % 5 == 0%>
+        <br />
+        <% end %>
       <% end %>
       </div>
     </section>
