@@ -24,14 +24,14 @@
       <% end %>
       </div>
     </section>
-    
+
     <section>
       <h2>WHY did we do this project?</h2>
       <div ng-click="editPresentation(presentation, 'why')">
         <md ng-model="presentation.why || defaultText">
       </div>
     </section>
-    
+
     <section>
       <h2>WHAT did we do?</h2>
 
@@ -39,7 +39,7 @@
         <md ng-model="presentation.what || defaultText">
       </div>
     </section>
-    
+
     <section>
       <h2>What went RIGHT?</h2>
       <div ng-click="editPresentation(presentation, 'right')">
@@ -63,9 +63,7 @@
 
     <section>
       <h2>Any questions or comments?</h2>
-      <% if @next_up   %>
-      <q><%=link_to "Back to all projects", event_path(@project.event)%></q>
-      <% end %>
+      <h3><%=link_to "Back to all projects", event_path(@project.event)%></h3>
     </section>
   </div>
 </div>
