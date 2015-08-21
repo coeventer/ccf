@@ -65,7 +65,7 @@ class Event < ActiveRecord::Base
   end
 
   def completed?
-    Time.now > e.end_date
+    Time.now > end_date
   end
 
   def moderator?(user)
