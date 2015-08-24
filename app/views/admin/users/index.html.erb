@@ -5,9 +5,10 @@
       <div class="form-group">
         <%=text_field :query, 'field', :placeholder => 'Search', :class => "form-control" %>
       </div>
-      <%=hidden_field :query, 'unverified', :value => '0'%>
+      <%=hidden_field :query, 'unverified', :value => params[:unverified]%>
       <div class="form-group">
-        <%=link_to "Only unverified", '#', :class => "btn btn-danger", :id => "unverified"%>
+        <% btn_class = params[:unverified] == "1" ? "danger" : "success" %>
+        <%=link_to "Only unverified", admin_users_path(unverified: params[:unverified] == "1" ? "0" : "1"), :class => "btn btn-#{btn_class}", :id => "unverified"%>
       </div>
     <%end%>
   </div>
@@ -19,24 +20,6 @@
   $("#query_field").keyup(function(){
     updateUsers();
   });
-
-  $("#unverified").click(function(e){
-    e.preventDefault();
-
-    if ($("#query_unverified").val() === '0') {
-      $("#unverified").removeClass('btn-danger').
-      addClass('btn-success');
-      $("#query_unverified").val('1');
-    }
-    else {
-      $("#unverified").removeClass('btn-success').
-      addClass('btn-danger');
-      $("#query_unverified").val('0');
-    }
-
-    updateUsers();
-  });
-
   function updateUsers(){
     $.get('<%=search_admin_users_path(:format => :js)%>',
     {query: $("#query_field").val(), unverified: $("#query_unverified").val()}); 

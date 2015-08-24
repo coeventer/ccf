@@ -32,8 +32,8 @@
       </td>
       <td>
         <div class="btn-group">
-          <%=link_to "Verify", verify_admin_user_path(u), :class => "btn btn-sm btn-default", method: :put unless u.verified %>
-          <%=link_to "Make Admin", canonize_admin_user_path(u), :class => "btn btn-sm btn-default", method: :put, confirm: "Are you sure?" unless u.admin %>
+          <%=link_to "Verify", verify_admin_user_path(u, params.slice(:unverified)), :class => "btn btn-sm btn-default", method: :put unless u.verified %>
+          <%=link_to "Make Admin", canonize_admin_user_path(u, params.slice(:unverified)), :class => "btn btn-sm btn-default", method: :put, confirm: "Are you sure?" unless u.admin %>
         </div>
         <div class="btn-group">
           <%=link_to "Delete", admin_user_path(u), :method => :delete, :class => "btn btn-sm btn-danger", :confirm => "This will remove the user from your organization."%>

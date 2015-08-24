@@ -31,12 +31,12 @@ class Admin::UsersController < Admin::AdminController
 
   def verify
     @user.update_attributes(verified: true)
-    redirect_to admin_users_path, :message => "Verified #{@user.user_name}"
+    redirect_to admin_users_path(params.slice(:unverified)), :message => "Verified #{@user.user_name}"
   end
 
   def canonize
     @user.update_attributes(admin: true)
-    redirect_to admin_users_path, :message => "#{@user.user_name} now an organization admin"
+    redirect_to admin_users_path(params.slice(:unverified)), :message => "#{@user.user_name} now an organization admin"
   end
 
   def find_user
