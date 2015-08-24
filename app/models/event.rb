@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   include SlackNotifiable
 
-  attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date, 
+  attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date,
     :volunteering_enabled, :description, :registration_end_dt, :registration_maximum,
     :live, :schedule, :other_info, :event_logo, :dashboard_enabled, :remove_event_logo
 
@@ -12,18 +12,18 @@ class Event < ActiveRecord::Base
   has_many :moderators, :class_name => "EventModerator"
   has_many :ratings, :through => :projects
   has_many :volunteers, :through => :projects, dependent: :delete_all
-  has_many :comments, :through => :projects 
+  has_many :comments, :through => :projects
   has_many :event_comments
 
   mount_uploader :event_logo, EventLogoUploader
 
   validates :title, :presence => true
+  validates :description, :presence => true
   validates :start_date, :presence => true
   validates :end_date, :presence => true
 
-  with_options if: :live? do |live|
+  with_options if: :live do |live|
     live.validates :schedule, :presence => true
-    live.validates :description, :presence => true
     live.validates :voting_enabled, :inclusion => [true, false]
     live.validates :volunteering_enabled, :inclusion => [true, false]
     live.validates :registration_end_dt, :presence => true
@@ -42,7 +42,7 @@ class Event < ActiveRecord::Base
   end
 
   # Volunteering is enabled if the volunteering enabled boolean is turned on, it is before the event ends
-  # and before the volunteering end date, if it is set  
+  # and before the volunteering end date, if it is set
   def volunteering_enabled?
     return self.live? && self.volunteering_enabled && (self.volunteer_end_date.nil? ? true : Time.now < self.volunteer_end_date) && Time.now <= self.end_date
   end
