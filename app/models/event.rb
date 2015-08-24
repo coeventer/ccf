@@ -25,7 +25,9 @@ class Event < ActiveRecord::Base
   with_options if: :live do |live|
     live.validates :schedule, :presence => true
     live.validates :voting_enabled, :inclusion => [true, false]
+    live.validates :voting_end_date,  :presence => true, if: :voting_enabled
     live.validates :volunteering_enabled, :inclusion => [true, false]
+    live.validates :volunteer_end_date,  :presence => true, if: :volunteering_enabled
     live.validates :registration_end_dt, :presence => true
     live.validates :registration_maximum, :presence => true
   end
