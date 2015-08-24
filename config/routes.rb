@@ -69,6 +69,11 @@ CampusCodefest::Application.routes.draw do
       collection do
         get :search
       end
+
+      member do
+        put :canonize
+        put :verify
+      end
     end
 
     resources :events do

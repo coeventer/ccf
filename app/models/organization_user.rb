@@ -12,6 +12,7 @@ class OrganizationUser < ActiveRecord::Base
   delegate :admin, :name, :email, :uid, :department, :department=, to: :user, prefix: true
 
   default_scope {includes(:user)}
+  scope :unverified, ->{ where(verified: false) }
 
   def welcome_email
     UserMailer.organization_user_created(user, organization)

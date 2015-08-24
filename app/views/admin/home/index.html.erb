@@ -1,33 +1,33 @@
-<h1><%=current_organization.name%> administrator interface</h1>
 <p>This interface allows you to manage <%= APP_CONFIG['brand']['site_name'] %> events, manage other admins, moderate your event and manage your organization.</p>
 <hr />
+
+<h2>Upcoming Events</h2>
 <% if @event %>
 <h2>You have an event scheduled</h2>
 <h3><%=link_to @event.title, admin_event_path(@event)%></h3>
 <p><%=@event.pretty_dates%></p>
 <p>
   <%=link_to "Edit", edit_admin_event_path(@event), :class => "btn btn-sm btn-default" %>
-  <%=link_to "Delete", admin_event_path(@event), :method => :delete, :class => "btn btn-sm btn-danger", :confirm => "Are you sure? This cannot be undone and will delete all related event projects, voting, etc." %>
 </p>
 <% else %>
+<p>You do not have any upcoming events, do you want to start planning one?</p>
 <p><%=link_to new_admin_event_path, :class => "btn btn-lg btn-success" do%>
 Create an event
 <% end %></p>
 <%end%>
+<hr />
 
-<div class="well">
+<h2>Users</h2>
 <ul>
-  <li>
-    <%=link_to "Change organization details", edit_admin_organization_path%>
+  <li><%=current_organization.users.count%> users have joined your organization.</li>
+  <% if current_organization.users.unverified.count > 0%>
+  <li><%=current_organization.users.unverified.count%> users have requested to join, but need to be <%=link_to "manually verified", admin_users_path(unverified: "1")%>. These users cannot do anything until they have been verified.
   </li>
-  <li>
-    <%=link_to "Create/Manage events", admin_events_path %>
-  </li>
-  <li>
-    <%=link_to "Manage project backlog", admin_projects_path%>
-  </li>
-  <li>
-    <%=link_to "Manage organization users", admin_users_path%>
-  </li>
+  <% end %>
 </ul>
-</div>
+ 
+<hr />
+
+<h2>Ideas</h2>
+<p>If you have no upcoming event, your organization's users can still submit ideas to the backlog. These can be ideas assigned to future events.
+

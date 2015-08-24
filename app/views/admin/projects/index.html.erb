@@ -3,13 +3,13 @@
 <p><%=link_to "Back to #{@event.title} admin", admin_event_path(@event)%></p>
 <p><%=link_to "Download to CSV", admin_event_projects_path(@event, :format => :csv), :class => "btn btn-default"%>
 <%else%>
-<h1>Projects backlog</h1>
+<h1>Idea backlog</h1>
 <p><%=link_to "Back to admin", admin_root_path%></p>
 <p><%=link_to "Download to CSV", admin_projects_path(:format => :csv), :class => "btn btn-default"%>
 <%end%>
 <table class="table table-striped table-hover table-condensed table-bordered">
   <thead>
-    <th>Project</th>
+    <th>Idea</th>
     <th>Classification</th>
     <th>Votes</th>
     <% if @event %>

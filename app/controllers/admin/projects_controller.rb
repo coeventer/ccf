@@ -53,7 +53,7 @@ class Admin::ProjectsController < Admin::AdminController
     if @event
       admin_event_projects_path(@event)
     else
-      admin_project_path
+      admin_projects_path
     end
   end
 end

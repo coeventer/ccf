@@ -2,7 +2,6 @@
   <thead>
     <th>User</th>
     <th>Email</th>
-    <th>Department</th>
     <th>Projects</th>
     <th>Votes</th>
     <th>Verified</th>
@@ -14,7 +13,6 @@
     <tr>
       <td><%=u.user.name%></td>
       <td><%=u.user.email%></td>
-      <td><%=u.user.department%></td>
       <td><%=u.user.projects.count%></td>
       <td><%=u.user.project_ratings.count%></td>
       <td>
@@ -34,7 +32,10 @@
       </td>
       <td>
         <div class="btn-group">
-          <%=link_to "Edit", edit_admin_user_path(u), :class => "btn btn-sm btn-default"%>
+          <%=link_to "Verify", verify_admin_user_path(u), :class => "btn btn-sm btn-default", method: :put unless u.verified %>
+          <%=link_to "Make Admin", canonize_admin_user_path(u), :class => "btn btn-sm btn-default", method: :put, confirm: "Are you sure?" unless u.admin %>
+        </div>
+        <div class="btn-group">
           <%=link_to "Delete", admin_user_path(u), :method => :delete, :class => "btn btn-sm btn-danger", :confirm => "This will remove the user from your organization."%>
         </div>
       </td>

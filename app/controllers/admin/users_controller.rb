@@ -1,18 +1,19 @@
 class Admin::UsersController < Admin::AdminController
+  before_filter :find_user, only: [:show, :edit, :update, :destroy, :verify, :canonize]
   def index
-    @users = current_organization.users.paginate(:page => params[:page], :per_page => 30)
+    @users = current_organization.users
+    @users = @users.unverified if params[:unverified] == "1"
+    @users = @users.paginate(:page => params[:page], :per_page => 30)
   end
 
   def show
-    @user = current_organization.users.find(params[:id])
+    
   end
 
   def edit
-    @user = current_organization.users.find(params[:id])
   end
 
   def update
-    @user = current_organization.users.find(params[:id])
     if @user.update_attributes(params[:organization_user]) then
       redirect_to admin_users_path, :message => "Updated #{@user.user_name}"
     else
@@ -21,13 +22,25 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def destroy
-    @user = current_organization.users.find(params[:id])
-
     if @user.destroy then
       redirect_to admin_users_path, :message => "Deleted #{@user.user_name} from organization"
     else
       redirect_to admin_users_path, :message => "Unabled to delete #{@user.user_name} from organization"
     end
+  end
+
+  def verify
+    @user.update_attributes(verified: true)
+    redirect_to admin_users_path, :message => "Verified #{@user.user_name}"
+  end
+
+  def canonize
+    @user.update_attributes(admin: true)
+    redirect_to admin_users_path, :message => "#{@user.user_name} now an organization admin"
+  end
+
+  def find_user
+    @user = current_organization.users.find(params[:id])
   end
 
   def search

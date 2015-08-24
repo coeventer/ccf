@@ -1,3 +1,4 @@
+<h2>Editting <%=@user.user_name%></h2>
 <%=semantic_form_for @user, :url => admin_user_path(@user) do |f|%>
   <div class="form-group">
     <label>Name</label>
@@ -11,7 +12,6 @@
       <%=@user.user_uid%>
     </p>
   </div>
-  <%=f.input :user_department%>
   <%=f.input :admin%>
   <%=f.input :verified%>
   <%=f.action :submit, :button_html => { :value => 'Save Changes', :class => "btn btn-primary" }%>

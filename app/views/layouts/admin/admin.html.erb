@@ -1,0 +1,46 @@
+<% event_count = @future_events.count %>
+<% idea_count = Project.backlog.count %>
+<% user_count = current_organization.users.unverified.count %>
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <%= render :partial => 'layouts/common/head' %>
+  </head>
+  <body>
+    <%= render :partial => 'layouts/common/header' %>
+    <%= render :partial => 'shared/campuscodefest/org_navigation' %>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><%=link_to "Home", admin_root_path%></li>
+            <li><%=link_to admin_events_path do%>
+                Events 
+                <% if event_count > 0%><span class="badge badge-info"><%=event_count%></span><%end%>
+                <% end %>
+            </li>
+            <li><%=link_to admin_users_path do %>
+              Users 
+              <% if user_count > 0%><span class="badge badge-info"><%=user_count%></span><%end%>
+              <% end %>
+            </li>
+            <li><%=link_to admin_projects_path do%>
+              Ideas 
+              <% if idea_count > 0%><span class="badge badge-info"><%=idea_count%></span><%end%>
+              <% end %>
+            </li>
+            <li><%=link_to "Settings", edit_admin_organization_path%></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-10" style="border-left: 1px solid #eee;">
+          <h1><%=current_organization.name%> Admin</h1>
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= render :partial => 'layouts/common/footer' %>
+    <%= render_if_exists :partial => 'shared/campuscodefest/analytics' %>
+  </body>
+</html>
