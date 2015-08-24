@@ -1,0 +1,29 @@
+<p>
+  Event Information - 
+  <%=link_to "Registration", '#'%> - 
+  <%=link_to "Ideas", '#'%> - 
+  <%=link_to "Schedule", '#'%> - 
+  <%=link_to "Invitations", '#'%> - 
+  <%=link_to "Publish", '#'%>
+</p>
+<h2>Registration</h2>
+<p>Please provide us some information about registration for your event.</p>
+
+<%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
+  <%= f.inputs do %>
+    <%=f.input :registration_end_dt, label: "Registration End Date", as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+    <%=f.input :registration_maximum, label: "Maximum Number of Registrants" %>
+  <% end %>
+  <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", admin_events_path, :class => "btn btn-link"%>
+
+  <script type="text/javascript">
+    $('textarea').each(function( index ) {
+      $(this).wysihtml5();
+    });
+  </script>
+<%end%>
+<script>
+$('[data-behaviour~=datepicker]').datetimepicker({
+  format:'Y-m-d H:i'
+});
+</script>

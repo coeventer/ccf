@@ -1,0 +1,26 @@
+<p>
+  Event Information - 
+  <%=link_to "Registration", '#'%> - 
+  <%=link_to "Ideas", '#'%> - 
+  <%=link_to "Schedule", '#'%> - 
+  <%=link_to "Invitations", '#'%> - 
+  <%=link_to "Publish", '#'%>
+</p>
+<h2>Logo</h2>
+<p>Logo for the event</p>
+
+<%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
+  <%= f.inputs do %>
+    <%if @event.event_logo? %>
+      <%=f.label :remove_current_logo%>
+      <%=f.check_box :remove_event_logo %>
+      <%=image_tag @event.event_logo_url%>
+      <br />
+    <%end%>
+    <%=f.label :event_logo%>
+    <%=f.file_field :event_logo%>
+  <% end %>
+  <hr />
+  <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", admin_events_path, :class => "btn btn-link"%>
+
+<%end%>

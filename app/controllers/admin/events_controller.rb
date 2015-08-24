@@ -15,7 +15,7 @@ class Admin::EventsController < Admin::AdminController
     @event = Event.create(params[:event])
 
     if @event.valid? then
-      redirect_to admin_event_path(@event), :message => "Created event #{@event.title}"
+      redirect_to admin_event_builder_path(@event, :registration)
     else
       render :new
     end

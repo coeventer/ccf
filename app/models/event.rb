@@ -17,15 +17,18 @@ class Event < ActiveRecord::Base
 
   mount_uploader :event_logo, EventLogoUploader
 
+  validates :title, :presence => true
   validates :start_date, :presence => true
   validates :end_date, :presence => true
-  validates :title, :presence => true
-  validates :schedule, :presence => true
-  validates :description, :presence => true
-  validates :voting_enabled, :inclusion => [true, false]
-  validates :volunteering_enabled, :inclusion => [true, false]
-  validates :registration_end_dt, :presence => true
-  validates :registration_maximum, :presence => true
+
+  with_options if: :live? do |live|
+    live.validates :schedule, :presence => true
+    live.validates :description, :presence => true
+    live.validates :voting_enabled, :inclusion => [true, false]
+    live.validates :volunteering_enabled, :inclusion => [true, false]
+    live.validates :registration_end_dt, :presence => true
+    live.validates :registration_maximum, :presence => true
+  end
 
   default_scope { where(organization_id: Organization.current_id).order("events.start_date desc") }
   scope :future, where("end_date > ?", Date.today)

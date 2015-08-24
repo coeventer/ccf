@@ -1,0 +1,23 @@
+<p>
+  Event Information - 
+  <%=link_to "Registration", '#'%> - 
+  <%=link_to "Ideas", '#'%> - 
+  <%=link_to "Schedule", '#'%> - 
+  <%=link_to "Invitations", '#'%> - 
+  <%=link_to "Publish", '#'%>
+</p>
+<h2>Schedule</h2>
+<p>If you have details about the day(s) of the event, provide them here. It will appear on the event page.</p>
+
+<%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
+  <%= f.inputs do %>
+    <%=f.input :schedule%>
+  <% end %>
+  <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", admin_events_path, :class => "btn btn-link"%>
+
+  <script type="text/javascript">
+    $('textarea').each(function( index ) {
+      $(this).wysihtml5();
+    });
+  </script>
+<%end%>
