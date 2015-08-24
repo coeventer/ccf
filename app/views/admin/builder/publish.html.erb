@@ -1,11 +1,5 @@
-<p>
-  Event Information - 
-  <%=link_to "Registration", '#'%> - 
-  <%=link_to "Ideas", '#'%> - 
-  <%=link_to "Schedule", '#'%> - 
-  <%=link_to "Invitations", '#'%> - 
-  <%=link_to "Publish", '#'%>
-</p>
+<%= render partial: "admin/builder/nav", locals: { active: :publish } %>
+
 <h2>Publish</h2>
 <p>Are you ready for your event to be live? Until you publish, this event can only be seen by admins and is not available on the website.</p>
 

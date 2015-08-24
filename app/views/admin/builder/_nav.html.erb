@@ -1,0 +1,34 @@
+<% active ||= :information %>
+
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="<%=active_event_tab(:information, active)%>">
+    <%= link_to wizard_path(:information), "aria-controls"=>"home", "role"=>"tab" do %>
+      Event Information
+    <% end %>
+  </li>
+  <li role="presentation" class="<%=active_event_tab(:registration, active)%>">
+    <%= link_to wizard_path(:registration), "aria-controls"=>"home", "role"=>"tab" do %>
+      Registration
+    <% end %>
+  </li>
+  <li role="presentation" class="<%=active_event_tab(:ideas, active)%>">
+    <%= link_to wizard_path(:ideas), "aria-controls"=>"home", "role"=>"tab" do %>
+      Ideas
+    <% end %>
+  </li>
+  <li role="presentation" class="<%=active_event_tab(:schedule, active)%>">
+    <%= link_to wizard_path(:schedule), "aria-controls"=>"home", "role"=>"tab" do %>
+      Schedule
+    <% end %>
+  </li>
+  <li role="presentation" class="<%=active_event_tab(:logos, active)%>">
+    <%= link_to wizard_path(:logo), "aria-controls"=>"home", "role"=>"tab" do %>
+      Logo
+    <% end %>
+  </li>
+  <li>
+    <%= link_to wizard_path(:publish), "aria-controls"=>"home", "role"=>"tab" do %>
+      Publish
+    <% end %>
+  </li>
+</ul>

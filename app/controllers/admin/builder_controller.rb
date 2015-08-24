@@ -3,7 +3,7 @@ class Admin::BuilderController < Admin::AdminController
 
   before_filter :find_event
 
-  steps :registration, :ideas, :schedule, :logo, :publish, :published
+  steps :information, :registration, :ideas, :schedule, :logo, :publish, :published
 
   def show
     render_wizard
@@ -11,7 +11,7 @@ class Admin::BuilderController < Admin::AdminController
 
   def update
     skip_step if @event.update_attributes(params[:event])
-    
+
     render_wizard
   end
 

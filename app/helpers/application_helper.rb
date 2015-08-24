@@ -41,4 +41,8 @@ module ApplicationHelper
       event_event_comment_path(comment.event, comment)
     end
   end
+
+  def active_event_tab(tab, active)
+    tab == active ? "active" : ""
+  end
 end
