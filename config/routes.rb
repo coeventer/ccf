@@ -88,5 +88,6 @@ CampusCodefest::Application.routes.draw do
     end
 
     resources :projects
+    resources :after_create
   end
 end

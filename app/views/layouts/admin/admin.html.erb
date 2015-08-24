@@ -13,23 +13,29 @@
       <div class="row">
         <div class="col-sm-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><%=link_to "Home", admin_root_path%></li>
+            <li><%=link_to admin_root_path do%>
+              <i class="fa fa-home"></i> Home
+              <% end%>
+            </li>
             <li><%=link_to admin_events_path do%>
-                Events 
+                <i class="fa fa-calendar"></i> Events 
                 <% if event_count > 0%><span class="badge badge-info"><%=event_count%></span><%end%>
                 <% end %>
             </li>
             <li><%=link_to admin_users_path do %>
-              Users 
+              <i class="fa fa-users"></i> Users 
               <% if user_count > 0%><span class="badge badge-info"><%=user_count%></span><%end%>
               <% end %>
             </li>
             <li><%=link_to admin_projects_path do%>
-              Ideas 
+              <i class="fa fa-rocket"></i> Ideas 
               <% if idea_count > 0%><span class="badge badge-info"><%=idea_count%></span><%end%>
               <% end %>
             </li>
-            <li><%=link_to "Settings", edit_admin_organization_path%></li>
+            <li><%=link_to edit_admin_organization_path do%>
+              <i class="fa fa-cogs"></i> Settings
+              <% end %>
+            </li>
           </ul>
         </div>
 

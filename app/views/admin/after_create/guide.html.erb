@@ -1,0 +1,13 @@
+<p>
+  You have created <%=current_organization.name%>. You are now in the admin area. You can always return to this area by clicking your user name in the upper-left navigation and selecting "Admin".
+</p>
+
+<p>
+  If this is your first time using our application, please <%=link_to "continue", next_wizard_path%> our guided set up. If this is not your first rodeo, use the side navigation to continue setting up your organization.
+</p>
+
+<p>
+  <%=link_to next_wizard_path, class: "btn btn-primary" do%>
+    <i class="fa fa-arrow-circle-right"></i> Continue
+  <% end %>
+</p>

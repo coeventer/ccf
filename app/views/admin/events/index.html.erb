@@ -1,5 +1,5 @@
 <h2>Events</h2>
-<p><%=link_to "Create an event", new_admin_event_path, :class => "btn btn-success"%></p>
+<p><%=link_to new_admin_event_path, :class => "btn btn-success" do%><i class="fa fa-calendar"></i> Create an event<% end %></p>
 <%if @events.blank? then%>
   <p>You have not created any events yet.</p>
 <%else%>

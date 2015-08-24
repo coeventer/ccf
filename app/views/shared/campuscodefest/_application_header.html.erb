@@ -3,11 +3,14 @@
   <% if current_organization.organization_logo?%>
     <%= image_tag current_organization.organization_logo_url.to_s%>
   <% else %>
-    <%=current_organization.name%> &#8226; 
+    
   <%end%>
 </a>
 <% end %>
 <a class="navbar-brand" href="/">
+  <% unless current_organization.organization_logo?%>
+  <i class="fa fa-cloud""></i> <%=current_organization.name%>&nbsp;&#8226;&nbsp;
+  <% end %>
   <%= APP_CONFIG["brand"]["site_name"] %>
 </a>
 

@@ -27,6 +27,7 @@ gem 'angular-rails-templates'
 gem 'bower-rails'
 gem 'rabl'
 gem 'slack-notifier'
+gem 'wicked'
 
 group :development do
   gem 'better_errors'

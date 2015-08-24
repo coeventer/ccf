@@ -1,0 +1,32 @@
+<h2>Privacy level</h2>
+
+<p>
+  Your organizations is currently set to [current_organization.privacy]. We offer two levels of privacy for organizations:
+  <uL>
+    <li>
+      <b>Private</b>: Members must be invited by you (or another admin) to join you organization. Events, ideas and other information can not be seen be non-members.
+    </li>
+
+    <li>
+      <b>Public with Verification</b>: Members can request to join your organization. You can manually verify users or automatically verify certain email domains (ex. umn.edu). Events, ideas and other information can be seen by anyone.
+    </li>
+
+    <li>
+      <strike><b>Public</b>: Anyone can join your organization and see your events and ideas. Not yet implemented.</strike>
+    </li>
+  </ul>
+<p>
+
+<h3>Change your privacy level or continue as-is: </h3>
+
+<%=semantic_form_for current_organization, url: wizard_path, method: :put do |f|%>
+  <%=f.inputs do%>
+    <%=f.input :auto_verify, hint: "Do you want to automatically verify users with a certain email domain?"%>
+    <%=f.input :auto_verify_domains, hint: "Comma seperated domains. Ex. umn.edu, d.umn.edu"%>
+  <% end %>
+  <hr />
+  <%=f.submit :class => "btn btn-primary"%> or 
+  <%=link_to next_wizard_path, class: "btn btn-primary" do%>
+    <i class="fa fa-arrow-circle-right"></i> Continue
+  <% end %>
+<%end%>

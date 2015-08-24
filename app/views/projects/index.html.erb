@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
   <li><%=link_to 'Home', root_path %></li>
-  <li class="active">Project Backlog</li>
+  <li class="active">Idea Backlog</li>
 </ol>
 <p>No event in progress? Want to get a thought out but work on it in the future? Throw it on the backlog.</p>
 <% if can? :create, Project then %>
@@ -12,7 +12,7 @@
 <hr />
 <div class="row">
   <div class="col-sm-12">
-    <h3>Project Backlog</h3>
+    <h3>Idea Backlog</h3>
     <%= render partial: "projects/project_list" %>
   </div>
 </div>

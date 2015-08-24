@@ -3,7 +3,6 @@
 
 <h2>Upcoming Events</h2>
 <% if @event %>
-<h2>You have an event scheduled</h2>
 <h3><%=link_to @event.title, admin_event_path(@event)%></h3>
 <p><%=@event.pretty_dates%></p>
 <p>
@@ -12,7 +11,7 @@
 <% else %>
 <p>You do not have any upcoming events, do you want to start planning one?</p>
 <p><%=link_to new_admin_event_path, :class => "btn btn-lg btn-success" do%>
-Create an event
+<i class="fa fa-calendar"></i> Create an event
 <% end %></p>
 <%end%>
 <hr />
