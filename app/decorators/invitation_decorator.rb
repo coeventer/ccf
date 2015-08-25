@@ -13,7 +13,8 @@ class InvitationDecorator < Draper::Decorator
       }
     else
       %{
-      Org
+      You have been invited to join the organization #{object.name}. If you accept, you will become a verified member
+      of the organization.
       }
     end
   end
