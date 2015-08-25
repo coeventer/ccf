@@ -1,5 +1,6 @@
 class OrganizationHomeController < OrganizationController
   skip_before_filter :auth_required, only: [:index]
+  skip_before_filter :publically_accessible, only: [:unverified]
   def index
   end
 

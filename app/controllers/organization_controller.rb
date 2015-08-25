@@ -2,6 +2,7 @@ class OrganizationController < ApplicationController
   include OrganizationLib
   layout 'organization'
   around_filter :scope_current_organization
+  before_filter :publically_accessible
 
   def current_organization
     Organization.find_by_subdomain! request.subdomain
@@ -14,7 +15,7 @@ class OrganizationController < ApplicationController
   end
 
   def verification_required
-    return true if current_user.admin? ||  current_organization.verified?(current_user)
+    return true if current_user.admin? || current_organization.admin?(current_user) || current_organization.verified?(current_user)
     respond_to do |format|
       format.html do
         redirect_to unverified_path
@@ -29,6 +30,12 @@ class OrganizationController < ApplicationController
   end
 
 private
+
+  def publically_accessible
+    return true if current_organization.public_access
+
+    auth_required && verification_required
+  end
 
   def scope_current_organization
     Organization.current_id = current_organization.id

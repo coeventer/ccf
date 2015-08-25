@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
+  skip_before_filter :publically_accessible
   skip_before_filter :auth_required, :except => [:unverified]
+  
   def index
   end
 

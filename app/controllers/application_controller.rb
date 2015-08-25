@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
       format.html {redirect_to signin_path, :notice => "Your session has timed out. Please re-authenticate." and return false}
       format.js {render 'sessions/new', layout: false}
     end
+
+    false
   end
 
   # Remove all traces of user session from application session cookie
