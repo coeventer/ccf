@@ -66,12 +66,21 @@
           <a class="dropdown-toggle text-right"
              data-toggle="dropdown"
              href="#">
+              <% if alerts && !alerts.blank? %>
+              <span class="badge badge-info"><%=alerts.count%></span>
+              <% end %>
               <%=current_user.name%>
               <%=image_tag current_user.image, height: 25, width: 25%>
               <span class="caret"></span>
             </a>
           <ul class="dropdown-menu">
             <!-- links -->
+            <li>
+              <%= link_to invitations_path do%>
+              <i class="fa fa-paper-plane-o"></i> Invitations
+              <%if alerts && !alerts.blank? %> <span class="badge badge-info"><%=alerts.count%></span><%end%>
+              <% end %>
+            </li>
             <li>
               <%= link_to user_path(current_user) do%>
               <span class="fa fa-user"></span> Public Profile

@@ -10,6 +10,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def alerts
+    return nil unless current_user
+
+    current_user.pending_invitations
+  end
+  helper_method :alerts
+
   def auth_required
     # If there is a current user, check session
     return true if current_user

@@ -37,6 +37,8 @@ class Event < ActiveRecord::Base
 
   before_destroy :unassign_projects
 
+  alias_attribute :name, :title
+
   # Voting is enabled if the voting enabled boolean is turned on, it is before the event start date
   # and before the voting end date, if it is set
   def voting_enabled?

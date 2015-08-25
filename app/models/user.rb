@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :project_volunteers
   has_many :event_registrations
   has_many :organization_users
+  has_many :invitations
 
   default_scope { order(:created_at)}
 
@@ -52,5 +53,9 @@ class User < ActiveRecord::Base
     else
       return false
     end
+  end
+
+  def pending_invitations
+    Invitation.pending.user(self)
   end
 end
