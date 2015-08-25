@@ -25,9 +25,9 @@ class Event < ActiveRecord::Base
   with_options if: :live do |live|
     live.validates :schedule, :presence => true
     live.validates :voting_enabled, :inclusion => [true, false]
-    live.validates :voting_end_date,  :presence => true, if: :voting_enabled
+    live.validates :voting_end_date,  :presence => true, if: "voting_enabled && live"
     live.validates :volunteering_enabled, :inclusion => [true, false]
-    live.validates :volunteer_end_date,  :presence => true, if: :volunteering_enabled
+    live.validates :volunteer_end_date,  :presence => true, if: "volunteering_enabled && live"
     live.validates :registration_end_dt, :presence => true
     live.validates :registration_maximum, :presence => true
   end
@@ -85,6 +85,13 @@ class Event < ActiveRecord::Base
     self.projects.each do |p|
       p.update_attributes(event_id: nil)
     end
+  end
+
+  def publishable?
+    self.live = true
+    publishable = valid?
+    self.live = false if self.live_changed?
+    publishable
   end
 
   def to_param

@@ -39,7 +39,7 @@
   </li>
   <li role="presentation" class="<%=active_event_tab(:publish, active)%>">
     <%= link_to @event.id ? wizard_path(:publish) : '#', "aria-controls"=>"home", "role"=>"tab" do %>
-      <%=check_required(@event.live) %>
+      <%=check_required(Event.find(@event.id).live) %>
 
       Publish
     <% end %>

@@ -1,11 +1,22 @@
 <%= render partial: "admin/builder/nav", locals: { active: :publish } %>
 
 <h2>Publish</h2>
+
 <p>Are you ready for your event to be live? Until you publish, this event can only be seen by admins and is not available on the website.</p>
 
+<p>
+<%=check_required(@event.publishable?) %>
+<% if @event.publishable? %>
+<b>Your event is ready to be published.</b>
+<% else %>
+Your event is not ready to be published. Visit the sections which have an <span class="fa fa-times text-danger"></span>, and fill in the information.
+<% end %>
+</p>
+
+
 <%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
-  <%= f.inputs do %>
-    <%=f.input :live, label: "Publish?" %>
-  <% end %>
-  <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", admin_events_path, :class => "btn btn-link"%>
+  <%=f.hidden_field :live, value: !@event.live %>
+    <%= f.actions do %>
+      <%= f.action :submit, label: "Publish", button_html: { class: "btn btn-success" } %>
+    <% end %>
 <%end%>
