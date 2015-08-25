@@ -47,6 +47,7 @@ class Invitation < ActiveRecord::Base
   private :accept_organization
 
   def accept_event(user)
+    invited_resource.organization.users.create(user: user, verified: true)
     reg = invited_resource.event_registrations.create(user: user)
 
     self.update_attributes(status: 'accepted') if reg

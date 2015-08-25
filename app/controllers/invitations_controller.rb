@@ -16,7 +16,7 @@ class InvitationsController < OrganizationController
     if @invitation.event?
       redirect_to event_path(@invitation.invited_resource)
     else
-      redirect_to root_path(subdomain: current_organization.subdomain)
+      redirect_to root_path(subdomain: @invitation.invited_resource.subdomain)
     end
   end
 
