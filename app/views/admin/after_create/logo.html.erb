@@ -1,0 +1,20 @@
+<h2>Add a logo</h2>
+<p>If you'd like a logo to replace the default image on the top of the page, upload it now. </p>
+<%=semantic_form_for current_organization, url: wizard_path, method: :put do |f|%>
+  <%=f.inputs do%>
+    <%if current_organization.organization_logo? %>
+      <%=f.label :remove_current_logo%>
+      <%=f.check_box :remove_organization_logo %>
+      <%=image_tag current_organization.organization_logo_url%>
+      <br />
+    <%end%>
+    <%=f.label :upload_organization_logo %>
+    <%=f.file_field :organization_logo%>
+  <% end %>
+  <hr />
+  
+  <%=f.submit :class => "btn btn-primary"%> or 
+  <%=link_to next_wizard_path, class: "btn btn-primary" do%>
+    <i class="fa fa-arrow-circle-right"></i> Continue
+  <% end %>
+<%end%>

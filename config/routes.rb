@@ -79,6 +79,7 @@ CampusCodefest::Application.routes.draw do
     resources :events do
       resources :event_moderators
       resources :event_registrations
+      resources :builder
 
       resources :projects do
         resources :project_volunteers
@@ -88,5 +89,6 @@ CampusCodefest::Application.routes.draw do
     end
 
     resources :projects
+    resources :after_create
   end
 end

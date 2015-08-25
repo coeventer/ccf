@@ -1,0 +1,25 @@
+<%= render partial: "admin/builder/nav", locals: { active: :ideas } %>
+
+<h2>Idea Likes/Volunteers</h2>
+<p>Do you want your members to be able to like and volunteer to help with ideas at your event? If so, please choose when the voting and volunteering ends. Default is the event end date.</p>
+
+<%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
+  <%= f.inputs do %>
+    <%=f.input :voting_enabled%>
+    <%=f.input :voting_end_date, label: "If voting is enabled, set the voting end date to" , as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+    <%=f.input :volunteering_enabled%>
+    <%=f.input :volunteer_end_date, label: "If volunteering is enabled, set the volunteer end date to", as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+  <% end %>
+  <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", admin_events_path, :class => "btn btn-link"%>
+
+  <script type="text/javascript">
+    $('textarea').each(function( index ) {
+      $(this).wysihtml5();
+    });
+  </script>
+<%end%>
+<script>
+$('[data-behaviour~=datepicker]').datetimepicker({
+  format:'Y-m-d H:i'
+});
+</script>

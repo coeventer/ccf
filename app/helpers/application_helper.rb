@@ -41,4 +41,24 @@ module ApplicationHelper
       event_event_comment_path(comment.event, comment)
     end
   end
+
+  def active_event_tab(tab, active)
+    tab == active ? "active" : ""
+  end
+
+  def check_required(is_checked)
+    if is_checked
+      '<span class="fa fa-check text-success"></span>'.html_safe
+    else
+      '<span class="fa fa-times text-danger"></span>'.html_safe
+    end
+  end
+
+  def check_optional(is_checked)
+    if is_checked
+      '<span class="fa fa-check text-success"></span>'.html_safe
+    else
+      '<span class="fa fa-minus text-info"></span>'.html_safe
+    end
+  end
 end

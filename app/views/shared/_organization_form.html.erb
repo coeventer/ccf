@@ -6,8 +6,7 @@
     <%=f.input :subdomain%>
     <%=f.input :auto_verify, hint: "Do you want to automatically verify users with a certain email domain?"%>
     <%=f.input :auto_verify_domains, hint: "Comma seperated domains. Ex. umn.edu, d.umn.edu"%>
-    <%=f.input :description%>
-    <%=f.input :website%>
+
     <%=f.input :slack_webhook_url, hint: "Do you have a slack webhook to post updates" unless @organization.new_record?%>
     <%if @organization.organization_logo? %>
       <%=f.label :remove_current_logo%>

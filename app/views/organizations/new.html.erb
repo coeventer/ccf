@@ -1,1 +1,11 @@
-<%= render partial: "shared/organization_form"%>
+<h1>Name your organization</h1>
+<p>Want to have your own place to create <%=brand_name%> events and collect ideas? Just create an organization. To get started, we just need a name for your organization. Something serious like <b>University of Minnesota</b>, or something fun like <b>World Dominators</b>. You also need to provide a subdomain, which will be the entry point to your own <%=brand_name%> world. Think short, but descriptive like <b>umn</b> or <b>dominators</b>.
+
+<%=semantic_form_for @organization do |f|%>
+  <%=f.inputs do%>
+    <%=f.input :name%>
+    <%=f.input :subdomain, hint: "Ex. 'umn' or 'dominators'. Your users will browse to <subdomain>.campuscodefest.org"%>
+  <% end %>
+  <hr />
+  <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", organizations_path%>
+<%end%>

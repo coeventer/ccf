@@ -13,14 +13,16 @@
       <%end%> comments</p>
     <%end%>
 
-    <% if can?(:edit, project.presentation) || project.presentation.published %>
-    <p>
-      <%=link_to project_presentation_path(project), class: "btn btn-primary" do%>
-        <i class="fa fa-play"></i> Presentation
+    <% unless @event.nil? && project.event.nil? %>
+      <% if can?(:edit, project.presentation) || project.presentation.published %>
+      <p>
+        <%=link_to project_presentation_path(project), class: "btn btn-primary" do%>
+          <i class="fa fa-play"></i> Presentation
+        <% end %>
+      </p>
+      <% elsif %>
+      <a href="#" class="btn btn-primary" disabled="disabled"><i class="fa fa-play"></i> Presentation</a>
       <% end %>
-    </p>
-    <% else %>
-    <a href="#" class="btn btn-primary" disabled="disabled"><i class="fa fa-play"></i> Presentation</a>
     <% end %>
 
   </div>

@@ -1,12 +1,12 @@
 <h2>Events</h2>
-<p><%=link_to "Create an event", new_admin_event_path, :class => "btn btn-success"%></p>
+<p><%=link_to new_admin_event_path, :class => "btn btn-success" do%><i class="fa fa-calendar"></i> Create an event<% end %></p>
 <%if @events.blank? then%>
   <p>You have not created any events yet.</p>
 <%else%>
   <table class="table table-striped table-hover table-condensed table-bordered">
     <thead>
       <th>Name</th>
-      <th>Live</th>
+      <th>Published</th>
       <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
@@ -35,7 +35,7 @@
         <td><%= l e.created_at, format: :short %></td>
         <td>
           <div class="btn-group">
-            <%=link_to "Edit", edit_admin_event_path(e), :class => "btn btn-sm btn-default"%>
+            <%=link_to "Edit", admin_event_builder_path(e, :information), :class => "btn btn-sm btn-default"%>
             <%=link_to "Delete", admin_event_path(e), :class => "btn btn-sm btn-danger",
                         :confirm => "Are you certain you want to do this?", :method => :delete%>
           </div>

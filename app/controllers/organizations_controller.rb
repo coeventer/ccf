@@ -1,11 +1,9 @@
 class OrganizationsController < ApplicationController
+
   skip_before_filter :auth_required, :only => [:index]
+
   def index
     @organizations = Organization.paginate(:page => params[:page], :per_page => 25)
-  end
-
-  def show
-
   end
 
   def new
@@ -17,7 +15,7 @@ class OrganizationsController < ApplicationController
 
     if @organization.save then
       @organization.users.create(user: current_user, admin: true, verified: true)
-      redirect_to root_url(subdomain: @organization.subdomain)
+      redirect_to admin_after_create_url(:guide, subdomain: @organization.subdomain)
     else
       render :new
     end

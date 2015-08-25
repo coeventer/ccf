@@ -7,7 +7,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 
-  gem "therubyracer"
+  gem "therubyracer", platform: :ruby
   gem "less-rails", '~> 2.5'
   gem 'less-rails-bootstrap', '~> 3.2.0'
   gem "font-awesome-rails", '>= 4.1.0'
@@ -27,6 +27,7 @@ gem 'angular-rails-templates'
 gem 'bower-rails'
 gem 'rabl'
 gem 'slack-notifier'
+gem 'wicked'
 
 group :development do
   gem 'better_errors'

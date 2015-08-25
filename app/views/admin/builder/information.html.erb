@@ -1,9 +1,8 @@
 <%= render partial: "admin/builder/nav", locals: { active: :information } %>
 
 <h2>Event Information</h2>
-<p>Tell us what you want to call your event, and give us as much or as little as you can for a description. The title will appear on all event pages and navigation. Also provide a start date and end date for your event.</p>
 
-<%=semantic_form_for @event, url: admin_events_path, method: :post do |f|%>
+<%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
   <%= f.inputs do %>
     <%=f.input :title%>
     <%=f.input :description%>
