@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150825031001) do
+ActiveRecord::Schema.define(:version => 20150825132119) do
 
   create_table "event_comments", :force => true do |t|
     t.integer  "event_id"
@@ -56,6 +56,18 @@ ActiveRecord::Schema.define(:version => 20150825031001) do
     t.integer  "organization_id",      :default => 0
     t.boolean  "dashboard_enabled",    :default => true
     t.string   "event_logo"
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.string   "email"
+    t.string   "token"
+    t.integer  "organization_id"
+    t.string   "context_type"
+    t.integer  "context_id"
+    t.integer  "user_id"
+    t.string   "status",          :default => "pending"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   create_table "organization_users", :force => true do |t|

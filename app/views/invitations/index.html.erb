@@ -1,0 +1,17 @@
+<h1>Invitations for <%=current_organization.name%></h1>
+<% @invitations.each do |invitation| %>
+  <h2><%= invitation.title %></h2>
+  <p><%= invitation.description %></p>
+  <p>
+    <%=link_to accept_invitation_path(invitation), class: "btn btn-success", method: :put do %> 
+      Accept
+    <% end %>
+
+    <%=link_to decline_invitation_path(invitation), class: "btn btn-warning", method: :put do %> 
+      Decline
+    <% end %>
+  </p>
+  <hr />
+<% end %>
+
+<p class="info">That's it, you don't have any other invitations. It's possible to have been sent an invitation to an email address which does not match your user email. Find the invitation in your email, click the invitation link.</p>

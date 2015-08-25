@@ -7,6 +7,7 @@ CampusCodefest::Application.routes.draw do
 
   # Shared routes
   resources :organizations
+
   resources :users do
     member do
       post :deactivate
@@ -43,6 +44,13 @@ CampusCodefest::Application.routes.draw do
     resources :event_registrations
     resource :dashboard
     resources :event_comments
+  end
+
+  resources :invitations, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do
+    member do
+      put :accept
+      put :decline
+    end
   end
 
   resource :organization_users, only: [:create]#, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }

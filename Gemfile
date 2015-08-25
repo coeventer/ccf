@@ -28,6 +28,7 @@ gem 'bower-rails'
 gem 'rabl'
 gem 'slack-notifier'
 gem 'wicked'
+gem 'draper', '~> 1.3'
 
 group :development do
   gem 'better_errors'

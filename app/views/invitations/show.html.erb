@@ -1,0 +1,12 @@
+<h1><%= @invitation.title %></h1>
+<p><%= @invitation.description %></p>
+<p>
+  <%=link_to accept_invitation_path(@invitation, token: @invitation.token), class: "btn btn-success", method: :put do %> 
+    Accept
+  <% end %>
+
+  <%=link_to decline_invitation_path(@invitation, token: @invitation.token), class: "btn btn-warning", method: :put do %> 
+    Decline
+  <% end %>
+</p>
+<hr />
