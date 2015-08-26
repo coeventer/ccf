@@ -31,6 +31,8 @@ class OrganizationUser < ActiveRecord::Base
   end
 
   def auto_verify
+    return true if self.verified
+
     self.verified = self.auto_verify?
     true
   end
