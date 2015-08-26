@@ -1,5 +1,8 @@
 class OrganizationUser < ActiveRecord::Base
   attr_accessible :admin, :organization_id, :verified, :user, :user_department, :user_id
+
+  WILDCARD_DOMAIN = '*'
+
   belongs_to :organization
   belongs_to :user, autosave: true
 
@@ -27,7 +30,9 @@ class OrganizationUser < ActiveRecord::Base
   end
 
   def auto_verify?
-    organization.auto_verify? && organization.auto_verify_domains.split(',').include?(user_email.split("@").last)
+    return false unless organization.auto_verify?
+
+    organization.auto_verify_domains == WILDCARD_DOMAIN || organization.auto_verify_domains.split(',').include?(user_email.split("@").last)
   end
 
   def auto_verify

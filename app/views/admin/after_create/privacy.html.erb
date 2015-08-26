@@ -12,7 +12,7 @@
     </li>
 
     <li>
-      <strike><b>Public</b>: Anyone can join your organization and see your events and ideas. Not yet implemented.</strike>
+      <b>Public</b>: Anyone can join your organization and see your events and ideas. To do this, enable public access, auto verify and enter '*' for the auto verify domains.
     </li>
   </ul>
 <p>
@@ -23,7 +23,7 @@
   <%=f.inputs do%>
     <%=f.input :public_access %>
     <%=f.input :auto_verify, hint: "Do you want to automatically verify users with a certain email domain?"%>
-    <%=f.input :auto_verify_domains, hint: "Comma seperated domains. Ex. umn.edu, d.umn.edu"%>
+    <%=f.input :auto_verify_domains, hint: "Comma seperated domains. Ex. umn.edu, d.umn.edu. Enter * to allow anyone to join."%>
   <% end %>
   <hr />
   <%=f.submit :class => "btn btn-primary"%> or 
