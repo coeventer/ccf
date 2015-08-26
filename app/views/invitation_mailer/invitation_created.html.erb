@@ -6,6 +6,8 @@
   <body>
     <p>Hello,</p>
 
+    <p>You have been invited to <%=@invitation.name%>.</p>
+
     <p>
       <%=@invitation.description%>
     </p>
@@ -13,7 +15,7 @@
     <p><%=link_to "Accept this invitation", invitation_url(@invitation, token: @invitation.token, subdomain: @invitation.organization.subdomain)%>
     </p>
 
-    <p>Check back to the organization site<%= link_to "site", root_url(subdomain: @invitation.organization.subdomain)%> for updates and other announcements.</p>
+    <p>Check back to the organization <%= link_to "site", root_url(subdomain: @invitation.organization.subdomain)%> for updates and other announcements.</p>
     <p></p>
     <p>Thanks,</p>
     <p><%=@invitation.name%> Admins</p>

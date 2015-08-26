@@ -1,10 +1,12 @@
 Hello,
 
+You have been invited to <%=@invitation.name%>.
+
 <%=@invitation.description%>
 
 <%=invitation_url(@invitation, token: @invitation.token, subdomain: @invitation.organization.subdomain)%>
 
-Check back to the organization site<%= link_to "site", root_url(subdomain: @invitation.organization.subdomain)%> for updates and other announcements.
+Check back to the organization <%= link_to "site", root_url(subdomain: @invitation.organization.subdomain)%> for updates and other announcements.
 
 Thanks,
 
