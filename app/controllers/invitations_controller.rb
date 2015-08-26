@@ -8,6 +8,7 @@ class InvitationsController < OrganizationController
 
   def show
     @invitation = find_invitation.decorate
+    raise ActiveRecord::RecordNotFound unless @invitation.pending?
   end
 
   def accept

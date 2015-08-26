@@ -3,6 +3,9 @@ class Invitation < ActiveRecord::Base
 
   attr_accessible :context_id, :context_type, :email, :organization_id, :status, :token, :user_id
 
+  belongs_to :user
+  belongs_to :organization
+
   after_create :send_notification
 
   scope :pending, ->{ where(status: 'pending') }
@@ -24,6 +27,10 @@ class Invitation < ActiveRecord::Base
 
   def organization?
     context_type.eql?('Organization')
+  end
+
+  def pending?
+    status == 'pending'
   end
 
   def invited_resource
@@ -48,7 +55,7 @@ class Invitation < ActiveRecord::Base
 
   def accept_event(user)
     invited_resource.organization.users.create(user: user, verified: true)
-    reg = invited_resource.event_registrations.create(user: user)
+    reg = invited_resource.event_registrations.create(user: user, participation_level: "Invited")
 
     self.update_attributes(status: 'accepted') if reg
     reg
@@ -56,8 +63,7 @@ class Invitation < ActiveRecord::Base
   private :accept_event
 
   def send_notification
-    # TODO
-    # InvitationMailer.invitation_created(self)
+    InvitationMailer.invitation_created(self)
   end
   private :send_notification
 

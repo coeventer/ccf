@@ -1,5 +1,6 @@
 class InvitationDecorator < Draper::Decorator
   delegate_all
+  delegate :current_page, :total_entries, :total_pages, :per_page, :offset
 
   def title
     "Invitation to #{context_type}: #{object.name}"
@@ -17,6 +18,14 @@ class InvitationDecorator < Draper::Decorator
       of the organization.
       }
     end
+  end
+
+  def to
+    object.email || user.name
+  end
+
+  def email
+    object.email || user.email
   end
 
 end

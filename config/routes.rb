@@ -72,7 +72,10 @@ CampusCodefest::Application.routes.draw do
 
   namespace :admin, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do
     root :to => 'home#index'
-    resource :organization
+    resource :organization do
+      resources :invitations, controller: "organization_invitations"
+    end
+
     resources :users do
       collection do
         get :search
@@ -88,12 +91,14 @@ CampusCodefest::Application.routes.draw do
       resources :event_moderators
       resources :event_registrations
       resources :builder
+      resources :invitations, controller: "event_invitations"
 
       resources :projects do
         resources :project_volunteers
         resources :project_comments
         resources :project_votes
       end
+
     end
 
     resources :projects

@@ -6,7 +6,13 @@
 <h3><%=link_to @event.title, admin_event_path(@event)%></h3>
 <p><%=@event.pretty_dates%></p>
 <p>
-  <%=link_to "Edit", edit_admin_event_path(@event), :class => "btn btn-sm btn-default" %>
+  <%=link_to admin_event_builder_path(@event, :information), :class => "btn btn-sm btn-default" do %>
+    <i class="fa fa-pencil-square-o"></i> Edit
+  <% end %>
+  <%=link_to admin_event_invitations_path(@event), :class => "btn btn-sm btn-default" do %>
+    <i class="fa fa-paper-plane-o"></i> Send Invitations
+  <% end %>
+  <%=link_to "Send Reminders (Coming soon)", '#', :class => "btn btn-sm btn-default", disabled: "disabled" %>
 </p>
 <% else %>
 <p>You do not have any upcoming events, do you want to start planning one?</p>

@@ -1,0 +1,11 @@
+Hello,
+
+<%=@invitation.description%>
+
+<%=invitation_url(@invitation, token: @invitation.token, subdomain: @invitation.organization.subdomain)%>
+
+Check back to the organization site<%= link_to "site", root_url(subdomain: @invitation.organization.subdomain)%> for updates and other announcements.
+
+Thanks,
+
+<%=@invitation.name%> Admins

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hello,</p>
+
+    <p>
+      <%=@invitation.description%>
+    </p>
+
+    <p><%=link_to "Accept this invitation", invitation_url(@invitation, token: @invitation.token, subdomain: @invitation.organization.subdomain)%>
+    </p>
+
+    <p>Check back to the organization site<%= link_to "site", root_url(subdomain: @invitation.organization.subdomain)%> for updates and other announcements.</p>
+    <p></p>
+    <p>Thanks,</p>
+    <p><%=@invitation.name%> Admins</p>
+</body>
+</html>

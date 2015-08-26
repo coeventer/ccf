@@ -20,3 +20,4 @@
 //= require forms
 //= require jquery.datetimepicker
 //= require projects
+//= require selectize
