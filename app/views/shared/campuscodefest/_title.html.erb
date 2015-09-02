@@ -1,4 +1,4 @@
-<% if defined?(current_organization) %>
+<% if defined?(current_organization) && current_organization %>
   <%=current_organization.name%> - 
 <% end %>
 <%= APP_CONFIG['brand']['site_name'] %>
