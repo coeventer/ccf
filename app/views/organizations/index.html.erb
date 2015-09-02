@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <h1><%=brand_name%> Organizations <%=link_to "Create an organization now!", new_organization_path, :class => "btn btn-success pull-right"%></h1>
+    <h1><%=brand_name%> Organizations <%=link_to new_organization_path, class: "btn btn-lg btn-success pull-right" do %> <i class="fa fa-users"></i> Create an Organization <% end %></h1>
     <p></p>
     <hr />
   </div>
@@ -23,4 +23,4 @@
 </div>
 <%end%>
 <%=will_paginate @organizaitons%>
-<p>Want to start an event to your organzation? <%=link_to "Create an organization now!", new_organization_path, :class => "btn btn-success"%></p>
+<p>Want to start an event to your organzation? <%=link_to new_organization_path, class: "btn btn-lg btn-success" do %> <i class="fa fa-users"></i> Create an Organization <% end %></p>
