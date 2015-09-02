@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   def user_created(user)
     @user = user
     @brand = brand_name
-    mail = mail(:to => @user.email, :subject => "Your account has been created for #{@brand}") do |format|
+    mail = mail(:to => @user.email, :subject => "Your account has been created for #{APP_CONFIG['brand']['site_name']}") do |format|
       format.html
     end
 
@@ -28,7 +28,7 @@ class UserMailer < ActionMailer::Base
     @organization = organization
     @brand = brand_name
     @future_events = Event.live.where(["end_date >= ?", Date.today])
-    mail = mail(:to => @user.email, :subject => "Welcome to #{organization.name}, a part of #{brand_name}") do |format|
+    mail = mail(:to => @user.email, :subject => "Welcome to #{organization.name}, a part of #{APP_CONFIG['brand']['site_name']}") do |format|
       format.html
     end
 
