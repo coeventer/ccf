@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def brand_name
-    APP_CONFIG['brand']['site_name'] || 'Campus Codefest'
+    "<span style='color: #4682B4;'>Co</span><span style='color: #000000;'>Eventer</span>".html_safe
   end
 
   def comment_delete_path(comment)

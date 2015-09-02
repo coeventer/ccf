@@ -4,7 +4,7 @@
 <%=semantic_form_for @organization do |f|%>
   <%=f.inputs do%>
     <%=f.input :name%>
-    <%=f.input :subdomain, hint: "Ex. 'umn' or 'dominators'. Your users will browse to <subdomain>.campuscodefest.org"%>
+    <%=f.input :subdomain, hint: "Ex. 'umn' or 'dominators'. Your users will browse to <subdomain>.coeventer.com"%>
   <% end %>
   <hr />
   <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", organizations_path%>

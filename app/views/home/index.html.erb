@@ -1,30 +1,80 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="jumbotron">
-      <h1><%= APP_CONFIG["brand"]["site_name"] %></h1>
+      <h1><%=brand_name%> <i class="fa fa-users"> </i></h1>
       <p>
-        is an unconference for designers, developers, sysadmins and other interested parties across an organization or community who want to come together to hack on cool projects for a couple of days.
+        is a collaborative, idea driven event planning tool. Unconferences, hackathons and other events with community driven agendas require some upfront work. <%=brand_name%> helps you from start to finish. Start collecting community ideas, voting and volunteering to help collaborate. Invite collaborators and collect registrations. Present your group outcomes. <%=brand_name%> helps you with each step.
       </p>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-xs-4">
-      <h3>What is this all about?</h3>
-      <p>
-        The Campus Codefest concept originated at the University of Minnesota in 2013. Learn more <%=link_to "about", about_path%> the concept.
-      </p>
+  <div class="col-xs-3">
+    <h3><i class="fa fa-users"></i> Organizations</h3>
+    <p>A community is key to a successful event. <%=brand_name%> allows, public, semi-public and private organizations. Organization admins can approve or deny any user, to keep communities on topic.</p>
   </div>
-  <div class="col-xs-4">
-    <h3>How can I Codefest?</h3>
-      <p>
-        First, you need to <%=link_to "create an organization", new_organization_path%>. Then, you need to start planning your event and contact your colleagues. Then, it's time to work!
-      </p>
+
+  <div class="col-xs-3">
+    <h3><i class="fa fa-calendar"></i> Events</h3>
+    <p>A <%=brand_name%> event might be an unconference, a hackathon or even a retreat. Plan unlimited events for your community. Collect registration, ideas and community input leading up to the event. Post a schedule and other event details</p>
   </div>
-  <div class="col-xs-4">
-    <h3>Can you help?</h3>
-      <p>
-        Absolutely! <%=link_to "Contact us", contact_path%> for help with all aspects of your Campus Codefest event planning, marketing and execution.
-      </p>
+
+  <div class="col-xs-3">
+    <h3><i class="fa fa-lightbulb-o"></i> Ideas</h3>
+    <p>Ideas can be submitted by any community member. They do not have to champion the idea, be an expert or even want to pursue the ideas. All ideas are subject to community input.</p>
   </div>
+
+  <div class="col-xs-3">
+    <h3><i class="fa fa-thumbs-o-up"></i> Community Input</h3>
+    <p>Leading up to an event, encourage your members to vote, volunteer and comment on ideas for an event. This input can help provide detail into hot topics or identify ideas that may need more thought.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3">
+    <h3><i class="fa fa-paper-plane-o"></i> Invitations</h3>
+    <p>To get people excited about your event, you can either invite existing organizations members, past event attendees or provide a list of emails to send invitations.</p>
+  </div>
+
+  <div class="col-xs-3">
+    <h3><i class="fa fa-plus-square"></i> Registrations</h3>
+    <p>Want to know who is coming? Have a maximum capacity? We have you covered with event registration. We also provide a roster of event attendees and help admin interfaces.</p>
+  </div>
+
+  <div class="col-xs-3">
+    <h3><i class="fa fa-slack"></i> Engagement</h3>
+    <p>If you provide us with a Slack webhook, we will give you realtime updates for all events, ideas, votes, volunteers and comments created for your events. This gives your community a second opportunity to stay engaged.</p>
+  </div>
+
+  <div class="col-xs-3">
+    <h3><i class="fa fa-university"></i> Presentations</h3>
+    <p>A key to an successful community driven event is presenting what you learned during the event. We provide a simple, no frills interface for creating impressive presentations in no time. A markdown and Reveal.js framework keep your members collaborating instead of scrambling to share.</p>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-xs-6">
+    <h3>Create a Community</h3>
+    <p>
+      You only need to sign-in with an Google Account to create an organization. Once signed in, you can instantly get started with <%=brand_name%> in a private organization and a step-by-step wizard will guide you around. You can go public once you are ready to rock!
+    </p>
+
+    <p>
+      <%=link_to new_organization_path, class: "btn btn-lg btn-success" do %> Create an Organization <% end %>
+    </p>
+  </div>
+
+  <div class="col-xs-6">
+    <h3>Participate in an Community</h3>
+    <p>
+      You can browse our <%=link_to "public organizations", organizations_path%> to look for places in your area to get started. <%=brand_name%> is a free tool, so feel free to kick the tires and consider pulling together your own community and get to work!
+    </p>
+
+    <p>
+
+    </p>
+  </div>
+</div>

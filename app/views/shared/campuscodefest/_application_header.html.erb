@@ -9,8 +9,8 @@
 <% end %>
 <a class="navbar-brand" href="/">
   <% unless current_organization.organization_logo?%>
-  <i class="fa fa-cloud""></i> <%=current_organization.name%>&nbsp;&#8226;&nbsp;
+  <%=current_organization.name%>&nbsp;&#8226;&nbsp;
   <% end %>
-  <%= APP_CONFIG["brand"]["site_name"] %>
+  <%=brand_name%> <i class="fa fa-users"> </i> 
 </a>
 

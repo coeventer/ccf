@@ -2,7 +2,7 @@ Hi <%= @user.name %>,
 
 You have successfully registered for <%=@event.title%> (<%=event_url(@event, subdomain: @event.organization.subdomain) %>). The event will run <%=@event.pretty_dates%>. In the mean time, you can submit, vote or volunteer for project ideas on the <%= "#{@event.title} event page"%> (<%=event_url(@event) %>).
 
-We highly recommend basic Git and GitHub (http://apps.oir.umn.edu/campus_codefest/github) experience before the event begins. Please take a few hours to introduce yourself to these tools if you don't have previous experience with them.
+We highly recommend basic Git and GitHub experience before the event begins. Please take a few hours to introduce yourself to these tools if you don't have previous experience with them.
 
 Check back to the site (<%=root_url(subdomain: @event.organization.subdomain)%>) for event updates and other announcements as the event approaches.
 
