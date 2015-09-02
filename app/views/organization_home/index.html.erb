@@ -2,10 +2,14 @@
   <div class="col-xs-12">
     <div class="jumbotron">
     <%if @future_events.first.nil?%>
-      <h1><%=brand_name%></h1>
-      <p><%=brand_name%> is an unconference for designers, developers, sysadmins and other interested parties in the <%=current_organization.name%> community who want to come together to hack on cool projects for a couple of days.</p>
+      <h1><%=current_organization.name%> <%=brand_name%></h1>
       <p>
-        <%=link_to "Learn More", about_url(subdomain: false), :class=>"btn btn-primary btn-lg", :target => "_blank"%>
+        This is <%=current_organization.name%>'s <%=brand_name%> home. This will be a place for community idea submittion, voting, volunteering, event registration and other <%=brand_name%> event activities. There not upcoming events scheduled. In the mean time, you can: 
+      </p>
+
+      <p>
+        <%=link_to projects_path, class: "btn btn-primary btn-lg btn-success" do %><i class="fa fa-lightbulb-o"></i> Check the Idea Backlog <% end %> or
+        <%=link_to contact_path, class: "btn btn-primary btn-lg" do %><i class="fa fa-envelope-o"></i> Contact Your Organization <% end %>
       </p>
     <%else%>
     <%event = @future_events.first%>
@@ -15,7 +19,22 @@
         This event runs <%=event.pretty_dates%>
     </p>
     <p>
-      <%=link_to "Get involved!", event_path(event), :class=>"btn btn-success btn-lg"%>
+      <%=link_to event_path(event), :class=>"btn btn-success btn-lg" do %> <span class="fa fa-rocket"></span> Get Involved <% end %>
+      <% if event.registration_enabled?%>
+        <% if current_user %>
+            <%=link_to new_event_event_registration_path(event), :class => "btn btn-success btn-lg" do%>
+              <span class="fa fa-play-circle"></span> Register Now
+            <%end%>
+        <%else%>
+            <%=link_to signin_path(event.id), :class => "btn btn-success btn-lg" do%>
+              <span class="fa fa-play-circle"></span> Sign In And Register Now
+            <%end%>
+        <%end%>
+      <% else %>
+        <%=link_to new_event_event_registration_path(event), :class => "btn btn-danger btn-lg", disabled: "disabled" do%>
+          <span class="fa fa-stop"></span> Registration Closed
+        <%end%>
+      <%end%>
     </p>
     <%end%>
     </div>
@@ -26,27 +45,31 @@
     <%if @future_events.first.nil?%>
       <h3>Upcoming Event</h3>
       <p>
-        Check back soon, the planning for the next <%=brand_name%> has not started yet. In the meantime, check the <%=link_to "project backlog", projects_path%>.
+        Check back soon, the planning for the next <%=brand_name%> event has not started yet. In the meantime, check the <%=link_to "project backlog", projects_path%>.
       </p>
     <%else%>
       <h3><%=brand_name%></h3>
-      <p><%=brand_name%> is an unconference for designers, developers, sysadmins and other interested parties in the <%=current_organization.name%> community who want to come together to code for a couple of days.</p>
+      <p>This is <%=current_organization.name%>'s <%=brand_name%> home. This will be a place for community idea submittion, voting, volunteering, event registration and other <%=brand_name%> event activities.</p>
       <p>
         <%=link_to "Learn More", root_url(subdomain: false), :class=>"btn btn-primary", :target => "_blank"%>
       </p>
     <%end%>
   </div>
   <div class="col-xs-4">
-    <h3>What is this all about?</h3>
-      <p>
-        <iframe width="360" height="200" src="//www.youtube.com/embed/MDLF2_oVTus?rel=0" frameborder="0" allowfullscreen></iframe>
-      </p>
+    <h3>Past Events</h3>
+    <% if @past_events.empty? %>
+      <p>No events have been completed yet.</p>
+    <% else %>
+      <% @past_events[0..3].each do |e| %>
+      <p><%=link_to e.title, event_path(e)%> <%= e.pretty_dates %></p>
+      <% end %>
+    <% end %>
+    
   </div>
   <div class="col-xs-4">
-    <h3>We're on GitHub</h3>
+    <h3>What is <%=brand_name%>?</h3>
       <p>
-        GitHub is a pillar of the <%=brand_name%>. Check out Github,
-        <%=link_to 'http://github.com', 'http://github.com'%>, install Git (Mac|Linux|Windows) on your Workstation and learn as much about git as possible before attending an event.
+        <%=brand_name%> is a collaborative, idea driven event planning tool. Unconferences, hackathons and other events with community driven agendas require some upfront work. <%=brand_name%> helps you from start to finish: Collecting community ideas, voting and volunteering to help collaborate; Inviting collaborators and collecting registrations; Presentations to wrap up your events. <%=brand_name%> helps you with each step.
       </p>
   </div>
 </div>
