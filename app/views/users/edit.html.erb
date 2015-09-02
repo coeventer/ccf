@@ -1,6 +1,5 @@
 <%=semantic_form_for @user do |f|%>
   <%= f.input :name%>
-  <%= f.input :department%>
   <%= f.input :send_notifications, :label => "Enable Email Notifications"%>
   <%=f.action :submit, :button_html => { :value => "Save Changes", :class => "btn btn-primary" }%>
   <%=link_to "Cancel", user_path(@user), :class => "btn btn-link" %>
