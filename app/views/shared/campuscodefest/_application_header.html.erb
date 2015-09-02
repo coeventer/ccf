@@ -1,7 +1,7 @@
 <%if current_organization%>
 <a class="navbar-brand" href="/" style="padding-right: 0; padding-top: 10px;">
   <% if current_organization.organization_logo?%>
-    <%= image_tag current_organization.organization_logo_url.to_s%>
+    <%= image_tag current_organization.organization_logo_url(:thumb).to_s%>
   <% else %>
     
   <%end%>
@@ -9,8 +9,8 @@
 <% end %>
 <a class="navbar-brand" href="/">
   <% unless current_organization.organization_logo?%>
-  <%=current_organization.name%>&nbsp;&#8226;&nbsp;
+  <%=current_organization.name%>&nbsp;&#8226;
   <% end %>
-  <%=brand_name%> <i class="fa fa-users"> </i> 
+  &nbsp;<%=brand_name%> <i class="fa fa-users"> </i> 
 </a>
 
