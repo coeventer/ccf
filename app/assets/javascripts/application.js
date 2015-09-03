@@ -19,5 +19,4 @@
 //= require bootstrap-datepicker
 //= require forms
 //= require jquery.datetimepicker
-//= require projects
 //= require selectize
