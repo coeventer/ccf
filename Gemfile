@@ -10,7 +10,7 @@ group :assets do
   gem "therubyracer", platform: :ruby
   gem "less-rails", '~> 2.5'
   gem 'less-rails-bootstrap', '~> 3.2.0'
-  gem "font-awesome-rails", '>= 4.1.0'
+  gem "font-awesome-rails", '>= 4.4.0'
   gem 'bootstrap-tour-rails', :git => 'https://github.com/tienle/bootstrap-tour-rails.git'
 end
 

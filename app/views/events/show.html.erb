@@ -16,12 +16,10 @@
 </div>
 <hr />
 
-<% if can?(:create, Project) && !@event.completed? then %>
-    <h3>Submit an Idea</h3>
-    <%= render partial: "projects/pretty_form" %>
-<%elsif !@event.completed?%>
-<p><%=link_to "Sign in to submit a project idea", signin_path, :class => "btn btn-success btn-lg"%></p>
-<%end%>
+
+<h3>Submit an Idea</h3>
+<%= render partial: "projects/pretty_form" %>
+
 <hr />
 <div class="row">
   <div class="col-sm-9">
@@ -72,3 +70,23 @@
     </div>
   </div>
 </div>
+<% if @event.projects.count > 0 %>
+<script>
+  var steps = [
+    { title: 'Submitting a Project',
+        content: 'Here you can submit and idea for a project to work on. Other attendees can then vote on the project and express interest in helping out.',
+        element: '.tour-first-step',
+        placement: 'bottom' },
+    { title: 'Voting on Projects',
+        content: 'Voting on a project indicates to other attendees that you believe the project to be a good idea and one that should receive other\'s attention',
+        element: '.vote_container:first' },
+    { title: 'Volunteering on Projects',
+        content: 'In addition to voting, you can also indicate and interest in helping out with a project. This is not binding, so don\'t worry if you change your mind',
+        element: '.volunteer_container:first' }
+  ];
+  var projectTour = new Tour({steps: steps});
+
+  projectTour.init();
+  projectTour.start();
+</script>
+<% end %>

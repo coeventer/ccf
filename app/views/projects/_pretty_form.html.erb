@@ -1,13 +1,18 @@
+<% project_options = { :placeholder => "Submit your idea #{@event.nil? ? '' : 'for ' + @event.title}", :class => "tour-first-step form-control" } %>
+<% if !can?(:create, Project) || @event.completed? %>
+  <% project_options[:disabled] = "disabled" %>
+<% end %>
+
  <%=semantic_form_for @new_project do |f| -%>
-  <%=f.text_field :title, :placeholder => "Submit your idea #{@event.nil? ? '' : 'for ' + @event.title}", :class => "tour-first-step form-control"%>
+  <%=f.text_field :title, project_options %>
   <div id="project_details" style="display: none;">
-  <%=f.input :description, :as => :text, :class => 'form-control auto-hint', :placeholder => "Describe your idea"%>
+  <%=f.input :description %>
   <% if !@event.nil? %>
   <%=f.input :event_id, :as => :hidden, :value => @event.id%>
   <% end %>
   <%=f.input :repository, :class => 'form-control', :placeholder => "https://github.com/example/example" %>
   <br />
-  <%=f.submit "Submit idea", :class => "btn btn-primary" %> or 
+  <%=f.submit "Submit idea", :class => "btn btn-primary" %> or
 
   <%=link_to "Cancel", (@event.nil? ? projects_path : event_path(@event))%>
   </div>

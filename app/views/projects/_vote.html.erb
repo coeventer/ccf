@@ -1,24 +1,14 @@
-<p><span class="badge badge-info"><%=project.project_ratings_count%></span> likes</p>
-<%if project.voting_allowed? %>
-  <%if current_user && current_organization.verified?(current_user)%>
-    <%if project.voted_on?(current_user)%>
-    <p>
-      <%=link_to rate_project_path(project), :class => "btn btn-sm btn-danger", :method => :post, :remote => true do%>
-        <span class="fa fa-times-circle"></span> Unlike this idea
-      <%end%>
-    </p>
-    <%else%>
-      <p>
-      <%=link_to rate_project_path(project), :class => "btn btn-sm btn-info", :method => :post, :remote => true do%>
-        <span class="fa fa-thumbs-up"></span> Like this idea
-      <%end%>
-      </p>
-    <%end%>
-  <%else%>
-  <p class="text-info">
-    <%=link_to signin_path, :class => "btn btn-sm btn-info" do%>
-      <span class="fa fa-thumbs-up"></span> Join org to like
-    <%end%>
-  </p>
-  <%end%>
-<%end%>
+<% options = { method: :post, remote: true, class: "btn btn-sm " } %>
+<% if project.voting_allowed? && current_user && current_organization.verified?(current_user) %>
+  <% options[:class] += project.voted_on?(current_user) ? "btn-info" : "btn-default" %>
+<% else %>
+  <% options[:class] += "btn-default" %>
+  <% options[:disabled] = "disabled" %>
+<% end %>
+
+<p>
+  <span class="badge badge-info"><%=project.project_ratings_count%></span>
+    <%=link_to rate_project_path(project), options do%>
+      <span class="fa fa-thumbs-up"></span> Like
+    <% end %>
+</p>
