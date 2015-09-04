@@ -62,6 +62,7 @@ class ProjectsController < OrganizationController
   def rate
     @project = Project.find(params[:id])
     @project.toggle_vote(current_user)
+    @project.reload
 
     respond_to do |format|
       format.js
@@ -72,6 +73,7 @@ class ProjectsController < OrganizationController
   def volunteer
     @project = Project.find(params[:id])
     @volunteer = @project.volunteer(current_user)
+    @project.reload
 
     respond_to do |format|
       format.js
@@ -82,6 +84,7 @@ class ProjectsController < OrganizationController
   def unvolunteer
     @project = Project.find(params[:id])
     @project.unvolunteer(current_user)
+    @project.reload
 
     respond_to do |format|
       format.js {render :volunteer}
