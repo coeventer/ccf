@@ -3,12 +3,8 @@
   <li class="active">Idea Backlog</li>
 </ol>
 <p>No event in progress? Want to get a thought out but work on it in the future? Throw it on the backlog.</p>
-<% if can? :create, Project then %>
-    <h3>Submit an Idea</h3>
-    <%= render partial: "projects/pretty_form" %>
-<%else%>
-<p><%=link_to "Sign in to submit a project idea", signin_path, :class => "btn btn-success btn-lg"%></p>
-<%end%>
+<h3>Submit an Idea</h3>
+<%= render partial: "projects/pretty_form" %>
 <hr />
 <div class="row">
   <div class="col-sm-12">
