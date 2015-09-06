@@ -2,6 +2,11 @@ class UsersController < MixedUseController
   before_filter :load_user
 
   def show
+    @attended = EventRegistration.unscoped.where(user_id: @user.id).count
+    @ideas = Project.unscoped.where(submitted_user_id: @user.id).count
+    @comments = ProjectComment.unscoped.where(user_id: @user.id).count
+    @likes = ProjectRating.unscoped.where(user_id: @user.id).count
+    @helps = ProjectRating.unscoped.where(user_id: @user.id).count
   end
 
   # GET /projects/1/edit
