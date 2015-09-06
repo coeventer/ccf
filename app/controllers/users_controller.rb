@@ -6,7 +6,7 @@ class UsersController < MixedUseController
     @ideas = Project.unscoped.where(submitted_user_id: @user.id).count
     @comments = ProjectComment.unscoped.where(user_id: @user.id).count
     @likes = ProjectRating.unscoped.where(user_id: @user.id).count
-    @helps = ProjectRating.unscoped.where(user_id: @user.id).count
+    @helps = ProjectVolunteer.unscoped.where(user_id: @user.id).count
   end
 
   # GET /projects/1/edit
