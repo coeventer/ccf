@@ -2,8 +2,6 @@
 <a class="navbar-brand" href="/" style="padding-right: 0; padding-top: 10px;">
   <% if current_organization.organization_logo?%>
     <%= image_tag current_organization.organization_logo_url(:thumb).to_s%>
-  <% else %>
-    
   <%end%>
 </a>
 <% end %>

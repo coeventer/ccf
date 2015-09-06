@@ -1,17 +1,21 @@
 <div class="row">
-  <div class="col-xs-8">
+  <div class="col-xs-10">
     <h1><%=@user.name%></h1>
     <p class="text-info">
-      has registered for <%=@user.event_registrations.count%> past event(s).
+      Attended: <%=@user.event_registrations.unscoped.count%> event(s).
+      Submitted <%=@user.projects.unscoped.count%> ideas.
+      Liked: <%=@user.project_ratings.unscoped.count%> ideas.
+      Helped with: <%=@user.project_volunteers.unscoped.count%> ideas(s).
+      Commented <%=@user.project_comments.unscoped.count%> times.
     </p>
-    <h2>Organizations</h2>
+    <h2>Member of</h2>
     <%@user.organization_users.each do |user_organization|%>
     <ul>
       <li><%=link_to user_organization.organization.name, root_url(subdomain: user_organization.organization.subdomain)%></li>
     </ul>
     <%end%>
   </div>
-  <div class="col-xs-4">
+  <div class="col-xs-2">
     <%=image_tag @user.image, alt: @user.name, height: 150, width: 150%>
   </div>
 </div>

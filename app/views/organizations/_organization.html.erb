@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-xs-10">
+    <h2><%=link_to organization.name, root_url(subdomain: organization.subdomain)%></h2>
+    <p>Member organization since: <%=l organization.created_at%></p>
+    <p><%=organization.description%></p>
+  </div>
+  <div class="col-xs-2">
+    <p><span class="badge"><%=organization.users.count%></span> users</p>
+    <p><span class="badge"><%=organization.events.count%></span> events</p>
+    <p><span class="badge"><%=organization.projects.count%></span> projects</p>
+  </div>
+  <div class="row">
+    <div class="col-xs-12"><hr /></div>
+  </div>
+</div>

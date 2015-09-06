@@ -1,26 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
-    <h1><%=brand_name%> Organizations <%=link_to new_organization_path, class: "btn btn-lg btn-success pull-right" do %> <i class="fa fa-users"></i> Create an Organization <% end %></h1>
+    <h1><%=brand_name%> Public Organizations <%=link_to new_organization_path, class: "btn btn-lg btn-success pull-right" do %> <i class="fa fa-users"></i> Create an Organization <% end %></h1>
     <p></p>
     <hr />
   </div>
 </div>
-<% @organizations.each do |organization|%>
-<div class="row">
-  <div class="col-xs-10">
-    <h2><%=link_to organization.name, root_url(subdomain: organization.subdomain)%></h2>
-    <p>Member organization since: <%=l organization.created_at%></p>
-    <p><%=organization.description%></p>
-  </div>
-  <div class="col-xs-2">
-    <p><span class="badge"><%=organization.users.count%></span> users</p>
-    <p><span class="badge"><%=organization.events.count%></span> events</p>
-    <p><span class="badge"><%=organization.projects.count%></span> projects</p>
-  </div>
-  <div class="row">
-    <div class="col-xs-12"><hr /></div>
-  </div>
-</div>
-<%end%>
-<%=will_paginate @organizaitons%>
+<%= render partial: "organization", collection: @organizations %>
+<%=will_paginate @organizations%>
+
 <p>Want to start an event to your organzation? <%=link_to new_organization_path, class: "btn btn-lg btn-success" do %> <i class="fa fa-users"></i> Create an Organization <% end %></p>
