@@ -1,5 +1,5 @@
 <% button_path = volunteer_project_path(project) %>
-<% options = { method: :post, remote: true, class: "btn btn-sm " } %>
+<% options = { method: :post, remote: true, class: "btn btn-xs " } %>
 
 <% if project.voting_allowed? && current_user && current_organization.verified?(current_user) %>
     <% button_path = unvolunteer_project_path(project) if project.volunteered_for?(current_user) %>
@@ -9,9 +9,8 @@
   <% options[:disabled] = "disabled" %>
 <% end %>
 
-<p>
-  <span class="badge badge-info"><%=project.project_volunteers_count%></span>
-    <%=link_to button_path, options do%>
-      <span class="fa fa-hand-paper-o"></span> Help
-    <%end%>
-</p>
+
+<span class="badge badge-info"><%=project.project_volunteers_count%></span>
+  <%=link_to button_path, options do%>
+    <span class="fa fa-hand-paper-o"></span> Help
+  <%end%>
