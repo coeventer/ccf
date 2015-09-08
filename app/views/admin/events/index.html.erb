@@ -7,12 +7,11 @@
     <thead>
       <th>Name</th>
       <th>Published</th>
-      <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Ideas</th>
       <th>Registrants</th>
-      <th>Created on</th>
+      <th>Ideas</th>
+      <th>Invites</th>
       <th>Actions</th>
     </thead>
     <tbody>
@@ -27,12 +26,11 @@
           <% end %>
           <span class="sr-only"><%=e.live%></span>
         </td>
-        <td><%= truncate strip_tags(e.description), :length => 50 %></td>
         <td><%= l e.start_date, format: :short %></td>
         <td><%= l e.end_date, format: :short %></td>
-        <td><%= link_to e.projects.count, admin_event_projects_path(e) %></td>
         <td><%= link_to "#{e.registrations.count}/#{e.registration_maximum}", admin_event_event_registrations_path(e) %></td>
-        <td><%= l e.created_at, format: :short %></td>
+        <td><%= link_to e.projects.count, admin_event_projects_path(e) %></td>
+        <td><%= link_to Invitation.where(context_type: "Event", context_id: e.id).count, admin_event_invitations_path(e) %></td>
         <td>
           <div class="btn-group">
             <%=link_to "Edit", admin_event_builder_path(e, :information), :class => "btn btn-sm btn-default"%>

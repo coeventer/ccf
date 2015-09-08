@@ -1,4 +1,4 @@
-<% options = { method: :post, remote: true, class: "btn btn-sm " } %>
+<% options = { method: :post, remote: true, class: "btn btn-xs " } %>
 <% if project.voting_allowed? && current_user && current_organization.verified?(current_user) %>
   <% options[:class] += project.voted_on?(current_user) ? "btn-info" : "btn-default" %>
 <% else %>
@@ -6,9 +6,7 @@
   <% options[:disabled] = "disabled" %>
 <% end %>
 
-<p>
-  <span class="badge badge-info"><%=project.project_ratings_count%></span>
-    <%=link_to rate_project_path(project), options do%>
-      <span class="fa fa-thumbs-up"></span> Like
-    <% end %>
-</p>
+<span class="badge badge-info"><%=project.project_ratings_count%></span>
+  <%=link_to rate_project_path(project), options do%>
+    <span class="fa fa-thumbs-up"></span> Like
+  <% end %>

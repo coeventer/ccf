@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
   has_many :event_registrations, dependent: :delete_all
   has_many :moderators, :class_name => "EventModerator"
   has_many :ratings, :through => :projects
-  has_many :volunteers, :through => :projects, dependent: :delete_all
+  has_many :volunteers, :through => :projects
   has_many :comments, :through => :projects
   has_many :event_comments
 
@@ -36,6 +36,7 @@ class Event < ActiveRecord::Base
   scope :future, where("end_date > ?", Date.today)
 
   before_destroy :unassign_projects
+  before_destroy :delete_volunteers
 
   alias_attribute :name, :title
 
@@ -84,9 +85,11 @@ class Event < ActiveRecord::Base
   end
 
   def unassign_projects
-    self.projects.each do |p|
-      p.update_attributes(event_id: nil)
-    end
+    self.projects.update_all(event_id: nil)
+  end
+
+  def delete_volunteers
+    self.volunteers.each(&:destroy)
   end
 
   def publishable?

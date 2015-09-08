@@ -1,45 +1,30 @@
 <div class="row">
-  <div class="col-md-2">
-    <div id="vote_container_<%=project.id%>" class="vote_container">
-    <%=render :partial => "projects/vote", :locals => {project: project}%>
-    </div>
-    <% unless @event.nil? && project.event.nil? %>
-    <div id="volunteer_container_<%=project.id%>" class="volunteer_container">
-    <%=render :partial => "projects/volunteer", :locals => {project: project}%>
-    </div>
-    <%end%>
-    <%if !show_comments%>
-      <p><%=link_to project_path(project), :style => "color: white;" do%><span class="badge"><%=project.comment_count%></span>
-      <%end%> comments</p>
-    <%end%>
+  <div class="col-md-12">
 
-    <% unless @event.nil? && project.event.nil? %>
-      <% if can?(:edit, project.presentation) || project.presentation.published %>
-      <p>
-        <%=link_to project_presentation_path(project), class: "btn btn-primary" do%>
-          <i class="fa fa-play"></i> Presentation
+    <p class="pull-right">
+      <% unless @event.nil? && project.event.nil? %>
+        <% if can?(:edit, project.presentation) || project.presentation.published %>
+          <%=link_to project_presentation_path(project), class: "btn btn-primary btn-sm" do%>
+            <i class="fa fa-play"></i> Presentation
+          <% end %>
+        <% elsif %>
+        <a href="#" class="btn btn-primary" disabled="disabled"><i class="fa fa-play"></i> Presentation</a>
         <% end %>
-      </p>
-      <% elsif %>
-      <a href="#" class="btn btn-primary" disabled="disabled"><i class="fa fa-play"></i> Presentation</a>
       <% end %>
-    <% end %>
+    </p>
+    
+    <h4>
+      <%=link_to project.title, project_path(project)%>
+      <% if can? :edit, project then %>
+      <%=link_to edit_project_path(project), style: "color: grey;" do%>
+        <span class="fa fa-edit"></span>
+      <%end%>
+      <% end %>
+    </h4>
 
-  </div>
-
-  <div class="col-md-10">
-    <% if can? :edit, project then %>
-      <p <%=sanitize 'class="pull-right"' if truncate %>>
-        <%=link_to edit_project_path(project), :class=>"btn btn-sm btn-default" do%>
-          <span class="fa fa-edit"></span> Edit project
-        <%end%>
-      </p>
-    <%end%>
-    <h4><%=link_to project.title, project_path(project)%></h4>
     <%=render :partial => "projects/project_owner", :locals => {owner: project.project_owner, project: project}%>
-
     <% if truncate %>
-    <p><%=truncate strip_tags(project.description).html_safe, :length => 200%></p>
+    <p><%=truncate strip_tags(project.description.html_safe).html_safe, :length => 200%></p>
     <% else %>
     <%=Sanitize.clean(project.description, Sanitize::Config::RELAXED).html_safe%>
     <%end%>
@@ -57,15 +42,41 @@
       <div class="clearfix"></div>
     </div>
     <%end%>
-    <% if project.repository %>
+
+    <% if show_comments && project.repository %>
       <p><span class="fa fa-lg fa-github"></span> <%=link_to project.repository, project.repository%></p>
     <%end%>
 
-    <%if show_comments then %>
-      <hr />
-      <div id="comment_container_<%=project.id%>">
-      <%=render :partial => "project_comments/comments", :locals => {project: project, comment: project.comments.new}%>
-      </div>
+   <hr />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <span id="vote_container_<%=project.id%>" class="vote_container">
+    <%=render :partial => "projects/vote", :locals => {project: project}%>
+    </span>
+
+    <% unless @event.nil? && project.event.nil? %>
+    <span id="volunteer_container_<%=project.id%>" class="volunteer_container">
+    <%=render :partial => "projects/volunteer", :locals => {project: project}%>
+    </span>
+    <%end%>
+    <%if !show_comments%>
+      <%=link_to project_path(project), :style => "color: white;" do%><span class="badge"><%=project.comment_count%></span>
+      <%end%> comments
     <%end%>
   </div>
 </div>
+
+<%if show_comments then %>
+<div class="row">
+  <div class="col-md-12">
+    
+    <hr />
+    <div id="comment_container_<%=project.id%>">
+    <%=render :partial => "project_comments/comments", :locals => {project: project, comment: project.comments.new}%>
+    </div>
+  </div>
+</div>
+<%end%>

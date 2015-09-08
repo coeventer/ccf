@@ -3,16 +3,30 @@
 
 <h2>Upcoming Events</h2>
 <% if @event %>
-<h3><%=link_to @event.title, admin_event_path(@event)%></h3>
+<h3>
+  <%=link_to @event.title, admin_event_path(@event)%>
+  <%=link_to admin_event_builder_path(@event, :information), style: "color: grey;" do %>
+    <i class="fa fa-pencil-square-o"></i>
+  <% end %>
+</h3>
 <p><%=@event.pretty_dates%></p>
 <p>
-  <%=link_to admin_event_builder_path(@event, :information), :class => "btn btn-sm btn-default" do %>
-    <i class="fa fa-pencil-square-o"></i> Edit
+  <%=link_to admin_event_path(@event), :class => "btn btn-sm btn-default" do %>
+    <i class="fa fa-dashboard"></i> Dashboard
   <% end %>
+
+  <%=link_to admin_event_event_registrations_path(@event), :class => "btn btn-sm btn-default" do %>
+    <i class="fa fa-play-circle"></i> Registrations
+  <% end %>
+
+  <%=link_to admin_event_projects_path(@event), :class => "btn btn-sm btn-default" do %>
+    <i class="fa fa-lightbulb-o"></i> Ideas
+  <% end %>
+
   <%=link_to admin_event_invitations_path(@event), :class => "btn btn-sm btn-default" do %>
-    <i class="fa fa-paper-plane-o"></i> Send Invitations
+    <i class="fa fa-paper-plane-o"></i> Invitations
   <% end %>
-  <%=link_to "Send Reminders (Coming soon)", '#', :class => "btn btn-sm btn-default", disabled: "disabled" %>
+  <%=link_to " Reminders (Coming soon)", '#', :class => "btn btn-sm btn-default", disabled: "disabled" %>
 </p>
 <% else %>
 <p>You do not have any upcoming events, do you want to start planning one?</p>

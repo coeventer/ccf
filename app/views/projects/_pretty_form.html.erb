@@ -1,5 +1,5 @@
 <% project_options = { :placeholder => "Submit your idea #{@event.nil? ? '' : 'for ' + @event.title}", :class => "tour-first-step form-control" } %>
-<% if !can?(:create, Project) || @event.completed? %>
+<% if !can?(:create, Project) || @event.try(:completed?) %>
   <% project_options[:disabled] = "disabled" %>
 <% end %>
 

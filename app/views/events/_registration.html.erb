@@ -1,22 +1,20 @@
-
-
 <% if @event.registration_enabled?%>
   <% if !current_user.nil? && current_organization.verified?(current_user) && @event.registered?(current_user)%>
     <p>
-      <%=link_to event_event_registration_path(@event, @registration), :class => "btn btn-danger btn-lg", :confirm => "Are you certain you want to do this?", :method => :delete do%>
+      <%=link_to event_event_registration_path(@event, @registration), :class => "btn btn-danger btn-lg reg_button", :confirm => "Are you certain you want to do this?", :method => :delete do%>
       <span class="fa fa-play-circle"></span> Unregister
       <%end%>
     </p>
   <%else%>
     <% if current_user %>
       <p>
-        <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success btn-lg" do%>
+        <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success btn-lg reg_button" do%>
           <span class="fa fa-play-circle"></span> Register Now
         <%end%>
       </p>
     <%else%>
       <p>
-        <%=link_to signin_path(@event.id), :class => "btn btn-success btn-lg" do%>
+        <%=link_to signin_path(@event.id), :class => "btn btn-success btn-lg reg_button" do%>
           <span class="fa fa-play-circle"></span> Sign In And Register Now
         <%end%>
       </p>
@@ -30,12 +28,12 @@
   </p>
 <% else %>
 <p>
-  <%=link_to new_event_event_registration_path(@event), :class => "btn btn-danger btn-lg", disabled: "disabled" do%>
+  <%=link_to new_event_event_registration_path(@event), :class => "btn btn-danger btn-lg reg_button", disabled: "disabled" do%>
     <span class="fa fa-stop"></span> Registration Closed
   <%end%>
 </p>
 
 <p>
-  <em><%=@event.registrations_remaining%> of <%=@event.registration_maximum%> spots registered. </em>
+  <em><%=@event.registrations.count%> of <%=@event.registration_maximum%> spots registered. </em>
 </p>
 <%end%>
