@@ -32,7 +32,7 @@ class InvitationsController < OrganizationController
   end
 
   def find_user_invitation
-    current_user.invitations.find(params[:id])
+    current_user.pending_invitations.find(params[:id])
   end
 
   def find_token_invitation
