@@ -31,6 +31,8 @@ class Project < ActiveRecord::Base
   scope :most_liked, order('project_ratings_count DESC')
   scope :most_help, order('project_volunteers_count DESC')
 
+  delegate :id, to: :organization, prefix: true
+
   # Prevent blank repos from being saved and, hence, the view icon appearing for
   # no good reason
   def nil_if_blank

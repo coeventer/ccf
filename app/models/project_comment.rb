@@ -8,6 +8,8 @@ class ProjectComment < ActiveRecord::Base
   belongs_to :project, counter_cache: true
   has_one :organization, through: :project
 
+  delegate :id, to: :organization, prefix: true
+
   default_scope { order(:created_at)}
 
   def slack_message

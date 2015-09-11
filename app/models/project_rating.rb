@@ -7,6 +7,8 @@ class ProjectRating < ActiveRecord::Base
   belongs_to :user
   has_one :organization, through: :project
 
+  delegate :id, to: :organization, prefix: true
+
   def slack_message
     "#{user.name} liked project: #{project.title}"
   end

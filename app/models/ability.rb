@@ -8,7 +8,8 @@ class Ability
     elsif user.admin?
       can :manage, :all
     #organization admin (not yet implemented)
-
+    elsif !organization.nil? && organization.admin?(user)
+      can :manage, :all, organization_id: organization_id
     #organization verified
     elsif !organization.nil? && organization.verified?(user)
       can :read, :all
