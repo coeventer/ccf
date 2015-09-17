@@ -10,7 +10,10 @@
     <%=f.input :volunteering_enabled%>
     <%=f.input :volunteer_end_date, label: "If volunteering is enabled, set the volunteer end date to", as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
   <% end %>
-  <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", admin_events_path, :class => "btn btn-link"%>
+  <%=f.submit :class => "btn btn-primary"%> or
+  <%=link_to next_wizard_path, class: "btn btn-primary" do%>
+    <i class="fa fa-arrow-circle-right"></i> Continue
+  <% end %>
 
   <script type="text/javascript">
     $('textarea').each(function( index ) {

@@ -6,18 +6,13 @@
   <%= f.inputs do %>
     <%=f.input :title%>
     <%=f.input :description%>
-    <%if @event.event_logo? %>
-      <%=f.label :remove_current_logo%>
-      <%=f.check_box :remove_event_logo %>
-      <%=image_tag @event.event_logo_url%>
-      <br />
-    <%end%>
-
     <%=f.input :start_date, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
     <%=f.input :end_date, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
   <% end %>
-  <%=f.submit :class => "btn btn-primary"%> or <%=link_to "Cancel", admin_events_path, :class => "btn btn-link"%>
-
+  <%=f.submit :class => "btn btn-primary"%> or   
+  <%=link_to next_wizard_path, class: "btn btn-primary" do%>
+    <i class="fa fa-arrow-circle-right"></i> Continue
+  <% end %>
   <script type="text/javascript">
     $('textarea').each(function( index ) {
       $(this).wysihtml5();

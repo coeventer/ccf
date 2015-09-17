@@ -47,13 +47,19 @@
       <ul class="nav navbar-nav navbar-right">
         <% if current_organization.member?(current_user) %>
         <li>
-          <%=link_to "#" do%>
-          <% if current_organization.verified?(current_user) -%>
-          <span class="fa fa-check-circle text-success" title="Verified"></span>
+          <% if current_organization.admin?(current_user) -%>
+            <%=link_to admin_root_path do%>
+              <span class="fa fa-check-circle text-success" title="Admin"></span> Admin
+            <% end %>
           <% else %>
-          <span class="fa fa-question-circle" title="Not yet verified"></span>
-          <% end %>
-          Member
+            <%=link_to root_path do%>
+              <% if current_organization.verified?(current_user) -%>
+                <span class="fa fa-check-circle text-success" title="Verified"></span> 
+              <% else %>
+                <span class="fa fa-question-circle" title="Not yet verified"></span>
+              <% end %>
+            <% end %>
+            Member
           <% end %>
         </li>
         <% else %>
@@ -62,8 +68,8 @@
           <% end %>
         </li>
         <% end %>
-        <li class="dropdown">
-          <a class="dropdown-toggle text-right"
+        <li>
+          <a class="dropdown-toggle"
              data-toggle="dropdown"
              href="#">
               <% if alerts && !alerts.blank? %>

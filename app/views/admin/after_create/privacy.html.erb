@@ -1,7 +1,7 @@
 <h2>Privacy level</h2>
 
 <p>
-  Your organizations is currently set to [current_organization.privacy]. We offer two levels of privacy for organizations:
+  Your organizations is currently set to <strong><%=current_organization.public_access? ? "Public" : "Private" %></strong>. We offer two levels of privacy for organizations:
   <uL>
     <li>
       <b>Private</b>: Members must be invited by you (or another admin) to join you organization. Events, ideas and other information can not be seen be non-members.

@@ -1,13 +1,19 @@
 <%= render partial: "admin/builder/nav", locals: { active: :publish } %>
 
 <h2>Publish</h2>
-
-<p>Are you ready for your event to be live? Until you publish, this event can only be seen by admins and is not available on the website.</p>
-
 <p>
 <%=check_required(@event.publishable?) %>
-<% if @event.publishable? %>
+<% if @event.live? %> 
+Your event has been published!
+
+<ul>
+  <li>You can start sharing the url to your event: <%=link_to event_url(@event), event_url(@event)%></li>
+  <li>Get people to register, submit, vote, volunteer and comment for ideas!</li>
+  <li>You can also <%=link_to "send invitations", admin_event_invitations_path(@event)%> to your organization members or to individual email addresses.</li>
+</ul>
+<% elsif @event.publishable? %>
 <b>Your event is ready to be published.</b>
+<p>Are you ready for your event to be live? Until you publish, this event can only be seen by admins and is not available on the website.</p>
 <% else %>
 Your event is not ready to be published. Visit the sections which have an <span class="fa fa-times text-danger"></span>, and fill in the information.
 <% end %>
@@ -17,6 +23,10 @@ Your event is not ready to be published. Visit the sections which have an <span 
 <%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
   <%=f.hidden_field :live, value: !@event.live %>
     <%= f.actions do %>
+      <% if @event.live? %>
+      <%= f.action :submit, label: "Unpublish", button_html: { class: "btn btn-danger" } %>
+      <% else %>
       <%= f.action :submit, label: "Publish", button_html: { class: "btn btn-success" } %>
+      <% end %>
     <% end %>
 <%end%>
