@@ -42,24 +42,25 @@
         </li>
         <li><%= link_to "Idea Backlog", projects_path  %></li>
         <li><%= link_to "Contact", contact_path  %></li>
+          <% if current_user && current_organization.admin?(current_user) -%>
+          <li>
+            <%=link_to admin_root_path do%>
+              Admin
+            <% end %>
+          </li>
+          <% end %>
       </ul>
       <% if current_user %>
       <ul class="nav navbar-nav navbar-right">
         <% if current_organization.member?(current_user) %>
         <li>
-          <% if current_organization.admin?(current_user) -%>
-            <%=link_to admin_root_path do%>
-              <span class="fa fa-check-circle text-success" title="Admin"></span> Admin
+          <%=link_to root_path do%>
+            <% if current_organization.verified?(current_user) -%>
+              <span class="fa fa-check-circle text-success" title="Verified"></span> 
+            <% else %>
+              <span class="fa fa-question-circle" title="Not yet verified"></span>
             <% end %>
-          <% else %>
-            <%=link_to root_path do%>
-              <% if current_organization.verified?(current_user) -%>
-                <span class="fa fa-check-circle text-success" title="Verified"></span> 
-              <% else %>
-                <span class="fa fa-question-circle" title="Not yet verified"></span>
-              <% end %>
-            <% end %>
-            Member
+          Member
           <% end %>
         </li>
         <% else %>
