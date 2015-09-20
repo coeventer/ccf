@@ -6,7 +6,15 @@
   <% options[:disabled] = "disabled" %>
 <% end %>
 
-<span class="badge badge-info"><%=project.project_ratings_count%></span>
-  <%=link_to rate_project_path(project), options do%>
-    <span class="fa fa-thumbs-up"></span> Like
-  <% end %>
+<span class="badge badge-info" id="popover-likes"><%=project.project_ratings_count%></span>
+<%=link_to rate_project_path(project), options do%>
+  <span class="fa fa-thumbs-up"></span> Like
+<% end %>
+
+<script>
+$('#popover-likes').popover({
+  content: "Liked by: <%=project.ratings.flat_map(&:user).map(&:name).join(', ')%>",
+  placement: "auto",
+  trigger: "hover click"
+})
+</script>
