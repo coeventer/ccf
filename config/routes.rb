@@ -73,7 +73,7 @@ CampusCodefest::Application.routes.draw do
   namespace :admin, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do
     root :to => 'home#index'
     resource :organization do
-      resources :invitations, controller: "organization_invitations"
+      resources :invitations
     end
 
     resources :users do

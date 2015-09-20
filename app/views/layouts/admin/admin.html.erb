@@ -32,6 +32,10 @@
               <% if idea_count > 0%><span class="badge badge-info"><%=idea_count%></span><%end%>
               <% end %>
             </li>
+            <li><%=link_to admin_organization_invitations_path do%>
+              <i class="fa fa-paper-plane"></i> Invitations
+              <% end %>
+            </li>
             <li><%=link_to edit_admin_organization_path do%>
               <i class="fa fa-cogs"></i> Settings
               <% end %>

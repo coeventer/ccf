@@ -10,6 +10,7 @@ class Invitation < ActiveRecord::Base
 
   scope :pending, ->{ where(status: 'pending') }
   scope :user, ->(user){ where("invitations.email = ? or invitations.user_id = ?", user.email, user.id) }
+  scope :context, ->(context){ where(context_type: context.class.name, context_id: context.id) }
 
   delegate :name, to: :invited_resource
 

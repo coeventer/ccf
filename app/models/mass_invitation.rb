@@ -1,16 +1,16 @@
-class MassEventInvitation
+class MassInvitation
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
-  attr_accessor :event, :user_ids, :emails, :organization
+  attr_accessor :context, :user_ids, :emails, :organization
 
-  def initialize(event, organization, params, options={})
+  def initialize(context, organization, params, options={})
     self.user_ids = params[:user_ids]
     self.emails = params[:emails]
-    self.event = event
+    self.context = context
     self.organization = organization
   end
 
@@ -24,7 +24,7 @@ class MassEventInvitation
 
     user_ids.each do |id|
       user = User.where(id: id).first
-      Invitation.create(user_id: user.id, context_type: 'Event', context_id: event.id, organization_id: organization.id) if user
+      Invitation.create({ user_id: user.id }.merge(invitation_params)) if user
     end
   end
 
@@ -33,8 +33,13 @@ class MassEventInvitation
 
     emails.split(",").each do |email|
       next unless email =~ VALID_EMAIL_REGEX
-      Invitation.create(email: email, context_type: 'Event', context_id: event.id, organization_id: organization.id)
+
+      Invitation.create({ email: email }.merge(invitation_params))
     end
+  end
+
+  def invitation_params
+    { context_type: context.class.name, context_id: context.id, organization_id: organization.id }
   end
 
   def persisted?

@@ -1,7 +1,6 @@
-<h1>Invitations for <%=@event.name%></h1>
-
-<%=semantic_form_for @inviter, url: admin_event_invitations_path do |f| %>
-<%=f.input :user_ids, label: "Users", as: :select, collection: @users, multiple: true %>
+<h1>Invitations for <%=current_organization.name%></h1>
+<p>Invite people to join via their email address.</p>
+<%=semantic_form_for @inviter, url: admin_organization_invitations_path do |f| %>
   <%=f.input :emails, label: "Emails", hint: "Type or paste a list of comma seperate email addresses to invite" %>
 
   <%= f.actions do %>
@@ -27,7 +26,3 @@
     <%end%>
   </tbody>
 </table>
-
-<script type="text/javascript">
-  $('#mass_invitation_user_ids').selectize();
-</script>
