@@ -53,6 +53,7 @@ group :test do
   gem 'action_mailer_cache_delivery'
 end
 
+gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'omniauth-google-oauth2'
 gem 'will_paginate'
 gem 'capistrano', '<3'
