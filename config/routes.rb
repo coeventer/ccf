@@ -1,9 +1,9 @@
 CampusCodefest::Application.routes.draw do
   # Non-org routes
   root :to => "home#index", constraints: lambda { |r| !r.subdomain.present? || r.subdomain == 'www' }
-  match "about" => "home#about", constraints: lambda { |r| !r.subdomain.present? || r.subdomain == 'www' }
-  match "faq" => "home#faq", constraints: lambda { |r| !r.subdomain.present? || r.subdomain == 'www' }
-  match "github" => "home#github", constraints: lambda { |r| !r.subdomain.present? || r.subdomain == 'www' }
+  get "about" => "home#about", constraints: lambda { |r| !r.subdomain.present? || r.subdomain == 'www' }
+  get "faq" => "home#faq", constraints: lambda { |r| !r.subdomain.present? || r.subdomain == 'www' }
+  get "github" => "home#github", constraints: lambda { |r| !r.subdomain.present? || r.subdomain == 'www' }
 
   # Shared routes
   resources :organizations
@@ -30,15 +30,15 @@ CampusCodefest::Application.routes.draw do
     end
   end
 
-  match 'contact' => 'contact#new', :as => 'contact', :via => :get
-  match 'contact' => 'contact#create', :as => 'contact', :via => :post
+  get 'contact' => 'contact#new', :as => 'contact'
+  post 'contact' => 'contact#create', :as => 'contact_create'
 
-  match "/auth/:provider/callback" => "sessions#create"
-  match "/signout" => "sessions#signout", :as => :signout
+  post "/auth/:provider/callback" => "sessions#create"
+  get "/signout" => "sessions#signout", :as => :signout
 
   # Organization routes
-  root :to => "organization_home#index", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
-  match "unverified" => "organization_home#unverified", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  get '/', :to => "organization_home#index", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  get "unverified" => "organization_home#unverified", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
 
   resources :events, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' } do
     resources :event_registrations

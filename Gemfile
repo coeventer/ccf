@@ -1,18 +1,18 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.21'
+gem 'rails', '4.2.4'
+ruby ENV['CUSTOM_RUBY_VERSION'] || '2.2.3'
 
-group :assets do
-  gem 'sass-rails',   '~> 3.2.5'
-  gem 'coffee-rails', '~> 3.2.1'
+gem 'mysql2', '~> 0.3.18'
+
+  gem 'coffee-rails', '~> 4.1.0'
   gem 'uglifier', '>= 1.0.3'
 
-  gem "therubyracer", platform: :ruby
-  gem "less-rails", '~> 2.5'
-  gem 'less-rails-bootstrap', '~> 3.2.0'
-  gem "font-awesome-rails", '>= 4.4.0'
-  gem 'bootstrap-tour-rails', :git => 'https://github.com/tienle/bootstrap-tour-rails.git'
-end
+gem "therubyracer", platform: :ruby
+gem "less-rails", '~> 2.5'
+gem 'less-rails-bootstrap', '~> 3.2.0'
+gem "font-awesome-rails", '>= 4.4.0'
+gem 'bootstrap-tour-rails', :git => 'https://github.com/tienle/bootstrap-tour-rails.git'
 
 gem 'jquery-rails'
 gem 'cancan'
@@ -48,26 +48,18 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'launchy'
-  gem "shoulda-matchers"
+  gem "shoulda-matchers", "< 3.0.0", require: false
   # Enhanced mail testing
   gem 'action_mailer_cache_delivery'
 end
-group :production, :development do
-  gem 'mysql2'
-end
 
 gem 'omniauth-google-oauth2'
-
 gem 'will_paginate'
 gem 'capistrano', '<3'
-
 gem 'sanitize'
 gem 'domainatrix'
 gem 'bootstrap-datepicker-rails'
-gem 'strong_parameters'
-
 # image uploads
-gem 'rmagick', :require => 'RMagick'
+gem 'rmagick', :require => 'rmagick'
 gem "carrierwave"
-
-gem 'test-unit'
+gem 'protected_attributes'

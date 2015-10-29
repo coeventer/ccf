@@ -26,10 +26,10 @@ class Project < ActiveRecord::Base
 
   #scopes for sorting projects
   default_scope { where(organization_id: Organization.current_id) }
-  scope :backlog, where("event_id is null")
-  scope :most_commented, order('project_comments_count DESC')
-  scope :most_liked, order('project_ratings_count DESC')
-  scope :most_help, order('project_volunteers_count DESC')
+  scope :backlog, -> { where("event_id is null") }
+  scope :most_commented, -> { order('project_comments_count DESC') }
+  scope :most_liked, -> { order('project_ratings_count DESC') }
+  scope :most_help, -> { order('project_volunteers_count DESC') }
 
   delegate :id, to: :organization, prefix: true
 

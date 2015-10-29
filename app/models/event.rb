@@ -33,7 +33,7 @@ class Event < ActiveRecord::Base
   end
 
   default_scope { where(organization_id: Organization.current_id).order("events.start_date desc") }
-  scope :future, where("end_date > ?", Date.today)
+  scope :future, -> { where("end_date > ?", Date.today) }
 
   before_destroy :unassign_projects
   before_destroy :delete_volunteers
