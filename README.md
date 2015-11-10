@@ -13,7 +13,7 @@ is to provide this code to other organizations, likely in Higher Education, wish
 Contributing
 ===============
 **Requirements**
-- Ruby 1.9.3
+- Ruby >= 1.9.3
 - rubygems (or RVM, rbenv)
 - Git
 
@@ -36,7 +36,14 @@ bundle exec rake db:create
 bundle exec rake db:migrate
 ```
 
-We use Omniauth to support Google account login. You must generate an OAuth 2.0 API key via Google Developer Console (https://cloud.google.com/console/project), more instructions can be found here: https://developers.google.com/ad-exchange/rtb/open-bidder/google-app-guide#step-5 . Once this is done, copy the example config.yml file and enter your api key and secret to the provider section.
+Compile the required JavaScript assets.
+`bundle exec rake bower:install`
+
+We use Omniauth to support Google account login. You must generate an OAuth 2.0 API key via Google Developer Console (https://cloud.google.com/console/project), more instructions can be found here: https://developers.google.com/ad-exchange/rtb/open-bidder/google-app-guide#step-5. Once this is done, copy the example config.yml file and enter your api key and secret to the provider section.
+
+Note: this application rquires a wildcard domain setting. If you simply want to set-up authentication for your local development instance of the ccf app, you simply use the domain `http://lvh.me` instead of http://localhost in your google development console. The http://lvh.me is a domain that was registered as a convenience for developers and resolves to 127.0.0.1 for all requests to http://lvh.me and subdomains thereof.
+
+
 ```
 cp config/config.yml.example config/config.yml
 ```
