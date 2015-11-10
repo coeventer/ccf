@@ -8,8 +8,11 @@ class User < ActiveRecord::Base
   has_many :event_registrations
   has_many :organization_users
   has_many :invitations
+  has_many :provider_users, dependent: :destroy
 
   default_scope { order(:created_at)}
+
+  after_create :create_provider_user
 
 
   # See: https://github.com/zquestz/omniauth-google-oauth2 
@@ -29,15 +32,6 @@ class User < ActiveRecord::Base
     user
   end
 
-  def self.find_and_update_uid(auth)
-    user = User.find_by_uid(auth["uid"])
-    return nil unless user
-    user.image = auth["info"]["image"]
-    user.save if user.changed?
-
-    return user
-  end
-
   def label
     if !self.department.nil? and !self.department.empty? then
       self.name + ' - ' + self.department
@@ -53,6 +47,16 @@ class User < ActiveRecord::Base
     else
       return false
     end
+  end
+
+  # TODO: Temporary until we add another provider, remove and refactor when done
+  def create_provider_user
+    ProviderUser.create(
+      user_id: id,
+      provider: ProviderUser::GOOGLE_PROVIDER,
+      uid: uid,
+      validated: true
+    )
   end
 
   def pending_invitations
