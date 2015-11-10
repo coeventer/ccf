@@ -8,7 +8,6 @@ class RegistrationMailer < ActionMailer::Base
       format.text
       format.html
     end
-
-    mail.deliver
+    mail
   end
 end
