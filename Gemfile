@@ -64,3 +64,4 @@ gem 'bootstrap-datepicker-rails'
 gem 'rmagick', :require => 'rmagick'
 gem "carrierwave"
 gem 'protected_attributes'
+gem 'responders', '~> 2.0'

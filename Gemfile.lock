@@ -241,6 +241,8 @@ GEM
     rake (10.4.2)
     ref (2.0.0)
     request_store (1.2.0)
+    responders (2.1.0)
+      railties (>= 4.2.0, < 5)
     rmagick (2.15.4)
     rolify (4.1.1)
     rspec-core (3.3.2)
@@ -335,6 +337,7 @@ DEPENDENCIES
   quiet_assets
   rabl
   rails (= 4.2.4)
+  responders (~> 2.0)
   rmagick
   rolify
   rspec-rails
