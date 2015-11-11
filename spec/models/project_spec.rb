@@ -47,7 +47,7 @@ describe Project do
                             
       @project = create(:project, organization: organization, event: @event)
       
-      @project.voting_allowed?.should be_true
+      expect(@project.voting_allowed?).to be true
     end
     
     it "should not allow votes if event does not accept votes" do
@@ -57,7 +57,7 @@ describe Project do
                             
       @project = create(:project, organization: organization, event: @event)
       
-      @project.voting_allowed?.should be_false
+      expect(@project.voting_allowed?).to be false
     end
     
     it "should allow volunteers if event accepts volunteers" do
@@ -67,29 +67,29 @@ describe Project do
                             
       @project = create(:project, organization: organization, event: @event)
       
-      @project.volunteering_allowed?.should be_true
+      expect(@project.volunteering_allowed?).to be true
     end
     
     it "should not allow volunteers if event accepts volunteers" do
       @event = create(:event, end_date: Date.today.advance(:days => 5),
                             volunteering_enabled: true,
-                            volunteer_end_date: Date.today.advance(:days => -2))
+                            volunteer_end_date: Date.yesterday)
                             
-      @project = create(:project, event: @event)
+      @project = create(:project, organization: organization, event: @event)
       
-      @project.volunteering_allowed?.should be_false
+      expect(@project.volunteering_allowed?).to be false
     end    
   end
   
   describe "that does not belong to an event" do
     it "should not accept votes" do
       @project = create(:project, organization: organization)
-      @project.voting_allowed?.should be_false      
+      expect(@project.voting_allowed?).to be false      
     end
     
     it "should not accept volunteers" do
       @project = create(:project, organization: organization)
-      @project.volunteering_allowed?.should be_false      
+      expect(@project.volunteering_allowed?).to be false      
     end
   end
 
@@ -105,42 +105,42 @@ describe Project do
     end
 
     it "should determine if a user has voted on a project" do 
-      @project.voted_on?(@user).should be_false
+      expect(@project.voted_on?(@user)).to be false
       @project_rating = create(:project_rating, user: @user, project: @project)
-      @project.voted_on?(@user).should be_true
+      expect(@project.voted_on?(@user)).to be true
     end
 
     it "should allow voting to be toggled" do
-      lambda{@project.toggle_vote(@user)}.should change(ProjectRating, :count).by(1)
-      lambda{@project.toggle_vote(@user)}.should change(ProjectRating, :count).by(-1)
+      expect(lambda{@project.toggle_vote(@user)}).to change(ProjectRating, :count).by(1)
+      expect(lambda{@project.toggle_vote(@user)}).to change(ProjectRating, :count).by(-1)
     end
 
-    it "should not allow voting to be toggled if voting ended" do
-      lambda{@project.toggle_vote(@user)}.should change(ProjectRating, :count).by(1)
+    it "should not allow voting to be toggled iff voting ended" do
+      expect(lambda{@project.toggle_vote(@user)}).to change(ProjectRating, :count).by(1)
       @event.voting_enabled=false
-      lambda{@project.toggle_vote(@user)}.should_not change(ProjectRating, :count).by(-1)
+      expect(lambda{@project.toggle_vote(@user)}).to_not change(ProjectRating, :count)
     end
 
     it "should determine of a user has volunteered for a project" do
-      @project.volunteered_for?(@user).should be_false
+      expect(@project.volunteered_for?(@user)).to be false
       @project_volunteer = create(:project_volunteer, user: @user, project: @project)
-      @project.volunteered_for?(@user).should be_true
+      expect(@project.volunteered_for?(@user)).to be true
     end
 
     it "should allow someone to volunteer or unvolunteer" do
-      lambda{@project.volunteer(@user)}.should change(ProjectVolunteer, :count).by(1)
-      lambda{@project.unvolunteer(@user)}.should change(ProjectVolunteer, :count).by(-1)
+      expect(lambda{@project.volunteer(@user)}).to  change(ProjectVolunteer, :count).by(1)
+      expect(lambda{@project.unvolunteer(@user)}).to change(ProjectVolunteer, :count).by(-1)
     end
 
     it "should not allow volunteering or unvolunteering after volunteering has been disabled" do
       @event.volunteering_enabled=false
-      lambda{@project.volunteer(@user)}.should_not change(ProjectVolunteer, :count).by(1)
+      expect(lambda{@project.volunteer(@user)}).to_not change(ProjectVolunteer, :count)
 
       @event.volunteering_enabled=true
-      lambda{@project.volunteer(@user)}.should change(ProjectVolunteer, :count).by(1)
+      expect(lambda{@project.volunteer(@user)}).to change(ProjectVolunteer, :count).by(1)
 
       @event.volunteering_enabled=false
-      lambda{@project.unvolunteer(@user)}.should_not change(ProjectVolunteer, :count).by(-1)      
+      expect(lambda{@project.unvolunteer(@user)}).to_not change(ProjectVolunteer, :count)
     end
   end
   
