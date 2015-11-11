@@ -43,7 +43,7 @@ class Project < ActiveRecord::Base
   def voting_allowed?
     # As of today, cannot vote if project is in 'parking lot'
     if self.event.nil? then
-      return true
+      return false
     else
       return self.event.voting_enabled?
     end
