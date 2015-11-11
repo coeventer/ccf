@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Project do
+  let(:organization) { create :organization }
   it "should require a title" do
     should validate_presence_of(:title)
   end
@@ -44,7 +45,7 @@ describe Project do
                             voting_enabled: true,
                             voting_end_date: Date.tomorrow)
                             
-      @project = create(:project, event: @event)
+      @project = create(:project, organization: organization, event: @event)
       
       @project.voting_allowed?.should be_true
     end
@@ -54,7 +55,7 @@ describe Project do
                             voting_enabled: true,
                             voting_end_date: Date.today.advance(:days => -2))
                             
-      @project = create(:project, event: @event)
+      @project = create(:project, organization: organization, event: @event)
       
       @project.voting_allowed?.should be_false
     end
@@ -64,7 +65,7 @@ describe Project do
                             volunteering_enabled: true,
                             volunteer_end_date: Date.tomorrow)
                             
-      @project = create(:project, event: @event)
+      @project = create(:project, organization: organization, event: @event)
       
       @project.volunteering_allowed?.should be_true
     end
@@ -82,12 +83,12 @@ describe Project do
   
   describe "that does not belong to an event" do
     it "should not accept votes" do
-      @project = create(:project)
+      @project = create(:project, organization: organization)
       @project.voting_allowed?.should be_false      
     end
     
     it "should not accept volunteers" do
-      @project = create(:project)
+      @project = create(:project, organization: organization)
       @project.volunteering_allowed?.should be_false      
     end
   end
@@ -100,7 +101,7 @@ describe Project do
                               start_date: Date.today.advance(:days => 7),
                               end_date: Date.today.advance(:days => 10))
       @user = create(:user)
-      @project = create(:project, :event => @event)
+      @project = create(:project, organization: organization, :event => @event)
     end
 
     it "should determine if a user has voted on a project" do 
