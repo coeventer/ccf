@@ -72,8 +72,8 @@
       <% else %>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <%=link_to signin_path do%>
-              <span class="fa fa-sign-in"></span> Log in
+            <%=link_to '#', onclick: "$('#sign_in_modal').modal('show');" do%>
+              <span class="fa fa-sign-in"></span> Sign in
             <%end%>
           </li>
         </ul>

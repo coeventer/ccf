@@ -177,6 +177,8 @@ GEM
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
+    omniauth-facebook (1.6.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-google-oauth2 (0.2.2)
       omniauth (~> 1.0)
       omniauth-oauth2
@@ -310,6 +312,7 @@ DEPENDENCIES
   less-rails (~> 2.5)
   less-rails-bootstrap (~> 3.2.0)
   mysql2
+  omniauth-facebook
   omniauth-google-oauth2
   pry-rails
   quiet_assets

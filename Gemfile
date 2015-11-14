@@ -57,6 +57,7 @@ group :production, :development do
 end
 
 gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 gem 'will_paginate'
 gem 'capistrano', '<3'

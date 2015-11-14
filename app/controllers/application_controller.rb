@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     return true if current_user
       
     respond_to do |format|
-      format.html {redirect_to signin_path, :notice => "Your session has timed out. Please re-authenticate." and return false}
+      format.html {redirect_to new_session_path(return_to: "#{request.url}") and return false}
       format.js {render 'sessions/new', layout: false}
     end
 

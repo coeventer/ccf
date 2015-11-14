@@ -12,23 +12,27 @@ class User < ActiveRecord::Base
 
   default_scope { order(:created_at)}
 
-  after_create :create_provider_user
-
-
   # See: https://github.com/zquestz/omniauth-google-oauth2 
   def self.create_with_omniauth(auth, organization=nil)
-    user = create! do |user|
-      user.uid = auth["uid"]
-      user.name = auth["info"]["name"]
-      user.email = auth["info"]["email"]
-      user.image = auth["info"]["image"]
-      user.verified = false
+    email = auth.info.email || "#{auth.uid}@#{auth.provider}"
+    
+    if User.where(email: email).exists?
+      user = User.where(email: email).first
+    else
+      user = create! do |user|
+        user.uid = auth.uid
+        user.name = auth.info.name
+        user.email = email
+        user.image = auth.info.image
+        user.verified = false
 
-      # First user to sign up becomes an admin... so... sign up fast.
-      user.admin = 1 if User.count < 1
+        # First user to sign up becomes an admin... so... sign up fast.
+        user.admin = 1 if User.count < 1
+      end
     end
 
-    organization.users.create(user: user) if organization
+    user.provider_users.create(provider: auth.provider, uid: auth.uid, validated: true)
+    organization.users.where(user: user).first_or_create if organization
     user
   end
 
@@ -47,16 +51,6 @@ class User < ActiveRecord::Base
     else
       return false
     end
-  end
-
-  # TODO: Temporary until we add another provider, remove and refactor when done
-  def create_provider_user
-    ProviderUser.create(
-      user_id: id,
-      provider: ProviderUser::GOOGLE_PROVIDER,
-      uid: uid,
-      validated: true
-    )
   end
 
   def pending_invitations
