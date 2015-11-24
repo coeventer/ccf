@@ -40,6 +40,14 @@ class Event < ActiveRecord::Base
 
   alias_attribute :name, :title
 
+  [:start_date, :end_date, :voting_end_date, :volunteer_end_date, :registration_end_dt].each do |v|
+    date_handler_name = "input_#{v}"
+
+    attr_accessible date_handler_name
+    define_method(date_handler_name) { self[v].in_time_zone }
+    define_method("#{date_handler_name}=") {|value| self[v] = Time.strptime(value, "%Y-%m-%d %H:%M") }
+  end
+
   # Voting is enabled if the voting enabled boolean is turned on, it is before the event start date
   # and before the voting end date, if it is set
   def voting_enabled?

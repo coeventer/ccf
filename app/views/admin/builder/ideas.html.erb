@@ -6,9 +6,9 @@
 <%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
   <%= f.inputs do %>
     <%=f.input :voting_enabled%>
-    <%=f.input :voting_end_date, label: "If voting is enabled, set the voting end date to" , as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+    <%=f.input :input_voting_end_date, label: "If voting is enabled, set the voting end date to" , as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
     <%=f.input :volunteering_enabled%>
-    <%=f.input :volunteer_end_date, label: "If volunteering is enabled, set the volunteer end date to", as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+    <%=f.input :input_volunteer_end_date, label: "If volunteering is enabled, set the volunteer end date to", as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
   <% end %>
   <%=f.submit :class => "btn btn-primary"%> or
   <%=link_to next_wizard_path, class: "btn btn-primary" do%>
