@@ -66,4 +66,19 @@ module ApplicationHelper
       '<span class="fa fa-minus text-info"></span>'.html_safe
     end
   end
+
+  def provider_link(provider_user)
+    case provider_user.provider
+    when 'facebook'
+      link_to "https://www.facebook.com/#{provider_user.uid}" do
+        "<i class='fa fa-facebook-official'></i> Facebook".html_safe
+      end
+    when 'google_oauth2'
+      link_to "https://plus.google.com/#{provider_user.uid}" do
+         "<i class='fa fa-google-plus'></i> Google".html_safe
+      end
+    else
+      provider_user.provider.capitalize
+    end
+  end
 end
