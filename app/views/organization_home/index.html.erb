@@ -28,7 +28,7 @@
             <%end%>
           <% end %>
         <% else %>
-            <%=link_to signin_path(event.id), :class => "btn btn-success btn-lg" do%>
+            <%=link_to '#', :class => "btn btn-success btn-lg", onclick: "$('#sign_in_modal').modal('show');" do%>
               <span class="fa fa-play-circle"></span> Sign In And Register Now
             <%end%>
         <%end%>

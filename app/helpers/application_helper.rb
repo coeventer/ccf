@@ -23,11 +23,16 @@ module ApplicationHelper
     return data_table.collect{|v| v}.join(",").html_safe
   end
 
-  # Oauth can (obviously) handle multiple providers, but for the sake of
-  # usability, we are simply using Google
-  def signin_path(event_id = nil)
+  def facebook_path(event_id = nil)
+    return_to = params[:return_to] || request.url
     register_param = (event_id) ? "&register_for_event_id=#{event_id}" : nil
-    "#{root_url(subdomain: false)}auth/google_oauth2?origin=#{request.url}#{register_param}"
+    "#{root_url(subdomain: false)}auth/facebook?origin=#{return_to}#{register_param}"
+  end
+
+  def google_oauth2_path(event_id = nil)
+    return_to = params[:return_to] || request.url
+    register_param = (event_id) ? "&register_for_event_id=#{event_id}" : nil
+    "#{root_url(subdomain: false)}auth/google_oauth2?origin=#{return_to}#{register_param}"
   end
 
   def brand_name
