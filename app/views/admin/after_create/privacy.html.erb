@@ -1,4 +1,4 @@
-<h2>Privacy level</h2>
+<h2>Privacy level &amp; Timezone</h2>
 
 <p>
   Your organizations is currently set to <strong><%=current_organization.public_access? ? "Public" : "Private" %></strong>. We offer two levels of privacy for organizations:
@@ -24,6 +24,7 @@
     <%=f.input :public_access %>
     <%=f.input :auto_verify, hint: "Do you want to automatically verify users with a certain email domain?"%>
     <%=f.input :auto_verify_domains, hint: "Comma seperated domains. Ex. umn.edu, d.umn.edu. Enter * to allow anyone to join."%>
+    <%=f.input :time_zone, hint: "Impacts display times for your organization" %>
   <% end %>
   <hr />
   <%=f.submit :class => "btn btn-primary"%> or 
