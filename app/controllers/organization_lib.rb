@@ -3,6 +3,7 @@ module OrganizationLib
     base.before_filter :find_events
     base.helper_method :current_organization
     base.around_filter :scope_current_organization
+    base.around_filter :set_time_zone
   end
 
   def current_organization
@@ -19,6 +20,11 @@ module OrganizationLib
     yield
   ensure
     Organization.current_id = nil
+  end
+
+  def set_time_zone(&block)
+    time_zone = current_organization.try(:time_zone) || 'Central Time (US & Canada)'
+    Time.use_zone(time_zone, &block)
   end
 
 end

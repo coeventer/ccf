@@ -6,8 +6,8 @@
   <%= f.inputs do %>
     <%=f.input :title%>
     <%=f.input :description%>
-    <%=f.input :start_date, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
-    <%=f.input :end_date, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+    <%=f.input :input_start_date, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+    <%=f.input :input_end_date, as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
   <% end %>
   <%=f.submit :class => "btn btn-primary"%> or   
   <%=link_to next_wizard_path, class: "btn btn-primary" do%>

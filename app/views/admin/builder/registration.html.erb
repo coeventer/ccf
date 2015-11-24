@@ -5,7 +5,7 @@
 
 <%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
   <%= f.inputs do %>
-    <%=f.input :registration_end_dt, label: "Registration End Date", as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
+    <%=f.input :input_registration_end_dt, label: "Registration End Date", as: "string", :input_html => {"data-behaviour" => "datepicker"}%>
     <%=f.input :registration_maximum, label: "Maximum Number of Registrants" %>
   <% end %>
   <%=f.submit :class => "btn btn-primary"%> or
