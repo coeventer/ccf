@@ -1,4 +1,4 @@
-development:
+development: &dev_config
   domain: "lvh.me"
   google-analytics: "abc-123"
   brand:
@@ -15,3 +15,4 @@ development:
     domain: "<<<<e.g. postmaster@campuscodefest.org>>>>"
     user_name: "<<<<e.g. postmaster@campuscodefest.org>>>>"
     password: "<<<<mailgun password here>>>>"
+test: *dev_config

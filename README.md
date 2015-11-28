@@ -12,10 +12,30 @@ is to provide this code to other organizations, likely in Higher Education, wish
 
 Contributing
 ===============
-**Requirements**
+
+## System Requirements
 - Ruby >= 1.9.3
 - rubygems (or RVM, rbenv)
 - Git
+- NPM
+- Bower
+- MySQL Client Development Libraries
+- SQLite Development Libaries
+- ImageMagick Development Libraries
+
+### On Debian/Ubuntu
+
+```
+sudo apt-get install git npm libmysqlclient-dev libsqlite3-dev libmagickcore-6.q16-dev libmagickwand-6-headers
+sudo npm install bower -g
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+export PATH="/usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/bin-Q16:$PATH"
+```
+
+Note that [ImageMagick/GraphicsMagick/rmagick is a bit of a mess in 2015](https://github.com/rmagick/rmagick/issues/201).
+This is why we are temporarily modifying the PATH.
+
+## Install The Project
 
 Clone the repository to your local dev environment.
 ```
@@ -25,8 +45,16 @@ git@github.com:campuscodefest/ccf.git
 Bundling will take a LONG time as I require therubyracer to compile less. If you are using RVM, I recommend isolating
 the gems by creating a gemset (%rvm gemset create ccf) then focus on it (%rvm gemset use ccf)
 ```
-cd campus_codefest
+cd ccf
 bundle
+```
+
+We use Omniauth to support Google account login. You must generate an OAuth 2.0 API key via Google Developer Console (https://cloud.google.com/console/project), more instructions can be found here: https://developers.google.com/ad-exchange/rtb/open-bidder/google-app-guide#step-5 . Once this is done, copy the example config.yml file and enter your api key and secret to the provider section.
+
+Note: this application rquires a wildcard domain setting. If you simply want to set-up authentication for your local development instance of the ccf app, you simply use the domain `http://lvh.me` instead of http://localhost in your google development console. The http://lvh.me is a domain that was registered as a convenience for developers and resolves to 127.0.0.1 for all requests to http://lvh.me and subdomains thereof.
+
+```
+cp config/config.yml.example config/config.yml
 ```
 
 Set-up your development data base, I am using mysql locally but included an example SQLite DB config for lowest overhead
@@ -37,15 +65,8 @@ bundle exec rake db:migrate
 ```
 
 Compile the required JavaScript assets.
-`bundle exec rake bower:install`
-
-We use Omniauth to support Google account login. You must generate an OAuth 2.0 API key via Google Developer Console (https://cloud.google.com/console/project), more instructions can be found here: https://developers.google.com/ad-exchange/rtb/open-bidder/google-app-guide#step-5. Once this is done, copy the example config.yml file and enter your api key and secret to the provider section.
-
-Note: this application rquires a wildcard domain setting. If you simply want to set-up authentication for your local development instance of the ccf app, you simply use the domain `http://lvh.me` instead of http://localhost in your google development console. The http://lvh.me is a domain that was registered as a convenience for developers and resolves to 127.0.0.1 for all requests to http://lvh.me and subdomains thereof.
-
-
 ```
-cp config/config.yml.example config/config.yml
+bundle exec rake bower:install
 ```
 
 This is a Test-Driven Development project. Your code should be speced and covered with rspec and capybara. Create a
