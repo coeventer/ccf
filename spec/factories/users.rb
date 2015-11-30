@@ -9,5 +9,13 @@ FactoryGirl.define do
     admin false
     verified true
     email "example@example.com"
+
+    trait :without_notifications do
+      send_notifications false
+    end
+
+    trait :with_notifications do
+      send_notifications true
+    end
   end
 end
