@@ -1,4 +1,5 @@
 class ProjectsController < OrganizationController
+  include OrganizationLib
   skip_before_filter :auth_required, :only => [:index, :show]
   before_filter :verification_required, :except => [:index, :show]
   load_and_authorize_resource :except => [:rate, :volunteer, :unvolunteer]

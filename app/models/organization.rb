@@ -1,7 +1,6 @@
 class Organization < ActiveRecord::Base
   attr_accessible :auto_verify, :auto_verify_domains, :description, :name, :subdomain, :website, :organization_logo, :remove_organization_logo,
                   :slack_webhook_url, :public_access
-  cattr_accessor :current_id
 
   mount_uploader :organization_logo, OrganizationLogoUploader
 
@@ -13,6 +12,14 @@ class Organization < ActiveRecord::Base
   validates :subdomain, uniqueness: true
 
   scope :public_accessible, ->{ where(public_access: true) }
+
+  def self.current_id=(id)
+    Thread.current[:current_id] = id
+  end
+  
+  def self.current_id
+    Thread.current[:current_id]
+  end
 
   def admin?(user)
     return true if user.admin?
