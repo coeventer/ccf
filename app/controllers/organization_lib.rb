@@ -1,8 +1,8 @@
 module OrganizationLib
   def self.included(base)
+    base.around_filter :scope_current_organization
     base.before_filter :find_events
     base.helper_method :current_organization
-    base.around_filter :scope_current_organization
   end
 
   def current_organization
