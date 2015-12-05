@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
-ruby ENV['CUSTOM_RUBY_VERSION'] || '2.2.3'
 
 gem 'mysql2', '~> 0.3.18'
 
