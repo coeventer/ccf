@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :projects, :foreign_key => :project_owner_id
   has_many :project_comments
+  has_many :commented_projects, through: :project_comments, source: :project
   has_many :project_ratings
   has_many :project_volunteers
   has_many :event_registrations
@@ -11,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :provider_users, dependent: :destroy
 
   default_scope { order(:created_at)}
+  scope :project_notifiable, ->(id){ joins(:commented_projects).where(projects: { id: id }, send_notifications: true ) }
+
 
   # See: https://github.com/zquestz/omniauth-google-oauth2 
   def self.create_with_omniauth(auth, organization=nil)

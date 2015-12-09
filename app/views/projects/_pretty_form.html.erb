@@ -8,7 +8,7 @@
   <div id="project_details" style="display: none;">
   <%=f.input :description %>
   <% if !@event.nil? %>
-  <%=f.input :event_id, :as => :hidden, :value => @event.id%>
+    <%=f.hidden_field :event_id, :value => @event.id%>
   <% end %>
   <%=f.input :repository, :class => 'form-control', :placeholder => "https://github.com/example/example" %>
   <br />
