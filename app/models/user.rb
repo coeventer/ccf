@@ -22,15 +22,15 @@ class User < ActiveRecord::Base
     if User.where(email: email).exists?
       user = User.where(email: email).first
     else
-      user = create! do |user|
-        user.uid = auth.uid
-        user.name = auth.info.name
-        user.email = email
-        user.image = auth.info.image
-        user.verified = false
+      user = create! do |new_user|
+        new_user.uid = auth.uid
+        new_user.name = auth.info.name
+        new_user.email = email
+        new_user.image = auth.info.image
+        new_user.verified = false
 
         # First user to sign up becomes an admin... so... sign up fast.
-        user.admin = 1 if User.count < 1
+        new_user.admin = 1 if User.count < 1
       end
     end
 
