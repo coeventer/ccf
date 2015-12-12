@@ -14,7 +14,7 @@ Contributing
 ===============
 
 ## System Requirements
-- Ruby >= 1.9.3
+- Ruby >= 2.0.0
 - rubygems (or RVM, rbenv)
 - Git
 - NPM
@@ -22,6 +22,10 @@ Contributing
 - MySQL Client Development Libraries
 - SQLite Development Libaries
 - ImageMagick Development Libraries
+
+It is highly recommended that you use a Ruby version manager, such as
+[RVM](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv). If you do
+use a Ruby version manager, install the version of Ruby set in .ruby-version.
 
 ### On Debian/Ubuntu
 
