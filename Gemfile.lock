@@ -330,6 +330,7 @@ DEPENDENCIES
   font-awesome-rails (>= 4.4.0)
   formtastic
   formtastic-bootstrap (>= 3.0.0)
+  hashie
   jquery-rails
   launchy
   less-rails (~> 2.5)
