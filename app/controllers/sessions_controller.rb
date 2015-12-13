@@ -10,7 +10,11 @@ class SessionsController < ApplicationController
     session[:token] = auth["credentials"]["token"]
     session[:created_at] = Time.now
 
-    login_redirect(request.env["omniauth.params"]["register_for_event_id"])
+    if user.email_confirmed?
+      login_redirect(request.env["omniauth.params"]["register_for_event_id"])
+    else
+      redirect_to set_email_user_path(user)
+    end
   end
 
   def signout
