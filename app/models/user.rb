@@ -77,6 +77,17 @@ class User < ActiveRecord::Base
     self.save! if self.changed?
   end
 
+  def set_unconfirmed_email(new_email)
+    unless self.email == new_email
+      self.unconfirm_email
+      self.email = new_email
+      self.save!
+      UserMailer.confirm_email(self)
+      return true
+    end
+    return false
+  end
+
   def unconfirm_email
     self.email_confirmed = false
     generate_email_confirmation_token

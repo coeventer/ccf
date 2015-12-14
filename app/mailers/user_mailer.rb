@@ -45,4 +45,14 @@ class UserMailer < ActionMailer::Base
 
     mail
   end
+
+  def confirm_email(user)
+    @user = user
+    @brand = brand_name
+    mail = mail(to: user.email, subject: "Email Confirmation from #{APP_CONFIG['brand']['site_name']}") do |format|
+      format.html
+    end
+
+    mail.deliver
+  end
 end

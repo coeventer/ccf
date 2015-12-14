@@ -1,0 +1,11 @@
+<h1>Set Your Email Address</h1>
+<p> Enter your email below, and we'll send you a confirmation to make sure we have the right address.</p>
+<%=semantic_form_for @user, url: set_email_user_path(@user) do |f|%>
+  <%= f.input :email, label: "Email Address"%>
+  <%=f.action :submit, :button_html => { :value => "Set Email Address", :class => "btn btn-primary" }%>
+<%end%>
+
+<h2>I just logged in. Why do I need to provide an email?</h2>
+<p>We use your email address to inform you about project updates and new events.
+Some of our login providers do not share email addresses with us. So, we have to
+ask.</p>

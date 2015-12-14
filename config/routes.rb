@@ -13,6 +13,7 @@ CampusCodefest::Application.routes.draw do
       get :confirm_email
       post :deactivate
       get :set_email
+      patch :set_email
     end
   end
   resource :session
