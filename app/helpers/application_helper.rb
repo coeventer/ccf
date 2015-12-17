@@ -1,7 +1,11 @@
 module ApplicationHelper
   def variable_date_truncate(date)
-    if ActiveRecord::Base.connection.instance_values["config"][:adapter] == "mysql2" then
+
+    case ActiveRecord::Base.connection.instance_values["config"][:adapter]
+    when "mysql2"
       "DATE_FORMAT(#{date}, '%m/%d/%Y')"
+    when "sqlite3"
+      "STRFTIME('%m/%d/%Y', #{date})"
     else
       "TO_CHAR(#{date}, 'MM/DD/YYYY')"
     end
