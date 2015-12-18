@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :provider_users, dependent: :destroy
 
   default_scope { order(:created_at)}
-  scope :project_notifiable, ->(id){ joins(:commented_projects).where(projects: { id: id }, send_notifications: true ) }
+  scope :project_notifiable, ->(id){ joins("INNER JOIN project_comments AS pc ON pc.user_id = users.id INNER JOIN projects AS p ON p.id = pc.project_id").where("p.id = ?", id).where(send_notifications: true ) }
 
 
   # See: https://github.com/zquestz/omniauth-google-oauth2 
