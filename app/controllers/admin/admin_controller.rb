@@ -1,5 +1,6 @@
 class Admin::AdminController < OrganizationController
   before_filter :require_admin
+  layout "admin/admin"
 
   private
   def require_admin
