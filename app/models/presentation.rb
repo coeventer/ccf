@@ -7,7 +7,7 @@ class Presentation < ActiveRecord::Base
   before_create :assign_title
 
   def assign_title
-    title = project.title if project
+    self.title = project.title if project
   end
 
 end
