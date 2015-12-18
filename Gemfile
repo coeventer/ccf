@@ -4,8 +4,8 @@ gem 'rails', '4.2.4'
 
 gem 'mysql2', '~> 0.3.18'
 
-  gem 'coffee-rails', '~> 4.1.0'
-  gem 'uglifier', '>= 1.0.3'
+gem 'coffee-rails', '~> 4.1.0'
+gem 'uglifier', '>= 1.0.3'
 
 gem "therubyracer", platform: :ruby
 gem "less-rails", '~> 2.5'
