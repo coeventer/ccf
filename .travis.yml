@@ -1,3 +1,14 @@
-cache: bundler
+---
+language: ruby
 rvm:
   - 2.2.3
+cache: bundler
+before_install: gem update bundler
+bundler_args: --jobs=3 --retry=3 
+after_install:
+ - bundle exec rake bower:install
+before_script:
+ - cp config/config.yml.example config/config.yml
+ - cp config/database.yml.example config/database.yml
+ - bundle exec rake db:create
+ - bundle exec rake db:migrate

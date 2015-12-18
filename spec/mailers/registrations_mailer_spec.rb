@@ -17,7 +17,7 @@ RSpec.describe RegistrationMailer do
     end
  
     it 'renders the sender email' do
-      expect(mail.from).to eq "no-reply@<<<<e.g. postmaster@campuscodefest.org>>>>"
+      expect(mail.from).to eq "no-reply@#{APP_CONFIG['mail']['domain']}"
     end
  
     it 'assigns @name' do
