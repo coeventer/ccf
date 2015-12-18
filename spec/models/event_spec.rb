@@ -50,6 +50,31 @@ describe Event do
   it "should have many registrations" do
     should have_many(:registrations)
   end
+
+  context "input_<date> fields" do
+      subject {build :event, start_date: nil, end_date: nil, voting_end_date: nil, volunteer_end_date: nil, registration_end_dt: nil}
+
+      it "input_start_date should return nil if start_date is nil" do
+          expect(subject.input_start_date).to be nil
+      end
+
+      it "input_end_date should return nil if start_date is nil" do
+          expect(subject.input_end_date).to be nil
+      end
+
+      it "input_voting_end_date should return nil if start_date is nil" do
+          expect(subject.input_voting_end_date).to be nil
+      end
+
+      it "input_volunteer_end_date should return nil if start_date is nil" do
+          expect(subject.input_volunteer_end_date).to be nil
+      end
+
+      it "input_registration_end_dt should return nil if start_date is nil" do
+          expect(subject.input_registration_end_dt).to be nil
+      end
+
+  end
   
   describe "when dealing with voting for projects" do
     it "should be able to enable voting for projects" do

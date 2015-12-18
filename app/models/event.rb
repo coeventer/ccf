@@ -44,7 +44,7 @@ class Event < ActiveRecord::Base
     date_handler_name = "input_#{v}"
 
     attr_accessible date_handler_name
-    define_method(date_handler_name) { self[v].in_time_zone }
+    define_method(date_handler_name) { self[v].try(:in_time_zone) }
     define_method("#{date_handler_name}=") {|value| self[v] = Time.strptime(value, "%Y-%m-%d %H:%M") }
   end
 
