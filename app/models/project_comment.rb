@@ -19,6 +19,6 @@ class ProjectComment < ActiveRecord::Base
   end
 
   def send_notification
-    CommentMailer.comment_posted(self).deliver
+    CommentMailer.comment_posted(self).deliver_now
   end
 end

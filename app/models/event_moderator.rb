@@ -7,6 +7,6 @@ class EventModerator < ActiveRecord::Base
   after_create :send_mail
 
   def send_mail
-    UserMailer.event_moderator(user, event)
+    UserMailer.event_moderator(user, event).deliver_now
   end
 end

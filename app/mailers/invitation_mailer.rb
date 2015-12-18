@@ -6,7 +6,5 @@ class InvitationMailer < ActionMailer::Base
       format.text
       format.html
     end
-
-    mail.deliver
   end
 end

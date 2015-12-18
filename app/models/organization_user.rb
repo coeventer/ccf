@@ -18,11 +18,11 @@ class OrganizationUser < ActiveRecord::Base
   scope :unverified, ->{ where(verified: false) }
 
   def welcome_email
-    UserMailer.organization_user_created(user, organization)
+    UserMailer.organization_user_created(user, organization).deliver_now
   end
 
   def verified_email
-    UserMailer.user_verified(user, organization)
+    UserMailer.user_verified(user, organization).deliver_now
   end
 
   def email

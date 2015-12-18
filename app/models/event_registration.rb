@@ -23,6 +23,6 @@ class EventRegistration < ActiveRecord::Base
   end
 
   def send_notification
-    RegistrationMailer.registration_created(self).deliver
+    RegistrationMailer.registration_created(self).deliver_now
   end
 end

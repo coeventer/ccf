@@ -64,7 +64,7 @@ class Invitation < ActiveRecord::Base
   private :accept_event
 
   def send_notification
-    InvitationMailer.invitation_created(self)
+    InvitationMailer.invitation_created(self).deliver_now
   end
   private :send_notification
 

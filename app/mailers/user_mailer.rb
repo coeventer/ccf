@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
       format.html
     end
 
-    mail.deliver
+    mail
   end
 
   def user_verified(user, organization)
@@ -20,7 +20,7 @@ class UserMailer < ActionMailer::Base
       format.html
     end
 
-    mail.deliver
+    mail
   end
 
   def organization_user_created(user, organization)
@@ -32,7 +32,7 @@ class UserMailer < ActionMailer::Base
       format.html
     end
 
-    mail.deliver
+    mail
   end
 
   def event_moderator(user, event)
@@ -43,6 +43,6 @@ class UserMailer < ActionMailer::Base
       format.html
     end
 
-    mail.deliver
+    mail
   end
 end
