@@ -34,5 +34,6 @@ class ApplicationController < ActionController::Base
     session[:user_id] = nil
     session[:token] = nil
     session[:created_at] = nil
+    session[:email_required] = nil
   end
 end

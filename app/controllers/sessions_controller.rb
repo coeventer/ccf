@@ -9,11 +9,13 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     session[:token] = auth["credentials"]["token"]
     session[:created_at] = Time.now
+    session[:email_required] = nil
 
     if user.email_confirmed?
       login_redirect(request.env["omniauth.params"]["register_for_event_id"])
     else
-      redirect_to set_email_user_path(user)
+      session[:email_required] = true
+      redirect_to set_email_users_path
     end
   end
 

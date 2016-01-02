@@ -1,5 +1,5 @@
 class UsersController < MixedUseController
-  before_filter :load_user
+  before_filter :load_user, except: [:set_email, :confirm_email]
   skip_before_filter :auth_required, only: [:set_email, :confirm_email]
 
   def show
@@ -35,21 +35,27 @@ class UsersController < MixedUseController
   end
 
   def set_email
+    raise ActiveRecord::RecordNotFound unless session[:email_required]
+
+    @user = User.find(session[:user_id])
+
     if params.fetch(:user, {})[:email]
-      if @user.set_unconfirmed_email(params[:user][:email])
-        flash[:notice] = "Confirmaiton sent to #{@user.email}. Check your email and follow the instructions we sent you."
-      end
+      @user.set_unconfirmed_email(params[:user][:email])
     end
   end
 
   def confirm_email
     if params[:t]
+      @user = User.where(email_confirmation_token: params[:t]).first!
       @user.confirm_email(params[:t])
       if @user.email_confirmed?
         flash[:notice] = "Your address #{@user.email} has been confirmed. Welcome!"
+        session[:user_id] = @user.id
+        session[:created_at] = Time.now
+        session[:email_required] = nil
       else
         flash[:error] = "Your address #{@user.email} could not be confirmed."
-        redirect_to set_email_user_path(@user)
+        redirect_to root_path
       end
     end
 

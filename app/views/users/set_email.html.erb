@@ -1,6 +1,13 @@
 <h1>Set Your Email Address</h1>
-<p> Enter your email below, and we'll send you a confirmation to make sure we have the right address.</p>
-<%=semantic_form_for @user, url: set_email_user_path(@user) do |f|%>
+<% if @user.email %>
+  <p>
+    An email has been sent to <strong><%=@user.email%></strong> to confirm your account. Please go to your email and click the confirmation link, then you can continue to use <%=brand_name%>. If you made a mistake or a typo, you may use the form below to send again.
+  </p>
+<% else %>
+  <p> Enter your email below, and we'll send you a confirmation to make sure we have the right address.</p>
+<% end %>
+
+<%=semantic_form_for @user, url: set_email_users_path do |f|%>
   <%= f.input :email, label: "Email Address"%>
   <%=f.action :submit, :button_html => { :value => "Set Email Address", :class => "btn btn-primary" }%>
 <%end%>

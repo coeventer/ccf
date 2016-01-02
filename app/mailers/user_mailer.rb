@@ -53,6 +53,6 @@ class UserMailer < ActionMailer::Base
       format.html
     end
 
-    mail.deliver
+    mail
   end
 end

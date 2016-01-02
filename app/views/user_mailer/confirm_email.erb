@@ -7,7 +7,7 @@
     <p><%= @user.name %>,</p>
 
     <p>Somebody has created an account at <%=@brand%> with this email address. If that somebody is you, then simply click the link below to confirm your email address. </p>
-    <p><%=link_to 'Click Here to confirm your email address', confirm_email_user_url(@user, t: @user.email_confirmation_token)%></p>
+    <p><%=link_to 'Click Here to confirm your email address', confirm_email_users_url(t: @user.email_confirmation_token)%></p>
 
     <p>Thanks,</p>
     <p><%=@brand%> admins</p>

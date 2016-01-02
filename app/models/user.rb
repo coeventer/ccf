@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
       self.unconfirm_email
       self.email = new_email
       self.save!
-      UserMailer.confirm_email(self)
+      UserMailer.confirm_email(self).deliver
       return true
     end
     return false
