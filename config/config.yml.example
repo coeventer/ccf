@@ -11,6 +11,9 @@ development: &dev_config
       facebook:
         key: <<<<your key here bla blah.com>>>>
         secret: <<<<supersecret here>>>>
+      meetup:
+        key: <<<<your key here bla blah.com>>>>
+        secret: <<<<supersecret here>>>>
   mail:
     domain: "<<<<e.g. postmaster@campuscodefest.org>>>>"
     user_name: "<<<<e.g. postmaster@campuscodefest.org>>>>"

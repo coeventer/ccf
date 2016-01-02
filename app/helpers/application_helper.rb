@@ -28,16 +28,17 @@ module ApplicationHelper
   end
 
   def facebook_path(event_id = nil)
-    return_to = params[:return_to] || request.url
-    register_param = (event_id) ? "&register_for_event_id=#{event_id}" : nil
-    "#{root_url(subdomain: false)}auth/facebook?origin=#{return_to}#{register_param}"
+    oauth_path('facebook', event_id)
   end
 
   def google_oauth2_path(event_id = nil)
-    return_to = params[:return_to] || request.url
-    register_param = (event_id) ? "&register_for_event_id=#{event_id}" : nil
-    "#{root_url(subdomain: false)}auth/google_oauth2?origin=#{return_to}#{register_param}"
+    oauth_path('google_oauth2', event_id)
   end
+
+  def meetup_path(event_id = nil)
+    oauth_path('meetup', event_id)
+  end
+
 
   def brand_name
     "<span style='color: #4682B4;'>Co</span><span style='color: #000000;'>Eventer</span>".html_safe
@@ -84,5 +85,12 @@ module ApplicationHelper
     else
       provider_user.provider.capitalize
     end
+  end
+
+  private
+  def oauth_path(provider, event_id)
+    return_to = params[:return_to] || request.url
+    register_param = (event_id) ? "&register_for_event_id=#{event_id}" : nil
+    "#{root_url(subdomain: false)}auth/#{provider}?origin=#{return_to}#{register_param}"
   end
 end

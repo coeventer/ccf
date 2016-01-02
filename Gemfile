@@ -28,6 +28,7 @@ gem 'rabl'
 gem 'slack-notifier'
 gem 'wicked'
 gem 'draper', '~> 1.3'
+gem 'hashie'
 
 group :development do
   gem 'better_errors'
@@ -55,6 +56,7 @@ end
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-meetup'
 
 gem 'will_paginate'
 gem 'capistrano', '<3'
