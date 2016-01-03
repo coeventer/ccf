@@ -18,11 +18,11 @@ class OrganizationUser < ActiveRecord::Base
   scope :unverified, ->{ where(verified: false) }
 
   def welcome_email
-    UserMailer.organization_user_created(user, organization).deliver_now
+    UserMailer.organization_user_created(user, organization).deliver_now if user_email
   end
 
   def verified_email
-    UserMailer.user_verified(user, organization).deliver_now
+    UserMailer.user_verified(user, organization).deliver_now if user_email
   end
 
   def email
@@ -30,7 +30,7 @@ class OrganizationUser < ActiveRecord::Base
   end
 
   def auto_verify?
-    return false unless organization.auto_verify?
+    return false unless user_email && organization.auto_verify? && organization.auto_verify_domains
 
     organization.auto_verify_domains == WILDCARD_DOMAIN || organization.auto_verify_domains.split(',').include?(user_email.split("@").last)
   end
@@ -40,5 +40,9 @@ class OrganizationUser < ActiveRecord::Base
 
     self.verified = self.auto_verify?
     true
+  end
+
+  def auto_verify!
+    save if auto_verify
   end
 end

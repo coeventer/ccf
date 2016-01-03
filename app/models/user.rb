@@ -75,6 +75,7 @@ class User < ActiveRecord::Base
   def confirm_email(token)
     self.email_confirmed = (token == self.email_confirmation_token)
     self.save! if self.changed?
+    organization_users.each(&:auto_verify!)
   end
 
   def set_unconfirmed_email(new_email)
