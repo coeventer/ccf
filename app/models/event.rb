@@ -45,7 +45,7 @@ class Event < ActiveRecord::Base
 
     attr_accessible date_handler_name
     define_method(date_handler_name) { self[v].try(:in_time_zone) }
-    define_method("#{date_handler_name}=") {|value| self[v] = Time.strptime(value, "%Y-%m-%d %H:%M").try(:in_time_zone) }
+    define_method("#{date_handler_name}=") {|value| self[v] = Time.zone.parse(value) }
   end
 
   # Voting is enabled if the voting enabled boolean is turned on, it is before the event start date
