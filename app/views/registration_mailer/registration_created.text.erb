@@ -1,10 +1,14 @@
 Hi <%= @user.name %>,
 
-You have successfully registered for <%=@event.title%> (<%=event_url(@event, subdomain: @event.organization.subdomain) %>). The event will run <%=@event.pretty_dates%>. In the mean time, you can submit, vote or volunteer for project ideas on the <%= "#{@event.title} event page"%> (<%=event_url(@event) %>).
-
-We highly recommend basic Git and GitHub experience before the event begins. Please take a few hours to introduce yourself to these tools if you don't have previous experience with them.
+You have successfully registered for <%=@event.title%> (<%=event_url(@event, subdomain: @event.organization.subdomain) %>). The event will run <%=@event.pretty_dates%>. In the mean time, you can submit, vote, and volunteer for project ideas at <%=event_url(@event, subdomain: @event.organization.subdomain)%>.
 
 Check back to the site (<%=root_url(subdomain: @event.organization.subdomain)%>) for event updates and other announcements as the event approaches.
 
-Thanks,
-<%=@event.title%> Admins
+##Get Prepped
+
+There's no reason to wait for <%=@event.title%> to get started. If you plan to volutneer on a project (<%=event_url(@event, subdomain: @event.organization.subdomain) %>), you can start discussing the project now and asking questions. It's a good idea to do a little bit of research on the project's issue - find out why the issue exists, who's impacted, and what is already being done about it. Search the internet for tools that could be helpful to use or improve upon.
+
+It will be helpful to have a Google Account (https://myaccount.google.com/intro) so you can store project documents in Google Drive. If you're a programmer, but sure you have a GitHub account (http://github.com), and are familiar with git (https://openhatch.org/missions/git). 
+
+Looking forward to building with you,
+Your Friendly <%=@event.title%> Hosts 
