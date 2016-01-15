@@ -29,8 +29,7 @@ describe SessionsController, type: :controller do
     it "should redirect to an email address prompt if OAuth does not provide an email address" do
       @request.env["omniauth.auth"] = auth_without_email
       post :create
-      user = ProviderUser.find_by(uid: auth_without_email.uid, provider: auth_without_email.provider).user
-      expect(response).to redirect_to set_email_user_path(user.id)
+      expect(response).to redirect_to set_email_users_path
     end
 
     it "should not redirect to an email address prompt if OAuth does provide an email address" do
