@@ -59,11 +59,16 @@ class UsersController < MixedUseController
       end
     end
 
-    redirect_to root_path
+    redirect_to return_to
   end
 
   private
-    def load_user
-     @user = User.find(params[:id])
-    end
+
+  def load_user
+   @user = User.find(params[:id])
+  end
+
+  def return_to
+    session.delete(:return_to) || params[:return_to] || root_path
+  end
 end
