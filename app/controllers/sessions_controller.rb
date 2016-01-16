@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
       login_redirect(request.env["omniauth.params"]["register_for_event_id"])
     else
       session[:email_required] = true
+      session[:return_to] = return_to
       redirect_to set_email_users_path
     end
   end
@@ -43,7 +44,7 @@ class SessionsController < ApplicationController
           redirect_to event_url(event, subdomain: @organization.subdomain)
         end
       else
-        redirect_to (request.env['omniauth.origin'].nil? ? root_path : request.env['omniauth.origin'])
+        redirect_to return_to
       end
     end
 
@@ -53,5 +54,9 @@ class SessionsController < ApplicationController
   def check_organization
     url = Domainatrix.parse(request.env['omniauth.origin'])
     @organization = Organization.find_by_subdomain(url.subdomain) || nil
+  end
+
+  def return_to
+    request.env['omniauth.origin'] || root_path
   end
 end
