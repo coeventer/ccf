@@ -26,3 +26,10 @@ en:
         default: "%B%e at %l:%M%p"
         short: "%B%e"
         long: "%B%e, %Y at %l:%M%p"
+        date: "%B%e, %Y"
+  time:
+    formats:
+      default: "%B%e at %l:%M%p"
+      short: "%B%e"
+      long: "%B%e, %Y at %l:%M%p"
+      date: "%B, %Y"
