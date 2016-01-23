@@ -23,18 +23,17 @@ class Organization < ActiveRecord::Base
 
   def admin?(user)
     return true if user.admin?
+
     organization_user = users.where(user_id: user).first
-    return false if organization_user.nil?
-    return organization_user.admin?
+    organization_user.present? && organization_user.admin?
   end
 
   def verified?(user)
     organization_user = users.where(user_id: user).first
-    return false if organization_user.nil?
-    return organization_user.verified?
+    organization_user.present? && organization_user.verified?
   end
 
   def member?(user)
-    !users.where(user_id: user).first.nil?
+    users.where(user_id: user).first.present?
   end
 end
