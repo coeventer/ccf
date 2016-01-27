@@ -32,7 +32,7 @@ class Event < ActiveRecord::Base
     live.validates :registration_maximum, :presence => true
   end
 
-  default_scope { where(organization_id: Organization.current_id).order("events.start_date desc") }
+  default_scope { where(organization_id: Organization.current_id).order("events.start_date asc") }
   scope :future, -> { where("end_date > ?", Date.today) }
 
   before_destroy :unassign_projects
