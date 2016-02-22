@@ -53,9 +53,15 @@ cd ccf
 bundle
 ```
 
-We use Omniauth to support Google account login. You must generate an OAuth 2.0 API key via Google Developer Console (https://cloud.google.com/console/project), more instructions can be found here: https://developers.google.com/ad-exchange/rtb/open-bidder/google-app-guide#step-5 . Once this is done, copy the example config.yml file and enter your api key and secret to the provider section.
+We use Omniauth to support Google account login. You must generate an OAuth 2.0 API key via Google Developer Console
+(https://cloud.google.com/console/project), more instructions can be found here:
+https://developers.google.com/ad-exchange/rtb/open-bidder/google-app-guide#step-5 . Once this is done, copy the example
+config.yml file and enter your api key and secret to the provider section.
 
-Note: this application rquires a wildcard domain setting. If you simply want to set-up authentication for your local development instance of the ccf app, you simply use the domain `http://lvh.me` instead of http://localhost in your google development console. The http://lvh.me is a domain that was registered as a convenience for developers and resolves to 127.0.0.1 for all requests to http://lvh.me and subdomains thereof.
+Note: this application rquires a wildcard domain setting. If you simply want to set-up authentication for your local
+development instance of the ccf app, you simply use the domain `http://lvh.me` instead of http://localhost in your
+google development console. The http://lvh.me is a domain that was registered as a convenience for developers and
+resolves to 127.0.0.1 for all requests to http://lvh.me and subdomains thereof.
 
 For local development, the Omniauth 'developer' provider is enabled and allows you to log in without setting up any
 other provider API keys. Add `127.0.0.1 lvh.me` to `/etc/hosts` to work offline.
