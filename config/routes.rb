@@ -39,7 +39,8 @@ CampusCodefest::Application.routes.draw do
   get 'contact' => 'contact#new', :as => 'contact'
   post 'contact' => 'contact#create', :as => 'contact_create'
 
-  get "/auth/:provider/callback" => "sessions#create"
+  get  "/auth/:provider/callback" => "sessions#create"
+  post "/auth/:provider/callback" => "sessions#create"
   get "/signout" => "sessions#signout", :as => :signout
 
   # Organization routes

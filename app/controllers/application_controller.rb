@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.email_confirmed.find_by_id(session[:user_id]) if session[:user_id]
     @current_user
   end
-  helper_method :current_user
+  helper_method :current_user, :allow_development_provider?
 
   def alerts
     return nil unless current_user
@@ -35,5 +35,9 @@ class ApplicationController < ActionController::Base
     session[:token] = nil
     session[:created_at] = nil
     session[:email_required] = nil
+  end
+
+  def allow_development_provider?
+    Rails.env.development? || Rails.env.test?
   end
 end
