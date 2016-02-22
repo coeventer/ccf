@@ -57,6 +57,9 @@ We use Omniauth to support Google account login. You must generate an OAuth 2.0 
 
 Note: this application rquires a wildcard domain setting. If you simply want to set-up authentication for your local development instance of the ccf app, you simply use the domain `http://lvh.me` instead of http://localhost in your google development console. The http://lvh.me is a domain that was registered as a convenience for developers and resolves to 127.0.0.1 for all requests to http://lvh.me and subdomains thereof.
 
+For local development, the Omniauth 'developer' provider is enabled and allows you to log in without setting up any
+other provider API keys. Add `127.0.0.1 lvh.me` to `/etc/hosts` to work offline.
+
 ```
 cp config/config.yml.example config/config.yml
 ```
