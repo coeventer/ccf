@@ -19,6 +19,8 @@ class ProjectComment < ActiveRecord::Base
   end
 
   def send_notification
-    CommentMailer.comment_posted(self).deliver_now
+    CommentMailerHelper.get_project_users(self.project).each do |user|
+      CommentMailer.comment_posted(self, user).deliver_now
+    end
   end
 end

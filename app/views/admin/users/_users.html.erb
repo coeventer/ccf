@@ -10,6 +10,7 @@
   </thead>
   <tbody>
     <%@users.each do |u|%>
+    <% next unless u.user %>
     <tr>
       <td><%=u.user.name%></td>
       <td><%=u.user.email%></td>
