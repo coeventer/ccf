@@ -28,7 +28,8 @@
     <section>
       <h2>WHY did we do this project?</h2>
       <div ng-click="editPresentation(presentation, 'why')">
-        <md ng-model="presentation.why || defaultText">
+        <md ng-model="presentation.why"></md>
+        <md ng-if="!presentation.why">(click to edit)</md>
       </div>
     </section>
 
@@ -36,28 +37,32 @@
       <h2>WHAT did we do?</h2>
 
       <div ng-click="editPresentation(presentation, 'what')">
-        <md ng-model="presentation.what || defaultText">
+        <md ng-model="presentation.what"></md>
+        <md ng-if="!presentation.what">(click to edit)</md>
       </div>
     </section>
 
     <section>
       <h2>What went RIGHT?</h2>
       <div ng-click="editPresentation(presentation, 'right')">
-        <md ng-model="presentation.right || defaultText">
+        <md ng-model="presentation.right"></md>
+        <md ng-if="!presentation.right">(click to edit)</md>
       </div>
     </section>
 
     <section>
       <h2>What went Wrong?</h2>
       <div ng-click="editPresentation(presentation, 'wrong')">
-        <md ng-model="presentation.wrong || defaultText">
+        <md ng-model="presentation.wrong"></md>
+        <md ng-if="!presentation.wrong">(click to edit)</md>
       </div>
     </section>
 
     <section>
       <h2>What are our NEXT STEPS?</h2>
       <div ng-click="editPresentation(presentation, 'next_steps')">
-        <md ng-model="presentation.next_steps || defaultText">
+        <md ng-model="presentation.next_steps"></md>
+        <md ng-if="!presentation.next_steps">(click to edit)</md>
       </div>
     </section>
 

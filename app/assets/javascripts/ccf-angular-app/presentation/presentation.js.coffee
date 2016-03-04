@@ -7,7 +7,7 @@
     "yaru22.md"
   ])
   .config((RestangularProvider)->
-    console.log("configuring this bitch")
+    console.log("configuring...")
     RestangularProvider.setDefaultHeaders({'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')})
     RestangularProvider.setDefaultHttpFields({withCredentials: true})
   )
