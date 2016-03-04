@@ -1,21 +1,82 @@
 <div class="row">
-  <div class="col-xs-10">
+  <div class="col-xs-1">
+    <%=image_tag @user.image, alt: @user.name, height: 75, width: 75 %>
+  </div>
+  <div class="col-xs-11">
     <h1><%=@user.name%></h1>
-    <p class="text-info">
-      Registered for <%=@registered%> upcoming <%='event'.pluralize(@registered).sub(/d+s/, '')%> and attended <%=@attended%> past <%='event'.pluralize(@attended).sub(/d+s/, '')%>.
-      Submitted <%=@ideas%> ideas.
-      Liked <%=@likes%> ideas.
-      Helped with <%=@helps%> ideas.
-      Commented <%=@comments%> times.
-    </p>
-    <h2>Member of</h2>
-    <%@user.organization_users.each do |user_organization|%>
-    <ul>
-      <li><%=link_to user_organization.organization.name, root_url(subdomain: user_organization.organization.subdomain)%></li>
-    </ul>
-    <%end%>
   </div>
-  <div class="col-xs-2">
-    <%=image_tag @user.image, alt: @user.name, height: 150, width: 150%>
+</div>
+<div class="row">
+  <div class="col-xs-12"><p></p></div>
+</div>
+<div class="row">
+  <div class="col-xs-3 well well-small">
+      <h2>Memberships</h2>
+
+      <% @user.organization_users.map(&:organization).each do |organization| %>
+        <h4 class="membership">
+          <% if organization.organization_logo?%>
+            <%= image_tag organization.organization_logo_url(:thumb).to_s%>
+          <% else %>
+            <i class="fa fa-users" style="font-size: 30px;"> </i>
+          <%end%>
+
+          <%=link_to organization.name, root_url(subdomain: organization.subdomain)%>
+        </h4>
+      <% end %>
   </div>
+
+  <div class="col-xs-9">
+    <div class="row">
+      <div class="col-xs-2" style="text-align: center;">
+        <h4><i class="fa fa-calendar"></i> Attended</h4>
+        <h1><%=@attended%></h1>
+      </div>
+      <div class="col-xs-2" style="text-align: center;">
+        <h4><i class="fa fa-lightbulb-o"></i> Ideas</h4>
+        <h1><%=@idea_count%></h1>
+      </div>
+      <div class="col-xs-2" style="text-align: center;">
+        <h4><i class="fa fa-thumbs-up"></i> Liked</h4>
+        <h1><%=@likes%></h1>
+      </div>
+      <div class="col-xs-2" style="text-align: center;">
+        <h4><i class="fa fa-hand-paper-o"></i> Helped with</h4>
+        <h1><%=@helps%></h1>
+      </div>
+      <div class="col-xs-2" style="text-align: center;">
+        <h4><i class="fa fa-comments"></i> Commented</h4>
+        <h1><%=@comments%></h1>
+      </div>
+    </div>
+
+    <% if current_user == @user %>
+      <h2>My Upcoming Events</h2>
+      <div class="row">
+        <% @my_events.each do |event| %>
+          <div class="col-xs-3">
+            <div class="thumbnail">
+              <h3><i class="fa fa-calendar"></i> <%= link_to event.name, events_url(event, subdomain: event.organization.subdomain) %></h3>
+              <p class="text-muted">
+                 <%=event.pretty_dates%>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <h2>Ideas</h2>
+    <% @ideas.each do |idea| %>
+      <div class="col-xs-6">
+        <div class="">
+          <h3><i class="fa fa-lightbulb-o"></i> <%= link_to idea.title, projects_url(idea, subdomain: idea.organization.subdomain) %></h3>
+          <p class="text-muted">
+             
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
 </div>

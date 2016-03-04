@@ -3,12 +3,14 @@ class UsersController < MixedUseController
   skip_before_filter :auth_required, only: [:set_email, :confirm_email]
 
   def show
-    @registered = Event.unscoped.future.joins(:event_registrations).where(event_registrations: { user_id: @user.id }).count
+    @my_events = Event.unscoped.future.joins(:event_registrations).where(event_registrations: { user_id: @user.id })
+    @registered = @my_events.count
     @attended = EventRegistration.unscoped.where(user_id: @user.id).count - @registered
-    @ideas = Project.unscoped.where(submitted_user_id: @user.id).count
+    @ideas = Project.unscoped.where(submitted_user_id: @user.id)
     @comments = ProjectComment.unscoped.where(user_id: @user.id).count
     @likes = ProjectRating.unscoped.where(user_id: @user.id).count
     @helps = ProjectVolunteer.unscoped.where(user_id: @user.id).count
+    @idea_count = @ideas.count
   end
 
   # GET /projects/1/edit
