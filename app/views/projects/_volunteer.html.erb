@@ -1,7 +1,7 @@
 <% button_path = volunteer_project_path(project) %>
 <% options = { method: :post, remote: true, class: "btn btn-xs " } %>
 
-<% if project.volunteering_enabled? && current_user && current_organization.verified?(current_user) %>
+<% if project.volunteering_allowed? && current_user && current_organization.verified?(current_user) %>
     <% button_path = unvolunteer_project_path(project) if project.volunteered_for?(current_user) %>
     <% options[:class] += project.volunteered_for?(current_user) ? "btn-info" : "btn-default" %>
 <% else %>
