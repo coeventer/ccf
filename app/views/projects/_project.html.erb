@@ -5,10 +5,8 @@
       <% unless @event.nil? && project.event.nil? %>
         <% if can?(:edit, project.presentation) || project.presentation.published %>
           <%=link_to project_presentation_path(project), class: "btn btn-primary btn-sm" do%>
-            <i class="fa fa-play"></i> Presentation
+            <i class="fa fa-play"></i> Presentation <%= '(Unpublished)' if (!project.presentation.published) %>
           <% end %>
-        <% elsif %>
-        <a href="#" class="btn btn-primary" disabled="disabled"><i class="fa fa-play"></i> Presentation</a>
         <% end %>
       <% end %>
     </p>
