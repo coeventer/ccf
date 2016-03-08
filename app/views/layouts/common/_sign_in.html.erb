@@ -19,6 +19,12 @@
           Sign in with Meetup
         <% end %>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <% if allow_development_provider? %>
+          <br/><br/>
+          <%= link_to '/auth/developer' do %>
+            Development login
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_filter :auth_required
+  skip_before_action :verify_authenticity_token, if: :allow_development_provider?
   before_filter :check_organization
 
   def create 
@@ -10,6 +11,8 @@ class SessionsController < ApplicationController
     session[:token] = auth["credentials"]["token"]
     session[:created_at] = Time.now
     session[:email_required] = nil
+
+    auto_confirm_development_user(auth, user)
 
     if user.email_confirmed?
       login_redirect(request.env["omniauth.params"]["register_for_event_id"])
@@ -58,5 +61,13 @@ class SessionsController < ApplicationController
 
   def return_to
     request.env['omniauth.origin'] || root_path
+  end
+
+  def auto_confirm_development_user(auth, user)
+    if (allow_development_provider?  &&
+        auth.provider == "developer" &&
+        !user.email_confirmed?)
+      user.confirm_email(user.email_confirmation_token)
+    end
   end
 end
