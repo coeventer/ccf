@@ -1,5 +1,6 @@
 class EventRegistration < ActiveRecord::Base
   attr_accessible :event_id, :user, :note, :participation_level
+  delegate :organization_id, to: :event
 
   belongs_to :event
   belongs_to :user
