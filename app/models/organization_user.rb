@@ -1,5 +1,5 @@
 class OrganizationUser < ActiveRecord::Base
-  attr_accessible :admin, :organization_id, :verified, :user, :user_department, :user_id
+  attr_accessible :organization_id, :verified, :user, :user_department, :user_id
 
   WILDCARD_DOMAIN = '*'
 

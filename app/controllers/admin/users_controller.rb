@@ -35,7 +35,8 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def canonize
-    @user.update_attributes(admin: true)
+    @user.admin = true
+    @user.save!
     redirect_to admin_users_path(params.slice(:unverified)), :message => "#{@user.user_name} now an organization admin"
   end
 

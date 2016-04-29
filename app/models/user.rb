@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :department, :deptid, :email, :name, :uid, :image, :verified, :send_notifications
+  attr_accessible :department, :deptid, :email, :name, :uid, :image, :verified, :send_notifications
 
   has_many :projects, :foreign_key => :project_owner_id
   has_many :project_comments
