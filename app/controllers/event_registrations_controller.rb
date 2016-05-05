@@ -1,7 +1,7 @@
 class EventRegistrationsController < OrganizationController
   before_filter :verification_required
   load_and_authorize_resource :event
-  load_and_authorize_resource :through => :event
+  load_and_authorize_resource through: :event, except: [:new]
   # GET /event_registrations/1
   # GET /event_registrations/1.json
   def show
@@ -14,6 +14,8 @@ class EventRegistrationsController < OrganizationController
   # GET /event_registrations/new
   # GET /event_registrations/new.json
   def new
+    @event_registration = @event.event_registrations.new(user: current_user)
+
     respond_to do |format|
       format.html # new.html.erb
     end

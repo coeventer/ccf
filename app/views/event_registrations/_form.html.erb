@@ -1,6 +1,6 @@
 <%= semantic_form_for @event_registration, :url => event_event_registrations_path(@event) do |f| %>
-<p>Creating registration for <%=current_user.name%>
-  <%= f.input :participation_level, :as => :radio, :collection => EventRegistration::PARTICIPATION_OPTIONS%>
+  <p><%= @event.pretty_dates %></p>
+  <%= f.input :name %>
   <%= f.input :note, :input_html => {:style => "width: 80%; height: 40px;"}%>
   <%= f.action :submit, :button_html => { :class => "btn btn-primary" }%>
   <%=link_to "Cancel", event_path(@event), :class => "btn btn-link" %>
