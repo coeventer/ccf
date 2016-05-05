@@ -21,6 +21,6 @@ class ProjectVolunteer < ActiveRecord::Base
   end
 
   def slack_message
-    "#{user.name} has volunteered for #{project.title}"
+    "#{user.name} has volunteered for #{project.title}: #{project.url}"
   end
 end

@@ -122,11 +122,15 @@ class Project < ActiveRecord::Base
     db_presentation
   end
 
+  def url
+    Rails.application.routes.url_helpers.project_url(self)
+  end
+
   def slack_message
     if self.event.present?
-      "A new project #{title} has been submitted for #{event.title}. #{description}"
+      "A new project #{title} has been submitted for #{event.title}. #{url}"
     else
-      "A new project #{title} has been submitted to the backlog. #{description}"
+      "A new project #{title} has been submitted to the backlog. #{url}"
     end
   end
 
