@@ -117,7 +117,7 @@ class Event < ActiveRecord::Base
   end
 
   def url
-    Rails.application.routes.url_helpers.event_url(self)
+    Rails.application.routes.url_helpers.event_url(self, subdomain: organization.subdomain)
   end
 
   def slack_message

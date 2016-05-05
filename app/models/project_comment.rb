@@ -14,12 +14,8 @@ class ProjectComment < ActiveRecord::Base
 
   default_scope { order(:created_at)}
 
-  def url
-    Rails.application.routes.url_helpers.project_project_comment_url(project_id,id)
-  end
-
   def slack_message
-    "#{user.name} has commented on #{project.title}: #{url}"
+    "#{user.name} has commented on #{project.title}: #{project.url}"
   end
 
   def send_notification

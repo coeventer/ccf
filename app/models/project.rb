@@ -123,7 +123,7 @@ class Project < ActiveRecord::Base
   end
 
   def url
-    Rails.application.routes.url_helpers.project_url(self)
+    Rails.application.routes.url_helpers.project_url(self, subdomain: organization.subdomain)
   end
 
   def slack_message
