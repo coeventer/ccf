@@ -7,14 +7,6 @@ describe ProjectComment do
     project_comment.save
   end
 
-  context "#url" do
-      let(:organization) { create :organization }
-      subject { create(:project_comment, project: create(:project, project_owner: create(:user), organization: organization, title: "Project"))  }
-    it "generates the proper url" do
-      expect(subject.url).to eq("http://lvh.me/projects/1/project_comments/1")
-    end
-  end
-
   context "#slack_message" do
     let(:organization) { create :organization }
     describe "with an event" do
@@ -24,7 +16,7 @@ describe ProjectComment do
         allow(subject).to receive(:url) { "http://example.com" }
         allow(subject).to receive(:user) { user }
         allow(user).to receive(:name) { "Bob" }
-        expect(subject.slack_message).to match("Bob has commented on Project: http://example.com")
+        expect(subject.slack_message).to include("Bob has commented on Project: http://MyString.lvh.me/")
       end
     end
   end

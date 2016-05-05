@@ -42,7 +42,7 @@ describe Project do
   context "#url" do
     subject { create(:project, organization: organization, title: "A Title") }
     it "generates the proper url" do
-      expect(subject.url).to eq("http://lvh.me/projects/1-a-title")
+      expect(subject.url).to include("http://MyString.lvh.me/projects")
     end
   end
 

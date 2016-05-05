@@ -14,65 +14,65 @@
 ActiveRecord::Schema.define(version: 20151217184014) do
 
   create_table "event_comments", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "user_id"
-    t.text     "description"
+    t.integer  "event_id",    limit: 4
+    t.integer  "user_id",     limit: 4
+    t.text     "description", limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "event_moderators", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "user_id"
+    t.integer  "event_id",   limit: 4
+    t.integer  "user_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "event_registrations", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "user_id"
+    t.integer  "event_id",            limit: 4
+    t.integer  "user_id",             limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "note"
-    t.string   "participation_level"
+    t.text     "note",                limit: 65535
+    t.string   "participation_level", limit: 255
   end
 
   create_table "events", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",                limit: 255
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "voting_end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "voting_enabled",       default: true
-    t.boolean  "volunteering_enabled", default: true
+    t.boolean  "voting_enabled",                     default: true
+    t.boolean  "volunteering_enabled",               default: true
     t.datetime "volunteer_end_date"
-    t.text     "description"
+    t.text     "description",          limit: 65535
     t.datetime "registration_end_dt"
-    t.integer  "registration_maximum"
-    t.boolean  "live",                 default: false
-    t.text     "schedule"
-    t.text     "other_info"
-    t.integer  "organization_id",      default: 0
-    t.boolean  "dashboard_enabled",    default: true
-    t.string   "event_logo"
+    t.integer  "registration_maximum", limit: 4
+    t.boolean  "live",                               default: false
+    t.text     "schedule",             limit: 65535
+    t.text     "other_info",           limit: 65535
+    t.integer  "organization_id",      limit: 4,     default: 0
+    t.boolean  "dashboard_enabled",                  default: true
+    t.string   "event_logo",           limit: 255
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.string   "email"
-    t.string   "token"
-    t.integer  "organization_id"
-    t.string   "context_type"
-    t.integer  "context_id"
-    t.integer  "user_id"
-    t.string   "status",          default: "pending"
+    t.string   "email",           limit: 255
+    t.string   "token",           limit: 255
+    t.integer  "organization_id", limit: 4
+    t.string   "context_type",    limit: 255
+    t.integer  "context_id",      limit: 4
+    t.integer  "user_id",         limit: 4
+    t.string   "status",          limit: 255, default: "pending"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "organization_users", force: :cascade do |t|
-    t.integer  "organization_id"
-    t.integer  "user_id"
+    t.integer  "organization_id", limit: 4
+    t.integer  "user_id",         limit: 4
     t.boolean  "verified"
     t.boolean  "admin"
     t.datetime "created_at"
@@ -80,106 +80,106 @@ ActiveRecord::Schema.define(version: 20151217184014) do
   end
 
   create_table "organizations", force: :cascade do |t|
-    t.string   "name"
-    t.string   "subdomain"
-    t.string   "auto_verify_domains"
+    t.string   "name",                limit: 255
+    t.string   "subdomain",           limit: 255
+    t.string   "auto_verify_domains", limit: 255
     t.boolean  "auto_verify"
-    t.string   "description"
-    t.string   "website"
+    t.string   "description",         limit: 255
+    t.string   "website",             limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "organization_logo"
-    t.string   "slack_webhook_url"
-    t.boolean  "public_access",       default: false
-    t.string   "time_zone",           default: "Central Time (US & Canada)"
+    t.string   "organization_logo",   limit: 255
+    t.string   "slack_webhook_url",   limit: 255
+    t.boolean  "public_access",                   default: false
+    t.string   "time_zone",           limit: 255, default: "Central Time (US & Canada)"
   end
 
   create_table "presentations", force: :cascade do |t|
-    t.text     "why"
-    t.text     "what"
-    t.text     "right"
-    t.text     "wrong"
-    t.text     "next_steps"
-    t.integer  "project_id"
+    t.text     "why",        limit: 65535
+    t.text     "what",       limit: 65535
+    t.text     "right",      limit: 65535
+    t.text     "wrong",      limit: 65535
+    t.text     "next_steps", limit: 65535
+    t.integer  "project_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "published"
-    t.string   "title"
+    t.string   "title",      limit: 255
   end
 
   create_table "project_comments", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.string   "title"
-    t.text     "description"
+    t.integer  "project_id",  limit: 4
+    t.integer  "user_id",     limit: 4
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "project_ratings", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.integer  "rating"
+    t.integer  "project_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.integer  "rating",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "project_tags", force: :cascade do |t|
-    t.integer  "project_id"
-    t.string   "tag"
+    t.integer  "project_id", limit: 4
+    t.string   "tag",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "project_volunteers", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.string   "interest_level"
+    t.integer  "project_id",     limit: 4
+    t.integer  "user_id",        limit: 4
+    t.string   "interest_level", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "projects", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "project_owner_id"
-    t.string   "title"
-    t.text     "description"
+    t.integer  "event_id",                 limit: 4
+    t.integer  "project_owner_id",         limit: 4
+    t.string   "title",                    limit: 255
+    t.text     "description",              limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "classification"
-    t.boolean  "approved",                 default: false
-    t.string   "repository"
-    t.integer  "project_comments_count",   default: 0
-    t.integer  "project_ratings_count",    default: 0
-    t.integer  "project_volunteers_count", default: 0
-    t.integer  "organization_id",          default: 0
-    t.integer  "submitted_user_id"
+    t.string   "classification",           limit: 255
+    t.boolean  "approved",                               default: false
+    t.string   "repository",               limit: 255
+    t.integer  "project_comments_count",   limit: 4,     default: 0
+    t.integer  "project_ratings_count",    limit: 4,     default: 0
+    t.integer  "project_volunteers_count", limit: 4,     default: 0
+    t.integer  "organization_id",          limit: 4,     default: 0
+    t.integer  "submitted_user_id",        limit: 4
   end
 
   create_table "provider_users", force: :cascade do |t|
-    t.string   "uid"
-    t.string   "provider"
-    t.integer  "user_id"
-    t.string   "token"
-    t.boolean  "validated",  default: false
+    t.string   "uid",        limit: 255
+    t.string   "provider",   limit: 255
+    t.integer  "user_id",    limit: 4
+    t.string   "token",      limit: 255
+    t.boolean  "validated",              default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "uid"
-    t.string   "deptid"
-    t.string   "department"
-    t.string   "email"
-    t.string   "image"
+    t.string   "name",                     limit: 255
+    t.string   "uid",                      limit: 255
+    t.string   "deptid",                   limit: 255
+    t.string   "department",               limit: 255
+    t.string   "email",                    limit: 255
+    t.string   "image",                    limit: 255
     t.boolean  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "verified"
-    t.boolean  "send_notifications",       default: true
-    t.boolean  "email_confirmed",          default: false
-    t.string   "email_confirmation_token"
+    t.boolean  "send_notifications",                   default: true
+    t.boolean  "email_confirmed",                      default: false
+    t.string   "email_confirmation_token", limit: 255
   end
 
 end
