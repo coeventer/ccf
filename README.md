@@ -72,9 +72,7 @@ cp config/config.yml.example config/config.yml
 
 Set-up your development data base, I am using mysql locally but included an example SQLite DB config for lowest overhead
 ```
-cp config/database.yml.example config/database.yml
-bundle exec rake db:create
-bundle exec rake db:migrate
+bundle exec rake setup
 ```
 
 Compile the required JavaScript assets.
