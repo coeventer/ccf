@@ -116,7 +116,11 @@ class Event < ActiveRecord::Base
     return self.where(live: true)
   end
 
+  def url
+    Rails.application.routes.url_helpers.event_url(self)
+  end
+
   def slack_message
-    "A new event has been created: #{title}. #{description}"
+    "A new event has been created: #{title}. #{url}"
   end
 end
