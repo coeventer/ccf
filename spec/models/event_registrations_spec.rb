@@ -5,8 +5,8 @@ describe EventRegistration do
   let(:event) { create :event, organization: organization }
   let(:user)  { create :user, email: "test@test.com" }
 
-  it "should require a participation level" do
-    should validate_presence_of(:participation_level)
+  it "should require a name" do
+    should validate_presence_of(:name)
   end
 
   it "should belong to an event" do
