@@ -1,7 +1,7 @@
 class EventRegistrationsController < OrganizationController
   before_filter :verification_required
   load_and_authorize_resource :event
-  load_and_authorize_resource through: :event, except: [:new]
+  load_and_authorize_resource through: :event, except: [:new, :create]
   # GET /event_registrations/1
   # GET /event_registrations/1.json
   def show
@@ -14,6 +14,7 @@ class EventRegistrationsController < OrganizationController
   # GET /event_registrations/new
   # GET /event_registrations/new.json
   def new
+    authorize! :create, @event.event_registrations.new
     @event_registration = @event.event_registrations.new(user: current_user)
 
     respond_to do |format|
@@ -28,7 +29,8 @@ class EventRegistrationsController < OrganizationController
   # POST /event_registrations
   # POST /event_registrations.json
   def create
-    @event_registration.user = current_user
+    authorize! :create, @event.event_registrations.new
+    @event_registration = @event.event_registrations.create(params[:event_registration].merge(user: current_user))
 
     respond_to do |format|
       if @event_registration.save
