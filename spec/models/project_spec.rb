@@ -39,6 +39,13 @@ describe Project do
     should have_many(:tags)
   end
 
+  context "#url" do
+    subject { create(:project, organization: organization, title: "A Title") }
+    it "generates the proper url" do
+      expect(subject.url).to eq("http://lvh.me/projects/1-a-title")
+    end
+  end
+
   context "#slack_message" do
     describe "with an event" do
       subject { create(:project, organization: organization, title: "A Title") }
