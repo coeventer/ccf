@@ -78,3 +78,10 @@ div.user_badge {
   padding-top: 15px;
   border-top: 1px solid #efefef;
 }
+
+.emoji {
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    margin-bottom: -0.25em;
+}
