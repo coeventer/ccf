@@ -1,2 +1,4 @@
 <% comment = @project.comments.new %>
 $("#comment_container_<%=@project.id%>").html("<%=j render(:partial => 'comments', :locals => {:project => @project, :comment => comment})%>")
+
+emojify.run()
