@@ -1,6 +1,8 @@
 <%= @user.name %>,
 
-A new comment has been posted for <%= @project.title %>:
+A new comment has been posted for <%= @project.title %>
+
+<%= @comment.user.name %> commented:
 
 <%= strip_tags @comment.description %>
 
