@@ -21,3 +21,4 @@
 //= require jquery.datetimepicker
 //= require selectize
 //= require bootstrap-tour
+//= require emojify.min
