@@ -6,7 +6,9 @@
   <body>
     <p><%= @user.name %>,</p>
 
-    <p>A new comment has been posted for <%= @project.title %>:</p>
+    <p>A new comment has been posted for <%= @project.title %></p>
+
+    <p><%= @comment.user.name %> commented:</p>
 
     <p><%= sanitize @comment.description %></p>
 
