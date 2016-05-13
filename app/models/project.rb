@@ -142,7 +142,8 @@ class Project < ActiveRecord::Base
   end
 
   def recalculate_hotness
-    update_attributes( hotness: ProjectHotness.new(self).hotness )
+    self.hotness = ProjectHotness.new(self).hotness
+    save
   end
 
   def self.to_csv
