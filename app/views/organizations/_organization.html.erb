@@ -13,8 +13,8 @@
   </div>
   <div class="col-xs-2">
     <p><span class="badge"><%=organization.users.count%></span> users</p>
-    <p><span class="badge"><%=organization.events.count%></span> events</p>
-    <p><span class="badge"><%=organization.projects.count%></span> projects</p>
+    <p><span class="badge"><%=organization.events.unscoped.where(organization_id: organization.id).count%></span> events</p>
+    <p><span class="badge"><%=organization.projects.unscoped.where(organization_id: organization.id).count%></span> ideas</p>
   </div>
   <div class="row">
     <div class="col-xs-12"><hr /></div>
