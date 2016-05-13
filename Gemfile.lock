@@ -156,7 +156,7 @@ GEM
       less (~> 2.5.0)
     less-rails-bootstrap (3.2.0)
       less-rails (~> 2.5.0)
-    libv8 (3.16.14.13)
+    libv8 (3.16.14.15)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -359,4 +359,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.11.2
+   1.12.3

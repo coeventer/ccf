@@ -6,6 +6,7 @@
     </button>
     <ul class="dropdown-menu" role="menu">
       <!-- dropdown menu links -->
+      <li><%=link_to "Hotness", sort_path("hottest", @event)%></li>
       <li><%=link_to "Date submitted", sort_path("created_at", @event)%></li>
       <li><%=link_to "Likes", sort_path("likes", @event)%></li>
       <li><%=link_to "Helpers", sort_path("helpers", @event)%></li>

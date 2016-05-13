@@ -8,7 +8,7 @@ class OrganizationController < ApplicationController
     respond_to do |format|
       format.html do
         redirect_to unverified_path
-        return false 
+        return false
       end
 
       format.json do
@@ -42,8 +42,10 @@ private
     # Default sort, use votes
     elsif !sort.nil? && ["comments"].include?(sort)
       @projects = @projects.most_commented
-    else
+    elsif ["likes"].include?(sort)
       @projects = @projects.most_liked
+    else
+      @projects = @projects.hottest
     end
   end
 end
