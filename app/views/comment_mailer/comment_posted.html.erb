@@ -8,7 +8,7 @@
 
     <p>A new comment has been posted for <%= @project.title %></p>
 
-    <p><%= @comment.user.name %> commented:</p>
+    <p><%= @comment.user.try(:name) %> commented:</p>
 
     <p><%= sanitize @comment.description %></p>
 

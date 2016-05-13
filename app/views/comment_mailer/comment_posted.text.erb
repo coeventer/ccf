@@ -2,7 +2,7 @@
 
 A new comment has been posted for <%= @project.title %>
 
-<%= @comment.user.name %> commented:
+<%= @comment.user.try(:name) %> commented:
 
 <%= strip_tags @comment.description %>
 
