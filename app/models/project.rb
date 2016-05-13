@@ -30,6 +30,7 @@ class Project < ActiveRecord::Base
   scope :most_commented, -> { order('project_comments_count DESC') }
   scope :most_liked, -> { order('project_ratings_count DESC') }
   scope :most_help, -> { order('project_volunteers_count DESC') }
+  scope :hottest, -> { order('hotness DESC') }
 
   delegate :id, to: :organization, prefix: true
 
@@ -138,6 +139,10 @@ class Project < ActiveRecord::Base
     tos = event.registrations.includes(:user).reorder("users.name").map(&:user)
     tos.push(project_owner) unless tos.include?(project_owner)
     tos
+  end
+
+  def recalculate_hotness
+    update_attributes( hotness: ProjectHotness.new(self).hotness )
   end
 
   def self.to_csv
