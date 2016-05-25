@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   layout "application"
   include ApplicationHelper
   before_filter :auth_required
-  protect_from_forgery
+  protect_from_forgery with: :exception
 
   def current_user
     @current_user ||= User.email_confirmed.find_by_id(session[:user_id]) if session[:user_id]
