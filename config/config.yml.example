@@ -5,6 +5,9 @@ development: &dev_config
     site_name: "Campus Codefest"
   oauth:
     providers:
+      github:
+        key: <<<<your key here bla blah.com>>>>
+        secret: <<<<supersecret here>>>>
       google_oauth2:
         key: <<<<your key here bla blah.com>>>>
         secret: <<<<supersecret here>>>>
