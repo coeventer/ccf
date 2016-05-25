@@ -4,5 +4,5 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-config = YAML::load(File.open(Rails.root.join('config', 'application_secret_token.yml')))
-CampusCodefest::Application.config.secret_token = config[:secret_token]
+config = YAML.load_file(Rails.root.join('config', 'secrets.yml'))[Rails.env]
+CampusCodefest::Application.config.secret_token = config[:secret_key_base]

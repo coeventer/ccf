@@ -16,7 +16,6 @@ rerun.txt
 pickle-email-*.html
 .DS_Store
 
-config/application_secret_token.yml
 config/database.yml
 config/providers.yml
 config/email.yml
