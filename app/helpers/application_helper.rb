@@ -27,6 +27,10 @@ module ApplicationHelper
     return data_table.collect{|v| v}.join(",").html_safe
   end
 
+  def github_path(event_id = nil)
+    oauth_path('github', event_id)
+  end
+
   def facebook_path(event_id = nil)
     oauth_path('facebook', event_id)
   end
