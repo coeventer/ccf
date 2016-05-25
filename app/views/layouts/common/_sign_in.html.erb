@@ -6,27 +6,29 @@
         <h4 class="modal-title"><i class="fa fa-sign-in"></i> Please sign in</h4>
       </div>
       <div class="modal-body">
-        <p><%=brand_name%> leverages Facebook, Google, and Meetup to provide identification. We do not do anything with your account besides identify who you are.</p>
+        <p><%=brand_name%> leverages several options to provide identification. We do not do anything with your account besides identify who you are.</p>
+
+        <p>
+          <%=link_to google_oauth2_path, class: "btn btn-primary" do%>
+            <i class="fa fa-google-plus"></i> Google Sign in
+          <% end %>
+          <%=link_to facebook_path, class: "btn btn-primary" do%>
+            <i class="fa fa-facebook-square"></i> Facebook Sign in
+          <% end %>
+          <%=link_to github_path, class: "btn btn-primary" do%>
+            <i class="fa fa-github"></i> Github Sign in
+          <% end %>
+        </p>
+        <p>
+          <%=link_to meetup_path, class: "btn btn-primary" do%>
+            Meetup Sign in
+          <% end %>
+        </p>
       </div>
       <div class="modal-footer">
-        <%=link_to github_path, class: "btn btn-primary" do%>
-          <i class="fa fa-github"></i> Github Sign in
-        <% end %>
-        <%=link_to google_oauth2_path, class: "btn btn-primary" do%>
-          <i class="fa fa-google-plus"></i> Google Sign in
-        <% end %>
-        <%=link_to facebook_path, class: "btn btn-primary" do%>
-          <i class="fa fa-facebook-square"></i> Facebook Sign in
-        <% end %>
-        <%=link_to meetup_path, class: "btn btn-primary" do%>
-          Meetup Sign in
-        <% end %>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <hr />
         <p>
           Don't have an account with one of the above? You can to <%=link_to "sign up", "https://accounts.google.com/signup"%> for a Google account.
         </p>
-
         <% if allow_development_provider? %>
           <p>
           <%= link_to '/auth/developer' do %>
