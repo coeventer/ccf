@@ -37,6 +37,14 @@
     <% end %>
 
   </li>
+  <li role="presentation" class="<%=active_event_tab(:customizations, active)%>">
+    <%= link_to @event.id ? wizard_path(:customizations) : '#', "aria-controls"=>"home", "role"=>"tab" do %>
+      <%=check_optional(@event.customized?) %>
+
+      Customizations
+    <% end %>
+
+  </li>
   <li role="presentation" class="<%=active_event_tab(:publish, active)%>">
     <%= link_to @event.id ? wizard_path(:publish) : '#', "aria-controls"=>"home", "role"=>"tab" do %>
       <%=check_required(@event.id ? Event.find(@event.id).live : false) %>

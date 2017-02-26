@@ -17,13 +17,13 @@
 <hr />
 
 
-<h3>Submit an Idea</h3>
+<h3><%=@event.customizations[:submit_idea]%></h3>
 <%= render partial: "projects/pretty_form" %>
 
 <hr />
 <div class="row">
   <div class="col-sm-9">
-    <h3>Proposed Project Ideas</h3>
+    <h3><%=@event.customizations[:proposed_ideas]%></h3>
     <%= render partial: "projects/project_list" %>
   </div>
 

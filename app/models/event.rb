@@ -3,7 +3,8 @@ class Event < ActiveRecord::Base
 
   attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date,
     :volunteering_enabled, :description, :registration_end_dt, :registration_maximum,
-    :live, :schedule, :other_info, :event_logo, :dashboard_enabled, :remove_event_logo
+    :live, :schedule, :other_info, :event_logo, :dashboard_enabled, :remove_event_logo,
+    :customizations
 
   belongs_to :organization
   has_many :projects
@@ -36,10 +37,13 @@ class Event < ActiveRecord::Base
   scope :future, -> { where("end_date > ?", Date.today) }
   scope :live, -> { where(live: true) }
 
+  before_create :assign_customizations
   before_destroy :unassign_projects
   before_destroy :delete_volunteers
 
   alias_attribute :name, :title
+
+  serialize :customizations, Hash
 
   [:start_date, :end_date, :voting_end_date, :volunteer_end_date, :registration_end_dt].each do |v|
     date_handler_name = "input_#{v}"
@@ -106,6 +110,14 @@ class Event < ActiveRecord::Base
     publishable = valid?
     self.live = false if self.live_changed?
     publishable
+  end
+
+  def customized?
+    customizations != EventCustomization.defaults
+  end
+
+  def assign_customizations
+    self.customizations = EventCustomization.defaults
   end
 
   def to_param

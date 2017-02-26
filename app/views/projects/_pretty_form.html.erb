@@ -1,3 +1,7 @@
+<%
+customizations = @event.try(:customizations) || EventCustomization.defaults
+%>
+
 <% project_options = { :placeholder => "Submit your idea #{@event.nil? ? '' : 'for ' + @event.title}", :class => "tour-first-step form-control" } %>
 <% if !can?(:create, Project) || @event.try(:completed?) %>
   <% project_options[:disabled] = "disabled" %>
@@ -10,9 +14,10 @@
   <% if !@event.nil? %>
     <%=f.hidden_field :event_id, :value => @event.id%>
   <% end %>
-  <%=f.input :repository, :class => 'form-control', :placeholder => "https://github.com/example/example" %>
+  <%=f.input :repository, :class => 'form-control', :placeholder => "https://github.com/example/example",
+    :label => customizations[:repository] %>
   <br />
-  <%=f.submit "Submit idea", :class => "btn btn-primary" %> or
+  <%=f.submit customizations[:submit_idea], :class => "btn btn-primary" %> or
 
   <%=link_to "Cancel", (@event.nil? ? projects_path : event_path(@event))%>
   </div>

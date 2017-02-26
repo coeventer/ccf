@@ -1,0 +1,16 @@
+<%= render partial: "admin/builder/nav", locals: { active: :customizations } %>
+
+<h2>Customizations</h2>
+<p>Customize copy for the event</p>
+
+<%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+  <% end %>
+  <hr />
+  <%=f.submit :class => "btn btn-primary"%> or
+  <%=link_to next_wizard_path, class: "btn btn-primary" do%>
+    <i class="fa fa-arrow-circle-right"></i> Continue
+  <% end %>
+
+<%end%>

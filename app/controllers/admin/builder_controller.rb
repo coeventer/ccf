@@ -3,7 +3,7 @@ class Admin::BuilderController < Admin::AdminController
 
   before_filter :find_event
 
-  steps :information, :registration, :ideas, :schedule, :logo, :publish
+  steps :information, :registration, :ideas, :schedule, :logo, :customizations, :publish
 
   def show
     render_wizard
