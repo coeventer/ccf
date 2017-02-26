@@ -10,7 +10,10 @@ class Admin::BuilderController < Admin::AdminController
   end
 
   def update
-    if @event.update_attributes(params[:event])
+    if step == :customizations
+      @event.update_attributes(customizations: EventCustomization.new(params[:event_customization].symbolize_keys).to_h)
+      skip_step
+    elsif @event.update_attributes(params[:event])
       skip_step unless step == :publish
     end
 

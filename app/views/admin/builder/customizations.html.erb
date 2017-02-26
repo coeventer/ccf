@@ -1,11 +1,13 @@
 <%= render partial: "admin/builder/nav", locals: { active: :customizations } %>
 
 <h2>Customizations</h2>
-<p>Customize copy for the event</p>
+<p>Customize copy for the event. These will replace the default text.</p>
 
-<%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
+<%=semantic_form_for EventCustomization.new(@event.customizations), url: wizard_path, method: :put do |f|%>
   <%= f.inputs do %>
-    <%= f.input :name %>
+    <%= f.input :submit_idea %>
+    <%= f.input :proposed_ideas %>
+    <%= f.input :repository %>
   <% end %>
   <hr />
   <%=f.submit :class => "btn btn-primary"%> or
