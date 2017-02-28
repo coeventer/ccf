@@ -3,14 +3,17 @@ class Admin::BuilderController < Admin::AdminController
 
   before_filter :find_event
 
-  steps :information, :registration, :ideas, :schedule, :logo, :publish
+  steps :information, :registration, :ideas, :schedule, :logo, :customizations, :publish
 
   def show
     render_wizard
   end
 
   def update
-    if @event.update_attributes(params[:event])
+    if step == :customizations
+      @event.update_attributes(customizations: EventCustomization.new(params[:event_customization].symbolize_keys).to_h)
+      skip_step
+    elsif @event.update_attributes(params[:event])
       skip_step unless step == :publish
     end
 

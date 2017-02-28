@@ -11,28 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513192448) do
+ActiveRecord::Schema.define(version: 20170226114113) do
 
   create_table "event_comments", force: :cascade do |t|
     t.integer  "event_id",    limit: 4
     t.integer  "user_id",     limit: 4
     t.text     "description", limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "event_moderators", force: :cascade do |t|
     t.integer  "event_id",   limit: 4
     t.integer  "user_id",    limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "event_registrations", force: :cascade do |t|
     t.integer  "event_id",            limit: 4
     t.integer  "user_id",             limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.text     "note",                limit: 65535
     t.string   "participation_level", limit: 255
     t.string   "name",                limit: 255
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20160513192448) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "voting_end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.boolean  "voting_enabled",                     default: true
     t.boolean  "volunteering_enabled",               default: true
     t.datetime "volunteer_end_date"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160513192448) do
     t.integer  "organization_id",      limit: 4,     default: 0
     t.boolean  "dashboard_enabled",                  default: true
     t.string   "event_logo",           limit: 255
+    t.text     "customizations",       limit: 65535
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -67,8 +68,8 @@ ActiveRecord::Schema.define(version: 20160513192448) do
     t.integer  "context_id",      limit: 4
     t.integer  "user_id",         limit: 4
     t.string   "status",          limit: 255, default: "pending"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   create_table "organization_users", force: :cascade do |t|
@@ -76,8 +77,8 @@ ActiveRecord::Schema.define(version: 20160513192448) do
     t.integer  "user_id",         limit: 4
     t.boolean  "verified"
     t.boolean  "admin"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -87,8 +88,8 @@ ActiveRecord::Schema.define(version: 20160513192448) do
     t.boolean  "auto_verify"
     t.string   "description",         limit: 255
     t.string   "website",             limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                             null: false
+    t.datetime "updated_at",                                                             null: false
     t.string   "organization_logo",   limit: 255
     t.string   "slack_webhook_url",   limit: 255
     t.boolean  "public_access",                   default: false
@@ -102,8 +103,8 @@ ActiveRecord::Schema.define(version: 20160513192448) do
     t.text     "wrong",      limit: 65535
     t.text     "next_steps", limit: 65535
     t.integer  "project_id", limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.boolean  "published"
     t.string   "title",      limit: 255
   end
@@ -113,31 +114,31 @@ ActiveRecord::Schema.define(version: 20160513192448) do
     t.integer  "user_id",     limit: 4
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "project_ratings", force: :cascade do |t|
     t.integer  "project_id", limit: 4
     t.integer  "user_id",    limit: 4
     t.integer  "rating",     limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "project_tags", force: :cascade do |t|
     t.integer  "project_id", limit: 4
     t.string   "tag",        limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "project_volunteers", force: :cascade do |t|
     t.integer  "project_id",     limit: 4
     t.integer  "user_id",        limit: 4
     t.string   "interest_level", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "projects", force: :cascade do |t|
@@ -145,8 +146,8 @@ ActiveRecord::Schema.define(version: 20160513192448) do
     t.integer  "project_owner_id",         limit: 4
     t.string   "title",                    limit: 255
     t.text     "description",              limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
     t.string   "classification",           limit: 255
     t.boolean  "approved",                               default: false
     t.string   "repository",               limit: 255
@@ -164,8 +165,8 @@ ActiveRecord::Schema.define(version: 20160513192448) do
     t.integer  "user_id",    limit: 4
     t.string   "token",      limit: 255
     t.boolean  "validated",              default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -176,8 +177,8 @@ ActiveRecord::Schema.define(version: 20160513192448) do
     t.string   "email",                    limit: 255
     t.string   "image",                    limit: 255
     t.boolean  "admin"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.boolean  "verified"
     t.boolean  "send_notifications",                   default: true
     t.boolean  "email_confirmed",                      default: false

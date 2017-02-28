@@ -1,3 +1,7 @@
+<%
+customizations = @project.event.try(:customizations) || EventCustomization  .defaults
+%>
+
 <%=semantic_form_for @project do |f| -%>
   <%=f.text_field :title, :class => "form-control", :style => "width: 80%;"%>
   <% if @project.event_id %>
@@ -12,9 +16,10 @@
   <%elsif @events.try(:any?) %>
   <%=f.input :event_id, :as => :select, :collection => @events, :label => "Assign to an event" %>
   <%end%>
-  <%=f.input :repository, :class => "form-control", :placeholder => "https://github.com/example/example" %>
+  <%=f.input :repository, :class => "form-control", :placeholder => "https://github.com/example/example",
+    :label => customizations[:repository] %>
   <br />
-  <%=f.submit "Submit idea", :class => "btn btn-primary" %>
+  <%=f.submit customizations[:submit_idea], :class => "btn btn-primary" %>
   <%=link_to "Cancel", (@project.event.nil? ? projects_path : event_path(@project.event)), :class => "btn btn-link" %>
   </div>
 <%end%>
