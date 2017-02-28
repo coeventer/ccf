@@ -31,7 +31,7 @@ class Ability
       end
 
       can :create, EventRegistration do |registration|
-        registration.event.registration_enabled? && !registration.event.registered?(user)
+        registration.event.registration_enabled? && registration.event.registrations_remaining? && !registration.event.registered?(user)
       end
 
       can :create, EventComment
