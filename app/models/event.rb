@@ -56,33 +56,44 @@ class Event < ActiveRecord::Base
   # Voting is enabled if the voting enabled boolean is turned on, it is before the event start date
   # and before the voting end date, if it is set
   def voting_enabled?
-    return self.live? && self.voting_enabled && (self.voting_end_date.nil? ? true : Time.now < self.voting_end_date) && Time.now < self.start_date
+    live? && voting_enabled && 
+    (voting_end_date.nil? ? true : Time.now < voting_end_date) && 
+    Time.now < start_date
   end
 
   # Volunteering is enabled if the volunteering enabled boolean is turned on, it is before the event ends
   # and before the volunteering end date, if it is set
   def volunteering_enabled?
-    return self.live? && self.volunteering_enabled && (self.volunteer_end_date.nil? ? true : Time.now < self.volunteer_end_date) && Time.now <= self.end_date
+    live? && volunteering_enabled && 
+    (volunteer_end_date.nil? ? true : Time.now < volunteer_end_date) && 
+    Time.now <= end_date
   end
 
   def registration_enabled?
-    return self.live? && (self.registrations_remaining > 0) && (self.registration_end_dt.nil? ? true : Time.now < self.registration_end_dt) && Time.now < self.end_date
+    live? && (registration_end_dt.nil? ? true : Time.now < registration_end_dt) && 
+    Time.now < end_date
+  end
+
+  def registrations_remaining?
+    registrations_remaining > 0
   end
 
   def registered?(user)
-    return !self.registrations.find_by_user_id(user.id).nil?
+    return false unless user
+
+    !registrations.find_by_user_id(user.id).nil?
   end
 
   def registrations_remaining
-    return self.registration_maximum - self.registrations.count
+    registration_maximum - self.registrations.count
   end
 
   def volunteer_count
-    self.volunteers.count
+    volunteers.count
   end
 
   def vote_count
-    self.ratings.count
+    ratings.count
   end
 
   def completed?

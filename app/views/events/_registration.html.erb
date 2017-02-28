@@ -1,11 +1,11 @@
-<% if @event.registration_enabled?%>
-  <% if !current_user.nil? && current_organization.verified?(current_user) && @event.registered?(current_user)%>
-    <p>
-      <%=link_to event_event_registration_path(@event, @registration), :class => "btn btn-danger btn-lg reg_button", :confirm => "Are you certain you want to do this?", :method => :delete do%>
-      <span class="fa fa-play-circle"></span> Unregister
-      <%end%>
-    </p>
-  <%else%>
+<% if @event.registration_enabled? && @event.registered?(current_user)%>
+  <p>
+    <%=link_to event_event_registration_path(@event, @registration), :class => "btn btn-danger btn-lg reg_button", :confirm => "Are you certain you want to do this?", :method => :delete do%>
+    <span class="fa fa-play-circle"></span> Unregister
+    <%end%>
+  </p>
+<% elsif @event.registration_enabled? && @event.registrations_remaining? %>
+  <%if @event.registrations_remaining?%>
     <% if current_user %>
       <p>
         <%=link_to new_event_event_registration_path(@event), :class => "btn btn-success btn-lg reg_button" do%>
