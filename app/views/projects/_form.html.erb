@@ -10,7 +10,7 @@ customizations = @project.event.try(:customizations) || EventCustomization  .def
   </p>
   <% end %>
   <div id="project_details">
-  <%=f.input :description, :as => :text, :input_html => {:style => "width: 80%; height: 100px;"}, :placeholder => "Describe your idea"%>
+  <%=f.input :description, :as => :text, :input_html => {:style => "width: 100%; height: 400px;"}, :placeholder => "Describe your idea"%>
   <% if @project.event_id %>
   <%=f.input :event_id, :as => :hidden, :value => @project.event_id%>
   <%elsif @events.try(:any?) %>
