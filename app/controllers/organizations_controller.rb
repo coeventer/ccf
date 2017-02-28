@@ -14,7 +14,7 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(params[:organization])
 
     if @organization.save then
-      @organization.users.create(user: current_user, admin: true, verified: true)
+      @organization.add_creator(current_user)
       redirect_to admin_after_create_url(:guide, subdomain: @organization.subdomain)
     else
       render :new

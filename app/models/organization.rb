@@ -21,6 +21,12 @@ class Organization < ActiveRecord::Base
     Thread.current[:current_id]
   end
 
+  def add_creator(user)
+    new_user = users.new(user: user, verified: true)
+    new_user.admin = true
+    new_user.save
+  end
+
   def admin?(user)
     return true if user.admin?
 
