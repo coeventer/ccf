@@ -5,6 +5,7 @@
     <div class="hr light extra-margin"><hr></div>
     <%= semantic_form_for @message, :url => contact_path do |f| %>
         <%= f.input :name, :input_html => { :class => 'span5'} %>
+        <%= f.input :event, as: :select, collection: Event.live%>
         <%= f.input :email, :input_html => { :class => 'span5'} %>
         <%= f.input :subject, :input_html => { :class => 'span5'} %>
         <%= f.input :body, :label => "Comment or Question", :as => :text, :input_html => { :class => 'span5'} %>
