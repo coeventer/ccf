@@ -10,6 +10,7 @@ class ProjectRating < ActiveRecord::Base
   delegate :id, to: :organization, prefix: true
 
   def slack_message
-    "#{user.name} liked project #{project.title}: #{project.url}"
+    user_name = project.event.try(:anonymous_social) ? 'Somebody' : user.name
+    "#{user_name} liked project #{project.title}: #{project.url}"
   end
 end

@@ -1,10 +1,11 @@
 class Event < ActiveRecord::Base
   include SlackNotifiable
+  include FlagShihTzu
 
   attr_accessible :end_date, :start_date, :title, :voting_end_date, :voting_enabled, :volunteer_end_date,
     :volunteering_enabled, :description, :registration_end_dt, :registration_maximum,
     :live, :schedule, :other_info, :event_logo, :dashboard_enabled, :remove_event_logo,
-    :customizations
+    :customizations, :anonymous_projects, :anonymous_social
 
   belongs_to :organization
   has_many :projects
@@ -40,6 +41,8 @@ class Event < ActiveRecord::Base
   before_create :assign_customizations
   before_destroy :unassign_projects
   before_destroy :delete_volunteers
+
+  has_flags 1 => :anonymous_projects, 2 => :anonymous_social
 
   alias_attribute :name, :title
 

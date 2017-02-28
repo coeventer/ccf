@@ -1,6 +1,8 @@
+<% unless project.event.try(:anonymous_projects) %>
 <div class="project-owner">
   <label>Submitted By</label> <%=link_to project.submitted_user.name, user_path(project.submitted_user)%> &#8226; <span class="comment-time"><%= time_ago_in_words(project.created_at)%> ago</span>
 </div>
+<% end %>
 
 <% if project.submitted_user != owner %>
 <div class="project-owner">
