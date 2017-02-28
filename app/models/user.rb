@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
     user = pu.user if pu
 
     # 2. If 1 didn't work, attempt to find the user by auth provided email address
-    user = User.find_by(email: auth.info.email) if !user and auth.info.has_key?('email')
+    user = User.find_by(email: auth.info.email) if !user and auth.info.has_key?('email') && !auth.info.email.blank?
 
     # 3. If 1 and 2 didn't work, assume the user doesn't exist yet. 
     user ||= create! do |new_user|
@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
       new_user.image = auth.info.image
       new_user.verified = false
 
-      if auth.info.key?('email')
+      if auth.info.key?('email') && !auth.info.email.blank?
         new_user.email = auth.info.email
         # Assume the OAuth provider has confirmed the user's email address
         new_user.email_confirmed = true
