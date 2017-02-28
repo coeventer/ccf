@@ -62,9 +62,10 @@ class User < ActiveRecord::Base
   def deactivate
     if self.update_attributes(uid: nil, name: "Deactivated Account", email: "None", image: nil, admin: false, verified: false)
       organization_users.update_all(admin: false, verified: false)
-      return true
+      provider_users.each(&:destroy)
+      true
     else
-      return false
+      false
     end
   end
 
