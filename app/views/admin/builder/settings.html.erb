@@ -1,0 +1,15 @@
+<%= render partial: "admin/builder/nav", locals: { active: :schedule } %>
+
+<h2>Settings</h2>
+<p>Advanced settings about for your event.</p>
+
+<%=semantic_form_for @event, url: wizard_path, method: :put do |f|%>
+  <%= f.inputs do %>
+    <%=f.input :anonymous_projects, as: :boolean%>
+    <%=f.input :anonymous_social, as: :boolean%>
+  <% end %>
+  <%=f.submit :class => "btn btn-primary"%> or
+  <%=link_to next_wizard_path, class: "btn btn-primary" do%>
+    <i class="fa fa-arrow-circle-right"></i> Continue
+  <% end %>
+<%end%>

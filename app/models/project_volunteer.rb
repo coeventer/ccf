@@ -21,6 +21,7 @@ class ProjectVolunteer < ActiveRecord::Base
   end
 
   def slack_message
-    "#{user.name} has volunteered for #{project.title}: #{project.url}"
+    user_name = project.event.try(:anonymous_social) ? 'Somebody' : user.name
+    "#{user_name} has volunteered for #{project.title}: #{project.url}"
   end
 end

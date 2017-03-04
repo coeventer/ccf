@@ -15,6 +15,7 @@ class ProjectComment < ActiveRecord::Base
   default_scope { order(:created_at)}
 
   def slack_message
+    user_name = project.event.try(:anonymous_social) ? 'Somebody' : user.name
     "#{user.name} has commented on #{project.title}: #{project.url}"
   end
 

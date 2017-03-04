@@ -27,7 +27,7 @@
     <%=Sanitize.clean(project.description, Sanitize::Config::RELAXED).html_safe%>
     <%end%>
 
-    <% unless project.volunteers.blank? %>
+    <% unless project.event.try(:anonymous_social) || project.volunteers.blank? %>
     <div class="volunteers_container">
       <p>Volunteers:</p>
       <%project.volunteers.each do |v|%>

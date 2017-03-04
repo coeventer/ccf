@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226114113) do
+ActiveRecord::Schema.define(version: 20170228213605) do
 
   create_table "event_comments", force: :cascade do |t|
     t.integer  "event_id",    limit: 4
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170226114113) do
     t.boolean  "dashboard_enabled",                  default: true
     t.string   "event_logo",           limit: 255
     t.text     "customizations",       limit: 65535
+    t.integer  "flags",                limit: 4,     default: 0,     null: false
   end
 
   create_table "invitations", force: :cascade do |t|

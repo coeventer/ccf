@@ -11,6 +11,7 @@
   <span class="fa fa-thumbs-up"></span> Like
 <% end %>
 
+<% unless project.event.try(:anonymous_social) %>
 <script>
 $('#popover-likes-<%=project.id%>').popover({
   content: "Liked by: <%=project.ratings.flat_map(&:user).map(&:name).join(', ')%>",
@@ -18,3 +19,4 @@ $('#popover-likes-<%=project.id%>').popover({
   trigger: "hover click"
 })
 </script>
+<% end %>
