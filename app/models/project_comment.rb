@@ -16,7 +16,7 @@ class ProjectComment < ActiveRecord::Base
 
   def slack_message
     user_name = project.event.try(:anonymous_social) ? 'Somebody' : user.name
-    "#{user.name} has commented on #{project.title}: #{project.url}"
+    "#{user_name} has commented on #{project.title}: #{project.url}"
   end
 
   def send_notification
