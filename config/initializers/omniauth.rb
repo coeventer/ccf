@@ -1,7 +1,8 @@
 config = APP_CONFIG.fetch("oauth", [])
 if !config.empty?
   Rails.application.config.middleware.use OmniAuth::Builder do
-    if Rails.env.development?    then
+    if Rails.env.development?
+      OpenSSL::SSL.class_eval { remove_const :VERIFY_PEER }
       OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
     end
 
